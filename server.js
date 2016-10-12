@@ -1,10 +1,10 @@
 const path = require('path');
 const restify = require('restify');
 const webpack = require('webpack');
-//const webpackMiddleware = require('webpack-dev-middleware');
+const webpackMiddleware = require('webpack-dev-middleware');
 //const webpackHotMiddleware = require('webpack-hot-middleware');
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const webpackConfig = isDevelopment ? require('./config/webpack.dev.js') : require('./config/webpack.prod.js');
+const webpackConfig = isDevelopment ? require('./config/webpack.dev')() : require('./config/webpack.prod')();
 const mongoose = require('mongoose');
 const lib = require("./lib");
 const config = lib.config;
@@ -44,24 +44,25 @@ server.use(function(req, res, next) {
 });
 
 if (isDevelopment) {
-    //const compiler = webpack(webpackConfig);
-    // const middleware = webpackMiddleware(compiler, {
-    //     publicPath: webpackConfig.output.publicPath,
-    //     contentBase: 'public',
-    //     stats: {
-    //         colors: true,
-    //         hash: false,
-    //         timings: true,
-    //         chunks: false,
-    //         chunkModules: false,
-    //         modules: false
-    //     }
-    // });
+    const compiler = webpack(webpackConfig);
+    console.log(webpackConfig.output.path);
+    const middleware = webpackMiddleware(compiler, {
+        publicPath: webpackConfig.output.publicPath,
+        contentBase: 'public',
+        stats: {
+            colors: true,
+            hash: false,
+            timings: true,
+            chunks: false,
+            chunkModules: false,
+            modules: false
+        }
+    });
 
     // MongoDb
     process.env.MONGODB_URI || (process.env.MONGODB_URI = config.database.mongoUrl);
 
-    //server.use(middleware);
+    server.use(middleware);
     //server.use(webpackHotMiddleware(compiler));
 
     server.get(/^\/swagger-ui(\/.*)?/, restify.serveStatic({
