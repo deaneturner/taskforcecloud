@@ -94,7 +94,7 @@ if (isDevelopment) {
 
     swagger.configureSwaggerPaths("", "/api-docs", ""); // remove the {format} part of the paths, to
     swagger.configure('http://localhost:' + config.server.port, '0.1');
-    console.log('Swagger: ' + 'http://localhost:' + config.server.port + '/swagger-ui');
+    console.log('swagger-ui: ' + 'http://localhost:' + config.server.port + '/swagger-ui');
 
 } else {
     server.get(/.*/, restify.serveStatic({
