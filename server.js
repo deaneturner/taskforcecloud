@@ -44,6 +44,7 @@ server.use(function(req, res, next) {
 });
 
 if (isDevelopment) {
+    console.log('NOT HERE!');
     const compiler = webpack(webpackConfig);
     console.log(webpackConfig.output.path);
     const middleware = webpackMiddleware(compiler, {
