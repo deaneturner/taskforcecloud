@@ -1,8 +1,5 @@
 const path = require('path');
 const restify = require('restify');
-const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const webpackConfig = require('./webpack.config');
 const mongoose = require('mongoose');
@@ -44,9 +41,11 @@ server.use(function(req, res, next) {
 });
 
 if (isDevelopment) {
-    console.log('NOT HERE!');
+    const webpack = require('webpack');
+    const webpackMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
+
     const compiler = webpack(webpackConfig);
-    console.log(webpackConfig.output.path);
     const middleware = webpackMiddleware(compiler, {
         publicPath: '/',
         stats: {
