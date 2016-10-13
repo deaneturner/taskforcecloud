@@ -1,7 +1,6 @@
 const path = require('path');
 const restify = require('restify');
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const webpackConfig = require('./webpack.config');
 const mongoose = require('mongoose');
 const lib = require("./lib");
 const config = lib.config;
@@ -41,6 +40,7 @@ server.use(function(req, res, next) {
 });
 
 if (isDevelopment) {
+    const webpackConfig = require('./webpack.config');
     const webpack = require('webpack');
     const webpackMiddleware = require('webpack-dev-middleware');
     const webpackHotMiddleware = require('webpack-hot-middleware');

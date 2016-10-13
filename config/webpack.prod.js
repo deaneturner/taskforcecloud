@@ -1,6 +1,6 @@
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
-const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
+const commonConfig = require('./webpack.common'); // the settings that are common to prod and dev
 
 /**
  * Webpack Plugins
@@ -125,7 +125,7 @@ module.exports = function(env) {
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
+          'HMR': METADATA.HMR
         }
       }),
 
@@ -204,7 +204,7 @@ module.exports = function(env) {
     tslint: {
       emitErrors: true,
       failOnHint: true,
-      resourcePath: 'src'
+      resourcePath: 'public'
     },
 
     /**
