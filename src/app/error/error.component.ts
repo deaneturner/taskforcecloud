@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'error-page app'
-  },
+  }
 })
 export class ErrorComponent {
   router: Router;
