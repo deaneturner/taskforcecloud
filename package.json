@@ -27,7 +27,7 @@
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "start": "node server",
-    "start:dev": "node --debug server",
+    "start:dev": "node server",
     "start:webpack": "npm run server:dev",
     "tslint": "tslint",
     "typedoc": "typedoc",

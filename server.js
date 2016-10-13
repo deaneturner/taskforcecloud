@@ -4,7 +4,8 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 //const webpackHotMiddleware = require('webpack-hot-middleware');
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const webpackConfig = isDevelopment ? require('./config/webpack.dev')() : require('./config/webpack.prod')();
+//const webpackConfig = isDevelopment ? require('./config/webpack.dev') : require('./config/webpack.prod');
+const webpackConfig = require('./webpack.config');
 const mongoose = require('mongoose');
 const lib = require("./lib");
 const config = lib.config;
@@ -47,8 +48,7 @@ if (isDevelopment) {
     const compiler = webpack(webpackConfig);
     console.log(webpackConfig.output.path);
     const middleware = webpackMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath,
-        contentBase: 'public',
+        publicPath: webpackConfig.output.publicPath || '/',
         stats: {
             colors: true,
             hash: false,
@@ -56,7 +56,16 @@ if (isDevelopment) {
             chunks: false,
             chunkModules: false,
             modules: false
-        }
+        },
+        noInfo: false,
+        // display no info to console (only warnings and errors)
+
+        quiet: false,
+        // display nothing to the console
+
+        lazy: false
+        // switch into lazy mode
+        // that means no watching, but recompilation on every request
     });
 
     // MongoDb

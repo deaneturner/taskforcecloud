@@ -90,8 +90,7 @@ module.exports = function(options) {
       chunkFilename: '[id].chunk.js',
 
       library: 'ac_[name]',
-      libraryTarget: 'var',
-      publicPath: '/'
+      libraryTarget: 'var'
     },
 
     plugins: [
@@ -112,7 +111,7 @@ module.exports = function(options) {
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
+          'HMR': METADATA.HMR
         }
       }),
 
@@ -122,7 +121,7 @@ module.exports = function(options) {
          *
          * See: https://github.com/webpack/webpack/commit/a04ffb928365b19feb75087c63f13cadfc08e1eb
          */
-        new NamedModulesPlugin(),
+        new NamedModulesPlugin()
 
     ],
 
