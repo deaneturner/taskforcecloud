@@ -106,6 +106,9 @@ if (isDevelopment) {
 db.connect(function(err) {
     if(err) {
         console.log("Error trying to connect to database: ".red, err.stack.red);
+        console.log('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        console.log('If running heroku LOCAL, ensure the dev procfile is being used. (e.g. heroku local -f Procfile-dev)');
+        console.log('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         process.exit(1);
     }
     else {
