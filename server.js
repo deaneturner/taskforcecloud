@@ -2,9 +2,8 @@ const path = require('path');
 const restify = require('restify');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
-//const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const isDevelopment = process.env.NODE_ENV !== 'production';
-//const webpackConfig = isDevelopment ? require('./config/webpack.dev') : require('./config/webpack.prod');
 const webpackConfig = require('./webpack.config');
 const mongoose = require('mongoose');
 const lib = require("./lib");
@@ -48,7 +47,7 @@ if (isDevelopment) {
     const compiler = webpack(webpackConfig);
     console.log(webpackConfig.output.path);
     const middleware = webpackMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath || '/',
+        publicPath: '/',
         stats: {
             colors: true,
             hash: false,
@@ -72,7 +71,7 @@ if (isDevelopment) {
     process.env.MONGODB_URI || (process.env.MONGODB_URI = config.database.mongoUrl);
 
     server.use(middleware);
-    //server.use(webpackHotMiddleware(compiler));
+    server.use(webpackHotMiddleware(compiler));
 
     server.get(/^\/swagger-ui(\/.*)?/, restify.serveStatic({
         directory: __dirname + '/',
