@@ -80,8 +80,6 @@
     "tv4": "^1.1.9",
     "tv4-formats": "^1.0.0",
     "underscore": "^1.7.0",
-    "webpack": "^1.13.2",
-    "webpack-merge": "0.14.1",
     "widgster": "0.0.3",
     "zone.js": "~0.6.25"
   },
@@ -121,13 +119,15 @@
     "typedoc": "0.4.5",
     "typescript": "2.0.0",
     "url-loader": "0.5.7",
+    "webpack": "2.1.0-beta.22",
     "webpack-dev-middleware": "1.2.0",
     "webpack-hot-middleware": "2.2.0",
     "webpack-dev-server": "2.1.0-beta.2",
-    "webpack-md5-hash": "0.0.5"
+    "webpack-md5-hash": "0.0.5",
+    "webpack-merge": "0.14.1"
   },
   "engines": {
-    "node": ">= 4.2.1",
+    "node": ">= 5",
     "npm": ">= 3"
   }
 }
