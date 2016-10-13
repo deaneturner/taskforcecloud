@@ -125,7 +125,7 @@ module.exports = function(env) {
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
+          'HMR': METADATA.HMR
         }
       }),
 
@@ -204,7 +204,7 @@ module.exports = function(env) {
     tslint: {
       emitErrors: true,
       failOnHint: true,
-      resourcePath: 'src'
+      resourcePath: 'public'
     },
 
     /**
