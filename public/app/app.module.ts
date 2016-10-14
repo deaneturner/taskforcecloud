@@ -16,6 +16,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
 import { AppConfig } from './app.config';
 import { AppAuth } from './app.auth';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { ErrorComponent } from './error/error.component';
 
 // Application wide providers
@@ -23,7 +24,8 @@ const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
   AppConfig,
-  AppAuth
+  AppAuth,
+  AUTH_PROVIDERS
 ];
 
 type StoreType = {
