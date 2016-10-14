@@ -1,6 +1,7 @@
 module.exports = {
 	models: {
 		Client: require("./client"),
-		User: require("./user")
+		User: require("./user"),
+		Login: require("./login")
 	}
 };

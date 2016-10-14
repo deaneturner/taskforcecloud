@@ -2,21 +2,21 @@ var BaseController = require("./basecontroller");
 var _ = require("underscore");
 var swagger = require("swagger-node-restify");
 
-function Users() {
+function Login() {
 }
 
-Users.prototype = new BaseController();
+Login.prototype = new BaseController();
 
 module.exports = function (lib) {
-    var controller = new Users();
+    var controller = new Login();
 
     controller.addAction({
-        'path': '/users',
+        'path': '/login',
         'method': 'GET',
-        'params': [swagger.bodyParam('user', 'The JSON representation of the user', 'string')],
-        'summary': 'Retrieves a user',
+        'params': [swagger.bodyParam('user', 'The JSON representation of the login request', 'string')],
+        'description': 'Finds the user and logs them in',
         'responsClass': 'User',
-        'nickname': 'getUser'
+        'nickname': 'loginUser'
     }, function (req, res, next) {
         var userModel = lib.db.model('User');
         userModel.find().exec(function (err, user) {
