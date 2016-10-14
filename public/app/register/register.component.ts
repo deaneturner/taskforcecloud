@@ -17,10 +17,10 @@ export class Register {
 
     }
 
-    register(event, username, password) {
+    register(event, username, password, confirmPassword) {
         event.preventDefault();
 
-        this.service.loginfn({username: username, password: password}).then((res) => {
+        this.service.registerfn({username: username, password: password, confirmPassword: confirmPassword}).then((res) => {
             if (res) {
                 this.router.navigate(['/app/dashboard']);
             } else {

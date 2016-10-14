@@ -12,11 +12,28 @@ module.exports = function (lib) {
 
     controller.addAction({
         'path': '/login',
-        'method': 'GET',
+        'method': 'POST',
         'params': [swagger.bodyParam('user', 'The JSON representation of the login request', 'string')],
         'description': 'Finds the user and logs them in',
         'responsClass': 'User',
         'nickname': 'loginUser'
+    }, function (req, res, next) {
+        var userModel = lib.db.model('User');
+        userModel.find().exec(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+
+
+            controller.writeHAL(res, user);
+        });
+    });
+
+    controller.addAction({
+        'path': '/register',
+        'method': 'POST',
+        'params': [swagger.bodyParam('user', 'The JSON representation of the register request', 'string')],
+        'description': 'Registers the user and logs them in',
+        'responsClass': 'User',
+        'nickname': 'registerUser'
     }, function (req, res, next) {
         var userModel = lib.db.model('User');
         userModel.find().exec(function (err, user) {

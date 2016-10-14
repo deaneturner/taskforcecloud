@@ -18,7 +18,27 @@ export class AuthService {
 
         return new Promise((resolve) => {
 
-            this.http.post('/authenticate', creds, {headers: headers}).subscribe((data) => {
+            this.http.post('/login', creds, {headers: headers}).subscribe((data) => {
+                    if (data.json().id_token) {
+                        window.localStorage.setItem('id_token', data.json().id_token);
+                        this.isLoggedin = true;
+                    }
+                    resolve(this.isLoggedin);
+                }
+            );
+        });
+    }
+
+    registerfn(usercreds) {
+        this.isLoggedin = false;
+        var headers = new Headers();
+        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password;
+
+        headers.append('Content-Type', 'application/X-www-form-urlencoded');
+
+        return new Promise((resolve) => {
+
+            this.http.post('/register', creds, {headers: headers}).subscribe((data) => {
                     if (data.json().id_token) {
                         window.localStorage.setItem('id_token', data.json().id_token);
                         this.isLoggedin = true;
