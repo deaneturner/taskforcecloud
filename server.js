@@ -79,11 +79,9 @@ if (isDevelopment) {
     }));
 
     /*
-     * TO ENABLE SWAGGER UI
-     * Comment out this root get and restart server, to enable swagger ui.
-     * Otherwise, path interferes with swagger-ui loading.
+     * api-docs exclusion enables swagger-ui (otherwise, .*)
      */
-    server.get(/.*/, function response(req, res) {
+    server.get(/^(?!\/api-docs(\/.*)?).*/, function response(req, res) {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
     });
