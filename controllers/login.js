@@ -1,6 +1,10 @@
 var BaseController = require("./basecontroller");
 var _ = require("underscore");
 var swagger = require("swagger-node-restify");
+var jwt = require('jwt-simple');
+var moment = require('moment');
+var lib = require("../lib");
+var User = require('../models/user');
 
 function Login() {
 }
@@ -18,12 +22,26 @@ module.exports = function (lib) {
         'responsClass': 'User',
         'nickname': 'loginUser'
     }, function (req, res, next) {
+        function createToken(user) {
+            var expires = moment().add(10, 's').unix();
+            return jwt.encode({
+                iss: user.username,
+                exp: expires
+            }, lib.config.secretKey);
+        }
+
+        // if (!req.body.username || !req.body.password) {
+        //     return res.status(400).send("You must send the username and the password");
+        // }
+
+
         var userModel = lib.db.model('User');
         userModel.find().exec(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
-
-            controller.writeHAL(res, user);
+            controller.writeHAL(res, {
+                id_token: createToken(userModel({username: 'test', password: 'XXX'}))
+            });
         });
     });
 
