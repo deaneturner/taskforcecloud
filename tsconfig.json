@@ -24,9 +24,6 @@
       "webpack"
     ]
   },
-  "include": [
-    "index.d.js"
-  ],
   "exclude": [
     "node_modules",
     "dist"
