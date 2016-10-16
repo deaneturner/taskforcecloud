@@ -23,6 +23,23 @@ module.exports = function (lib) {
         });
     });
 
+    controller.addAction({
+        'path': '/users',
+        'method': 'POST',
+        'params': [swagger.bodyParam('user', 'The JSON representation of the user', 'string')],
+        'summary': 'Adds a new user to the database',
+        'responsClass': 'User',
+        'nickname': 'addUser'
+    }, function (req, res, next) {
+        var newUser = req.body;
+
+        var newUserModel = lib.db.model('User')(newUser);
+        newUserModel.save(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, user);
+        })
+    });
+
     return controller;
 };
 

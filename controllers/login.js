@@ -23,7 +23,7 @@ module.exports = function (lib) {
         'nickname': 'loginUser'
     }, function (req, res, next) {
         function createToken(user) {
-            var expires = moment().add(10, 'm').unix();
+            var expires = moment().add(10, 's').unix();
             return jwt.encode({
                 iss: user.username,
                 exp: expires

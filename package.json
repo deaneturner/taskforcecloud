@@ -1,7 +1,14 @@
 {
-  "name": "Sing",
-  "version": "3.2.0",
-  "description": "Sing Dashboard App with Angular 2.0 Final Release support by Flatlogic",
+  "name": "TaskForceCloud",
+  "version": "0.1.0",
+  "description": "Task Force Cloud task collaboration app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deaneturner/taskforcecloud.git"
+  },
+  "license": "UNLICENSED",
+  "private": "true",
+  "main": "server.js",
   "scripts": {
     "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
     "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
@@ -59,6 +66,7 @@
     "animate.css": "3.5.1",
     "assets-webpack-plugin": "3.4.0",
     "awesome-bootstrap-checkbox": "1.0.0-alpha.4",
+    "bcrypt": "^0.8.7",
     "bootstrap": "4.0.0-alpha.4",
     "colors": "^1.0.3",
     "core-js": "2.4.1",
