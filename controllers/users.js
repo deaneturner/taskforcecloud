@@ -13,17 +13,13 @@ module.exports = function (lib) {
     controller.addAction({
         'path': '/users',
         'method': 'GET',
-        'params': [swagger.bodyParam('user', 'The JSON representation of the user', 'string')],
-        'summary': 'Retrieves a user',
+        'summary': 'Retrieves a list users',
         'responsClass': 'User',
-        'nickname': 'getUser'
+        'nickname': 'getUsers'
     }, function (req, res, next) {
-        var userModel = lib.db.model('User');
-        userModel.find().exec(function (err, user) {
+        lib.db.model('User').find().sort('username').exec(function (err, users) {
             if (err) return next(controller.RESTError('InternalServerError', err));
-
-
-            controller.writeHAL(res, user);
+            controller.writeHAL(res, users);
         });
     });
 
