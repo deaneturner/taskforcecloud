@@ -35,13 +35,37 @@ module.exports = function (lib) {
         // }
 
 
+        // var userModel = lib.db.model('User');
+        // userModel.find().exec(function (err, user) {
+        //     if (err) return next(controller.RESTError('InternalServerError', err));
+        //
+        //     controller.writeHAL(res, {
+        //         id_token: createToken(userModel({username: 'test', password: 'XXX'}))
+        //     });
+        // });
+
         var userModel = lib.db.model('User');
-        userModel.find().exec(function (err, user) {
+        userModel.findOne({
+            username: req.params.username
+        }).exec(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
-            controller.writeHAL(res, {
-                id_token: createToken(userModel({username: 'test', password: 'XXX'}))
-            });
+            if (!user) {
+                res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
+            }
+
+            else {
+                user.comparePassword(req.params.password, function (err, isMatch) {
+                    if (isMatch && !err) {
+                        controller.writeHAL(res, {
+                            id_token: createToken(userModel({username: 'test', password: 'XXX'}))
+                        });
+                    } else {
+                        return res.status(403).send({success: false, msg: 'Authenticaton failed, wrong password.'});
+                    }
+                })
+            }
+
         });
     });
 
