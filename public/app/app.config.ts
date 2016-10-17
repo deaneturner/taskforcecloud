@@ -6,7 +6,7 @@ declare let jQuery: any;
 export class AppConfig {
   config = {
     name: 'taskforcecloud',
-    title: 'Sing Dashboard App with Angular 2.0 support by Flatlogic',
+    title: 'Task Force Cloud',
     version: '3.2.0',
     /**
      * Whether to print and alert some log information
