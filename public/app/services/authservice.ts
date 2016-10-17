@@ -28,6 +28,7 @@ export class AuthService {
             );
         });
     }
+
     logoutfn() {
         return new Promise((resolve) => {
             window.localStorage.removeItem('id_token');
