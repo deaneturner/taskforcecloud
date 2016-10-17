@@ -23,7 +23,7 @@ module.exports = function (lib) {
         'nickname': 'loginUser'
     }, function (req, res, next) {
         function createToken(user) {
-            var expires = moment().add(10, 's').unix();
+            var expires = moment().add(lib.config.session.duration, lib.config.session.interval).unix();
             return jwt.encode({
                 iss: user.username,
                 exp: expires
@@ -66,6 +66,23 @@ module.exports = function (lib) {
                 })
             }
 
+        });
+    });
+
+    controller.addAction({
+        'path': '/logout',
+        'method': 'POST',
+        'params': [swagger.bodyParam('user', 'The JSON representation of the register request', 'string')],
+        'description': 'Logs out the user',
+        'responsClass': 'User',
+        'nickname': 'logoutUser'
+    }, function (req, res, next) {
+        var userModel = lib.db.model('User');
+        userModel.find().exec(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+
+
+            controller.writeHAL(res, user);
         });
     });
 

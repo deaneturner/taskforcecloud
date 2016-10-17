@@ -28,6 +28,15 @@ export class AuthService {
             );
         });
     }
+    logoutfn() {
+        return new Promise((resolve) => {
+            window.localStorage.removeItem('id_token');
+            this.isLoggedin = false;
+
+            resolve(this.isLoggedin);
+        });
+    }
+
 
     registerfn(usercreds) {
         this.isLoggedin = false;
