@@ -37,7 +37,7 @@ module.exports = function (lib) {
         newUserModel.save(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, user);
-        })
+        });
     });
 
     return controller;

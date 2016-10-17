@@ -18,7 +18,7 @@
             <p class="widget-register-info">
               Don't have an account? Sign up now!
             </p>
-            <form class="register-form mt-lg" role="form" (submit)="register($event, username.value, password.value)">
+            <form class="register-form mt-lg" role="form" (submit)="register($event, username.value, password.value, confirmPassword.value)">
               <div class="form-group">
                 <input type="text" #username class="form-control" id="username" placeholder="Username">
               </div>
@@ -26,7 +26,7 @@
                 <input class="form-control" type="password" #password id="password" placeholder="Password">
               </div>
               <div class="form-group">
-                <input class="form-control" type="password" #password id="confirmPassword" placeholder="Confirm Password">
+                <input class="form-control" type="password" #confirmPassword id="confirmPassword" placeholder="Confirm Password">
               </div>
               <div class="clearfix">
                 <div class="btn-toolbar pull-xs-right m-t-1">

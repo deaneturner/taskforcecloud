@@ -42,12 +42,11 @@ export class AuthService {
     registerfn(usercreds) {
         this.isLoggedin = false;
         var headers = new Headers();
-        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password;
+        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password + '&confirmPassword=' + usercreds.confirmPassword;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
         return new Promise((resolve) => {
-
             this.http.post('/register', creds, {headers: headers}).subscribe((data) => {
                     if (data.json().id_token) {
                         window.localStorage.setItem('id_token', data.json().id_token);
