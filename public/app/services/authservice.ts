@@ -21,7 +21,7 @@ export class AuthService {
     loginfn(usercreds) {
         this.isLoggedin = false;
         var headers = new Headers();
-        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password;
+        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password + '&isKeepLoggedIn=' + usercreds.isKeepLoggedIn;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
@@ -50,7 +50,7 @@ export class AuthService {
     registerfn(usercreds) {
         this.isLoggedin = false;
         var headers = new Headers();
-        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password + '&confirmPassword=' + usercreds.confirmPassword;
+        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password + '&confirmPassword=' + usercreds.confirmPassword + '&isKeepLoggedIn=' + usercreds.isKeepLoggedIn;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 

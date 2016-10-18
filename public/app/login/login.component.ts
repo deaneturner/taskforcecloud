@@ -1,6 +1,7 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/authservice';
+import {User} from '../model/user.interface';
 
 @Component({
     selector: 'login',
@@ -12,15 +13,24 @@ import {AuthService} from '../services/authservice';
     },
     providers: [AuthService]
 })
-export class Login {
+export class Login implements OnInit {
+
     constructor(private service: AuthService, public router: Router) {
 
     }
 
-    login(event, username, password) {
-        event.preventDefault();
+    public user: User;
 
-        this.service.loginfn({username: username, password: password}).then((res) => {
+    ngOnInit() {
+        this.user = {
+            username: '',
+            password: '',
+            isKeepLoggedIn: false
+        }
+    }
+
+    login(isValid: boolean, f: User) {
+        this.service.loginfn({username: f.username, password: f.password, isKeepLoggedIn: f.isKeepLoggedIn}).then((res) => {
             if (res) {
                 this.router.navigate(['/app/dashboard']);
             } else {
