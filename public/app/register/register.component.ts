@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/authservice';
+import {User} from '../model/user.interface';
 
 @Component({
     selector: 'register',
-    styleUrls: [ './register.style.scss' ],
+    styleUrls: ['./register.style.scss'],
     templateUrl: './register.template.html',
     encapsulation: ViewEncapsulation.None,
     host: {
@@ -12,15 +13,24 @@ import {AuthService} from '../services/authservice';
     },
     providers: [AuthService]
 })
-export class Register {
+export class Register implements OnInit {
     constructor(private service: AuthService, public router: Router) {
 
     }
 
-    register(event, username, password) {
-        event.preventDefault();
+    public user: User;
 
-        this.service.loginfn({username: username, password: password}).then((res) => {
+    ngOnInit() {
+        this.user = {
+            username: '',
+            password: '',
+            confirmPassword: '',
+            isKeepLoggedIn: false
+        }
+    }
+
+    register(isValid: boolean, f: User) {
+        this.service.registerfn(f).then((res) => {
             if (res) {
                 this.router.navigate(['/app/dashboard']);
             } else {
