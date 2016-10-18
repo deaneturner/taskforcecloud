@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
+import {User} from '../model/user.interface';
 
 @Injectable()
 export class AuthService {
@@ -18,10 +19,10 @@ export class AuthService {
         this.isLoggedin = isLoggedIn;
     }
 
-    loginfn(usercreds) {
+    loginfn(user: User) {
         this.isLoggedin = false;
         var headers = new Headers();
-        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password + '&isKeepLoggedIn=' + usercreds.isKeepLoggedIn;
+        var creds = 'username=' + user.username + '&password=' + user.password + '&isKeepLoggedIn=' + user.isKeepLoggedIn;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
@@ -47,10 +48,10 @@ export class AuthService {
     }
 
 
-    registerfn(usercreds) {
+    registerfn(user: User) {
         this.isLoggedin = false;
         var headers = new Headers();
-        var creds = 'username=' + usercreds.username + '&password=' + usercreds.password + '&confirmPassword=' + usercreds.confirmPassword + '&isKeepLoggedIn=' + usercreds.isKeepLoggedIn;
+        var creds = 'username=' + user.username + '&password=' + user.password + '&confirmPassword=' + user.confirmPassword + '&isKeepLoggedIn=' + user.isKeepLoggedIn;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 

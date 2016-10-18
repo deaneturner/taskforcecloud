@@ -30,12 +30,7 @@ export class Register implements OnInit {
     }
 
     register(isValid: boolean, f: User) {
-        this.service.registerfn({
-            username: f.username,
-            password: f.password,
-            confirmPassword: f.confirmPassword,
-            isKeepLoggedIn: f.isKeepLoggedIn
-        }).then((res) => {
+        this.service.registerfn(f).then((res) => {
             if (res) {
                 this.router.navigate(['/app/dashboard']);
             } else {

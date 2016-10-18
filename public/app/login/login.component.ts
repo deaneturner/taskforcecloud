@@ -30,7 +30,7 @@ export class Login implements OnInit {
     }
 
     login(isValid: boolean, f: User) {
-        this.service.loginfn({username: f.username, password: f.password, isKeepLoggedIn: f.isKeepLoggedIn}).then((res) => {
+        this.service.loginfn(f).then((res) => {
             if (res) {
                 this.router.navigate(['/app/dashboard']);
             } else {
