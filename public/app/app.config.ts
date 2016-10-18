@@ -7,7 +7,7 @@ export class AppConfig {
   config = {
     name: 'taskforcecloud',
     title: 'Task Force Cloud',
-    version: '3.2.0',
+    version: '1.0.0',
     /**
      * Whether to print and alert some log information
      */

@@ -9,6 +9,15 @@ export class AuthService {
 
     }
 
+    setIsLoggedIn(isLoggedIn: boolean, token?: string) {
+        if (isLoggedIn) {
+            window.localStorage.setItem('id_token', token);
+        } else {
+            window.localStorage.removeItem('id_token');
+        }
+        this.isLoggedin = isLoggedIn;
+    }
+
     loginfn(usercreds) {
         this.isLoggedin = false;
         var headers = new Headers();
@@ -19,9 +28,9 @@ export class AuthService {
         return new Promise((resolve) => {
 
             this.http.post('/login', creds, {headers: headers}).subscribe((data) => {
-                    if (data.json().id_token) {
-                        window.localStorage.setItem('id_token', data.json().id_token);
-                        this.isLoggedin = true;
+                var token = data.json().id_token;
+                    if (token) {
+                        this.setIsLoggedIn(true, token);
                     }
                     resolve(this.isLoggedin);
                 }
@@ -31,8 +40,7 @@ export class AuthService {
 
     logoutfn() {
         return new Promise((resolve) => {
-            window.localStorage.removeItem('id_token');
-            this.isLoggedin = false;
+            this.setIsLoggedIn(false);
 
             resolve(this.isLoggedin);
         });
@@ -48,9 +56,9 @@ export class AuthService {
 
         return new Promise((resolve) => {
             this.http.post('/register', creds, {headers: headers}).subscribe((data) => {
-                    if (data.json().id_token) {
-                        window.localStorage.setItem('id_token', data.json().id_token);
-                        this.isLoggedin = true;
+                    var token = data.json().id_token;
+                    if (token) {
+                        this.setIsLoggedIn(true, token);
                     }
                     resolve(this.isLoggedin);
                 }
