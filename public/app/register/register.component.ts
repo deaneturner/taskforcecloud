@@ -1,5 +1,6 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 import {AuthService} from '../services/authservice';
 import {User} from '../model/user.interface';
 
@@ -29,8 +30,8 @@ export class Register implements OnInit {
         }
     }
 
-    register(isValid: boolean, f: User) {
-        this.service.registerfn(f).then((res) => {
+    register(isValid: boolean, registrationForm: User) {
+        isValid && this.service.registerfn(registrationForm).then((res) => {
             if (res) {
                 this.router.navigate(['/app/dashboard']);
             } else {
@@ -38,4 +39,71 @@ export class Register implements OnInit {
             }
         });
     }
+
+    /*
+     * FORM
+     */
+
+    registrationForm: NgForm;
+    @ViewChild('registrationForm') currentForm: NgForm;
+
+    ngAfterViewChecked() {
+        this.formChanged();
+    }
+
+    formChanged() {
+        if (this.currentForm === this.registrationForm) {
+            return;
+        }
+        this.registrationForm = this.currentForm;
+        if (this.registrationForm) {
+            this.registrationForm.valueChanges
+                .subscribe(data => this.onValueChanged(data));
+        }
+    }
+
+    onValueChanged(data?: any) {
+        if (!this.registrationForm) {
+            return;
+        }
+        const form = this.registrationForm.form;
+
+        for (const field in this.formErrors) {
+            // clear previous error message (if any)
+            this.formErrors[field] = [];
+            const control = form.get(field);
+
+            if (control && control.dirty && !control.valid) {
+                const messages = this.validationMessages[field];
+                for (const key in control.errors) {
+                    this.formErrors[field].push(messages[key]);
+                }
+            }
+        }
+    }
+
+    formErrors = {
+        'username': [],
+        'password': [],
+        'confirmPassword': []
+    };
+
+    validationMessages = {
+        'username': {
+            'required': 'User name is required.',
+            'pattern': 'User name must be formatted as as an email address.'
+        },
+        'password': {
+            'required': 'Password is required.',
+            'validateEqual': 'Password and Confirm Password must match.',
+            'pattern': 'Length must be between 8 and 32 characters and contain ' +
+                '[one or more uppercase letters], ' +
+                '[one or more lowercase letters], ' +
+                'and [one or more numbers].'
+        },
+        'confirmPassword': {
+            'required': 'Confirmation of password is required.',
+            'validateEqual': 'Password and Confirm Password must match.'
+        }
+    };
 }

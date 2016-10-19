@@ -1,60 +1,82 @@
 <div class="container">
-  <main id="content" class="widget-register-container" role="main">
-    <div class="row">
-      <div class="col-xl-4 col-md-6 col-xs-10 offset-xl-4 offset-md-3 offset-xs-1">
-        <h5 class="widget-register-logo animated fadeInUp">
-          <i class="fa fa-circle text-gray"></i>
-          Task Force Cloud
-          <i class="fa fa-circle text-warning"></i>
-        </h5>
-        <section class="widget widget-register animated fadeInUp">
-          <header>
-            <h3>Register with Task Force Cloud</h3>
-          </header>
-          <div class="widget-body">
-            <p class="widget-register-info">
-              Use Facebook, Twitter or your email to sign in.
-            </p>
-            <p class="widget-register-info">
-              Don't have an account? Sign up now!
-            </p>
-            <form class="register-form mt-lg" role="form" #f="ngForm" novalidate>
-              <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)]="user.username">
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password" [(ngModel)]="user.password">
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password" [(ngModel)]="user.confirmPassword">
-              </div>
-              <div class="clearfix">
-                <div class="btn-toolbar pull-xs-right m-t-1">
-                  <button class="btn btn-secondary btn-sm" [routerLink]="['/login']">Back to Login</button>
-                  <button type="submit" class="btn btn-inverse btn-sm" (click)="register(f.valid, f.value)">Create Account</button>
-                </div>
-              </div>
-              <div class="row m-t-1">
-                <div class="col-md-6 push-md-6">
-                  <div class="clearfix">
-                    <div class="abc-checkbox widget-register-info pull-xs-right">
-                      <input type="checkbox" id="isKeepLoggedIn" name="isKeepLoggedIn" [(ngModel)]="user.isKeepLoggedIn">
-                      <label for="isKeepLoggedIn">Keep me signed in </label>
-                    </div>
-                  </div>
-                </div>
+    <main id="content" class="widget-register-container" role="main">
+        <div class="row">
+            <div class="col-xl-4 col-md-6 col-xs-10 offset-xl-4 offset-md-3 offset-xs-1">
+                <h5 class="widget-register-logo animated fadeInUp">
+                    <i class="fa fa-circle text-gray"></i>
+                    Task Force Cloud
+                    <i class="fa fa-circle text-warning"></i>
+                </h5>
+                <section class="widget widget-register animated fadeInUp">
+                    <header>
+                        <h3>Register with Task Force Cloud</h3>
+                    </header>
+                    <div class="widget-body">
+                        <!--<p class="widget-register-info">-->
+                            <!--Use Facebook, Twitter or your email to sign in.-->
+                        <!--</p>-->
+                        <p class="widget-register-info">
+                            Have an account? <a [routerLink]="['/login']">Log in now!</a>
+                        </p>
+                        <form class="register-form mt-lg" role="form" #registrationForm="ngForm" novalidate>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="username" placeholder="Username (E-mail Address)"
+                                       [(ngModel)]="user.username" required
+                                       pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" required>
+                                <ul class="validation-errors-list filled" *ngFor="let err of formErrors.username">
+                                    <li class="validation-type">{{ err }}</li>
+                                </ul>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" placeholder="Password"
+                                       [(ngModel)]="user.password" validateEqual="confirmPassword" reverse="true"
+                                       pattern="^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*" required>
+                                <ul class="validation-errors-list filled" *ngFor="let err of formErrors.password">
+                                    <li class="validation-type">{{ err }}</li>
+                                </ul>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="confirmPassword"
+                                       placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"
+                                       validateEqual="password" required>
+                                <ul class="validation-errors-list filled"
+                                    *ngFor="let err of formErrors.confirmPassword">
+                                    <li class="validation-type">{{ err }}</li>
+                                </ul>
+                            </div>
+                            <div class="clearfix">
+                                <div class="btn-toolbar pull-xs-right m-t-1">
+                                    <button class="btn btn-secondary btn-sm" [routerLink]="['/login']">Back to Login
+                                    </button>
+                                    <button type="submit" class="btn btn-inverse btn-sm"
+                                            (click)="register(registrationForm.valid, registrationForm.value)"
+                                            [disabled]="!registrationForm.valid">Create
+                                        Account
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row m-t-1">
+                                <div class="col-md-6 push-md-6">
+                                    <div class="clearfix">
+                                        <div class="abc-checkbox widget-register-info pull-xs-right">
+                                            <input type="checkbox" id="isKeepLoggedIn" name="isKeepLoggedIn"
+                                                   [(ngModel)]="user.isKeepLoggedIn">
+                                            <label for="isKeepLoggedIn">Keep me signed in </label>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <div class="col-md-6 pull-md-6">
-                  <a class="mr-n-lg" href="#">Trouble with account?</a>
-                </div>
-              </div>
-            </form>
-          </div>
-        </section>
-      </div>
-    </div>
-  </main>
-  <footer class="page-footer">
-    2016 &copy; Task Force Cloud
-  </footer>
+                                <div class="col-md-6 pull-md-6">
+                                    <a class="mr-n-lg" href="#">Trouble with account?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer">
+        2016 &copy; Task Force Cloud
+    </footer>
 </div>
