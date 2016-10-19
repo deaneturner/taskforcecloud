@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import { NgForm } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 import {AuthService} from '../services/authservice';
 import {User} from '../model/user.interface';
 
@@ -31,18 +31,13 @@ export class Register implements OnInit {
     }
 
     register(isValid: boolean, registrationForm: User) {
-        if (isValid) {
-            this.service.registerfn(registrationForm).then((res) => {
-                if (res) {
-                    this.router.navigate(['/app/dashboard']);
-                } else {
-                    console.log(res);
-                }
-            });
-        } else {
-            // notify validation errors
-            this.onValueChanged(null, true);
-        }
+        isValid && this.service.registerfn(registrationForm).then((res) => {
+            if (res) {
+                this.router.navigate(['/app/dashboard']);
+            } else {
+                console.log(res);
+            }
+        });
     }
 
     /*
@@ -57,7 +52,9 @@ export class Register implements OnInit {
     }
 
     formChanged() {
-        if (this.currentForm === this.registrationForm) { return; }
+        if (this.currentForm === this.registrationForm) {
+            return;
+        }
         this.registrationForm = this.currentForm;
         if (this.registrationForm) {
             this.registrationForm.valueChanges
@@ -66,7 +63,9 @@ export class Register implements OnInit {
     }
 
     onValueChanged(data?: any, ignoreDirty: boolean = false) {
-        if (!this.registrationForm) { return; }
+        if (!this.registrationForm) {
+            return;
+        }
         const form = this.registrationForm.form;
 
         for (const field in this.formErrors) {

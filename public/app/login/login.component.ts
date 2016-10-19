@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import { NgForm } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 import {AuthService} from '../services/authservice';
 import {User} from '../model/user.interface';
 
@@ -31,18 +31,13 @@ export class Login implements OnInit, AfterViewChecked {
     }
 
     login(isValid: boolean, loginForm: User) {
-        if (isValid) {
-            this.service.loginfn(loginForm).then((res) => {
-                if (res) {
-                    this.router.navigate(['/app/dashboard']);
-                } else {
-                    console.log(res);
-                }
-            });
-        } else {
-            // notify validation errors
-            this.onValueChanged(null, true);
-        }
+        isValid && this.service.loginfn(loginForm).then((res) => {
+            if (res) {
+                this.router.navigate(['/app/dashboard']);
+            } else {
+                console.log(res);
+            }
+        });
     }
 
     /*
@@ -57,7 +52,9 @@ export class Login implements OnInit, AfterViewChecked {
     }
 
     formChanged() {
-        if (this.currentForm === this.loginForm) { return; }
+        if (this.currentForm === this.loginForm) {
+            return;
+        }
         this.loginForm = this.currentForm;
         if (this.loginForm) {
             this.loginForm.valueChanges
@@ -66,7 +63,9 @@ export class Login implements OnInit, AfterViewChecked {
     }
 
     onValueChanged(data?: any, ignoreDirty: boolean = false) {
-        if (!this.loginForm) { return; }
+        if (!this.loginForm) {
+            return;
+        }
         const form = this.loginForm.form;
 
         for (const field in this.formErrors) {

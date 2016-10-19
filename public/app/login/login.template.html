@@ -40,7 +40,8 @@
                                         Create an Account
                                     </button>
                                     <button type="submit" class="btn btn-inverse btn-sm"
-                                            (click)="login(loginForm.valid, loginForm.value)">Login
+                                            (click)="login(loginForm.valid, loginForm.value)"
+                                            [disabled]="!loginForm.valid">Login
                                     </button>
                                 </div>
                             </div>
