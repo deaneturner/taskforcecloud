@@ -22,3 +22,11 @@ input.validation-error{
     color: $brand-danger;
   }
 }
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid $brand-success; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid $brand-danger; /* red */
+}
