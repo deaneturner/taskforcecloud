@@ -99,6 +99,8 @@ if (isDevelopment) {
         'directory': __dirname + '/dist',
         'default': 'index.html'
     }));
+
+    lib.helpers.setupRoutes(server, null, lib);
 }
 
 db.connect(function(err) {

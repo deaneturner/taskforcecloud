@@ -4,9 +4,10 @@ import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Dashboard } from './dashboard.component.ts';
 import {Widget} from '../layout/widget/widget.directive';
+import { AppAuth } from '../app.auth';
 
 export const routes = [
-  { path: '', component: Dashboard, pathMatch: 'full' }
+  { path: '', component: Dashboard, pathMatch: 'full', canActivate: [AppAuth] }
 ];
 
 

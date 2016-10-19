@@ -11,18 +11,31 @@ module.exports = function (lib) {
     var controller = new Users();
 
     controller.addAction({
-        'path': '/authenticate',
+        'path': '/users',
+        'method': 'GET',
+        'summary': 'Retrieves a list users',
+        'responsClass': 'User',
+        'nickname': 'getUsers'
+    }, function (req, res, next) {
+        lib.db.model('User').find().sort('username').exec(function (err, users) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, users);
+        });
+    });
+
+    controller.addAction({
+        'path': '/users',
         'method': 'POST',
         'params': [swagger.bodyParam('user', 'The JSON representation of the user', 'string')],
-        'summary': 'Authenticates a user',
+        'summary': 'Adds a new user to the database',
         'responsClass': 'User',
-        'nickname': 'authUser'
+        'nickname': 'addUser'
     }, function (req, res, next) {
-        var userModel = lib.db.model('User');
-        userModel.find().exec(function (err, user) {
+        var newUser = req.body;
+
+        var newUserModel = lib.db.model('User')(newUser);
+        newUserModel.save(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
-
-
             controller.writeHAL(res, user);
         });
     });

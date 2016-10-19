@@ -1,0 +1,32 @@
+@import "../scss/_variables";
+@import "../../../node_modules/bootstrap/scss/_variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+/***********************************/
+/**         Validation            **/
+/***********************************/
+
+
+input.validation-error{
+  border-color: $brand-danger;
+  @include box-shadow(inset 0 1px 1px rgba($brand-danger,.075));
+}
+
+.validation-errors-list{
+  font-size: $font-size-smaller;
+  padding-left: 0;
+  margin-bottom: 5px;
+
+  li{
+    list-style: none;
+    color: $brand-danger;
+  }
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid $brand-success; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid $brand-danger; /* red */
+}
