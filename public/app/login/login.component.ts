@@ -64,7 +64,7 @@ export class Login implements OnInit, AfterViewChecked {
         }
     }
 
-    onValueChanged(data?: any, ignoreDirty?: boolean = false) {
+    onValueChanged(data?: any, ignoreDirty: boolean = false) {
         if (!this.loginForm) { return; }
         const form = this.loginForm.form;
 

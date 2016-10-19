@@ -64,7 +64,7 @@ export class Register implements OnInit {
         }
     }
 
-    onValueChanged(data?: any, ignoreDirty?: boolean = false) {
+    onValueChanged(data?: any, ignoreDirty: boolean = false) {
         if (!this.registrationForm) { return; }
         const form = this.registrationForm.form;
 
