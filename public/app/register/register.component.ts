@@ -62,7 +62,7 @@ export class Register implements OnInit {
         }
     }
 
-    onValueChanged(data?: any, ignoreDirty: boolean = false) {
+    onValueChanged(data?: any) {
         if (!this.registrationForm) {
             return;
         }
@@ -73,7 +73,7 @@ export class Register implements OnInit {
             this.formErrors[field] = [];
             const control = form.get(field);
 
-            if (control && (control.dirty || ignoreDirty) && !control.valid) {
+            if (control && control.dirty && !control.valid) {
                 const messages = this.validationMessages[field];
                 for (const key in control.errors) {
                     this.formErrors[field].push(messages[key]);

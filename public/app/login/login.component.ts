@@ -62,7 +62,7 @@ export class Login implements OnInit, AfterViewChecked {
         }
     }
 
-    onValueChanged(data?: any, ignoreDirty: boolean = false) {
+    onValueChanged(data?: any) {
         if (!this.loginForm) {
             return;
         }
@@ -73,7 +73,7 @@ export class Login implements OnInit, AfterViewChecked {
             this.formErrors[field] = [];
             const control = form.get(field);
 
-            if (control && (control.dirty || ignoreDirty) && !control.valid) {
+            if (control && control.dirty && !control.valid) {
                 const messages = this.validationMessages[field];
                 for (const key in control.errors) {
                     this.formErrors[field].push(messages[key]);
