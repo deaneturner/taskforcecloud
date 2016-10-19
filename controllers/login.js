@@ -84,21 +84,26 @@ module.exports = function (lib) {
         }).exec(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
-            var isValidPassword = /^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*/.test(req.params.password);
-
-            if(!user) {
-                var newUserModel = lib.db.model('User')({
-                    username: req.params.username,
-                    password: req.params.password
-                });
-
-                newUserModel.save(function (err, newUser) {
-                    if (err) return next(controller.RESTError('InternalServerError', err));
-
-                    controller.writeHAL(res, {
-                        id_token: createToken(newUser, req.params.isKeepLoggedIn)
+            if (!user) {
+                // check password
+                if (/^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*/.test(req.params.password)) {
+                    // valid
+                    var newUserModel = lib.db.model('User')({
+                        username: req.params.username,
+                        password: req.params.password,
+                        isKeepLoggedIn: req.params.isKeepLoggedIn
                     });
-                });
+
+                    newUserModel.save(function (err, newUser) {
+                        if (err) return next(controller.RESTError('InternalServerError', err));
+
+                        controller.writeHAL(res, {
+                            id_token: createToken(newUser, req.params.isKeepLoggedIn)
+                        });
+                    });
+                } else {
+                    // invalid password
+                }
             }
             else {
                 // user exists
