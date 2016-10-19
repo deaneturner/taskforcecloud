@@ -21,22 +21,26 @@
                         <form class="register-form mt-lg" role="form" #registrationForm="ngForm" novalidate>
                             <div class="form-group">
                                 <input type="email" class="form-control" name="username" placeholder="Username"
-                                       [(ngModel)]="user.username" required>
+                                       [(ngModel)]="user.username" required
+                                       pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" required>
                                 <ul class="validation-errors-list filled" *ngFor="let err of formErrors.username">
                                     <li class="validation-type">{{ err }}</li>
                                 </ul>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" type="password" name="password" placeholder="Password"
-                                       [(ngModel)]="user.password" required>
+                                       [(ngModel)]="user.password" validateEqual="confirmPassword" reverse="true"
+                                       required>
                                 <ul class="validation-errors-list filled" *ngFor="let err of formErrors.password">
                                     <li class="validation-type">{{ err }}</li>
                                 </ul>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" type="password" name="confirmPassword"
-                                       placeholder="Confirm Password" [(ngModel)]="user.confirmPassword" required>
-                                <ul class="validation-errors-list filled" *ngFor="let err of formErrors.confirmPassword">
+                                       placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"
+                                       validateEqual="password" required>
+                                <ul class="validation-errors-list filled"
+                                    *ngFor="let err of formErrors.confirmPassword">
                                     <li class="validation-type">{{ err }}</li>
                                 </ul>
                             </div>
@@ -45,7 +49,8 @@
                                     <button class="btn btn-secondary btn-sm" [routerLink]="['/login']">Back to Login
                                     </button>
                                     <button type="submit" class="btn btn-inverse btn-sm"
-                                            (click)="register(registrationForm.valid, registrationForm.value)">Create Account
+                                            (click)="register(registrationForm.valid, registrationForm.value)">Create
+                                        Account
                                     </button>
                                 </div>
                             </div>

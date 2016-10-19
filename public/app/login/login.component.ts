@@ -91,7 +91,7 @@ export class Login implements OnInit, AfterViewChecked {
     validationMessages = {
         'username': {
             'required': 'User name is required.',
-            'email': 'User name must be formatted as as an email address.'
+            'pattern': 'User name must be formatted as as an email address.'
         },
         'password': {
             'required': 'Password is required.'
