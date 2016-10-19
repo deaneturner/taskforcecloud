@@ -40,6 +40,7 @@ export class Login implements OnInit, AfterViewChecked {
                 }
             });
         } else {
+            // notify validation errors
             this.onValueChanged(null, true);
         }
     }

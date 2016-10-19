@@ -40,6 +40,7 @@ export class Register implements OnInit {
                 }
             });
         } else {
+            // notify validation errors
             this.onValueChanged(null, true);
         }
     }
