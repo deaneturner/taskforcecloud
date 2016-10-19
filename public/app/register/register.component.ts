@@ -31,13 +31,17 @@ export class Register implements OnInit {
     }
 
     register(isValid: boolean, registrationForm: User) {
-        isValid && this.service.registerfn(registrationForm).then((res) => {
-            if (res) {
-                this.router.navigate(['/app/dashboard']);
-            } else {
-                console.log(res);
-            }
-        });
+        if (isValid) {
+            this.service.registerfn(registrationForm).then((res) => {
+                if (res) {
+                    this.router.navigate(['/app/dashboard']);
+                } else {
+                    console.log(res);
+                }
+            });
+        } else {
+            this.onValueChanged(null, true);
+        }
     }
 
     /*
@@ -60,7 +64,7 @@ export class Register implements OnInit {
         }
     }
 
-    onValueChanged(data?: any) {
+    onValueChanged(data?: any, ignoreDirty?: boolean = false) {
         if (!this.registrationForm) { return; }
         const form = this.registrationForm.form;
 
@@ -69,7 +73,7 @@ export class Register implements OnInit {
             this.formErrors[field] = [];
             const control = form.get(field);
 
-            if (control && control.dirty && !control.valid) {
+            if (control && (control.dirty || ignoreDirty) && !control.valid) {
                 const messages = this.validationMessages[field];
                 for (const key in control.errors) {
                     this.formErrors[field].push(messages[key]);
