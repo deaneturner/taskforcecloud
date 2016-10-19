@@ -12,11 +12,11 @@
                         <h3>Register with Task Force Cloud</h3>
                     </header>
                     <div class="widget-body">
+                        <!--<p class="widget-register-info">-->
+                            <!--Use Facebook, Twitter or your email to sign in.-->
+                        <!--</p>-->
                         <p class="widget-register-info">
-                            Use Facebook, Twitter or your email to sign in.
-                        </p>
-                        <p class="widget-register-info">
-                            Don't have an account? Sign up now!
+                            Have an account? <a [routerLink]="['/login']">Log in now!</a>
                         </p>
                         <form class="register-form mt-lg" role="form" #registrationForm="ngForm" novalidate>
                             <div class="form-group">

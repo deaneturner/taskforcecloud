@@ -12,11 +12,11 @@
                         <h3>Login to Task Force Cloud</h3>
                     </header>
                     <div class="widget-body">
+                        <!--<p class="widget-login-info">-->
+                            <!--Use Facebook, Twitter or your email to sign in.-->
+                        <!--</p>-->
                         <p class="widget-login-info">
-                            Use Facebook, Twitter or your email to sign in.
-                        </p>
-                        <p class="widget-login-info">
-                            Don't have an account? Sign up now!
+                            Don't have an account? <a [routerLink]="['/register']">Sign up now!</a>
                         </p>
                         <form class="login-form mt-lg" role="form" #loginForm="ngForm" novalidate>
                             <div class="form-group">
@@ -37,7 +37,7 @@
                             <div class="clearfix">
                                 <div class="btn-toolbar pull-xs-right m-t-1">
                                     <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['/register']">
-                                        Create an Account
+                                        Sign up now!
                                     </button>
                                     <button type="submit" class="btn btn-inverse btn-sm"
                                             (click)="login(loginForm.valid, loginForm.value)"
