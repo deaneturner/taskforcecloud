@@ -98,7 +98,7 @@ export class Register implements OnInit {
             'required': 'Password is required.'
         },
         'confirmPassword': {
-            'required': 'Password confirmation is required.'
+            'required': 'Confirmation of password is required.'
         }
     };
 }
