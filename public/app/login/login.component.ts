@@ -29,8 +29,8 @@ export class Login implements OnInit {
         }
     }
 
-    login(isValid: boolean, f: User) {
-        this.service.loginfn(f).then((res) => {
+    login(isValid: boolean, loginForm: User) {
+        this.service.loginfn(loginForm).then((res) => {
             if (res) {
                 this.router.navigate(['/app/dashboard']);
             } else {
