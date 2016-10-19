@@ -20,7 +20,7 @@
                         </p>
                         <form class="login-form mt-lg" role="form" #loginForm="ngForm" novalidate>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="username" placeholder="Username"
+                                <input type="email" class="form-control" name="username" placeholder="Username (E-mail Address)"
                                        [(ngModel)]="user.username" required
                                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" required>
                                 <ul class="validation-errors-list filled" *ngFor="let err of formErrors.username">

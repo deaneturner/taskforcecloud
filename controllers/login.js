@@ -84,6 +84,8 @@ module.exports = function (lib) {
         }).exec(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
+            var isValidPassword = /^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*/.test(req.params.password);
+
             if(!user) {
                 var newUserModel = lib.db.model('User')({
                     username: req.params.username,

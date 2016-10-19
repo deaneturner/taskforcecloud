@@ -95,7 +95,11 @@ export class Register implements OnInit {
         },
         'password': {
             'required': 'Password is required.',
-            'validateEqual': 'Password and Confirm Password must match.'
+            'validateEqual': 'Password and Confirm Password must match.',
+            'pattern': 'Length must be between 8 and 32 characters and contain ' +
+                '[one or more uppercase letters], ' +
+                '[one or more lowercase letters], ' +
+                'and [one or more numbers].'
         },
         'confirmPassword': {
             'required': 'Confirmation of password is required.',
