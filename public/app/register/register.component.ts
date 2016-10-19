@@ -95,10 +95,12 @@ export class Register implements OnInit {
             'pattern': 'User name must be formatted as as an email address.'
         },
         'password': {
-            'required': 'Password is required.'
+            'required': 'Password is required.',
+            'validateEqual': 'Password and Confirm Password must match.'
         },
         'confirmPassword': {
-            'required': 'Confirmation of password is required.'
+            'required': 'Confirmation of password is required.',
+            'validateEqual': 'Password and Confirm Password must match.'
         }
     };
 }
