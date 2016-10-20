@@ -31,11 +31,12 @@ export class Register implements OnInit {
     }
 
     register(isValid: boolean, registrationForm: User) {
-        isValid && this.service.registerfn(registrationForm).then((res) => {
-            if (res) {
+        isValid && this.service.registerfn(registrationForm).then((res: any) => {
+            if (res.success) {
                 this.router.navigate(['/app/dashboard']);
-            } else {
-                console.log(res);
+            } else if (res.success === false) {
+                var field = res.field;
+                this.formErrors[field].push(this.validationMessages[field][res.msgKey]);
             }
         });
     }
@@ -91,7 +92,8 @@ export class Register implements OnInit {
     validationMessages = {
         'username': {
             'required': 'User name is required.',
-            'pattern': 'User name must be formatted as as an email address.'
+            'pattern': 'User name must be formatted as as an email address.',
+            'exists': 'A user with this user name currently exists.'
         },
         'password': {
             'required': 'Password is required.',

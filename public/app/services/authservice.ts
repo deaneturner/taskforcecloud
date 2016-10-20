@@ -19,6 +19,17 @@ export class AuthService {
         this.isLoggedin = isLoggedIn;
     }
 
+    returnLoginResult(data, resolve) {
+        var json = data.json();
+        if (json.success) {
+            var token = json.id_token;
+            if (token) {
+                this.setIsLoggedIn(true, token);
+            }
+        }
+        resolve(json);
+    }
+
     loginfn(user: User) {
         this.isLoggedin = false;
         var headers = new Headers();
@@ -29,20 +40,14 @@ export class AuthService {
         return new Promise((resolve) => {
 
             this.http.post('/login', creds, {headers: headers}).subscribe((data) => {
-                var token = data.json().id_token;
-                    if (token) {
-                        this.setIsLoggedIn(true, token);
-                    }
-                    resolve(this.isLoggedin);
-                }
-            );
+                this.returnLoginResult(data, resolve);
+            });
         });
     }
 
     logoutfn() {
         return new Promise((resolve) => {
             this.setIsLoggedIn(false);
-
             resolve(this.isLoggedin);
         });
     }
@@ -57,11 +62,7 @@ export class AuthService {
 
         return new Promise((resolve) => {
             this.http.post('/register', creds, {headers: headers}).subscribe((data) => {
-                    var token = data.json().id_token;
-                    if (token) {
-                        this.setIsLoggedIn(true, token);
-                    }
-                    resolve(this.isLoggedin);
+                    this.returnLoginResult(data, resolve);
                 }
             );
         });
