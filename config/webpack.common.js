@@ -276,7 +276,8 @@ module.exports = function (options) {
                 'window.jQuery': 'jquery',
                 "Tether": 'tether',
                 "window.Tether": "tether",
-                Hammer: 'hammerjs/hammer'
+                Hammer: 'hammerjs/hammer',
+                moment: 'moment'
             }),
 
             /*
@@ -317,7 +318,7 @@ module.exports = function (options) {
             global: 'window',
             crypto: 'empty',
             process: true,
-            module: false,
+            module: true,
             clearImmediate: false,
             setImmediate: false
         }
