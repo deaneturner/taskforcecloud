@@ -2,12 +2,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
 declare var jQuery: any;
 
 @Component({
-  selector: '[grid]',
-  templateUrl: './grid.template.html',
+  selector: '[list]',
+  templateUrl: './list.template.html',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./grid.style.scss']
+  styleUrls: ['./list.style.scss']
 })
-export class GridComponent {
+export class ListComponent {
 
   ngOnInit(): void {
 

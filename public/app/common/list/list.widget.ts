@@ -2,10 +2,10 @@ import { Directive } from '@angular/core';
 declare var jQuery: any;
 
 @Directive({
-  selector: '[grid-demo]',
+  selector: '[list-widget]',
 })
 
-export class GridDemo {
+export class ListWidget {
   render(): void {
     jQuery.fn.widgster.Constructor.DEFAULTS.bodySelector = '.widget-body';
 
