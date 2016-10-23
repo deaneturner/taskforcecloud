@@ -4,8 +4,8 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 
 import { RouterModule } from '@angular/router';
-import { Dashboard } from './dashboard.component.ts';
-import { GridDemo } from '../common/list/grid-demo/grid-demo';
+import { Dashboard } from './dashboard.component';
+import { GridComponent } from '../common/list/grid.component';
 import { AppAuth } from '../app.auth';
 
 export const routes = [
@@ -15,7 +15,7 @@ export const routes = [
 
 @NgModule({
   imports: [ CommonModule, RouterModule.forChild(routes) ],
-  declarations: [ Dashboard, GridDemo ]
+  declarations: [ Dashboard, GridComponent ]
 })
 export default class DashboardModule {
   static routes = routes;
