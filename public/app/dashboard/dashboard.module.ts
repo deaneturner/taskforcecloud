@@ -1,9 +1,11 @@
+import 'jquery-ui/ui/sortable.js';
+
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 import { Dashboard } from './dashboard.component.ts';
-import {Widget} from '../layout/widget/widget.directive';
+import { GridDemo } from '../common/list/grid-demo/grid-demo';
 import { AppAuth } from '../app.auth';
 
 export const routes = [
@@ -13,7 +15,7 @@ export const routes = [
 
 @NgModule({
   imports: [ CommonModule, RouterModule.forChild(routes) ],
-  declarations: [ Dashboard, Widget ]
+  declarations: [ Dashboard, GridDemo ]
 })
 export default class DashboardModule {
   static routes = routes;
