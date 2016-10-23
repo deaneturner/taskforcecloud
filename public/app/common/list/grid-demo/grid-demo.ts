@@ -70,7 +70,8 @@ export class GridDemo {
     $sharesWidget.widgster({
       loaderTemplate: '<div class="loader animated fadeIn">' +
       '   <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>' +
-      '</div>'
+      '</div>',
+      collapsed: true
     });
 
     /**
