@@ -10,9 +10,7 @@ export class GridDemo {
     jQuery.fn.widgster.Constructor.DEFAULTS.bodySelector = '.widget-body';
 
     let $widgets = jQuery('.widget'),
-      $newsWidget = jQuery('#news-widget'),
-      $sharesWidget = jQuery('#shares-widget'),
-      $autoloadWidget = jQuery('#autoload-widget');
+      $sharesWidget = jQuery('#shares-widget');
 
     /**
      * turn off .content-wrap transforms & disable sorting when widget fullscreened
@@ -43,28 +41,6 @@ export class GridDemo {
     });
 
     /**
-     * Make refresh button spin when loading
-     */
-    $newsWidget.on('load.widgster', function(): void {
-      jQuery(this).find('[data-widgster="load"] > i').addClass('fa-spin');
-    }).on('loaded.widgster', function(): void {
-      jQuery(this).find('[data-widgster="load"] > i').removeClass('fa-spin');
-    });
-
-    /**
-     * Custom close prompt for news widget
-     */
-    $newsWidget.widgster({
-      showLoader: false,
-      closePrompt: function(callback): void{
-        jQuery('#news-close-modal').modal('show');
-        jQuery('#news-widget-remove').on('click', () => {
-          jQuery('#news-close-modal').on('hidden.bs.modal', callback).modal('hide');
-        });
-      }
-    });
-
-    /**
      * Use custom loader template
      */
     $sharesWidget.widgster({
@@ -72,17 +48,6 @@ export class GridDemo {
       '   <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>' +
       '</div>',
       collapsed: true
-    });
-
-    /**
-     * Make hidden spinner appear & spin when loading
-     */
-    $autoloadWidget.on('load.widgster', function(): void {
-      jQuery(this).find('.fa-spinner').addClass('fa-spin in');
-    }).on('loaded.widgster', function(): void {
-      jQuery(this).find('.fa-spinner').removeClass('fa-spin in');
-    }).on('load.widgster fullscreen.widgster restore.widgster', function(): void {
-      jQuery(this).find('.dropdown.open > .dropdown-toggle').dropdown('toggle');
     });
 
     /**
