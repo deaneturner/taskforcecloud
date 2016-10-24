@@ -3,12 +3,12 @@ import { AppConfig } from '../app.config';
 declare var jQuery: any;
 
 @Component({
-  selector: 'admin2',
-  templateUrl: './admin2.template.html',
-  styleUrls: ['./admin2.style.scss'],
+  selector: 'client',
+  templateUrl: './client.template.html',
+  styleUrls: ['./client.style.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class Admin2 {
+export class Client {
   config: any;
   month: any;
   year: any;
