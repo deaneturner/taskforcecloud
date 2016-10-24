@@ -5,7 +5,7 @@ import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { Admin } from './admin.component';
-import { SharedModule } from '../shared/shared.module';
+import { ListModule } from '../shared/list/list.module';
 
 import { AppAuth } from '../app.auth';
 
@@ -15,7 +15,7 @@ export const routes = [
 
 
 @NgModule({
-  imports: [ SharedModule, CommonModule, RouterModule.forChild(routes) ],
+  imports: [ ListModule, CommonModule, RouterModule.forChild(routes) ],
   declarations: [ Admin ]
 })
 export default class AdminModule {
