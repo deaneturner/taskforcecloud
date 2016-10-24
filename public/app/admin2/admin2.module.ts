@@ -4,20 +4,20 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { Admin } from './admin.component';
+import { Admin2 } from './admin2.component';
 import { SharedModule } from '../shared/shared.module';
 
 import { AppAuth } from '../app.auth';
 
 export const routes = [
-  { path: '', component: Admin, pathMatch: 'full', canActivate: [AppAuth] }
+  { path: '', component: Admin2, pathMatch: 'full', canActivate: [AppAuth] }
 ];
 
 
 @NgModule({
   imports: [ SharedModule, CommonModule, RouterModule.forChild(routes) ],
-  declarations: [ Admin ]
+  declarations: [ Admin2 ]
 })
-export default class AdminModule {
+export default class Admin2Module {
   static routes = routes;
 }
