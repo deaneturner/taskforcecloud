@@ -15,7 +15,7 @@ module.exports = function (lib) {
     var controller = new Login();
 
     function createToken(user, isKeepLoggedIn) {
-        var session = lib.config.session[isKeepLoggedIn ? 'keepLoggedIn' : 'default'];
+        var session = lib.config.session[JSON.parse(isKeepLoggedIn) ? 'keepLoggedIn' : 'default'];
         var expires = moment().add(session.duration, session.interval).unix();
         return jwt.encode({
             iss: user.username,
