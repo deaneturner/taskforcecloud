@@ -15,7 +15,7 @@ module.exports = function (lib) {
     var controller = new Login();
 
     function createToken(user, isKeepLoggedIn) {
-        var session = lib.config.session[isKeepLoggedIn ? 'keepLoggedIn' : 'default'];
+        var session = lib.config.session[JSON.parse(isKeepLoggedIn) ? 'keepLoggedIn' : 'default'];
         var expires = moment().add(session.duration, session.interval).unix();
         return jwt.encode({
             iss: user.username,
@@ -36,16 +36,6 @@ module.exports = function (lib) {
         //     return res.status(400).send("You must send the username and the password");
         // }
 
-
-        // var userModel = lib.db.model('User');
-        // userModel.find().exec(function (err, user) {
-        //     if (err) return next(controller.RESTError('InternalServerError', err));
-        //
-        //     controller.writeHAL(res, {
-        //         id_token: createToken(userModel({username: 'test', password: 'XXX'}))
-        //     });
-        // });
-
         var userModel = lib.db.model('User');
         userModel.findOne({
             username: req.params.username
@@ -53,17 +43,19 @@ module.exports = function (lib) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
             if (!user) {
-                res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
+                //res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
+                controller.writeHAL(res, {success: false, field: 'username', msgKey: 'exists'});
             }
 
             else {
                 user.comparePassword(req.params.password, function (err, isMatch) {
                     if (isMatch && !err) {
                         controller.writeHAL(res, {
+                            success: true,
                             id_token: createToken(user, req.params.isKeepLoggedIn)
                         });
                     } else {
-                        return res.status(403).send({success: false, msg: 'Authenticaton failed, wrong password.'});
+                        controller.writeHAL(res, {success: false, field: 'password', msgKey: 'match'});
                     }
                 });
             }
@@ -98,15 +90,18 @@ module.exports = function (lib) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
 
                         controller.writeHAL(res, {
+                            success: true,
                             id_token: createToken(newUser, req.params.isKeepLoggedIn)
                         });
                     });
                 } else {
                     // invalid password
+                    controller.writeHAL(res, {success: false, field: 'password', msgKey: 'pattern'});
                 }
             }
             else {
                 // user exists
+                controller.writeHAL(res, {success: false, field: 'username', msgKey: 'exists'});
             }
         });
     });

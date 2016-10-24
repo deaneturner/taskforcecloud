@@ -1,17 +1,21 @@
+import 'jquery-ui/ui/sortable.js';
+
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 
 import { RouterModule } from '@angular/router';
-import { AnotherPage } from './another.component.ts';
+import { GridComponent } from './grid.component';
+
+import { GridDemo } from './grid-demo/grid-demo';
 
 export const routes = [
-  { path: '', component: AnotherPage, pathMatch: 'full' }
+  { path: '', component: GridComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [ CommonModule, RouterModule.forChild(routes) ],
-  declarations: [ AnotherPage ]
+  declarations: [ GridComponent, GridDemo ]
 })
-export default class AnotherModule {
+export default class GridModule {
   static routes = routes;
 }
