@@ -15,7 +15,7 @@ module.exports = function (lib) {
     var controller = new Login();
 
     function createToken(user, isKeepLoggedIn) {
-        var session = lib.config.session[isKeepLoggedIn ? 'keepLoggedIn' : 'default'];
+        var session = lib.config.session[JSON.parse(isKeepLoggedIn) ? 'keepLoggedIn' : 'default'];
         var expires = moment().add(session.duration, session.interval).unix();
         return jwt.encode({
             iss: user.username,
@@ -90,6 +90,7 @@ module.exports = function (lib) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
 
                         controller.writeHAL(res, {
+                            success: true,
                             id_token: createToken(newUser, req.params.isKeepLoggedIn)
                         });
                     });
