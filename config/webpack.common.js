@@ -277,6 +277,7 @@ module.exports = function (options) {
                 "Tether": 'tether',
                 "window.Tether": "tether",
                 Hammer: 'hammerjs/hammer',
+                Fastclick: 'fastclick',
                 moment: 'moment'
             }),
 
