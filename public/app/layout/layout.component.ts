@@ -189,15 +189,15 @@ export class Layout {
         this.checkNavigationState();
 
         this.$sidebar.on('click', () => {
-            if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
-                if (jQuery('layout').is('.nav-collapsed')) {
-                    this.expandNavigation();
-                }
-            }
-
-            setTimeout(() => {
-                this.collapseNavigation();
-            }, this.config.settings.navCollapseTimeout);
+            // if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
+            //     if (jQuery('layout').is('.nav-collapsed')) {
+            //         this.expandNavigation();
+            //     }
+            // }
+            //
+            // setTimeout(() => {
+            //     this.collapseNavigation();
+            // }, this.config.settings.navCollapseTimeout);
         });
 
         this.router.events.subscribe(() => {
