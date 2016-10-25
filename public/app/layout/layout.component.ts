@@ -194,12 +194,10 @@ export class Layout {
                     this.expandNavigation();
                 }
             }
-            else {
-                // md, sm, xs
-                setTimeout(() => {
-                    this.collapseNavigation();
-                }, this.config.settings.navCollapseTimeout);
-            }
+
+            setTimeout(() => {
+                this.collapseNavigation();
+            }, this.config.settings.navCollapseTimeout);
         });
 
         this.router.events.subscribe(() => {
