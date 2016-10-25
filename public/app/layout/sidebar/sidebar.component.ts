@@ -1,69 +1,81 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { Location } from '@angular/common';
-import { AppConfig } from '../../app.config';
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {Router, NavigationEnd} from '@angular/router';
+import {Location} from '@angular/common';
+import {AppConfig} from '../../app.config';
+import {AuthService} from '../../services/authservice';
 declare var jQuery: any;
 
 @Component({
-  selector: '[sidebar]',
-  templateUrl: './sidebar.template.html'
+    selector: '[sidebar]',
+    templateUrl: './sidebar.template.html',
+    providers: [AuthService]
 })
 
 export class Sidebar implements OnInit {
-  $el: any;
-  config: any;
-  router: Router;
-  location: Location;
+    $el: any;
+    config: any;
+    router: Router;
+    location: Location;
 
-  constructor(config: AppConfig, el: ElementRef, router: Router, location: Location) {
-    this.$el = jQuery(el.nativeElement);
-    this.config = config.getConfig();
-    this.router = router;
-    this.location = location;
-  }
-
-  initSidebarScroll(): void {
-    let $sidebarContent = this.$el.find('.js-sidebar-content');
-    if (this.$el.find('.slimScrollDiv').length !== 0) {
-      $sidebarContent.slimscroll({
-        destroy: true
-      });
+    constructor(config: AppConfig, el: ElementRef, router: Router, location: Location, private service: AuthService) {
+        this.$el = jQuery(el.nativeElement);
+        this.config = config.getConfig();
+        this.router = router;
+        this.location = location;
     }
-    $sidebarContent.slimscroll({
-      height: window.innerHeight,
-      size: '4px'
-    });
-  }
 
-  changeActiveNavigationItem(location): void {
-    let $newActiveLink = this.$el.find('a[href="#' + location.path() + '"]');
-
-    // collapse .collapse only if new and old active links belong to different .collapse
-    if (!$newActiveLink.is('.active > .collapse > li > a')) {
-      this.$el.find('.active .active').closest('.collapse').collapse('hide');
+    initSidebarScroll(): void {
+        let $sidebarContent = this.$el.find('.js-sidebar-content');
+        if (this.$el.find('.slimScrollDiv').length !== 0) {
+            $sidebarContent.slimscroll({
+                destroy: true
+            });
+        }
+        $sidebarContent.slimscroll({
+            height: window.innerHeight,
+            size: '4px'
+        });
     }
-    this.$el.find('.sidebar-nav .active').removeClass('active');
 
-    $newActiveLink.closest('li').addClass('active')
-      .parents('li').addClass('active');
+    changeActiveNavigationItem(location): void {
+        let $newActiveLink = this.$el.find('a[href="#' + location.path() + '"]');
 
-    // uncollapse parent
-    $newActiveLink.closest('.collapse').addClass('in')
-      .siblings('a[data-toggle=collapse]').removeClass('collapsed');
-  }
+        // collapse .collapse only if new and old active links belong to different .collapse
+        if (!$newActiveLink.is('.active > .collapse > li > a')) {
+            this.$el.find('.active .active').closest('.collapse').collapse('hide');
+        }
+        this.$el.find('.sidebar-nav .active').removeClass('active');
 
-  ngAfterViewInit(): void {
-    this.changeActiveNavigationItem(this.location);
-  }
+        $newActiveLink.closest('li').addClass('active')
+            .parents('li').addClass('active');
 
-  ngOnInit(): void {
-    jQuery(window).on('sn:resize', this.initSidebarScroll.bind(this));
-    this.initSidebarScroll();
+        // uncollapse parent
+        $newActiveLink.closest('.collapse').addClass('in')
+            .siblings('a[data-toggle=collapse]').removeClass('collapsed');
+    }
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+    ngAfterViewInit(): void {
         this.changeActiveNavigationItem(this.location);
-      }
-    });
-  }
+    }
+
+    ngOnInit(): void {
+        jQuery(window).on('sn:resize', this.initSidebarScroll.bind(this));
+        this.initSidebarScroll();
+
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.changeActiveNavigationItem(this.location);
+            }
+        });
+    }
+
+    logout(event) {
+        this.service.logoutfn().then((res) => {
+            if (!window.localStorage.getItem('id_token') && !res) {
+                this.router.navigate(['/login']);
+            } else {
+                console.log(res);
+            }
+        });
+    }
 }
