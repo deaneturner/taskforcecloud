@@ -21,8 +21,7 @@
       "node",
       "source-map",
       "uglify-js",
-      "webpack",
-      "fastclick"
+      "webpack"
     ]
   },
   "exclude": [
