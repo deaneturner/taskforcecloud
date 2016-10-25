@@ -239,5 +239,11 @@ export class Layout {
 
             jQuery(this).closest('li').removeClass('open');
         });
+
+        jQuery('a').on('click touchend', function(e) {
+            var el = jQuery(this);
+            var link = el.attr('href');
+            jQuery(window).location = link;
+        });
     }
 }
