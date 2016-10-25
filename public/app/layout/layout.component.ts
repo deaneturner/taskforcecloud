@@ -195,7 +195,10 @@ export class Layout {
                 }
             }
             else {
-                this.collapseNavigation();
+                // sm, xs
+                setTimeout(() => {
+                    this.collapseNavigation();
+                }, this.config.settings.navCollapseTimeout);
             }
         });
 
