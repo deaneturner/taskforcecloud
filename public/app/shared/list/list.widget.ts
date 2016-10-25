@@ -58,7 +58,7 @@ export class ListWidget {
     /**
      * Init tooltips for all widget controls on page
      */
-    //jQuery('.widget-controls > a').tooltip({placement: 'bottom'});
+    jQuery('a').tooltip({enabled: false});
   }
 
   ngOnInit(): void {
