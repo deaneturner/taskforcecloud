@@ -189,13 +189,13 @@ export class Layout {
         this.checkNavigationState();
 
         this.$sidebar.on('click', () => {
-            if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
+            if (this.configFn.isScreen('xl')) {
                 if (jQuery('layout').is('.nav-collapsed')) {
                     this.expandNavigation();
                 }
             }
             else {
-                // md, sm, xs
+                // lg, md, sm, xs
                 setTimeout(() => {
                     this.collapseNavigation();
                 }, this.config.settings.navCollapseTimeout);
