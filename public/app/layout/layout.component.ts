@@ -121,15 +121,15 @@ export class Layout {
     }
 
     _sidebarMouseEnter(): void {
-        if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
-            this.expandNavigation();
-        }
+        // if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
+        //     this.expandNavigation();
+        // }
     }
 
     _sidebarMouseLeave(): void {
-        if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
-            this.collapseNavigation();
-        }
+        // if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
+        //     this.collapseNavigation();
+        // }
     }
 
     enableSwipeCollapsing(): void {
