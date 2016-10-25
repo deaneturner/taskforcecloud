@@ -127,9 +127,9 @@ export class Layout {
     }
 
     _sidebarMouseLeave(): void {
-        // if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
-        //     this.collapseNavigation();
-        // }
+        //if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
+            this.collapseNavigation();
+        //}
     }
 
     enableSwipeCollapsing(): void {
