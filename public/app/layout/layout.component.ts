@@ -194,6 +194,9 @@ export class Layout {
                     this.expandNavigation();
                 }
             }
+            else {
+                this.collapseNavigation();
+            }
         });
 
         this.router.events.subscribe(() => {
