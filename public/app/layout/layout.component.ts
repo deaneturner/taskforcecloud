@@ -164,10 +164,10 @@ export class Layout {
     }
 
     collapseNavIfSmallScreen(): void {
-        if (this.configFn.isScreen('xs')
-            || this.configFn.isScreen('sm') || this.configFn.isScreen('md')) {
+        // if (this.configFn.isScreen('xs')
+        //     || this.configFn.isScreen('sm') || this.configFn.isScreen('md')) {
             this.collapseNavigation();
-        }
+        //}
     }
 
     ngOnInit(): void {
