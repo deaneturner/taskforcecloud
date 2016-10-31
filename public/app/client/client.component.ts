@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {AppConfig} from '../app.config';
+import {ListConfig} from '../shared/list/list.component';
 declare var jQuery: any;
 
 @Component({
@@ -10,7 +11,7 @@ declare var jQuery: any;
 })
 export class Client {
     appConfig: any;
-    listConfig: any;
+    listConfig: ListConfig;
     sortOptions: Object = {
         connectWith: '.widget-container',
         handle: 'header, .handle',
@@ -32,8 +33,6 @@ export class Client {
 
     ngOnInit(): void {
         jQuery('.widget-container').sortable(this.sortOptions);
-        this.listConfig = {
-            title: 'Objectives'
-        }
+        this.listConfig = new ListConfig('Objectives', []);
     }
 }

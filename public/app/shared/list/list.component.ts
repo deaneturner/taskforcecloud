@@ -14,3 +14,21 @@ export class ListComponent {
 
     }
 }
+
+export class ListConfig {
+    config: any;
+    title: string;
+    data: any;
+
+    constructor(title: string, data?: Array<any>) {
+        this.title = title;
+        this.config = {
+            load: true,
+            expand: true,
+            collapse: true,
+            fullScreen: true,
+            restore: true,
+            close: true
+        }
+    }
+}
