@@ -9,9 +9,8 @@ declare var jQuery: any;
   encapsulation: ViewEncapsulation.None
 })
 export class Admin {
-  config: any;
-  month: any;
-  year: any;
+  appConfig: any;
+  listConfig: any;
   sortOptions: Object = {
     connectWith: '.widget-container',
     handle: 'header, .handle',
@@ -28,14 +27,13 @@ export class Admin {
   };
 
   constructor(config: AppConfig) {
-    this.config = config.getConfig();
+    this.appConfig = config.getConfig();
   }
 
   ngOnInit(): void {
     jQuery('.widget-container').sortable(this.sortOptions);
-
-    let now = new Date();
-    this.month = now.getMonth() + 1;
-    this.year = now.getFullYear();
+    this.listConfig = {
+      title: 'Users'
+    }
   }
 }
