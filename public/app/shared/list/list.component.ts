@@ -20,12 +20,10 @@ export class ListConfig {
     title: string;
     data: any;
 
-    constructor(title: string, data?: Array<any>) {
+    constructor(title: string, data?: Array<any>, display?: any) {
         this.title = title;
-        this.display = {
-            load: true,
-            fullscreen: true,
-            restore: true,
+        this.display = display || {
+            load: false,
             close: false
         }
     }
