@@ -16,19 +16,17 @@ export class ListComponent {
 }
 
 export class ListConfig {
-    config: any;
+    display: any;
     title: string;
     data: any;
 
     constructor(title: string, data?: Array<any>) {
         this.title = title;
-        this.config = {
+        this.display = {
             load: true,
-            expand: true,
-            collapse: true,
-            fullScreen: true,
+            fullscreen: true,
             restore: true,
-            close: true
+            close: false
         }
     }
 }
