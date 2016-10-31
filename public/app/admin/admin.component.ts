@@ -11,7 +11,7 @@ declare var jQuery: any;
 })
 export class Admin {
     appConfig: any;
-    listConfig: any;
+    listConfig: ListConfig;
     sortOptions: Object = {
         connectWith: '.widget-container',
         handle: 'header, .handle',
