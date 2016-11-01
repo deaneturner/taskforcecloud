@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation, Input} from '@angular/core';
+import {ListItemComponent} from './item/list-item.component';
 declare var jQuery: any;
 
 @Component({
