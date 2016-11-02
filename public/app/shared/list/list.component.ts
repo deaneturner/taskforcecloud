@@ -17,15 +17,15 @@ export class ListComponent {
 }
 
 export class ListConfig {
-    display: any;
+    displayCtrls: any;
     title: string;
     data: any;
 
-    constructor(title: string, data?: Array<any>, display?: any) {
+    constructor(title: string, data?: Array<any>, displayCtrls?: any) {
         this.title = title;
-        this.display = display || {
+        this.displayCtrls = displayCtrls || {
             load: false,
             close: false
-        }
+        };
     }
 }
