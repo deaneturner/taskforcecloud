@@ -17,11 +17,11 @@ export class ListComponent {
 
 export class ListConfig {
     displayCtrls: any;
-    title: string;
+    header: any;
     data: any;
 
-    constructor(title: string, data?: Array<any>, displayCtrls?: any) {
-        this.title = title;
+    constructor(header: any, data?: Array<any>, displayCtrls?: any) {
+        this.header = header;
         this.data = data;
         this.displayCtrls = displayCtrls || {
             load: false,

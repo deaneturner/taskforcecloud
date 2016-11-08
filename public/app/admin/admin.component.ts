@@ -33,7 +33,10 @@ export class Admin {
 
     ngOnInit(): void {
         jQuery('.widget-container').sortable(this.sortOptions);
-        this.listConfig = new ListConfig('Users', [{
+        this.listConfig = new ListConfig({
+            title: 'Users',
+            icon: ['glyphicon-user']
+        }, [{
             name: 'Maikel Basso',
             imgSrc: 'assets/img/people/a1.jpg',
             lastUpdated: 'about 2 mins ago',

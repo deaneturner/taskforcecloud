@@ -5,8 +5,8 @@
                  data-post-processing="true">
             <header>
                 <h6>
-                    <span class="tag tag-primary"><i class="glyphicon glyphicon-user"></i></span> &nbsp;
-                    <span class="fw-semi-bold">{{listConfig.title}}</span>
+                    <span class="tag tag-primary"><i class="glyphicon" [ngClass]="listConfig.header.icon"></i></span> &nbsp;
+                    <span class="fw-semi-bold">{{listConfig.header.title}}</span>
                 </h6>
                 <div class="widget-controls">
                     <a *ngIf="listConfig.displayCtrls.load" data-widgster="load" title="Reload" href="#"><i

@@ -33,7 +33,10 @@ export class Client {
 
     ngOnInit(): void {
         jQuery('.widget-container').sortable(this.sortOptions);
-        this.listConfig = new ListConfig('Objectives', [{
+        this.listConfig = new ListConfig({
+            title: 'Objectives',
+            icon: ['glyphicon-check']
+        }, [{
             name: 'Maikel Basso',
             imgSrc: 'assets/img/people/a1.jpg',
             lastUpdated: 'about 2 mins ago',
