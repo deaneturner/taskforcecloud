@@ -2,27 +2,27 @@
      just for this page.
      http://bugs.jqueryui.com/ticket/9588 -->
 <style>
-  body{
-    overflow-x: visible;
-  }
+    body {
+        overflow-x: visible;
+    }
 </style>
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">YOU ARE HERE</li>
-  <li class="breadcrumb-item active">Client</li>
+    <li class="breadcrumb-item">YOU ARE HERE</li>
+    <li class="breadcrumb-item active">Client</li>
 </ol>
 <div class="row">
-  <div class="col-lg-6">
-    <tfc-list [listConfig]="listConfig">
-      <a href="#" class="list-group-item">
+    <div class="col-lg-6">
+        <tfc-list [listConfig]="listConfig">
+            <a *ngFor="let item of listConfig.data" href="#" class="list-group-item">
                 <span class="thumb-sm pull-xs-left mr">
-                    <img class="img-circle" src="{{ listConfig.data[0].imgSrc }}" alt="...">
+                    <img class="img-circle" src="{{ item.imgSrc }}" alt="...">
                 </span>
-        <i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="item.indicatorClass"></i>
-        <h6 class="no-margin">{{ listConfig.data[0].name}}</h6>
-        <small class="text-muted">{{ listConfig.data[0].lastUpdated}}</small>
-        <small class="text-muted">ADMIN</small>
-      </a>
-    </tfc-list>
-  </div>
+                <i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="item.indicatorClass"></i>
+                <h6 class="no-margin">{{ item.name}}</h6>
+                <small class="text-muted">{{ item.lastUpdated}}</small>
+                <small class="text-muted">CLIENT</small>
+            </a>
+        </tfc-list>
+    </div>
 </div>
 
