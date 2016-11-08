@@ -3,7 +3,7 @@ import {ListItemComponent} from './item/list-item.component';
 declare var jQuery: any;
 
 @Component({
-    selector: '[list]',
+    selector: 'tfc-list',
     templateUrl: './list.template.html',
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./list.style.scss']

@@ -2,15 +2,26 @@
      just for this page.
      http://bugs.jqueryui.com/ticket/9588 -->
 <style>
-  body{
-    overflow-x: visible;
-  }
+    body {
+        overflow-x: visible;
+    }
 </style>
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">YOU ARE HERE</li>
-  <li class="breadcrumb-item active">Administration</li>
+    <li class="breadcrumb-item">YOU ARE HERE</li>
+    <li class="breadcrumb-item active">Administration</li>
 </ol>
 <div class="row">
-  <div class="col-lg-6" list [listConfig]="listConfig"></div>
+    <div class="col-lg-6">
+        <tfc-list [listConfig]="listConfig">
+            <a href="#" class="list-group-item">
+                <span class="thumb-sm pull-xs-left mr">
+                    <img class="img-circle" src="assets/img/people/a1.jpg" alt="...">
+                </span>
+                <i class="fa fa-circle pull-xs-right text-danger mt-sm"></i>
+                <h6 class="no-margin">Maikel Basso</h6>
+                <small class="text-muted">about 2 mins ago</small>
+            </a>
+        </tfc-list>
+    </div>
 </div>
 
