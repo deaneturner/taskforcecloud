@@ -10,7 +10,7 @@ export class ListWidget {
     jQuery.fn.widgster.Constructor.DEFAULTS.bodySelector = '.widget-body';
 
     let $widgets = jQuery('.widget'),
-      $sharesWidget = jQuery('#shares-widget');
+      $listWidget = jQuery('#shares-widget');
 
     /**
      * turn off .content-wrap transforms & disable sorting when widget fullscreened
@@ -43,7 +43,7 @@ export class ListWidget {
     /**
      * Use custom loader template
      */
-    $sharesWidget.widgster({
+    $listWidget.widgster({
       loaderTemplate: '<div class="loader animated fadeIn">' +
       '   <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>' +
       '</div>',
