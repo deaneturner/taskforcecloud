@@ -13,13 +13,14 @@
 <div class="row">
     <div class="col-lg-6">
         <tfc-list [listConfig]="listConfig">
-            <a href="#" class="list-group-item">
+            <a *ngFor="let item of listConfig.data" href="#" class="list-group-item">
                 <span class="thumb-sm pull-xs-left mr">
-                    <img class="img-circle" src="assets/img/people/a1.jpg" alt="...">
+                    <img class="img-circle" src="{{ item.imgSrc }}" alt="...">
                 </span>
-                <i class="fa fa-circle pull-xs-right text-danger mt-sm"></i>
-                <h6 class="no-margin">Maikel Basso</h6>
-                <small class="text-muted">about 2 mins ago</small>
+                <i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="item.indicatorClass"></i>
+                <h6 class="no-margin">{{ item.name}}</h6>
+                <small class="text-muted">{{ item.lastUpdated}}</small>
+                <small class="text-muted">ADMIN</small>
             </a>
         </tfc-list>
     </div>

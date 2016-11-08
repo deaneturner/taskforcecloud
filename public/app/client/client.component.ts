@@ -33,6 +33,26 @@ export class Client {
 
     ngOnInit(): void {
         jQuery('.widget-container').sortable(this.sortOptions);
-        this.listConfig = new ListConfig('Objectives', []);
+        this.listConfig = new ListConfig('Objectives', [{
+            name: 'Maikel Basso',
+            imgSrc: 'assets/img/people/a1.jpg',
+            lastUpdated: 'about 2 mins ago',
+            indicatorClass: ['text-danger']
+        }, {
+            name: 'Ianus Arendse',
+            imgSrc: 'assets/img/people/a2.jpg',
+            lastUpdated: 'about 42 mins ago',
+            indicatorClass: ['text-info']
+        }, {
+            name: 'Valdemar Landau',
+            imgSrc: 'assets/img/people/a3.jpg',
+            lastUpdated: 'one hour ago',
+            indicatorClass: ['text-success']
+        }, {
+            name: 'Rick Teagan',
+            imgSrc: 'assets/img/people/a4.jpg',
+            lastUpdated: '3 hours ago',
+            indicatorClass: ['text-warning']
+        }]);
     }
 }

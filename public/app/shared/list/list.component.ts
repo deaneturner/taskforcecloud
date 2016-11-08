@@ -1,5 +1,4 @@
 import {Component, ViewEncapsulation, Input} from '@angular/core';
-import {ListItemComponent} from './item/list-item.component';
 declare var jQuery: any;
 
 @Component({
@@ -23,6 +22,7 @@ export class ListConfig {
 
     constructor(title: string, data?: Array<any>, displayCtrls?: any) {
         this.title = title;
+        this.data = data;
         this.displayCtrls = displayCtrls || {
             load: false,
             close: false
