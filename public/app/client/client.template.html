@@ -12,8 +12,8 @@
 </ol>
 <div class="row">
     <div class="col-lg-6">
-        <tfc-list [listConfig]="listConfig">
-            <a *ngFor="let item of listConfig.data" href="#" class="list-group-item">
+        <tfc-list [config]="list.config">
+            <a *ngFor="let item of list.data" href="#" class="list-group-item">
                 <span class="thumb-sm pull-xs-left mr">
                     <img class="img-circle" src="{{ item.imgSrc }}" alt="...">
                 </span>

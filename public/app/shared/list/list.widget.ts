@@ -10,7 +10,7 @@ export class ListWidget {
     jQuery.fn.widgster.Constructor.DEFAULTS.bodySelector = '.widget-body';
 
     let $widgets = jQuery('.widget'),
-      $listWidget = jQuery('#shares-widget');
+      $listWidget = jQuery('#list-widget');
 
     /**
      * turn off .content-wrap transforms & disable sorting when widget fullscreened

@@ -4,10 +4,9 @@ import {ListComponent} from './list.component';
 import {ListWidget} from './list.widget';
 
 @NgModule({
-    imports: [CommonModule,],
-    declarations: [ListComponent,  ListWidget],
-    exports: [ListComponent, ListWidget,
-        CommonModule]
+    imports: [CommonModule],
+    declarations: [ListComponent, ListWidget],
+    exports: [ListComponent]
 })
 export class ListModule {
 }

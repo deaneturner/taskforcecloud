@@ -8,7 +8,7 @@ declare var jQuery: any;
     styleUrls: ['./list.style.scss']
 })
 export class ListComponent {
-    @Input() listConfig: any;
+    @Input() config: ListConfig;
 
     ngOnInit(): void {
 
@@ -16,14 +16,12 @@ export class ListComponent {
 }
 
 export class ListConfig {
-    displayCtrls: any;
+    display: any;
     header: any;
-    data: any;
 
-    constructor(header: any, data?: Array<any>, displayCtrls?: any) {
+    constructor(header: any, data?: Array<any>, display?: any) {
         this.header = header;
-        this.data = data;
-        this.displayCtrls = displayCtrls || {
+        this.display = display || {
             load: false,
             close: false
         };
