@@ -2,15 +2,19 @@
      just for this page.
      http://bugs.jqueryui.com/ticket/9588 -->
 <style>
-  body{
-    overflow-x: visible;
-  }
+    body {
+        overflow-x: visible;
+    }
 </style>
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">YOU ARE HERE</li>
-  <li class="breadcrumb-item active">Client</li>
+    <li class="breadcrumb-item">YOU ARE HERE</li>
+    <li class="breadcrumb-item active">Client</li>
 </ol>
 <div class="row">
-  <div class="col-lg-6" list></div>
+    <div class="col-lg-6">
+        <tfc-panel [config]="panel.config">
+            <tfc-objective-list [data]="panel.data"></tfc-objective-list>
+        </tfc-panel>
+    </div>
 </div>
 

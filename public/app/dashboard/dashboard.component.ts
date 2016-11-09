@@ -8,12 +8,12 @@ import { AppConfig } from '../app.config';
   encapsulation: ViewEncapsulation.None
 })
 export class Dashboard {
-  config: any;
+  appConfig: any;
   month: any;
   year: any;
 
-  constructor(config: AppConfig) {
-    this.config = config.getConfig();
+  constructor(appConfig: AppConfig) {
+    this.appConfig = appConfig.getConfig();
   }
 
   ngOnInit(): void {

@@ -6,15 +6,13 @@ import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { GridComponent } from './grid.component';
 
-import { GridDemo } from './grid-demo/grid-demo';
-
 export const routes = [
   { path: '', component: GridComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [ CommonModule, RouterModule.forChild(routes) ],
-  declarations: [ GridComponent, GridDemo ]
+  declarations: [ GridComponent ]
 })
 export default class GridModule {
   static routes = routes;
