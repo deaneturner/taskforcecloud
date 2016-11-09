@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 
 import {Client} from './client.component';
 import {PanelModule} from '../shared/panel/panel.module';
+import {ObjectiveListModule} from '../objective/list/objective-list.module';
 
 import {AppAuth} from '../app.auth';
 
@@ -14,7 +15,7 @@ export const routes = [
 ];
 
 @NgModule({
-    imports: [PanelModule, CommonModule, RouterModule.forChild(routes)],
+    imports: [PanelModule, ObjectiveListModule, CommonModule, RouterModule.forChild(routes)],
     declarations: [Client]
 })
 export default class ClientModule {
