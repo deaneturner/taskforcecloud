@@ -35,8 +35,7 @@ export class Login implements OnInit, AfterViewChecked {
     login(isValid: boolean, loginForm: User) {
         isValid && this.service.loginfn(loginForm).then((res: any) => {
             if (res.success) {
-                // give layout on sm devices to collapse and recalculate
-                setTimeout( () => this.router.navigate(['/app/dashboard']) , 500 );
+                this.router.navigate(['/app/dashboard']);
             } else if (res.success === false) {
                 var field = res.field;
                 this.formErrors[field].push(this.validationMessages[field][res.msgKey]);
