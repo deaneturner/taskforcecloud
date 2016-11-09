@@ -37,7 +37,8 @@ export class Client {
         this.panel = {
             config: new PanelConfig({
                 title: 'Objectives',
-                icon: ['glyphicon-check']
+                icon: ['glyphicon-check'],
+                collapsed: false
             }),
             data: [{
                 name: 'Maikel Basso',

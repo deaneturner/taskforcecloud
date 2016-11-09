@@ -1,13 +1,13 @@
-<div panel-widget>
+<div panel-widget [config]="config.headerConfig">
     <div class="widget-container">
         <section class="widget" widget id="panel-widget"
                  data-widgster-load="assets/demo/grid/shares.php"
                  data-post-processing="true">
             <header>
                 <h6>
-                    <span class="tag tag-primary"><i class="glyphicon" [ngClass]="config.header.icon"></i></span> &nbsp;
-                    <span data-widgster="collapse" class="fw-semi-bold">{{config.header.title}}</span>
-                    <span data-widgster="expand" class="fw-semi-bold">{{config.header.title}}</span>
+                    <span class="tag tag-primary"><i class="glyphicon" [ngClass]="config.headerConfig.icon"></i></span> &nbsp;
+                    <span data-widgster="collapse" class="fw-semi-bold">{{config.headerConfig.title}}</span>
+                    <span data-widgster="expand" class="fw-semi-bold">{{config.headerConfig.title}}</span>
                 </h6>
                 <div class="widget-controls">
                     <a *ngIf="config.display.load" data-widgster="load" title="Reload" href="#"><i

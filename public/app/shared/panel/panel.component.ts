@@ -17,10 +17,10 @@ export class PanelComponent {
 
 export class PanelConfig {
     display: any;
-    header: any;
+    headerConfig: any;
 
-    constructor(header: any, data?: Array<any>, display?: any) {
-        this.header = header;
+    constructor(headerConfig: any, data?: Array<any>, display?: any) {
+        this.headerConfig = headerConfig;
         this.display = display || {
             load: false,
             close: false

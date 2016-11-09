@@ -37,7 +37,8 @@ export class Admin {
         this.panel = {
             config: new PanelConfig({
                 title: 'Users',
-                icon: ['glyphicon-user']
+                icon: ['glyphicon-user'],
+                collapsed: true
             }),
             data: [{
                 name: 'Maikel Basso',
