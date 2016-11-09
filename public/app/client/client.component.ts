@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {AppConfig} from '../app.config';
-import {ListConfig} from '../shared/list/list.component';
+import {PanelConfig} from '../shared/panel/panel.component';
 declare var jQuery: any;
 
 @Component({
@@ -11,7 +11,7 @@ declare var jQuery: any;
 })
 export class Client {
     appConfig: any;
-    list: any;
+    panel: any;
     sortOptions: Object = {
         connectWith: '.widget-container',
         handle: 'header, .handle',
@@ -34,8 +34,8 @@ export class Client {
     ngOnInit(): void {
         jQuery('.widget-container').sortable(this.sortOptions);
 
-        this.list = {
-            config: new ListConfig({
+        this.panel = {
+            config: new PanelConfig({
                 title: 'Objectives',
                 icon: ['glyphicon-check']
             }),
