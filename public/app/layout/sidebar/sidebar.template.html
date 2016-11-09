@@ -1,108 +1,123 @@
 <div class="js-sidebar-content">
-  <header class="logo hidden-sm-down">
-    <a href="index.html">{{config.name}}</a>
-  </header>
-  <div class="sidebar-status hidden-md-up">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <header class="logo hidden-sm-down">
+        <a href="index.html">TF&nbsp;<i class="fa fa-cloud"></i></a>
+    </header>
+    <div class="sidebar-status hidden-md-up">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-xs-right">
         <img class="img-circle" src="assets/img/people/a5.jpg" alt="...">
               </span>
-      <!-- .circle is a pretty cool way to add a bit of beauty to raw data.
-           should be used with bg-* and text-* classes for colors -->
-              <span class="circle bg-warning fw-bold text-gray-dark">
+            <!-- .circle is a pretty cool way to add a bit of beauty to raw data.
+                 should be used with bg-* and text-* classes for colors -->
+            <span class="circle bg-warning fw-bold text-gray-dark">
                   13
               </span>
-      &nbsp;
-      Philip <strong>Smith</strong>
-      <b class="caret"></b>
-    </a>
-    <!-- #notifications-dropdown-menu goes here when screen collapsed to xs or sm -->
-  </div>
-  <!-- main notification links are placed inside of .sidebar-nav -->
-  <ul class="sidebar-nav">
-    <li>
-      <a [routerLink]=" ['dashboard'] ">
+            &nbsp;
+            Philip <strong>Smith</strong>
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="#"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Calendar</a></li>
+            <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Inbox &nbsp;&nbsp;<span
+                    class="badge label-pill bg-danger text-white animated bounceIn">9</span></a></li>
+            <li class="dropdown-divider"></li>
+            <!--<li><a class="dropdown-item" [routerLink]=" ['/logout'] "><i class="fa fa-sign-out"></i> &nbsp; Log Out</a></li>-->
+            <li (click)="logout()"><a class="dropdown-item"><i class="fa fa-sign-out"></i> &nbsp; Log Out</a>
+            </li>
+        </ul>
+        <!-- disabled - see navbar.template.html - #notifications-dropdown-menu goes here when screen collapsed to xs or sm -->
+    </div>
+    <!-- main notification links are placed inside of .sidebar-nav -->
+    <ul class="sidebar-nav">
+        <li>
+            <a [routerLink]=" ['dashboard'] ">
       <span class="icon">
           <i class="fa fa-desktop"></i>
       </span>
-        Dashboard
-      </a>
-    </li>
-    <li>
-      <a [routerLink]=" ['admin'] ">
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a [routerLink]=" ['admin'] ">
       <span class="icon">
           <i class="fa fa-cogs"></i>
       </span>
-        Administration
-      <!--<span class="tag tag-danger">-->
-          <!--9-->
-      <!--</span>-->
-      </a>
-    </li>
-    <li>
-      <a [routerLink]=" ['client'] ">
+                Administration
+                <!--<span class="tag tag-danger">-->
+                <!--9-->
+                <!--</span>-->
+            </a>
+        </li>
+        <li>
+            <a [routerLink]=" ['client'] ">
       <span class="icon">
           <i class="fa fa-child"></i>
       </span>
-        Client Detail
-        <!--<span class="tag tag-danger">-->
-          <!--9-->
-      <!--</span>-->
-      </a>
-    </li>
-    <li>
-      <a [routerLink]=" ['grid'] ">
+                Client Detail
+                <!--<span class="tag tag-danger">-->
+                <!--9-->
+                <!--</span>-->
+            </a>
+        </li>
+        <li>
+            <a [routerLink]=" ['grid'] ">
       <span class="icon">
           <i class="fa fa-tree"></i>
       </span>
-        Grid
-        <!--<span class="tag tag-danger">-->
-          <!--9-->
-      <!--</span>-->
-      </a>
-    </li>
-  </ul>
-  <h5 class="sidebar-nav-title">Labels <a class="action-link" href="#"><i class="glyphicon glyphicon-plus"></i></a></h5>
-  <!-- some styled links in sidebar. ready to use as links to email folders, projects, groups, etc -->
-  <ul class="sidebar-labels">
-    <li>
-      <a href="#">
-        <!-- yep, .circle again -->
-        <i class="fa fa-circle text-warning mr-xs"></i>
-        <span class="label-name">My Recent</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-circle text-gray mr-xs"></i>
-        <span class="label-name">Starred</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-circle text-danger mr-xs"></i>
-        <span class="label-name">Background</span>
-      </a>
-    </li>
-  </ul>
-  <h5 class="sidebar-nav-title">Projects</h5>
-  <!-- A place for sidebar notifications & alerts -->
-  <div class="sidebar-alerts">
-    <div class="alert fade in">
-      <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
-      <span class="text-white fw-semi-bold">Sales Report</span> <br>
-      <div class="bg-gray-transparent progress-bar">
-        <progress class="progress progress-xs progress-bar-gray-light mt-xs mb-0" value="100" max="100" style="width: 16%"></progress>
-      </div>
-      <small>Calculating x-axis bias... 65%</small>
+                Grid
+                <!--<span class="tag tag-danger">-->
+                <!--9-->
+                <!--</span>-->
+            </a>
+        </li>
+    </ul>
+    <h5 class="sidebar-nav-title">Labels <a class="action-link" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+    </h5>
+    <!-- some styled links in sidebar. ready to use as links to email folders, projects, groups, etc -->
+    <ul class="sidebar-labels">
+        <li>
+            <a href="#">
+                <!-- yep, .circle again -->
+                <i class="fa fa-circle text-warning mr-xs"></i>
+                <span class="label-name">My Recent</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-circle text-gray mr-xs"></i>
+                <span class="label-name">Starred</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-circle text-danger mr-xs"></i>
+                <span class="label-name">Background</span>
+            </a>
+        </li>
+    </ul>
+    <h5 class="sidebar-nav-title">Projects</h5>
+    <!-- A place for sidebar notifications & alerts -->
+    <div class="sidebar-alerts">
+        <div class="alert fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
+            <span class="text-white fw-semi-bold">Sales Report</span> <br>
+            <div class="bg-gray-transparent progress-bar">
+                <progress class="progress progress-xs progress-bar-gray-light mt-xs mb-0" value="100" max="100"
+                          style="width: 16%"></progress>
+            </div>
+            <small>Calculating x-axis bias... 65%</small>
+        </div>
+        <div class="alert fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
+            <span class="text-white fw-semi-bold">Personal Responsibility</span> <br>
+            <div class="bg-gray-transparent progress-bar">
+                <progress class="progress progress-xs progress-danger mt-xs mb-0" value="100" max="100"
+                          style="width: 23%"></progress>
+            </div>
+            <small>Provide required notes</small>
+        </div>
     </div>
-    <div class="alert fade in">
-      <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
-      <span class="text-white fw-semi-bold">Personal Responsibility</span> <br>
-      <div class="bg-gray-transparent progress-bar">
-        <progress class="progress progress-xs progress-danger mt-xs mb-0" value="100" max="100" style="width: 23%"></progress>
-      </div>
-      <small>Provide required notes</small>
-    </div>
-  </div>
 </div>
