@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../services/authservice';
 import {User} from '../model/user.interface';
+import {AppConfig} from '../app.config';
 
 @Component({
     selector: 'login',
@@ -15,9 +16,10 @@ import {User} from '../model/user.interface';
     providers: [AuthService]
 })
 export class Login implements OnInit, AfterViewChecked {
+    appConfig: any;
 
-    constructor(private service: AuthService, public router: Router) {
-
+    constructor(appConfig: AppConfig, private service: AuthService, public router: Router) {
+        this.appConfig = appConfig.getConfig();
     }
 
     public user: User;
@@ -33,7 +35,8 @@ export class Login implements OnInit, AfterViewChecked {
     login(isValid: boolean, loginForm: User) {
         isValid && this.service.loginfn(loginForm).then((res: any) => {
             if (res.success) {
-                this.router.navigate(['/app/dashboard']);
+                // give layout on sm devices to collapse and recalculate
+                setTimeout( () => this.router.navigate(['/app/dashboard']) , 500 );
             } else if (res.success === false) {
                 var field = res.field;
                 this.formErrors[field].push(this.validationMessages[field][res.msgKey]);

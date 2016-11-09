@@ -27,8 +27,8 @@ export class Admin {
         tolerance: 'pointer'
     };
 
-    constructor(config: AppConfig) {
-        this.appConfig = config.getConfig();
+    constructor(appConfig: AppConfig) {
+        this.appConfig = appConfig.getConfig();
     }
 
     ngOnInit(): void {
