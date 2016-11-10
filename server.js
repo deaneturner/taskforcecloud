@@ -97,7 +97,7 @@ if (isDevelopment) {
     console.log('swagger-ui: ' + 'http://localhost:' + config.server.port + '/swagger-ui');
 
 } else {
-    server.get(/.*/, restify.serveStatic({
+    server.get(/^(?!\/api(\/.*)?).*/, restify.serveStatic({
         'directory': __dirname + '/dist',
         'default': 'index.html'
     }));
