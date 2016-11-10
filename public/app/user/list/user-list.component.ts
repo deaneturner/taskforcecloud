@@ -1,5 +1,9 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {AppConfig} from '../../app.config';
+
+import {User} from '../../model/user.interface';
+import {UserService} from '../../services/userservice';
+
 declare var jQuery: any;
 
 @Component({
@@ -12,9 +16,20 @@ export class UserList {
     @Input() data: any;
     appConfig: any;
 
-    constructor(appConfig: AppConfig) {
+    users: User[];
+
+    constructor(appConfig: AppConfig, private userService: UserService) {
         this.appConfig = appConfig.getConfig();
     }
 
-    ngOnInit(): void {};
+    ngOnInit(): void {
+        //this.getUsers();
+    };
+
+    getUsers() {
+        this.userService.getUsers()
+            .subscribe(
+                users => this.users = users
+            );
+    }
 }

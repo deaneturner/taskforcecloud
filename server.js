@@ -80,8 +80,10 @@ if (isDevelopment) {
 
     /*
      * api-docs exclusion enables swagger-ui (otherwise, .*)
+     *
+     * Comment out to enable swagger api calls.
      */
-    server.get(/^(?!\/api-docs(\/.*)?).*/, function response(req, res) {
+    server.get(/^(?!\/api(\/.*)?).*/, function response(req, res) {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
     });
