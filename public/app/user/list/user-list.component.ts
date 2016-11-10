@@ -13,17 +13,16 @@ declare var jQuery: any;
     encapsulation: ViewEncapsulation.None
 })
 export class UserList {
-    @Input() data: any;
     appConfig: any;
 
-    users: User[];
+    users: any[];
 
     constructor(appConfig: AppConfig, private userService: UserService) {
         this.appConfig = appConfig.getConfig();
     }
 
     ngOnInit(): void {
-        //this.getUsers();
+        this.getUsers();
     };
 
     getUsers() {

@@ -5,6 +5,8 @@ import 'rxjs/add/operator/catch';
 
 import {User} from '../model/user.interface';
 
+import * as _ from 'lodash';
+
 @Injectable()
 export class UserService {
     constructor(private http: Http) {
@@ -12,12 +14,8 @@ export class UserService {
     }
 
     getUsers(query?: any) {
-        return this.http.get('/users')
-            .map((response: Response) => {
-                console.log(response);
-                return <User[]>response.json().data;
-            });
-            //.catch(this.handleError);
+        return this.http.get('/api/users')
+            .map((response: Response) => <User[]>_.values(response.json()));
     }
 
     private handleError(error: Response) {
