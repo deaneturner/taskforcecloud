@@ -1,10 +1,10 @@
 <div class="list-group list-group-lg">
     <a *ngFor="let user of users" href="#" class="list-group-item">
                 <span class="thumb-sm pull-xs-left mr">
-                    <img class="img-circle" src="{{ user.imgSrc }}" alt="...">
+                    <img class="img-circle" src="{{ user.imgSrc || 'assets/img/avatar.png' }}" alt="...">
                 </span>
         <i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="user.indicatorClass"></i>
-        <h6 class="no-margin">{{ user.username}}</h6>
-        <small class="text-muted">{{ user.lastUpdated}}</small>
+        <h6 class="no-margin">{{ user.username || 'unknown'}}</h6>
+        <small class="text-muted">{{ user.lastUpdated  || 'unknown'}}</small>
     </a>
 </div>
