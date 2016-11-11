@@ -80,8 +80,10 @@ if (isDevelopment) {
 
     /*
      * api-docs exclusion enables swagger-ui (otherwise, .*)
+     *
+     * Comment out to enable swagger api calls.
      */
-    server.get(/^(?!\/api-docs(\/.*)?).*/, function response(req, res) {
+    server.get(/^(?!\/api(\/.*)?).*/, function response(req, res) {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
     });
@@ -95,7 +97,7 @@ if (isDevelopment) {
     console.log('swagger-ui: ' + 'http://localhost:' + config.server.port + '/swagger-ui');
 
 } else {
-    server.get(/.*/, restify.serveStatic({
+    server.get(/^(?!\/api(\/.*)?).*/, restify.serveStatic({
         'directory': __dirname + '/dist',
         'default': 'index.html'
     }));
