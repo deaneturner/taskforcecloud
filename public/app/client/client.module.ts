@@ -8,10 +8,10 @@ import {Client} from './client.component';
 import {PanelModule} from '../shared/panel/panel.module';
 import {ObjectiveListModule} from '../objective/list/objective-list.module';
 
-import {AppAuth} from '../app.auth';
+import {AppGuard} from '../app.guard';
 
 export const routes = [
-    {path: '', component: Client, pathMatch: 'full', canActivate: [AppAuth]}
+    {path: '', component: Client, pathMatch: 'full', canActivate: [AppGuard]}
 ];
 
 @NgModule({

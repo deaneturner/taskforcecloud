@@ -8,10 +8,10 @@ import {Admin} from './admin.component';
 import {PanelModule} from '../shared/panel/panel.module';
 import {UserListModule} from '../user/list/user-list.module';
 
-import {AppAuth} from '../app.auth';
+import {AppGuard} from '../app.guard';
 
 export const routes = [
-    {path: '', component: Admin, pathMatch: 'full', canActivate: [AppAuth]}
+    {path: '', component: Admin, pathMatch: 'full', canActivate: [AppGuard]}
 ];
 
 
