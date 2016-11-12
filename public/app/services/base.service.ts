@@ -14,6 +14,13 @@ export class BaseService {
 
     handleError(response: Response) {
         let error = response.json();
+        if (!error || !error.code || !error.message) {
+            // no http connection
+            error = {
+                code: 'Connection Error',
+                message: 'No data connection found!'
+            }
+        }
         Messenger().post( {
             message: error.code + ': ' + error.message,
             type: 'error',
