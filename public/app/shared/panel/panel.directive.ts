@@ -5,7 +5,7 @@ declare var jQuery: any;
     selector: '[panel-widget]',
 })
 
-export class PanelWidget {
+export class PanelDirective {
     @Input() collapsed: boolean;
 
     render(): void {
