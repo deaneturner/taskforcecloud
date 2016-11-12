@@ -15,7 +15,7 @@ declare var jQuery: any;
 export class UserList {
     appConfig: any;
 
-    users: any[];
+    users: Array<User>[];
 
     constructor(appConfig: AppConfig, private userService: UserService) {
         this.appConfig = appConfig.getConfig();
