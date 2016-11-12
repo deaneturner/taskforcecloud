@@ -12,11 +12,12 @@ export class BaseService {
     }
 
     handleError(error: any) {
+        let error = error.json();
         Messenger().post( {
-            message: 'There was an explosion while processing your request.',
+            message: error.code + ': ' + error.message,
             type: 'error',
             showCloseButton: true
         });
-        return Observable.throw(error);
+        return Observable.throw(error.json());
     }
 }
