@@ -1,3 +1,4 @@
+import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'messenger/build/js/messenger.min';
 declare var Messenger: any;
@@ -11,8 +12,8 @@ export class BaseService {
         }
     }
 
-    handleError(error: any) {
-        let error = error.json();
+    handleError(response: Response) {
+        let error = response.json();
         Messenger().post( {
             message: error.code + ': ' + error.message,
             type: 'error',

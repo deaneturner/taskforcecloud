@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 
-import {BaseService} from '../shared/base.service';
+import {BaseService} from './base.service';
 
 import {User} from '../model/user.interface';
 
@@ -14,7 +14,7 @@ export class UserService extends BaseService {
     }
 
     getUsers(query?: any) {
-        return this.http.get('/api/usersgg')
+        return this.http.get('/api/users')
             .map((response: Response) => <User[]>_.values(response.json()))
             .catch(this.handleError);
     }

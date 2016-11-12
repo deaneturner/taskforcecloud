@@ -5,7 +5,7 @@ import {CommonModule}  from '@angular/common';
 import {RouterModule} from '@angular/router';
 
 import {AdminComponent} from './admin.component';
-import {PanelModule} from '../shared/panel/panel.module';
+import {SharedModule} from '../shared/shared.module';
 import {UserListModule} from '../user/list/user-list.module';
 
 import {AppGuard} from '../app.guard';
@@ -16,7 +16,7 @@ export const routes = [
 
 
 @NgModule({
-    imports: [PanelModule, UserListModule, CommonModule, RouterModule.forChild(routes)],
+    imports: [SharedModule, UserListModule, CommonModule, RouterModule.forChild(routes)],
     declarations: [AdminComponent]
 })
 export default class AdminModule {
