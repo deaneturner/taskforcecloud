@@ -8,22 +8,13 @@ declare var jQuery: any;
     styleUrls: ['./panel.style.scss']
 })
 export class PanelComponent {
-    @Input() config: PanelConfig;
+    @Input() title: string;
+    @Input() iconClass: Array<string>[];
+    @Input() collapsed: boolean = false;
+    @Input() showReload: boolean = false;
+    @Input() showClose: boolean = false;
 
     ngOnInit(): void {
 
-    }
-}
-
-export class PanelConfig {
-    display: any;
-    headerConfig: any;
-
-    constructor(headerConfig: any, data?: Array<any>, display?: any) {
-        this.headerConfig = headerConfig;
-        this.display = display || {
-            load: false,
-            close: false
-        };
     }
 }
