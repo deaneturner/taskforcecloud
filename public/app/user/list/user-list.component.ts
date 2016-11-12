@@ -12,10 +12,10 @@ declare var jQuery: any;
     styleUrls: ['./user-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserList {
+export class UserListComponent {
     appConfig: any;
 
-    users: Array<User>[];
+    users: Array<User>;
 
     constructor(appConfig: AppConfig, private userService: UserService) {
         this.appConfig = appConfig.getConfig();

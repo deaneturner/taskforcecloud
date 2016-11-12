@@ -1,15 +1,15 @@
-<div panel-widget [config]="config.headerConfig">
+<div panel-widget [collapsed]="collapsed">
     <div class="widget-container">
         <section class="widget" widget id="panel-widget"
                  data-widgster-load="assets/demo/grid/shares.php"
                  data-post-processing="true">
             <header>
                 <h6>
-                    <span class="tag tag-primary"><i class="glyphicon" [ngClass]="config.headerConfig.icon"></i></span>
-                    <span class="fw-semi-bold">{{config.headerConfig.title}}</span>
+                    <span class="tag tag-primary"><i class="glyphicon" [ngClass]="iconClass"></i></span>
+                    <span class="fw-semi-bold">{{title}}</span>
                 </h6>
                 <div class="widget-controls">
-                    <a *ngIf="config.display.load" data-widgster="load" title="Reload" href="#"><i
+                    <a *ngIf="showReload" data-widgster="load" title="Reload" href="#"><i
                             class="fa fa-refresh"></i></a>
                     <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
                     <a data-widgster="collapse" title="Collapse" href="#"><i
@@ -17,7 +17,7 @@
                     <a data-widgster="fullscreen" title="Full Screen" href="#"><i
                             class="glyphicon glyphicon-fullscreen"></i></a>
                     <a data-widgster="restore" title="Restore" href="#"><i class="glyphicon glyphicon-resize-small"></i></a>
-                    <a *ngIf="config.display.close" data-widgster="close" title="Close" href="#"><i
+                    <a *ngIf="showClose" data-widgster="close" title="Close" href="#"><i
                             class="glyphicon glyphicon-remove"></i></a>
                 </div>
             </header>
