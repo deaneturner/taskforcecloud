@@ -28,7 +28,8 @@ export class UserListComponent {
     getUsers() {
         this.userService.getUsers()
             .subscribe(
-                users => this.users = users
+                users => this.users = users,
+                error => {}  // error is handled by service
             );
     }
 }

@@ -1,23 +1,21 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 
+import {BaseService} from './base.service';
+
 import {User} from '../model/user.interface';
 
 import * as _ from 'lodash';
 
 @Injectable()
-export class UserService {
+export class UserService extends BaseService {
     constructor(private http: Http) {
-
+        super();
     }
 
     getUsers(query?: any) {
         return this.http.get('/api/users')
-            .map((response: Response) => <User[]>_.values(response.json()));
-    }
-
-    private handleError(error: Response) {
-        let msg = 'Status code error.status on url error.url';
-        console.error(msg);
+            .map((response: Response) => <User[]>_.values(response.json()))
+            .catch(this.handleError);
     }
 }
