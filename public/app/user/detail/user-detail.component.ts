@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AppConfig } from '../app.config';
+import { AppConfig } from '../../app.config';
 
 @Component({
-    selector: 'user',
-    templateUrl: './user.template.html',
-    styleUrls: ['./user.style.scss'],
+    selector: 'user-detail',
+    templateUrl: 'user-detail.template.html',
+    styleUrls: ['user-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserComponent {
+export class UserDetailComponent {
     appConfig: any;
 
     constructor(appConfig: AppConfig) {

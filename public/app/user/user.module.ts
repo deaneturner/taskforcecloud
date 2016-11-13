@@ -1,19 +1,15 @@
 import {NgModule}      from '@angular/core';
 import {CommonModule}  from '@angular/common';
-import {RouterModule} from '@angular/router';
 
-import {UserComponent} from './user.component';
-import {AppGuard} from '../app.guard';
+import {UserDetailComponent} from './detail/user-detail.component';
+import {UserEditComponent} from './edit/user-edit.component';
 
-export const routes = [
-    {path: '', component: UserComponent, pathMatch: 'full', canActivate: [AppGuard]}
-];
+import {ROUTES}       from './user.routes';
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes)],
-    declarations: [UserComponent]
+    imports: [CommonModule, ROUTES],
+    declarations: [UserDetailComponent, UserEditComponent]
 })
 
 export default class UserModule {
-    static routes = routes;
 }
