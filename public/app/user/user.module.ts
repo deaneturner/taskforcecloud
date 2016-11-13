@@ -2,19 +2,18 @@ import {NgModule}      from '@angular/core';
 import {CommonModule}  from '@angular/common';
 import {RouterModule} from '@angular/router';
 
-import {DashboardComponent} from './dashboard.component.ts';
-import {Widget} from '../layout/widget/widget.directive';
+import {UserComponent} from './user.component';
 import {AppGuard} from '../app.guard';
 
 export const routes = [
-    {path: '', component: DashboardComponent, pathMatch: 'full', canActivate: [AppGuard]}
+    {path: '', component: UserComponent, pathMatch: 'full', canActivate: [AppGuard]}
 ];
-
 
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes)],
-    declarations: [DashboardComponent, Widget]
+    declarations: [UserComponent]
 })
-export default class DashboardModule {
+
+export default class UserModule {
     static routes = routes;
 }
