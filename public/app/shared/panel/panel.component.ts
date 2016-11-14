@@ -14,6 +14,7 @@ export class PanelComponent {
     @Input() showReload: boolean = false;
     @Input() showClose: boolean = false;
     @Input() showFullscreen: boolean = true;
+    @Input() showDropdown: boolean = false;
 
     ngOnInit(): void {
 

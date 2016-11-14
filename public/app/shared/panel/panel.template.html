@@ -5,20 +5,44 @@
                  data-post-processing="true">
             <header>
                 <h6>
-                    <span *ngIf="iconClass && iconClass.length" class="tag tag-primary"><i class="glyphicon" [ngClass]="iconClass"></i></span>
+                    <span *ngIf="iconClass && iconClass.length" class="tag tag-primary"><i class="glyphicon"
+                                                                                           [ngClass]="iconClass"></i></span>
                     <span class="fw-semi-bold">{{title}}</span>
                 </h6>
                 <div class="widget-controls">
-                    <a *ngIf="showReload" data-widgster="load" title="Reload" href="#"><i
+                    <a *ngIf="showReload" data-gster="load" title="Reload" href="#"><i
                             class="fa fa-refresh"></i></a>
-                    <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a data-widgster="collapse" title="Collapse" href="#"><i
+                    <a *ngIf="!showDropdown" data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a *ngIf="!showDropdown" data-widgster="collapse" title="Collapse" href="#"><i
                             class="glyphicon glyphicon-chevron-down"></i></a>
                     <a *ngIf="showFullscreen" data-widgster="fullscreen" title="Full Screen" href="#"><i
                             class="glyphicon glyphicon-fullscreen"></i></a>
                     <a data-widgster="restore" title="Restore" href="#"><i class="glyphicon glyphicon-resize-small"></i></a>
                     <a *ngIf="showClose" data-widgster="close" title="Close" href="#"><i
                             class="glyphicon glyphicon-remove"></i></a>
+                    <div *ngIf="showDropdown" class="widget-controls dropdown" data-dropdown data-ng-init="isOpen = false"
+                         data-is-open="isOpen">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-cog"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a class="dropdown-item" data-widgster="load" title="Reload" ng-click="isOpen = false">Reload
+                                    &nbsp;&nbsp;<span
+                                            class="tag tag-pill tag-success animated bounceIn"><strong>9</strong></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" data-widgster="fullscreen" title="Full Screen"
+                                   ng-click="isOpen = false">Fullscreen</a>
+                                <a class="dropdown-item" data-widgster="restore" title="Restore"
+                                   ng-click="isOpen = false">Restore</a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" data-widgster="close" title="Close" ng-click="isOpen = false">Close</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </header>
             <div class="widget-body no-padding">

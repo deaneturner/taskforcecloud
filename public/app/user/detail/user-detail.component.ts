@@ -20,7 +20,8 @@ export class UserDetailComponent implements OnInit{
             title: 'Profile',
             collapsed: false,
             close: false,
-            fullScreen: false
+            fullScreen: false,
+            showDropdown: true
         };
     }
 }
