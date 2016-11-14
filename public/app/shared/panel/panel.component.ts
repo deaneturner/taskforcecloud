@@ -13,6 +13,7 @@ export class PanelComponent {
     @Input() collapsed: boolean = false;
     @Input() showReload: boolean = false;
     @Input() showClose: boolean = false;
+    @Input() showFullscreen: boolean = true;
 
     ngOnInit(): void {
 

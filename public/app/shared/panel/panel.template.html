@@ -5,7 +5,7 @@
                  data-post-processing="true">
             <header>
                 <h6>
-                    <span class="tag tag-primary"><i class="glyphicon" [ngClass]="iconClass"></i></span>
+                    <span *ngIf="iconClass && iconClass.length" class="tag tag-primary"><i class="glyphicon" [ngClass]="iconClass"></i></span>
                     <span class="fw-semi-bold">{{title}}</span>
                 </h6>
                 <div class="widget-controls">
@@ -14,7 +14,7 @@
                     <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
                     <a data-widgster="collapse" title="Collapse" href="#"><i
                             class="glyphicon glyphicon-chevron-down"></i></a>
-                    <a data-widgster="fullscreen" title="Full Screen" href="#"><i
+                    <a *ngIf="showFullscreen" data-widgster="fullscreen" title="Full Screen" href="#"><i
                             class="glyphicon glyphicon-fullscreen"></i></a>
                     <a data-widgster="restore" title="Restore" href="#"><i class="glyphicon glyphicon-resize-small"></i></a>
                     <a *ngIf="showClose" data-widgster="close" title="Close" href="#"><i

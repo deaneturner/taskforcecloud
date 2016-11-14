@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {AppConfig} from '../app.config';
 declare var jQuery: any;
 
@@ -8,7 +8,7 @@ declare var jQuery: any;
     styleUrls: ['./admin.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
     appConfig: any;
     panel: any;
     sortOptions: Object = {
