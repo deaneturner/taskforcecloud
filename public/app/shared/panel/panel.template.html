@@ -18,30 +18,24 @@
                                 class="glyphicon glyphicon-chevron-down"></i></a>
                         <a data-widgster="fullscreen" title="Full Screen" href="#"><i
                                 class="glyphicon glyphicon-fullscreen"></i></a>
-                        <a data-widgster="restore" title="Restore" href="#"><i class="glyphicon glyphicon-resize-small"></i></a>
+                        <a data-widgster="restore" title="Restore" href="#"><i
+                                class="glyphicon glyphicon-resize-small"></i></a>
                         <a *ngIf="showClose" data-widgster="close" title="Close" href="#"><i
                                 class="glyphicon glyphicon-remove"></i></a>
                     </div>
-                    <div *ngIf="showDropdown" class="widget-controls dropdown" data-dropdown data-ng-init="isOpen = false"
+                    <div *ngIf="showDropdown" class="widget-controls dropdown" data-dropdown
+                         data-ng-init="isOpen = false"
                          data-is-open="isOpen">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-cog"></i>
+                            <i class="fa fa-bars"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li>
-                                <a class="dropdown-item" data-widgster="load" title="Reload" ng-click="isOpen = false">Reload
-                                    &nbsp;&nbsp;<span
-                                            class="tag tag-pill tag-success animated bounceIn"><strong>9</strong></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" data-widgster="fullscreen" title="Full Screen"
-                                   ng-click="isOpen = false">Fullscreen</a>
-                                <a class="dropdown-item" data-widgster="restore" title="Restore"
-                                   ng-click="isOpen = false">Restore</a>
+                                <a class="dropdown-item">Edit</a>
                             </li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" data-widgster="close" title="Close" ng-click="isOpen = false">Close</a>
+                            <li>
+                                <a class="dropdown-item">Delete</a>
                             </li>
                         </ul>
                     </div>
