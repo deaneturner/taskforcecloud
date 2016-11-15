@@ -4,6 +4,7 @@ import 'messenger/build/js/messenger.min';
 declare var Messenger: any;
 
 export class NotificationService {
+    modal: any;
 
     constructor() {
         Messenger.options = {
@@ -36,5 +37,9 @@ export class NotificationService {
             showCloseButton: true
         });
         return Observable.throw(error.json());
+    }
+
+    initModal(modalEl: HTMLElement) {
+        this.modal = modalEl;
     }
 }
