@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewCh
 import {Router} from '@angular/router';
 import {AppConfig} from '../app.config'
 
-import {NotificationService} from '../services/notification.service'
+import {ModalService} from '../services/modal.service'
 import {ModalComponent} from '../shared/modal-window/modal.component'
 
 declare var jQuery: any;
@@ -33,7 +33,7 @@ export class Layout implements OnInit {
     constructor(config: AppConfig,
                 el: ElementRef,
                 router: Router,
-                private notificationService: NotificationService) {
+                private modalService: ModalService) {
         this.el = el;
         this.config = config.getConfig();
         this.configFn = config;
@@ -247,6 +247,6 @@ export class Layout implements OnInit {
             jQuery(this).closest('li').removeClass('open');
         });
 
-        this.notificationService.initModal(this.modalComponent.myModal);
+        this.modalService.initModal(this.modalComponent.myModal);
     }
 }

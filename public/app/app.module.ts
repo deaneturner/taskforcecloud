@@ -20,6 +20,7 @@ import {AppConfig} from './app.config';
 import {AppGuard} from './app.guard';
 import {ErrorComponent} from './error/error.component';
 import {NotificationService} from './services/notification.service';
+import {ModalService} from './services/modal.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -27,7 +28,8 @@ const APP_PROVIDERS = [
     AppState,
     AppConfig,
     AppGuard,
-    NotificationService
+    NotificationService,
+    ModalService
 ];
 
 type StoreType = {
