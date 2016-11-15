@@ -29,6 +29,7 @@ export class NotificationService {
                 message: 'No data connection found!'
             }
         }
+        // this.displayMessage is not available due to rxjs/Rx closure
         Messenger().post( {
             message: error.code + ': ' + error.message,
             type: 'error',
