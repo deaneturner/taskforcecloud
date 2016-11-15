@@ -3,11 +3,12 @@ import {CommonModule}  from '@angular/common';
 
 import {UserDetailComponent} from './detail/user-detail.component';
 import {UserEditComponent} from './edit/user-edit.component';
+import {PanelModule} from '../shared/panel/panel.module';
 
 import {ROUTES}       from './user.routes';
 
 @NgModule({
-    imports: [CommonModule, ROUTES],
+    imports: [CommonModule, PanelModule, ROUTES],
     declarations: [UserDetailComponent, UserEditComponent]
 })
 

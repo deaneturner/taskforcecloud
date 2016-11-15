@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AppConfig } from '../../app.config';
 
 @Component({
@@ -7,12 +7,21 @@ import { AppConfig } from '../../app.config';
     styleUrls: ['user-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit{
     appConfig: any;
+    panel: any;
 
     constructor(appConfig: AppConfig) {
         this.appConfig = appConfig.getConfig();
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.panel = {
+            title: 'Profile',
+            collapsed: false,
+            close: false,
+            fullScreen: false,
+            showDropdown: true
+        };
+    }
 }
