@@ -1,4 +1,5 @@
-import {Component, ViewEncapsulation, Input} from '@angular/core';
+import {Component, ViewEncapsulation, Input, Output, EventEmitter} from '@angular/core';
+
 declare var jQuery: any;
 
 @Component({
@@ -16,7 +17,13 @@ export class PanelComponent {
     @Input() showFullscreen: boolean = true;
     @Input() showDropdown: boolean = false;
 
+    @Output() onMenuSelect = new EventEmitter<string>();
+
     ngOnInit(): void {
 
+    }
+
+    onDropdownSelect(menuItem: string) {
+        this.onMenuSelect.emit(menuItem);
     }
 }

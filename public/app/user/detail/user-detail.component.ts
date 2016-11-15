@@ -21,7 +21,12 @@ export class UserDetailComponent implements OnInit{
             collapsed: false,
             close: false,
             fullScreen: false,
-            showDropdown: true
+            showDropdown: true,
+            onMenuSelect: this.onMenuSelect
         };
+    }
+
+    onMenuSelect($event) {
+        console.log($event);
     }
 }
