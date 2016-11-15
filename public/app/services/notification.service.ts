@@ -3,13 +3,21 @@ import {Observable} from 'rxjs/Rx';
 import 'messenger/build/js/messenger.min';
 declare var Messenger: any;
 
-export class BaseService {
+export class NotificationService {
 
     constructor() {
         Messenger.options = {
-            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+            extraClasses: 'messenger-fixed messenger-on-top messenger-on-center',
             theme: 'air'
         }
+    }
+
+    displayMessage(config: any) {
+        Messenger().post( {
+            message: config.message,
+            type: config.type,
+            showCloseButton: true
+        });
     }
 
     handleError(response: Response) {

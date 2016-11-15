@@ -19,13 +19,15 @@ import {AppState, InteralStateType} from './app.service';
 import {AppConfig} from './app.config';
 import {AppGuard} from './app.guard';
 import {ErrorComponent} from './error/error.component';
+import {NotificationService} from './services/notification.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS,
     AppState,
     AppConfig,
-    AppGuard
+    AppGuard,
+    NotificationService
 ];
 
 type StoreType = {
