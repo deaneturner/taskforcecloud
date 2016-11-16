@@ -1,6 +1,8 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AppConfig } from '../../app.config';
 
+import {ModalService} from '../../services/modal.service'
+
 @Component({
     selector: 'user-detail',
     templateUrl: 'user-detail.template.html',
@@ -11,7 +13,7 @@ export class UserDetailComponent implements OnInit{
     appConfig: any;
     panel: any;
 
-    constructor(appConfig: AppConfig) {
+    constructor(appConfig: AppConfig, private modalService: ModalService) {
         this.appConfig = appConfig.getConfig();
     }
 
@@ -22,11 +24,13 @@ export class UserDetailComponent implements OnInit{
             close: false,
             fullScreen: false,
             showDropdown: true,
-            onMenuSelect: this.onMenuSelect
+            onMenuSelect: this.onMenuSelect,
+            modalService: this.modalService
         };
     }
 
     onMenuSelect($event) {
         console.log($event);
+        this.modalService.modal.open();
     }
 }
