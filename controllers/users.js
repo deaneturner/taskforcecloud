@@ -11,7 +11,7 @@ module.exports = function (lib) {
     var controller = new Users();
 
     controller.addAction({
-        'path': '/users',
+        'path': '/api/users',
         'method': 'GET',
         'summary': 'Retrieves a list users',
         'responsClass': 'User',
@@ -24,7 +24,7 @@ module.exports = function (lib) {
     });
 
     controller.addAction({
-        'path': '/users',
+        'path': '/api/users',
         'method': 'POST',
         'params': [swagger.bodyParam('user', 'The JSON representation of the user', 'string')],
         'summary': 'Adds a new user to the database',

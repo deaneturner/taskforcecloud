@@ -1,6 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {AppConfig} from '../app.config';
-import {PanelConfig} from '../shared/panel/panel.component';
 declare var jQuery: any;
 
 @Component({
@@ -9,7 +8,7 @@ declare var jQuery: any;
     styleUrls: ['./client.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class Client {
+export class ClientComponent {
     appConfig: any;
     panel: any;
     sortOptions: Object = {
@@ -35,11 +34,8 @@ export class Client {
         jQuery('.widget-container').sortable(this.sortOptions);
 
         this.panel = {
-            config: new PanelConfig({
-                title: 'Objectives',
-                icon: ['glyphicon-check'],
-                collapsed: false
-            }),
+            title: 'Objectives',
+            iconClass: ['glyphicon-check'],
             data: [{
                 name: 'Maikel Basso',
                 imgSrc: 'assets/img/people/a1.jpg',

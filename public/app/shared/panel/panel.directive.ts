@@ -5,8 +5,8 @@ declare var jQuery: any;
     selector: '[panel-widget]',
 })
 
-export class PanelWidget {
-    @Input() config: any;
+export class PanelDirective {
+    @Input() collapsed: boolean;
 
     render(): void {
         jQuery.fn.widgster.Constructor.DEFAULTS.bodySelector = '.widget-body';
@@ -49,7 +49,7 @@ export class PanelWidget {
             loaderTemplate: '<div class="loader animated fadeIn">' +
             '   <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>' +
             '</div>',
-            collapsed: this.config.collapsed || false
+            collapsed: this.collapsed
         });
 
         /**

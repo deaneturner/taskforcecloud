@@ -5,7 +5,7 @@
     <div class="sidebar-status hidden-md-up">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-xs-right">
-        <img class="img-circle" src="assets/img/people/a5.jpg" alt="...">
+        <img class="img-circle" src="assets/img/avatar.png" alt="...">
               </span>
             <!-- .circle is a pretty cool way to add a bit of beauty to raw data.
                  should be used with bg-* and text-* classes for colors -->
@@ -17,13 +17,10 @@
             <b class="caret"></b>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="#"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
+            <li><a class="dropdown-item" [routerLink]="'/app/user/1'"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
             </li>
             <li class="dropdown-divider"></li>
             <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Calendar</a></li>
-            <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Inbox &nbsp;&nbsp;<span
-                    class="badge label-pill bg-danger text-white animated bounceIn">9</span></a></li>
-            <li class="dropdown-divider"></li>
             <!--<li><a class="dropdown-item" [routerLink]=" ['/logout'] "><i class="fa fa-sign-out"></i> &nbsp; Log Out</a></li>-->
             <li (click)="logout()"><a class="dropdown-item"><i class="fa fa-sign-out"></i> &nbsp; Log Out</a>
             </li>
@@ -68,6 +65,17 @@
           <i class="fa fa-tree"></i>
       </span>
                 Grid
+                <!--<span class="tag tag-danger">-->
+                <!--9-->
+                <!--</span>-->
+            </a>
+        </li>
+        <li>
+            <a [routerLink]=" ['user/1/edit'] ">
+      <span class="icon">
+          <i class="fa fa-tree"></i>
+      </span>
+                User
                 <!--<span class="tag tag-danger">-->
                 <!--9-->
                 <!--</span>-->

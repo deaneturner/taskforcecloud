@@ -7,7 +7,7 @@ import { AppConfig } from '../app.config';
   styleUrls: ['./dashboard.style.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class Dashboard {
+export class DashboardComponent {
   appConfig: any;
   month: any;
   year: any;

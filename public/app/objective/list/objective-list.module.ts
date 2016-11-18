@@ -1,12 +1,12 @@
 import {NgModule}      from '@angular/core';
 import {CommonModule}  from '@angular/common';
 
-import {ObjectiveList} from './objective-list.component';
+import {ObjectiveListComponent} from './objective-list.component';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [ObjectiveList],
-    exports: [ObjectiveList]
+    declarations: [ObjectiveListComponent],
+    exports: [ObjectiveListComponent]
 })
 export class ObjectiveListModule {
 }

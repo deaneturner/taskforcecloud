@@ -8,7 +8,7 @@ declare var jQuery: any;
     styleUrls: ['./objective-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ObjectiveList {
+export class ObjectiveListComponent {
     @Input() data: any;
     appConfig: any;
 

@@ -1,4 +1,5 @@
-import {Component, ViewEncapsulation, Input} from '@angular/core';
+import {Component, ViewEncapsulation, Input, Output, EventEmitter} from '@angular/core';
+
 declare var jQuery: any;
 
 @Component({
@@ -8,22 +9,21 @@ declare var jQuery: any;
     styleUrls: ['./panel.style.scss']
 })
 export class PanelComponent {
-    @Input() config: PanelConfig;
+    @Input() title: string;
+    @Input() iconClass: Array<string>[];
+    @Input() collapsed: boolean = false;
+    @Input() showReload: boolean = false;
+    @Input() showClose: boolean = false;
+    @Input() showFullscreen: boolean = true;
+    @Input() showDropdown: boolean = false;
+
+    @Output() onMenuSelect = new EventEmitter<string>();
 
     ngOnInit(): void {
 
     }
-}
 
-export class PanelConfig {
-    display: any;
-    headerConfig: any;
-
-    constructor(headerConfig: any, data?: Array<any>, display?: any) {
-        this.headerConfig = headerConfig;
-        this.display = display || {
-            load: false,
-            close: false
-        };
+    onDropdownSelect(menuItem: string) {
+        this.onMenuSelect.emit(menuItem);
     }
 }

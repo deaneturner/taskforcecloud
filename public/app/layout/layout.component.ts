@@ -1,6 +1,9 @@
-import {Component, ViewEncapsulation, ElementRef} from '@angular/core';
+import {Component, ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewChecked} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppConfig} from '../app.config'
+
+import {ModalService} from '../services/modal.service'
+import {ModalComponent} from '../shared/modal-window/modal.component'
 
 declare var jQuery: any;
 declare var Hammer: any;
@@ -16,7 +19,7 @@ declare var Hammer: any;
         id: 'app'
     }
 })
-export class Layout {
+export class Layout implements OnInit {
     config: any;
     configFn: any;
     $sidebar: any;
@@ -24,9 +27,13 @@ export class Layout {
     router: Router;
     chatOpened: boolean = false;
 
+    @ViewChild(ModalComponent)
+    modalComponent: ModalComponent;
+
     constructor(config: AppConfig,
                 el: ElementRef,
-                router: Router) {
+                router: Router,
+                private modalService: ModalService) {
         this.el = el;
         this.config = config.getConfig();
         this.configFn = config;
@@ -128,7 +135,7 @@ export class Layout {
 
     _sidebarMouseLeave(): void {
         //if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
-            this.collapseNavigation();
+        this.collapseNavigation();
         //}
     }
 
@@ -166,7 +173,7 @@ export class Layout {
     collapseNavIfSmallScreen(): void {
         // if (this.configFn.isScreen('xs')
         //     || this.configFn.isScreen('sm') || this.configFn.isScreen('md')) {
-            this.collapseNavigation();
+        this.collapseNavigation();
         //}
     }
 
@@ -239,5 +246,7 @@ export class Layout {
 
             jQuery(this).closest('li').removeClass('open');
         });
+
+        this.modalService.initModal(this.modalComponent.myModal);
     }
 }
