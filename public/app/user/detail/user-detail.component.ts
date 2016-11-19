@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppConfig} from '../../app.config';
 
-import {ModalService} from '../../services/modal.service'
+import {NotificationService} from '../../services/notification.service'
 
 @Component({
     selector: 'user-detail',
@@ -14,7 +14,7 @@ export class UserDetailComponent implements OnInit {
     appConfig: any;
     panel: any;
 
-    constructor(appConfig: AppConfig, private router: Router, private modalService: ModalService) {
+    constructor(appConfig: AppConfig, private router: Router, private notificationService: NotificationService) {
         this.appConfig = appConfig.getConfig();
     }
 
@@ -40,7 +40,7 @@ export class UserDetailComponent implements OnInit {
                 this.router.navigate(['app/user/edit', 1]);
                 break;
             case 'delete':
-                this.modalService.modal.open();
+                this.notificationService.modal.open();
                 break;
         }
     }
