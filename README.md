@@ -1,4 +1,4 @@
-# Dashboard App (3.2.0 Seed version) with Angular 2.0 Final Release support
+# Task Force Cloud App (3.2.0 Seed version) with Angular 2.0 Final Release support
 
 
 > An Angular 2 application featuring [Angular 2](https://angular.io)
