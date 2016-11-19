@@ -1,7 +1,4 @@
-<button class="btn btn-gray" (click)="myModal.open()">
-    Launch demo modal
-</button>
-<modal #myModal>
+<modal id="userEditModal" #userEditModal>
     <modal-header>
         <h4 class="modal-title text-xs-center fw-bold mt" id="myModalLabel18">One more step</h4>
         <p class="text-xs-center fs-mini text-muted mt-sm">
@@ -56,8 +53,8 @@
         </form>
     </modal-content>
     <modal-footer>
-        <button type="button" class="btn btn-gray" (click)="myModal.close()">Close</button>
-        <button type="button" class="btn btn-success" (click)="myModal.close()">Save changes</button>
+        <button type="button" class="btn btn-gray" (click)="navigateOnClose()">Close</button>
+        <button type="button" class="btn btn-success" (click)="navigateOnClose()">Save changes</button>
     </modal-footer>
 </modal>
 

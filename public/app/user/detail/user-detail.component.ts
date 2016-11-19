@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {AppConfig} from '../../app.config';
 
 import {NotificationService} from '../../services/notification.service'
@@ -18,7 +18,10 @@ export class UserDetailComponent implements OnInit {
     @ViewChild(UserEditComponent)
     public userEditComponent: UserEditComponent;
 
-    constructor(appConfig: AppConfig, private router: Router, private notificationService: NotificationService) {
+    constructor(appConfig: AppConfig,
+                private router: Router,
+                private notificationService: NotificationService,
+                private activatedRoute: ActivatedRoute) {
         this.appConfig = appConfig.getConfig();
     }
 
@@ -36,12 +39,17 @@ export class UserDetailComponent implements OnInit {
                 onMenuSelect: () => this.onMenuSelect('delete')
             }]
         };
+
+        if (this.activatedRoute.snapshot.url[0].path ==='edit') {
+            this.userEditComponent.modal.open();
+        }
     }
 
     onMenuSelect(action: string) {
         switch (action) {
             case 'edit':
-                this.userEditComponent.modal.open();
+                // affect browser url - and not just modal open
+                this.router.navigate(['app/user/edit', 1]);
                 break;
             case 'delete':
                 this.notificationService.modal.open();

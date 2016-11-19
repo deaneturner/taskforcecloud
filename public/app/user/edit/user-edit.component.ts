@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import {Router} from '@angular/router';
 import { AppConfig } from '../../app.config';
+declare var jQuery: any;
 
 @Component({
     selector: 'user-edit-modal',
@@ -10,12 +12,21 @@ import { AppConfig } from '../../app.config';
 export class UserEditComponent {
     appConfig: any;
 
-    @ViewChild('myModal')
-    public modal: any;  // HTML element, but syntax checker does not like modal.open()
+    @ViewChild('userEditModal')
+    public modal: any;
 
-    constructor(appConfig: AppConfig) {
+    constructor(appConfig: AppConfig, private router: Router) {
         this.appConfig = appConfig.getConfig();
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        jQuery('#userEditModal').on('hidden.bs.modal', function (e) {
+            this.navigateOnClose();
+        })
+    }
+
+    navigateOnClose () {
+        this.modal.close();
+        this.router.navigate(['app/user/detail', 1]);
+    }
 }
