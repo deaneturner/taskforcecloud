@@ -37,7 +37,7 @@ export class UserDetailComponent implements OnInit {
     onMenuSelect(action: string) {
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/user/1/edit']);
+                this.router.navigate(['app/user/edit', 1]);
                 break;
             case 'delete':
                 this.modalService.modal.open();
