@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AppConfig} from '../../app.config';
 
 import {NotificationService} from '../../services/notification.service'
+import {UserEditComponent} from '../edit/user-edit.component';
 
 @Component({
     selector: 'user-detail',
@@ -14,8 +15,8 @@ export class UserDetailComponent implements OnInit {
     appConfig: any;
     panel: any;
 
-    @ViewChild('myModal')
-    public myModal: HTMLElement;
+    @ViewChild(UserEditComponent)
+    public userEditComponent: UserEditComponent;
 
     constructor(appConfig: AppConfig, private router: Router, private notificationService: NotificationService) {
         this.appConfig = appConfig.getConfig();
@@ -40,8 +41,7 @@ export class UserDetailComponent implements OnInit {
     onMenuSelect(action: string) {
         switch (action) {
             case 'edit':
-                //this.router.navigate(['app/user/edit', 1]);
-                this.myModal.open();
+                this.userEditComponent.modal.open();
                 break;
             case 'delete':
                 this.notificationService.modal.open();

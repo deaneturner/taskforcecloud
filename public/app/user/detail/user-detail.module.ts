@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 import {UserDetailComponent} from './user-detail.component';
+import {UserEditComponent} from './user-edit.component';
 
 export const routes = [
     {path: '', component: UserDetailComponent, pathMatch: 'full'}
@@ -12,7 +13,8 @@ export const routes = [
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
-        UserDetailComponent
+        UserDetailComponent,
+        UserEditComponent
     ],
     imports: [
         CommonModule,
