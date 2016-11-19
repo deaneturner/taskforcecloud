@@ -7,8 +7,8 @@ import {AppGuard} from '../app.guard';
 const routes: Routes = [
     {
         path: '', children: [
-        {path: ':id', component: UserDetailComponent, pathMatch: 'full', canActivate: [AppGuard]},
-        {path: ':id/:mode', component: UserEditComponent, pathMatch: 'full', canActivate: [AppGuard]}
+        {path: 'detail/:id', component: UserDetailComponent, pathMatch: 'full', canActivate: [AppGuard]},
+        {path: 'edit/:id', component: UserEditComponent, pathMatch: 'full', canActivate: [AppGuard]}
     ]
     }
 ];
