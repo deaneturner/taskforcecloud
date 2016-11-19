@@ -40,6 +40,7 @@ export class UserDetailComponent implements OnInit {
             }]
         };
 
+        // on direct /user/edit route, open modal
         if (this.activatedRoute.snapshot.url[0].path ==='edit') {
             this.userEditComponent.modal.open();
         }

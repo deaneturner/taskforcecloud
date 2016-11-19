@@ -20,9 +20,8 @@ export class UserEditComponent {
     }
 
     ngOnInit(): void {
-        jQuery('#userEditModal').on('hidden.bs.modal', function (e) {
-            this.navigateOnClose();
-        })
+        // hook to modal close so navigation returns to detail
+        this.modal.onClose.subscribe(() => this.navigateOnClose());
     }
 
     navigateOnClose () {
