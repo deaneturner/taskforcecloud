@@ -1,5 +1,5 @@
 <div class="list-group list-group-lg">
-    <a *ngFor="let user of users" class="list-group-item" [routerLink]="['user/detail/1']">
+    <a *ngFor="let user of users" class="list-group-item" [routerLink]="['/app/user/detail/1']">
                 <span class="thumb-sm pull-xs-left mr">
                     <img class="img-circle" src="{{ user.imgSrc || 'assets/img/avatar.png' }}" alt="...">
                 </span>
