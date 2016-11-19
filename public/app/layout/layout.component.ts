@@ -247,6 +247,7 @@ export class Layout implements OnInit {
             jQuery(this).closest('li').removeClass('open');
         });
 
+        // initialize modal service with modal ref
         this.notificationService.initModal(this.modalComponent.notificationModal);
     }
 }
