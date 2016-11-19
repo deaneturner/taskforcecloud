@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppConfig} from '../../app.config';
 
@@ -13,6 +13,9 @@ import {NotificationService} from '../../services/notification.service'
 export class UserDetailComponent implements OnInit {
     appConfig: any;
     panel: any;
+
+    @ViewChild('myModal')
+    public myModal: HTMLElement;
 
     constructor(appConfig: AppConfig, private router: Router, private notificationService: NotificationService) {
         this.appConfig = appConfig.getConfig();
@@ -37,7 +40,8 @@ export class UserDetailComponent implements OnInit {
     onMenuSelect(action: string) {
         switch (action) {
             case 'edit':
-                this.router.navigate(['app/user/edit', 1]);
+                //this.router.navigate(['app/user/edit', 1]);
+                this.myModal.open();
                 break;
             case 'delete':
                 this.notificationService.modal.open();
