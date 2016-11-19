@@ -6,7 +6,7 @@
 <div class="row user-detail">
     <div class="col-lg-6 col-xs-12">
         <tfc-panel [title]="panel.title" [collapsed]="panel.collapsed" [showFullscreen]="panel.fullScreen"
-                   [showDropdown]="panel.showDropdown">
+                   [showDropdown]="panel.showDropdown" (onMenuSelect)="panel.onMenuSelect($event)">
             <section class="widget">
                 <div class="widget-body">
                     <div class="widget-top-overflow text-white">
