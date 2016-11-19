@@ -30,12 +30,9 @@
                             <i class="fa fa-bars"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li>
-                                <a class="dropdown-item" (click)="onDropdownSelect('edit')">Edit</a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" (click)="onDropdownSelect('delete')">Delete</a>
+                            <li *ngFor="let menuItem of menu; let last = last">
+                                <a class="dropdown-item" (click)="menuItem.onMenuSelect()">{{menuItem.title}}</a>
+                                <div *ngIf="!last"class="dropdown-divider"></div>
                             </li>
                         </ul>
                     </div>
