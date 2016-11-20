@@ -17,7 +17,7 @@
             <b class="caret"></b>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
-            <li><a class="dropdown-item" [routerLink]="'user/detail/1'"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
+            <li><a class="dropdown-item" [routerLink]="'users/detail/1'"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
             </li>
             <li class="dropdown-divider"></li>
             <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Calendar</a></li>
@@ -49,9 +49,20 @@
             </a>
         </li>
         <li>
-            <a [routerLink]=" ['client'] ">
+            <a [routerLink]=" ['users'] ">
       <span class="icon">
           <i class="fa fa-child"></i>
+      </span>
+                Users
+                <!--<span class="tag tag-danger">-->
+                <!--9-->
+                <!--</span>-->
+            </a>
+        </li>
+        <li>
+            <a [routerLink]=" ['client'] ">
+      <span class="icon">
+          <i class="fa fa-tree"></i>
       </span>
                 Client Detail
                 <!--<span class="tag tag-danger">-->
@@ -71,7 +82,7 @@
             </a>
         </li>
         <li>
-            <a [routerLink]=" ['user/edit/1'] ">
+            <a [routerLink]=" ['users/edit/1'] ">
       <span class="icon">
           <i class="fa fa-tree"></i>
       </span>

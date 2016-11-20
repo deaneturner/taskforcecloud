@@ -6,7 +6,7 @@ import {RouterModule} from '@angular/router';
 
 import {AdminComponent} from './admin.component';
 import {PanelModule} from '../shared/panel/panel.module';
-import {UserListModule} from '../user/list/user-list.module';
+import {UserListModule} from '../users/list/user-list.module';
 
 import {AppGuard} from '../app.guard';
 
