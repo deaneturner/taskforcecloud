@@ -45,7 +45,7 @@ export class UserDetailComponent implements OnInit {
         switch (action) {
             case 'edit':
                 // affect browser url
-                this.router.navigate(['app/user/edit', 1]);
+                this.router.navigate(['app/users/edit', 1]);
                 break;
             case 'delete':
                 this.notificationService.modal.open();
