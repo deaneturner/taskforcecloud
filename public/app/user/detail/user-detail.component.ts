@@ -49,7 +49,7 @@ export class UserDetailComponent implements OnInit {
     onMenuSelect(action: string) {
         switch (action) {
             case 'edit':
-                // affect browser url - and not just modal open
+                // affect browser url
                 this.router.navigate(['app/user/edit', 1]);
                 break;
             case 'delete':
