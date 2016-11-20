@@ -1027,6 +1027,10 @@ a.list-group-item, button.list-group-item {
   }
 }
 
+.modal {
+  z-index: 10000;  // ensure refresh bar scans in background
+}
+
 //
 // Pagination
 // --------------------------------------------------
