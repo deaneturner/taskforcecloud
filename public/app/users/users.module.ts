@@ -5,7 +5,7 @@ import {UserDetailComponent} from './detail/user-detail.component';
 import {UserEditComponent} from './edit/user-edit.component';
 import {PanelModule} from '../shared/panel/panel.module';
 
-import {ROUTES}       from './user.routes';
+import {ROUTES}       from './users.routes';
 
 @NgModule({
     imports: [CommonModule, PanelModule, ROUTES],
