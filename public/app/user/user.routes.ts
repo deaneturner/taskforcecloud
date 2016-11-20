@@ -8,7 +8,7 @@ const routes: Routes = [
     {
         path: '', children: [
         {path: 'detail/:id', component: UserDetailComponent, pathMatch: 'full', canActivate: [AppGuard]},
-        {path: 'edit/:id', component: UserEditComponent, pathMatch: 'full', canActivate: [AppGuard]}
+        {path: 'edit/:id', component: UserDetailComponent, pathMatch: 'full', canActivate: [AppGuard]}
     ]
     }
 ];
