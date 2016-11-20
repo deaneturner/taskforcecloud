@@ -1033,7 +1033,7 @@ a.list-group-item, button.list-group-item {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: $zindex-modal;
+  z-index: 10000;
   display: none;
   overflow: hidden;
   // Prevent Chrome on Windows from adding a focus outline. For details, see
