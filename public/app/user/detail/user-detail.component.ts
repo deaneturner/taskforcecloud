@@ -39,17 +39,12 @@ export class UserDetailComponent implements OnInit {
                 onMenuSelect: () => this.onMenuSelect('delete')
             }]
         };
-
-        // on direct /user/edit route, open modal
-        if (this.activatedRoute.snapshot.url[0].path ==='edit') {
-            this.userEditComponent.modal.open();
-        }
     }
 
     onMenuSelect(action: string) {
         switch (action) {
             case 'edit':
-                // affect browser url - and not just modal open
+                // affect browser url
                 this.router.navigate(['app/user/edit', 1]);
                 break;
             case 'delete':
