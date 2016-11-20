@@ -1028,17 +1028,7 @@ a.list-group-item, button.list-group-item {
 }
 
 .modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10000;
-  display: none;
-  overflow: hidden;
-  // Prevent Chrome on Windows from adding a focus outline. For details, see
-  // https://github.com/twbs/bootstrap/pull/10951.
-  outline: 0;
+  z-index: 10000;  // ensure refresh bar scans in background
 }
 
 //
