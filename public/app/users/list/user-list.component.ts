@@ -1,11 +1,11 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {AppState} from '../../app.service';
 import {BaseComponent} from '../../shared/component/base.component';
 
 import {User} from '../../model/user.interface';
-import {UserService} from '../../services/userservice';
+import {UserService} from '../../services/user.service';
 
 @Component({
     selector: 'tfc-user-list',

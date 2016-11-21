@@ -17,4 +17,10 @@ export class UserService {
             .map((response: Response) => <User[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }
+
+    getUserTokenDecoded() {
+        return this.http.get('/api/users/token/' + window.localStorage.getItem('id_token'))
+            .map((response: Response) => <string>response.json())
+            .catch(this.notificationService.handleError);
+    }
 }

@@ -18,7 +18,7 @@ module.exports = function (lib) {
         var session = lib.config.session[JSON.parse(isKeepLoggedIn) ? 'keepLoggedIn' : 'default'];
         var expires = moment().add(session.duration, session.interval).unix();
         return jwt.encode({
-            iss: user.username,
+            iss: user._id,
             exp: expires
         }, lib.config.secretKey);
     }

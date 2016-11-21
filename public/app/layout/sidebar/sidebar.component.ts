@@ -2,7 +2,7 @@ import {Component, OnInit, ElementRef} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
 import {Location} from '@angular/common';
 import {AppConfig} from '../../app.config';
-import {AuthService} from '../../services/authservice';
+import {AuthService} from '../../services/auth.service';
 declare var jQuery: any;
 
 @Component({

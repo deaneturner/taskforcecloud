@@ -1,7 +1,9 @@
 import {Component, EventEmitter, OnInit, ElementRef, Output} from '@angular/core';
 import {AppConfig} from '../../app.config';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/authservice';
+import {AuthService} from '../../services/auth.service';
+import {UserService} from '../../services/user.service';
+
 declare var jQuery: any;
 
 @Component({
@@ -14,8 +16,13 @@ export class Navbar implements OnInit {
     @Output() toggleChatEvent: EventEmitter<any> = new EventEmitter();
     $el: any;
     config: any;
+    currentUser: any;
 
-    constructor(private service: AuthService, public router: Router, el: ElementRef, config: AppConfig) {
+    constructor(private service: AuthService,
+                public userService: UserService,
+                public router: Router,
+                el: ElementRef,
+                config: AppConfig) {
         this.$el = jQuery(el.nativeElement);
         this.config = config.getConfig();
     }
@@ -39,6 +46,16 @@ export class Navbar implements OnInit {
     }
 
     ngOnInit(): void {
+        /*
+         * Current User
+         */
+        this.userService.getUserTokenDecoded()
+            .subscribe(
+                _id => this.currentUser = _id,
+                error => {
+                }  // error is handled by service
+            );
+
         setTimeout(() => {
             let $chatNotification = jQuery('#chat-notification');
             $chatNotification.removeClass('hide').addClass('animated fadeIn')

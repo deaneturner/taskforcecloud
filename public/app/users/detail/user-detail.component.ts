@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 import {AppConfig} from '../../app.config';
 import {AppState} from '../../app.service';
@@ -24,7 +24,8 @@ export class UserDetailComponent implements OnInit {
     constructor(appConfig: AppConfig,
                 private router: Router,
                 private notificationService: NotificationService,
-                private appState: AppState) {
+                private appState: AppState,
+                private activatedRoute: ActivatedRoute) {
         this.appConfig = appConfig.getConfig();
     }
 
@@ -43,7 +44,11 @@ export class UserDetailComponent implements OnInit {
             }]
         };
 
-        this.user = this.appState.get('selectedUser');
+        if (this.activatedRoute.snapshot.params['id'] !== this.appState.get('selectedUser')._id) {
+            this.user = this.appState.get('selectedUser');
+        } else {
+            this.user = this.appState.get('selectedUser');
+        }
     }
 
     onMenuSelect(action: string) {

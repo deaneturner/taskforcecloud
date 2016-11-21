@@ -178,7 +178,6 @@ export class Layout implements OnInit {
     }
 
     ngOnInit(): void {
-
         if (localStorage.getItem('nav-static') === 'true') {
             this.config.state['nav-static'] = true;
         }

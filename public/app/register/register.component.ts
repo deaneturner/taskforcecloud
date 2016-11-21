@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import {AuthService} from '../services/authservice';
+import {AuthService} from '../services/auth.service';
 import {User} from '../model/user.interface';
 
 @Component({

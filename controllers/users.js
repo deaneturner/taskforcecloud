@@ -1,6 +1,8 @@
 var BaseController = require("./basecontroller");
 var _ = require("underscore");
 var swagger = require("swagger-node-restify");
+var jwt = require('jwt-simple');
+var lib = require("../lib");
 
 function Users() {
 }
@@ -38,6 +40,17 @@ module.exports = function (lib) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, user);
         });
+    });
+
+    controller.addAction({
+        'path': '/api/users/token/{token}',
+        'method': 'GET',
+        'params': [swagger.bodyParam('token', 'The encoded JWT token', 'string')],
+        'description': 'Returns the decoded string representation of the given token',
+        'responsClass': 'string',
+        'nickname': 'getUserTokenDecoded'
+    }, function (req, res, next) {
+        controller.writeHAL(res, jwt.decode(req.params.token, lib.config.secretKey).iss);
     });
 
     return controller;
