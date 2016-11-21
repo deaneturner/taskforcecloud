@@ -3,9 +3,6 @@ import {Router} from '@angular/router';
 
 import {AppState} from '../../app.service';
 
-@Component({
-    selector: 'base-component'
-})
 export class BaseComponent {
 
     constructor(protected appState: AppState,
