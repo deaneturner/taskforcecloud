@@ -12,6 +12,12 @@
         </p>
     </modal-content>
     <modal-footer>
-        <button *ngFor="let button of modal.config.buttons" type="button" [class]="button.class" (click)="button['onClick']()">{{button.title}}</button>
+        <div class="clearfix">
+            <div class="btn-toolbar pull-xs-right">
+                <button *ngFor="let button of modal.config.buttons" type="button" [class]="button.class"
+                        (click)="button['onClick']()">{{button.title}}
+                </button>
+            </div>
+        </div>
     </modal-footer>
 </modal>
