@@ -189,18 +189,22 @@ export class Layout implements OnInit {
 
     registerSubscribe() {
         var self = this;
+        // subscribe
         this.appContextService.getCurrentUser().subscribe(
             currentUser => {
                 self.navbarComponent.currentUser = currentUser;
                 self.sidebarComponent.currentUser = currentUser;
             });
+        // register
+        // initialize current user
+        this.appContextService.publishCurrentUserByToken();
 
     }
 
     ngOnInit(): void {
 
         /*
-         * Register / Subscribe
+         * Current User Register / Subscribe
          */
         this.registerSubscribe();
 
