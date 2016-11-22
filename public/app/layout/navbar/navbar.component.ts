@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, ElementRef, Output} from '@angular/core
 import {AppConfig} from '../../app.config';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {UserService} from '../../services/user.service';
+import {AppContextService} from '../../services/app.context.service';
 
 declare var jQuery: any;
 
@@ -18,8 +18,8 @@ export class Navbar implements OnInit {
     config: any;
     currentUser: any = {};
 
-    constructor(private service: AuthService,
-                public userService: UserService,
+    constructor(private authService: AuthService,
+                private appContextService: AppContextService,
                 public router: Router,
                 el: ElementRef,
                 config: AppConfig) {
@@ -36,7 +36,7 @@ export class Navbar implements OnInit {
     }
 
     logout(event) {
-        this.service.logoutfn().then((res) => {
+        this.authService.logoutfn().then((res) => {
             if (!window.localStorage.getItem('id_token') && !res) {
                 this.router.navigate(['/login']);
             } else {
@@ -49,12 +49,10 @@ export class Navbar implements OnInit {
         /*
          * Current User
          */
-        this.userService.getUserByToken()
-            .subscribe(
-                currentUser => this.currentUser = currentUser,
-                error => {
-                }  // error is handled by service
-            );
+        this.appContextService.getCurrentUser().subscribe(
+            currentUser => {
+                this.currentUser = currentUser;
+            });
 
         setTimeout(() => {
             let $chatNotification = jQuery('#chat-notification');

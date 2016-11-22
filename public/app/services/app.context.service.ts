@@ -1,25 +1,29 @@
 import {Injectable} from '@angular/core';
+import {Subject}    from 'rxjs/Subject';
+import {Observable} from 'rxjs/Observable';
 
 import {UserService} from './user.service';
 
 @Injectable()
 export class AppContextService {
-    currentUser: any;
+    private currentUserSubject = new Subject<string>();
+    currentUserObservable$ = this.currentUserSubject.asObservable();
 
     constructor(private userService: UserService) {
+        // initialize current user
+        this.userService.getUserByToken()
+            .subscribe(
+                currentUser => this.publishCurrentUser(currentUser),
+                error => {
+                }  // error is handled by service
+            );
     }
 
-    getUser() {
-        if (!this.currentUser) {
-            this.userService.getUserByToken()
-                .subscribe(
-                    currentUser => this.currentUser = currentUser,
-                    error => {
-                    }  // error is handled by service
-                );
-        } else {
-            return this.currentUser;
-        }
+    getCurrentUser(): Observable<string> {
+        return this.currentUserObservable$;
+    }
 
+    publishCurrentUser(currentUser: any): void {
+        this.currentUserSubject.next(currentUser);
     }
 }
