@@ -1,6 +1,8 @@
 var BaseController = require("./basecontroller");
 var _ = require("underscore");
 var swagger = require("swagger-node-restify");
+var jwt = require('jwt-simple');
+var lib = require("../lib");
 
 function Users() {
 }
@@ -37,6 +39,22 @@ module.exports = function (lib) {
         newUserModel.save(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, user);
+        });
+    });
+
+    controller.addAction({
+        'path': '/api/users/token/{token}',
+        'method': 'GET',
+        'description': 'Returns a user using a given token',
+        'responsClass': 'string',
+        'nickname': 'getUserFromToken'
+    }, function (req, res, next) {
+        lib.db.model('User').findOne({_id: jwt.decode(req.params.token, lib.config.secretKey).iss}).exec(function (err, user) {
+            var userJSON;
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            userJSON = user.toObject();
+            delete userJSON.password;
+            controller.writeHAL(res, userJSON);
         });
     });
 

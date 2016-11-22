@@ -1,9 +1,9 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import {AuthService} from '../services/authservice';
+import {AuthService} from '../services/auth.service';
+import {AppState} from '../app.service';
 import {User} from '../model/user.interface';
-import {AppConfig} from '../app.config';
 
 @Component({
     selector: 'login',
@@ -18,8 +18,7 @@ import {AppConfig} from '../app.config';
 export class Login implements OnInit, AfterViewChecked {
     appConfig: any;
 
-    constructor(appConfig: AppConfig, private service: AuthService, public router: Router) {
-        this.appConfig = appConfig.getConfig();
+    constructor(private appState: AppState, private service: AuthService, public router: Router) {
     }
 
     public user: User;
@@ -33,8 +32,10 @@ export class Login implements OnInit, AfterViewChecked {
     }
 
     login(isValid: boolean, loginForm: User) {
+        let user = loginForm;
         isValid && this.service.loginfn(loginForm).then((res: any) => {
             if (res.success) {
+                this.appState.set('currentUser', user);
                 this.router.navigate(['/app/dashboard']);
             } else if (res.success === false) {
                 var field = res.field;

@@ -5,6 +5,8 @@ import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {removeNgStyles, createNewHosts, createInputTransfer} from '@angularclass/hmr';
 
+import {ServiceModule} from './services/service.module';
+
 import './rxjs-extensions';
 
 /*
@@ -20,6 +22,7 @@ import {AppConfig} from './app.config';
 import {AppGuard} from './app.guard';
 import {ErrorComponent} from './error/error.component';
 import {NotificationService} from './services/notification.service';
+import {AppContextService} from './services/app.context.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -27,7 +30,8 @@ const APP_PROVIDERS = [
     AppState,
     AppConfig,
     AppGuard,
-    NotificationService
+    NotificationService,
+    AppContextService
 ];
 
 type StoreType = {
@@ -49,6 +53,7 @@ type StoreType = {
         BrowserModule,
         FormsModule,
         HttpModule,
+        ServiceModule,
         RouterModule.forRoot(ROUTES, {useHash: true})
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection

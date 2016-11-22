@@ -1,6 +1,8 @@
 import {Component, ViewEncapsulation, OnInit, ViewChild} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
+
 import {AppConfig} from '../../app.config';
+import {AppState} from '../../app.service';
 
 import {NotificationService} from '../../services/notification.service'
 import {UserEditComponent} from '../edit/user-edit.component';
@@ -14,6 +16,7 @@ import {UserEditComponent} from '../edit/user-edit.component';
 export class UserDetailComponent implements OnInit {
     appConfig: any;
     panel: any;
+    user: any;
 
     @ViewChild(UserEditComponent)
     public userEditComponent: UserEditComponent;
@@ -21,6 +24,7 @@ export class UserDetailComponent implements OnInit {
     constructor(appConfig: AppConfig,
                 private router: Router,
                 private notificationService: NotificationService,
+                private appState: AppState,
                 private activatedRoute: ActivatedRoute) {
         this.appConfig = appConfig.getConfig();
     }
@@ -39,6 +43,12 @@ export class UserDetailComponent implements OnInit {
                 onMenuSelect: () => this.onMenuSelect('delete')
             }]
         };
+
+        if (this.activatedRoute.snapshot.params['id'] !== this.appState.get('selectedUser')._id) {
+            this.user = this.appState.get('selectedUser');
+        } else {
+            this.user = this.appState.get('selectedUser');
+        }
     }
 
     onMenuSelect(action: string) {

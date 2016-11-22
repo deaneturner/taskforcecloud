@@ -1,10 +1,11 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {AppConfig} from '../../app.config';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {Router} from '@angular/router';
+
+import {AppState} from '../../app.service';
+import {BaseComponent} from '../../shared/component/base.component';
 
 import {User} from '../../model/user.interface';
-import {UserService} from '../../services/userservice';
-
-declare var jQuery: any;
+import {UserService} from '../../services/user.service';
 
 @Component({
     selector: 'tfc-user-list',
@@ -12,13 +13,15 @@ declare var jQuery: any;
     styleUrls: ['./user-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserListComponent {
+export class UserListComponent extends BaseComponent {
     appConfig: any;
 
     users: Array<User>;
 
-    constructor(appConfig: AppConfig, private userService: UserService) {
-        this.appConfig = appConfig.getConfig();
+    constructor(appState: AppState,
+                router: Router,
+                private userService: UserService) {
+        super(appState, router);
     }
 
     ngOnInit(): void {
@@ -29,7 +32,8 @@ export class UserListComponent {
         this.userService.getUsers()
             .subscribe(
                 users => this.users = users,
-                error => {}  // error is handled by service
+                error => {
+                }  // error is handled by service
             );
     }
 }
