@@ -45,7 +45,7 @@ module.exports = function (lib) {
     controller.addAction({
         'path': '/api/users/token/{token}',
         'method': 'GET',
-        'description': 'Returns the decoded string representation of the given token',
+        'description': 'Returns a user using a given token',
         'responsClass': 'string',
         'nickname': 'getUserFromToken'
     }, function (req, res, next) {
