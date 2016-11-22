@@ -187,7 +187,7 @@ export class Layout implements OnInit {
         //}
     }
 
-    setCurrentUser() {
+    registerSubscribe() {
         var self = this;
         this.appContextService.getCurrentUser().subscribe(
             currentUser => {
@@ -200,9 +200,9 @@ export class Layout implements OnInit {
     ngOnInit(): void {
 
         /*
-         * Current User
+         * Register / Subscribe
          */
-        this.setCurrentUser();
+        this.registerSubscribe();
 
         if (localStorage.getItem('nav-static') === 'true') {
             this.config.state['nav-static'] = true;
