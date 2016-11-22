@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import {AuthService} from '../services/authservice';
+import {AuthService} from '../services/auth.service';
 import {User} from '../model/user.interface';
 
 @Component({
@@ -24,6 +24,8 @@ export class Register implements OnInit {
     ngOnInit() {
         this.user = {
             username: '',
+            firstName: '',
+            lastName: '',
             password: '',
             confirmPassword: '',
             isKeepLoggedIn: false
@@ -36,6 +38,8 @@ export class Register implements OnInit {
                 this.router.navigate(['/app/dashboard']);
             } else if (res.success === false) {
                 var field = res.field;
+                // clear previous error message (if any)
+                this.formErrors[field] = [];
                 this.formErrors[field].push(this.validationMessages[field][res.msgKey]);
             }
         });

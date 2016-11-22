@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { AppConfig } from '../../app.config';
 
 @Component({
@@ -13,6 +13,4 @@ export class UserEditComponent {
     constructor(appConfig: AppConfig) {
         this.appConfig = appConfig.getConfig();
     }
-
-    ngOnInit(): void {}
 }

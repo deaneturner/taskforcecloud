@@ -16,11 +16,13 @@ import {ChatMessage} from './chat-sidebar/chat-message/chat-message.component';
 import {SearchPipe} from './pipes/search.pipe';
 import {NotificationLoad} from './notifications/notifications-load.directive';
 import {Notifications} from './notifications/notifications.component';
-import {ModalComponent} from '../shared/modal-window/modal.component'
+import {ModalComponent} from '../shared/modal-window/modal.component';
+import {AppContextService} from '../services/app.context.service';
 
 @NgModule({
     imports: [CommonModule, TooltipModule, ROUTES, FormsModule, ModalModule],
-    declarations: [Layout, Sidebar, Navbar, ChatSidebar, SearchPipe, Notifications, NotificationLoad, ChatMessage, ModalComponent]
+    declarations: [Layout, Sidebar, Navbar, ChatSidebar, SearchPipe, Notifications, NotificationLoad, ChatMessage, ModalComponent],
+    providers: [AppContextService]
 })
 export default class LayoutModule {
 }

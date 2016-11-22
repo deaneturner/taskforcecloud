@@ -1,9 +1,10 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import {AuthService} from '../services/authservice';
+
+import {AuthService} from '../services/auth.service';
 import {User} from '../model/user.interface';
-import {AppConfig} from '../app.config';
+import {AppContextService} from '../services/app.context.service';
 
 @Component({
     selector: 'login',
@@ -18,8 +19,9 @@ import {AppConfig} from '../app.config';
 export class Login implements OnInit, AfterViewChecked {
     appConfig: any;
 
-    constructor(appConfig: AppConfig, private service: AuthService, public router: Router) {
-        this.appConfig = appConfig.getConfig();
+    constructor(private service: AuthService,
+                private appContextService: AppContextService,
+                public router: Router) {
     }
 
     public user: User;
@@ -27,15 +29,19 @@ export class Login implements OnInit, AfterViewChecked {
     ngOnInit() {
         this.user = {
             username: '',
+            firstName: '',
+            lastName: '',
             password: '',
             isKeepLoggedIn: false
         }
     }
 
     login(isValid: boolean, loginForm: User) {
+        let user = loginForm;
         isValid && this.service.loginfn(loginForm).then((res: any) => {
             if (res.success) {
                 this.router.navigate(['/app/dashboard']);
+                this.appContextService.publishCurrentUser(user);
             } else if (res.success === false) {
                 var field = res.field;
                 this.formErrors[field].push(this.validationMessages[field][res.msgKey]);

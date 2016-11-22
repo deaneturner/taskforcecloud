@@ -1,0 +1,68 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">YOU ARE HERE</li>
+    <li class="active breadcrumb-item">User Detail</li>
+</ol>
+<h1 class="page-title">Edit User <span class="fw-semi-bold">Profile</span></h1>
+<section class="widget" widget id="autoload-widget"
+         data-widgster-load="assets/demo/grid/autoload.php"
+         data-post-processing="true"
+         data-widgster-autoload="false"
+         data-widgster-show-loader="false">
+    <header>
+        <h6>Autoload <span class="fw-semi-bold">Widget</span></h6>
+        <div class="widget-controls dropdown" data-dropdown data-ng-init="isOpen = false" data-is-open="isOpen">
+                            <span>
+                                <i class="fa fa-spinner fa-lg fade mr-xs"></i>
+                            </span>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-cog"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                    <a class="dropdown-item" data-widgster="load" title="Reload" ng-click="isOpen = false">Reload
+                        &nbsp;&nbsp;<span class="tag tag-pill tag-success animated bounceIn"><strong>9</strong></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" data-widgster="fullscreen" title="Full Screen" ng-click="isOpen = false">Fullscreen</a>
+                    <a class="dropdown-item" data-widgster="restore" title="Restore" ng-click="isOpen = false">Restore</a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li><a class="dropdown-item" data-widgster="close" title="Close" ng-click="isOpen = false">Close</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="widget-body">
+        <h3 class="text-xs-center no-margin">Sign up, it's <strong>free</strong></h3>
+        <p class="lead text-muted text-xs-center">
+            Faith makes it possible to achieve that which man's mind can conceive and believe.
+        </p>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1"><i class="fa fa-circle text-warning"></i> &nbsp; Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1"
+                       placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="pswd"><i class="fa fa-circle text-danger"></i> &nbsp; Password</label>
+                <input class="form-control" id="pswd" type="text" placeholder="Min 8 characters">
+            </div>
+            <p>
+                To make a widget automatically load it's content you just need to set
+                <strong>data-widgster-autoload</strong> attribute and provide an url.
+            </p>
+            <pre><code>data-widgster-load="server/ajax_widget.html"
+data-widgster-autoload="true"</code></pre>
+            <p>
+                <strong>data-widgster-autoload</strong> may be set to an integer value. If set, for example, to
+                2000 will refresh widget every 2 seconds.
+            </p>
+            <div class="clearfix">
+                <div class="btn-toolbar pull-xs-right">
+                    <button type="button" class="btn btn-transparent">Cancel</button>
+                    <button type="button" class="btn btn-success">&nbsp;Submit&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

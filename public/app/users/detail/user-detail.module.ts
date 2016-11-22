@@ -11,7 +11,6 @@ export const routes = [
 
 @NgModule({
     declarations: [
-        // Components / Directives/ Pipes
         UserDetailComponent
     ],
     imports: [

@@ -1,9 +1,12 @@
 import {Component, ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewChecked} from '@angular/core';
 import {Router} from '@angular/router';
-import {AppConfig} from '../app.config'
+import {AppConfig} from '../app.config';
 
-import {NotificationService} from '../services/notification.service'
-import {ModalComponent} from '../shared/modal-window/modal.component'
+import {AppContextService} from '../services/app.context.service';
+import {NotificationService} from '../services/notification.service';
+import {ModalComponent} from '../shared/modal-window/modal.component';
+import {Navbar} from './navbar/navbar.component';
+import {Sidebar} from './sidebar/sidebar.component';
 
 declare var jQuery: any;
 declare var Hammer: any;
@@ -30,10 +33,17 @@ export class Layout implements OnInit {
     @ViewChild(ModalComponent)
     modalComponent: ModalComponent;
 
+    @ViewChild(Navbar)
+    navbarComponent: Navbar;
+
+    @ViewChild(Sidebar)
+    sidebarComponent: Sidebar;
+
     constructor(config: AppConfig,
                 el: ElementRef,
                 router: Router,
-                private notificationService: NotificationService) {
+                private notificationService: NotificationService,
+                private appContextService: AppContextService) {
         this.el = el;
         this.config = config.getConfig();
         this.configFn = config;
@@ -177,7 +187,26 @@ export class Layout implements OnInit {
         //}
     }
 
+    registerSubscribe() {
+        var self = this;
+        // subscribe
+        this.appContextService.getCurrentUser().subscribe(
+            currentUser => {
+                self.navbarComponent.currentUser = currentUser;
+                self.sidebarComponent.currentUser = currentUser;
+            });
+        // register
+        // initialize current user
+        this.appContextService.publishCurrentUserByToken();
+
+    }
+
     ngOnInit(): void {
+
+        /*
+         * Current User Register / Subscribe
+         */
+        this.registerSubscribe();
 
         if (localStorage.getItem('nav-static') === 'true') {
             this.config.state['nav-static'] = true;
@@ -246,8 +275,5 @@ export class Layout implements OnInit {
 
             jQuery(this).closest('li').removeClass('open');
         });
-
-        // initialize modal service with modal ref
-        this.notificationService.initModal(this.modalComponent.notificationModal);
     }
 }

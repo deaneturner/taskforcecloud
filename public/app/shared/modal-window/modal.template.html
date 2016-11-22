@@ -1,59 +1,23 @@
 <modal #notificationModal>
     <modal-header>
-        <h4 class="modal-title text-xs-center fw-bold mt" id="myModalLabel18">One more step</h4>
+        <h4 class="modal-title text-xs-center fw-bold mt" id="notificationModalTitle">{{modal.config.title}}</h4>
         <p class="text-xs-center fs-mini text-muted mt-sm">
-            We need a bit of your detailed information to proceed. US ticketing system requires
-            us to process and check your personal infromation before we can go.
+            {{modal.config.subTitle}}
         </p>
     </modal-header>
     <modal-content>
-        <form>
-            <div class="row">
-                <div class="col-lg-8 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-no-border"
-                               placeholder="Name">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-no-border"
-                               placeholder="Middle Name">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-no-border"
-                               placeholder="Address">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-no-border"
-                               placeholder="City">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-no-border"
-                               placeholder="Country">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-no-border"
-                               placeholder="Zip">
-                    </div>
-                </div>
-            </div>
-        </form>
+        <h3 class="modal-title text-xs-center fw-bold mt" id="notificationModalContent">{{modal.config.content}}</h3>
+        <p class="text-xs-center fs-mini text-muted mt-sm">
+            {{modal.config.subContent}}
+        </p>
     </modal-content>
     <modal-footer>
-        <button type="button" class="btn btn-gray" (click)="myModal.close()">Close</button>
-        <button type="button" class="btn btn-success" (click)="myModal.close()">Save changes</button>
+        <div class="clearfix">
+            <div class="btn-toolbar pull-xs-right">
+                <button *ngFor="let button of modal.config.buttons" type="button" [class]="button.class"
+                        (click)="button['onClick']()">{{button.title}}
+                </button>
+            </div>
+        </div>
     </modal-footer>
 </modal>
