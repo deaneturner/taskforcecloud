@@ -60,7 +60,9 @@ export class UserDetailComponent implements OnInit {
             case 'delete':
                 this.notificationService.showModal({
                     title: 'TITLE2',
-                    subTitle: 'SUBTITLE2'
+                    subTitle: 'SUBTITLE2',
+                    content: 'CONTENT',
+                    subContent: 'SUBCONTENT'
                 });
                 break;
         }
