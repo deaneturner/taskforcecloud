@@ -1,9 +1,8 @@
 <modal #notificationModal>
     <modal-header>
-        <h4 class="modal-title text-xs-center fw-bold mt" id="myModalLabel18">One more step</h4>
+        <h4 class="modal-title text-xs-center fw-bold mt" id="myModalLabel18">{{modal.config.title}}</h4>
         <p class="text-xs-center fs-mini text-muted mt-sm">
-            We need a bit of your detailed information to proceed. US ticketing system requires
-            us to process and check your personal infromation before we can go.
+            {{modal.config.subTitle}}
         </p>
     </modal-header>
     <modal-content>
@@ -53,7 +52,7 @@
         </form>
     </modal-content>
     <modal-footer>
-        <button type="button" class="btn btn-gray" (click)="myModal.close()">Close</button>
-        <button type="button" class="btn btn-success" (click)="myModal.close()">Save changes</button>
+        <button type="button" class="btn btn-gray" (click)="notificationModal.close()">Close</button>
+        <button type="button" class="btn btn-success" (click)="notificationModal.close()">Save changes</button>
     </modal-footer>
 </modal>

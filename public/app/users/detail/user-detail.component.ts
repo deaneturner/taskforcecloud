@@ -58,7 +58,10 @@ export class UserDetailComponent implements OnInit {
                 this.router.navigate(['app/users/edit', 1]);
                 break;
             case 'delete':
-                this.notificationService.modal.open();
+                this.notificationService.showModal({
+                    title: 'TITLE2',
+                    subTitle: 'SUBTITLE2'
+                });
                 break;
         }
     }
