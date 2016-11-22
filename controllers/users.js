@@ -43,7 +43,7 @@ module.exports = function (lib) {
     });
 
     controller.addAction({
-        'path': '/api/users/token/{token}',
+        'path': '/api/users/token/:token',
         'method': 'GET',
         'description': 'Returns a user using a given token',
         'responsClass': 'string',
