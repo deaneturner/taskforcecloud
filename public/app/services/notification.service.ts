@@ -48,4 +48,8 @@ export class NotificationService {
         Object.assign(this.modal.config, config);
         this.modal.el.open();
     }
+
+    closeModal() {
+        this.modal.el.close();
+    }
 }

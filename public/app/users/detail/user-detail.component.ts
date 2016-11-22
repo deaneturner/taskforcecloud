@@ -5,6 +5,7 @@ import {AppConfig} from '../../app.config';
 import {AppState} from '../../app.service';
 
 import {NotificationService} from '../../services/notification.service'
+import {UserService} from '../../services/user.service';
 import {UserEditComponent} from '../edit/user-edit.component';
 
 @Component({
@@ -24,6 +25,7 @@ export class UserDetailComponent implements OnInit {
     constructor(appConfig: AppConfig,
                 private router: Router,
                 private notificationService: NotificationService,
+                private userService: UserService,
                 private appState: AppState,
                 private activatedRoute: ActivatedRoute) {
         this.appConfig = appConfig.getConfig();
@@ -52,9 +54,9 @@ export class UserDetailComponent implements OnInit {
     }
 
     onMenuSelect(action: string) {
+        var self = this;
         switch (action) {
             case 'edit':
-                // affect browser url
                 this.router.navigate(['app/users/edit', 1]);
                 break;
             case 'delete':
@@ -62,7 +64,20 @@ export class UserDetailComponent implements OnInit {
                     title: 'TITLE2',
                     subTitle: 'SUBTITLE2',
                     content: 'CONTENT',
-                    subContent: 'SUBCONTENT'
+                    subContent: 'SUBCONTENT',
+                    buttons: [{
+                        title: 'Close',
+                        onClick: ($event) => {
+                            self.notificationService.closeModal()
+                        },
+                        class: 'btn btn-gray'
+                    }, {
+                        title: 'Save changes',
+                        onClick: ($event) => {
+                            self.userService.deleteUser(self.activatedRoute.snapshot.params['id'])
+                        },
+                        class: 'btn btn-success'
+                    }]
                 });
                 break;
         }

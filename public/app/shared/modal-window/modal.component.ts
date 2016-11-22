@@ -10,7 +10,9 @@ import {NotificationService} from '../../services/notification.service';
 })
 export class ModalComponent {
     modal: any = {
-        config: {}
+        config: {
+            buttons: []
+        }
     };
 
     @ViewChild('notificationModal')

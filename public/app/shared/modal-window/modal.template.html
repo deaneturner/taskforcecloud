@@ -12,7 +12,6 @@
         </p>
     </modal-content>
     <modal-footer>
-        <button type="button" class="btn btn-gray" (click)="notificationModal.close()">Close</button>
-        <button type="button" class="btn btn-success" (click)="notificationModal.close()">Save changes</button>
+        <button *ngFor="let button of modal.config.buttons" type="button" [class]="button.class" (click)="button['onClick']()">{{button.title}}</button>
     </modal-footer>
 </modal>
