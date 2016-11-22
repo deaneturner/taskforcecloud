@@ -45,12 +45,16 @@ module.exports = function (lib) {
     controller.addAction({
         'path': '/api/users/token/{token}',
         'method': 'GET',
-        'params': [swagger.bodyParam('token', 'The encoded JWT token', 'string')],
         'description': 'Returns the decoded string representation of the given token',
         'responsClass': 'string',
-        'nickname': 'getUserTokenDecoded'
+        'nickname': 'getUserFromToken'
     }, function (req, res, next) {
-        controller.writeHAL(res, jwt.decode(req.params.token, lib.config.secretKey).iss);
+        lib.db.model('User').findOne({_id: jwt.decode(req.params.token, lib.config.secretKey).iss}).exec(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            user.password = '';
+            user.save();
+            controller.writeHAL(res, user);
+        });
     });
 
     return controller;

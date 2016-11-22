@@ -49,9 +49,9 @@ export class Navbar implements OnInit {
         /*
          * Current User
          */
-        this.userService.getUserTokenDecoded()
+        this.userService.getUserByToken()
             .subscribe(
-                _id => this.currentUser = _id,
+                currentUser => this.currentUser = currentUser,
                 error => {
                 }  // error is handled by service
             );
