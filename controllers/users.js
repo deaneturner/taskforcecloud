@@ -50,10 +50,11 @@ module.exports = function (lib) {
         'nickname': 'getUserFromToken'
     }, function (req, res, next) {
         lib.db.model('User').findOne({_id: jwt.decode(req.params.token, lib.config.secretKey).iss}).exec(function (err, user) {
+            var userJSON;
             if (err) return next(controller.RESTError('InternalServerError', err));
-            user.password = '';
-            user.save();
-            controller.writeHAL(res, user);
+            userJSON = user.toObject();
+            delete userJSON.password;
+            controller.writeHAL(res, userJSON);
         });
     });
 
