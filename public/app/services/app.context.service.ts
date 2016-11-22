@@ -10,13 +10,6 @@ export class AppContextService {
     currentUserObservable$ = this.currentUserSubject.asObservable();
 
     constructor(private userService: UserService) {
-        // initialize current user
-        this.userService.getUserByToken()
-            .subscribe(
-                currentUser => this.publishCurrentUser(currentUser),
-                error => {
-                }  // error is handled by service
-            );
     }
 
     getCurrentUser(): Observable<string> {
@@ -25,5 +18,15 @@ export class AppContextService {
 
     publishCurrentUser(currentUser: any): void {
         this.currentUserSubject.next(currentUser);
+    }
+
+    publishCurrentUserByToken() {
+        var self = this;
+        this.userService.getUserByToken()
+            .subscribe(
+                currentUser => this.publishCurrentUser(currentUser),
+                error => {
+                }  // error is handled by service
+            );
     }
 }
