@@ -24,6 +24,8 @@ export class Register implements OnInit {
     ngOnInit() {
         this.user = {
             username: '',
+            firstName: '',
+            lastName: '',
             password: '',
             confirmPassword: '',
             isKeepLoggedIn: false
