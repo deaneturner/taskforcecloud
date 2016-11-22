@@ -16,7 +16,7 @@ export class Navbar implements OnInit {
     @Output() toggleChatEvent: EventEmitter<any> = new EventEmitter();
     $el: any;
     config: any;
-    currentUser: any;
+    currentUser: any = {};
 
     constructor(private service: AuthService,
                 public userService: UserService,
