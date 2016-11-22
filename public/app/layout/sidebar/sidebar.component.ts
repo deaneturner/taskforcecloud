@@ -16,6 +16,7 @@ export class Sidebar implements OnInit {
     config: any;
     router: Router;
     location: Location;
+    currentUser: any = {};
 
     constructor(config: AppConfig, el: ElementRef, router: Router, location: Location, private service: AuthService) {
         this.$el = jQuery(el.nativeElement);
