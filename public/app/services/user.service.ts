@@ -23,4 +23,8 @@ export class UserService {
             .map((response: Response) => <string>response.json())
             .catch(this.notificationService.handleError);
     }
+
+    deleteUser(id: string) {
+        console.log('DELETE');
+    }
 }

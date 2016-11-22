@@ -3,8 +3,13 @@ import {Observable} from 'rxjs/Rx';
 import 'messenger/build/js/messenger.min';
 declare var Messenger: any;
 
+import {ModalComponent} from '../shared/modal-window/modal.component';
+
 export class NotificationService {
-    modal: any;
+    modal: any = {
+        el: '',
+        config: {}
+    };
 
     constructor() {
         Messenger.options = {
@@ -39,7 +44,12 @@ export class NotificationService {
         return Observable.throw(error.json());
     }
 
-    initModal(modalEl: HTMLElement) {
-        this.modal = modalEl;
+    showModal(config: any) {
+        Object.assign(this.modal.config, config);
+        this.modal.el.open();
+    }
+
+    closeModal() {
+        this.modal.el.close();
     }
 }
