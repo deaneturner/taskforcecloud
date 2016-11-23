@@ -32,6 +32,8 @@ export class UserDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        var self = this;
+
         this.panel = {
             title: 'Profile',
             collapsed: false,
@@ -46,18 +48,23 @@ export class UserDetailComponent implements OnInit {
             }]
         };
 
-        if (this.activatedRoute.snapshot.params['id'] !== this.appState.get('selectedUser')._id) {
-            this.userService.getUser(this.activatedRoute.snapshot.params['id'])
-                .subscribe(
-                    user => {
-                        this.user = user
-                    },
-                    error => {
-                    } // error is handled by service
-                );
-        } else {
-            this.user = this.appState.get('selectedUser');
-        }
+        this.activatedRoute.params
+            .subscribe(
+                params => {
+                    if (params['id'] !== self.appState.get('selectedUser')._id) {
+                        self.userService.getUser(params['id'])
+                            .subscribe(
+                                user => {
+                                    self.user = user
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    } else {
+                        self.user = self.appState.get('selectedUser');
+                    }
+                }
+            );
     }
 
     onMenuSelect(action: string) {
