@@ -25,6 +25,8 @@ export class UserService {
     }
 
     deleteUser(id: string) {
-        console.log('DELETE');
+        return this.http.delete('/api/users/' + id)
+            .map((response: Response) => <User>(response.json()))
+            .catch(this.notificationService.handleError);
     }
 }

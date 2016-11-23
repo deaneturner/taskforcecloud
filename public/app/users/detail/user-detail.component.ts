@@ -75,6 +75,16 @@ export class UserDetailComponent implements OnInit {
                         title: 'Save changes',
                         onClick: ($event) => {
                             self.userService.deleteUser(self.activatedRoute.snapshot.params['id'])
+                                .subscribe(
+                                    user => {
+                                        self.notificationService.displayMessage({
+                                            title: 'Deleted ' + user.username,
+                                            type: 'success'
+                                        })
+                                    },
+                                    error => {
+                                    }  // error is handled by service
+                                );
                         },
                         class: 'btn btn-success'
                     }]

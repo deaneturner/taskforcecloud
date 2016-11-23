@@ -43,6 +43,21 @@ module.exports = function (lib) {
     });
 
     controller.addAction({
+        'path': '/api/users/:id',
+        'method': 'DEL',
+        'params': [swagger.bodyParam('id', 'The id of the user to delete', 'string')],
+        'summary': 'Deletes a user from the database',
+        'responsClass': 'User',
+        'nickname': 'deleteUser'
+    }, function (req, res, next) {
+        lib.db.model('User').findOne({_id: id}).exec(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            //user.remove().exec();
+            controller.writeHAL(res, {});
+        });
+    });
+
+    controller.addAction({
         'path': '/api/users/token/:token',
         'method': 'GET',
         'description': 'Returns a user using a given token',
