@@ -47,7 +47,12 @@ export class UserDetailComponent implements OnInit {
         };
 
         if (this.activatedRoute.snapshot.params['id'] !== this.appState.get('selectedUser')._id) {
-            this.user = this.appState.get('selectedUser');
+            this.userService.getUser(this.activatedRoute.snapshot.params['id'])
+                .subscribe(
+                    user => this.user = user,
+                    error => {
+                    }  // error is handled by service
+                );
         } else {
             this.user = this.appState.get('selectedUser');
         }

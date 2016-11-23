@@ -12,6 +12,12 @@ export class UserService {
     constructor(private http: Http, private notificationService: NotificationService) {
     }
 
+    getUser(id: string) {
+        return this.http.get('/api/users/' + id)
+            .map((response: Response) => <User>(response.json()))
+            .catch(this.notificationService.handleError);
+    }
+
     getUsers(query?: any) {
         return this.http.get('/api/users')
             .map((response: Response) => <User[]>_.values(response.json()))
