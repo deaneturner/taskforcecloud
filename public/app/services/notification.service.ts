@@ -13,7 +13,7 @@ export class NotificationService {
 
     constructor() {
         Messenger.options = {
-            extraClasses: 'messenger-fixed messenger-on-top messenger-on-center',
+            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-center',
             theme: 'air'
         }
     }

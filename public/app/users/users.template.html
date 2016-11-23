@@ -9,6 +9,9 @@
 </ol>
 <div class="row">
     <div class="col-lg-6">
-        <tfc-user-list></tfc-user-list>
+        <tfc-panel [title]="panel.title"
+                   [iconClass]="panel.iconClass">
+            <tfc-user-list></tfc-user-list>
+        </tfc-panel>
     </div>
 </div>

@@ -1,5 +1,7 @@
 import {Component, ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewChecked} from '@angular/core';
 import {Router} from '@angular/router';
+
+import {AppState} from '../app.service';
 import {AppConfig} from '../app.config';
 
 import {AppContextService} from '../services/app.context.service';
@@ -42,7 +44,7 @@ export class Layout implements OnInit {
     constructor(config: AppConfig,
                 el: ElementRef,
                 router: Router,
-                private notificationService: NotificationService,
+                private appState: AppState,
                 private appContextService: AppContextService) {
         this.el = el;
         this.config = config.getConfig();
@@ -194,6 +196,7 @@ export class Layout implements OnInit {
             currentUser => {
                 self.navbarComponent.currentUser = currentUser;
                 self.sidebarComponent.currentUser = currentUser;
+                self.appState.set('currentUser', currentUser);
             });
         // register
         // initialize current user

@@ -13,6 +13,19 @@ module.exports = function (lib) {
     var controller = new Users();
 
     controller.addAction({
+        'path': '/api/users/:id',
+        'method': 'GET',
+        'summary': 'Retrieves a user',
+        'responsClass': 'User',
+        'nickname': 'getUser'
+    }, function (req, res, next) {
+        lib.db.model('User').findOne({_id: req.params.id}).exec(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, user);
+        });
+    });
+
+    controller.addAction({
         'path': '/api/users',
         'method': 'GET',
         'summary': 'Retrieves a list users',
@@ -38,6 +51,21 @@ module.exports = function (lib) {
         var newUserModel = lib.db.model('User')(newUser);
         newUserModel.save(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, user);
+        });
+    });
+
+    controller.addAction({
+        'path': '/api/users/:id',
+        'method': 'DEL',
+        'params': [swagger.bodyParam('id', 'The id of the user to delete', 'string')],
+        'summary': 'Deletes a user from the database',
+        'responsClass': 'User',
+        'nickname': 'deleteUser'
+    }, function (req, res, next) {
+        lib.db.model('User').findOne({_id: req.params.id}).exec(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            user.remove();
             controller.writeHAL(res, user);
         });
     });
