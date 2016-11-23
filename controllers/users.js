@@ -13,6 +13,19 @@ module.exports = function (lib) {
     var controller = new Users();
 
     controller.addAction({
+        'path': '/api/users/:id',
+        'method': 'GET',
+        'summary': 'Retrieves a user',
+        'responsClass': 'User',
+        'nickname': 'getUser'
+    }, function (req, res, next) {
+        lib.db.model('User').findOne({_id: req.params.id}).exec(function (err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, user);
+        });
+    });
+
+    controller.addAction({
         'path': '/api/users',
         'method': 'GET',
         'summary': 'Retrieves a list users',

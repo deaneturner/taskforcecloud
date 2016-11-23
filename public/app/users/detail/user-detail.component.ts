@@ -17,7 +17,7 @@ import {UserEditComponent} from '../edit/user-edit.component';
 export class UserDetailComponent implements OnInit {
     appConfig: any;
     panel: any;
-    user: any;
+    user: any = {};
 
     @ViewChild(UserEditComponent)
     public userEditComponent: UserEditComponent;
@@ -49,9 +49,11 @@ export class UserDetailComponent implements OnInit {
         if (this.activatedRoute.snapshot.params['id'] !== this.appState.get('selectedUser')._id) {
             this.userService.getUser(this.activatedRoute.snapshot.params['id'])
                 .subscribe(
-                    user => this.user = user,
+                    user => {
+                        this.user = user
+                    },
                     error => {
-                    }  // error is handled by service
+                    } // error is handled by service
                 );
         } else {
             this.user = this.appState.get('selectedUser');
@@ -69,7 +71,7 @@ export class UserDetailComponent implements OnInit {
                     title: 'Confirm Delete',
                     subTitle: null,
                     content: 'Are you sure you want to delete user:',
-                    subContent: self.user.firstName + ' ' +self.user.lastName + ' (' + self.user.username + ')',
+                    subContent: self.user.firstName + ' ' + self.user.lastName + ' (' + self.user.username + ')',
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
