@@ -134,7 +134,7 @@ module.exports = function(options) {
     tslint: {
       emitErrors: false,
       failOnHint: false,
-      resourcePath: 'public'
+      resourcePath: './public/app/**/*.ts'
     },
 
     /**

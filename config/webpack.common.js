@@ -102,6 +102,11 @@ module.exports = function (options) {
                         flags: 'g'
                     },
                     include: [helpers.root('public')]
+                },
+                {
+                    test: /\.ts$/,
+                    include: [helpers.root('public/app')],
+                    loader: 'tslint-loader'
                 }
 
             ],
