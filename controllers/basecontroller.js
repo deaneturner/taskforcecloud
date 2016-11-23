@@ -15,7 +15,13 @@ BaseController.prototype.setUpActions = function (app, sw) {
         var method = act['spec']['method'];
         if (sw) {
             console.log("Setting up auto-doc for (", method, ") - ", act['spec']['nickname']);
+            if (method === 'DEL') {
+                method = 'DELETE';
+            }
             sw['add' + method](act);
+        }
+        if (method === 'DELETE') {
+            method = 'DEL';
         }
         app[method.toLowerCase()](act['spec']['path'], act['action']);
     })

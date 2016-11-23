@@ -8,7 +8,7 @@ declare var jQuery: any;
     styleUrls: ['./users.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
     appConfig: any;
     panel: any;
     sortOptions: Object = {
@@ -28,5 +28,12 @@ export class UsersComponent {
 
     constructor(appConfig: AppConfig) {
         this.appConfig = appConfig.getConfig();
+    }
+
+    ngOnInit(): void {
+        this.panel = {
+            title: 'Users',
+            iconClass: ['glyphicon-user']
+        };
     }
 }
