@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import {UserService} from '../../services/user.service';
-import {AppState} from '../../app.service';
+import { UserService } from '../../services/user.service';
+import { AppState } from '../../app.service';
 
 @Component({
     selector: 'user-edit',
@@ -19,7 +19,7 @@ export class UserEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        var self = this;
+        const self = this;
 
         // TODO: refactor to base controller
         this.activatedRoute.params
@@ -29,7 +29,7 @@ export class UserEditComponent implements OnInit {
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
-                                    self.user = user
+                                    self.user = user;
                                 },
                                 error => {
                                 } // error is handled by service

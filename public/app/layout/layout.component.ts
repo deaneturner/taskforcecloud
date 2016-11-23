@@ -1,14 +1,15 @@
-import {Component, ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewChecked} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component,
+    ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {AppState} from '../app.service';
-import {AppConfig} from '../app.config';
+import { AppState } from '../app.service';
+import { AppConfig } from '../app.config';
 
-import {AppContextService} from '../services/app.context.service';
-import {NotificationService} from '../services/notification.service';
-import {ModalComponent} from '../shared/modal-window/modal.component';
-import {Navbar} from './navbar/navbar.component';
-import {Sidebar} from './sidebar/sidebar.component';
+import { AppContextService } from '../services/app.context.service';
+import { NotificationService } from '../services/notification.service';
+import { ModalComponent } from '../shared/modal-window/modal.component';
+import { Navbar } from './navbar/navbar.component';
+import { Sidebar } from './sidebar/sidebar.component';
 
 declare var jQuery: any;
 declare var Hammer: any;
@@ -146,9 +147,9 @@ export class Layout implements OnInit {
     }
 
     _sidebarMouseLeave(): void {
-        //if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
+        // if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
         this.collapseNavigation();
-        //}
+        // }
     }
 
     enableSwipeCollapsing(): void {
@@ -186,11 +187,11 @@ export class Layout implements OnInit {
         // if (this.configFn.isScreen('xs')
         //     || this.configFn.isScreen('sm') || this.configFn.isScreen('md')) {
         this.collapseNavigation();
-        //}
+        // }
     }
 
     registerSubscribe() {
-        var self = this;
+        const self = this;
         // subscribe
         this.appContextService.getCurrentUser().subscribe(
             currentUser => {

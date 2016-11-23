@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 
-import {NotificationService} from './notification.service';
+import { NotificationService } from './notification.service';
 
-import {User} from '../model/user.interface';
+import { User } from '../model/user.interface';
 
 import * as _ from 'lodash';
 

@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers, Response} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
 
-import {User} from '../model/user.interface';
+import { User } from '../model/user.interface';
 
 @Injectable()
 export class AuthService {
@@ -21,9 +21,9 @@ export class AuthService {
     }
 
     returnLoginResult(data, resolve) {
-        var json = data.json();
+        const json = data.json();
         if (json.success) {
-            var token = json.id_token;
+            const token = json.id_token;
             if (token) {
                 this.setIsLoggedIn(true, token);
             }
@@ -33,8 +33,9 @@ export class AuthService {
 
     loginfn(user: User) {
         this.isLoggedin = false;
-        var headers = new Headers();
-        var creds = 'username=' + user.username + '&password=' + user.password + '&isKeepLoggedIn=' + user.isKeepLoggedIn;
+        const headers = new Headers();
+        const creds = 'username=' + user.username +
+            '&password=' + user.password + '&isKeepLoggedIn=' + user.isKeepLoggedIn;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
@@ -56,8 +57,10 @@ export class AuthService {
 
     registerfn(user: User) {
         this.isLoggedin = false;
-        var headers = new Headers();
-        var creds = 'username=' + user.username + '&password=' + user.password + '&confirmPassword=' + user.confirmPassword + '&isKeepLoggedIn=' + user.isKeepLoggedIn;
+        const headers = new Headers();
+        const creds = 'username=' + user.username +
+            '&password=' + user.password +
+            '&confirmPassword=' + user.confirmPassword + '&isKeepLoggedIn=' + user.isKeepLoggedIn;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 

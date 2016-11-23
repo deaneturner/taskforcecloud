@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Subject}    from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Subject }    from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
-import {UserService} from './user.service';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AppContextService {
     private currentUserSubject = new Subject<string>();
-    currentUserObservable$ = this.currentUserSubject.asObservable();
+    private currentUserObservable$ = this.currentUserSubject.asObservable();
 
     constructor(private userService: UserService) {
     }
@@ -21,7 +21,7 @@ export class AppContextService {
     }
 
     publishCurrentUserByToken() {
-        var self = this;
+        const self = this;
         this.userService.getUserByToken()
             .subscribe(
                 currentUser => this.publishCurrentUser(currentUser),

@@ -1,5 +1,5 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {AppConfig} from '../../app.config';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { AppConfig } from '../../app.config';
 declare var jQuery: any;
 
 @Component({

@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {AppState} from '../../app.service';
+import { AppState } from '../../app.service';
 
 export class BaseComponent {
 
