@@ -3,16 +3,16 @@ import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {UserDetailComponent} from './user-detail.component';
+import {UserEditComponent} from './user-edit.component';
 import {UserService} from '../../services/user.service';
 
 export const routes = [
-    {path: '', component: UserDetailComponent, pathMatch: 'full'}
+    {path: '', component: UserEditComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
     declarations: [
-        UserDetailComponent
+        UserEditComponent
     ],
     imports: [
         CommonModule,
@@ -21,6 +21,6 @@ export const routes = [
     ],
     providers: [UserService]
 })
-export default class UserDetailModule {
+export default class UserEditModule {
     static routes = routes;
 }

@@ -1,6 +1,7 @@
 import {Component, ViewEncapsulation, OnInit, ViewChild} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
+import {BaseComponent} from '../../shared/component/base.component';
 import {AppConfig} from '../../app.config';
 import {AppState} from '../../app.service';
 
@@ -14,8 +15,7 @@ import {UserEditComponent} from '../edit/user-edit.component';
     styleUrls: ['user-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserDetailComponent implements OnInit {
-    appConfig: any;
+export class UserDetailComponent extends BaseComponent implements OnInit {
     panel: any;
     user: any = {};
 
@@ -23,12 +23,12 @@ export class UserDetailComponent implements OnInit {
     public userEditComponent: UserEditComponent;
 
     constructor(appConfig: AppConfig,
-                private router: Router,
+                appState: AppState,
+                router: Router,
                 private notificationService: NotificationService,
                 private userService: UserService,
-                private appState: AppState,
                 private activatedRoute: ActivatedRoute) {
-        this.appConfig = appConfig.getConfig();
+        super(appState, router);
     }
 
     ngOnInit(): void {
@@ -48,6 +48,7 @@ export class UserDetailComponent implements OnInit {
             }]
         };
 
+        // TODO: refactor to base controller
         this.activatedRoute.params
             .subscribe(
                 params => {
@@ -71,7 +72,7 @@ export class UserDetailComponent implements OnInit {
         var self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['app/users/edit', 1]);
+                this.navigate(['app/users/edit', this.user._id], {selectedUser: this.user});
                 break;
             case 'delete':
                 this.notificationService.showModal({
