@@ -76,7 +76,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
                 break;
             case 'delete':
                 // check current user is not selected user
-                if(self.appState.get('currentUser').id === this.user.id) {
+                if(this.appState.get('currentUser')._id === this.user._id) {
                     // prevent delete current user
                     this.notificationService.showModal({
                         title: 'Cancel delete',
@@ -110,7 +110,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
                                     .subscribe(
                                         user => {
                                             self.notificationService.displayMessage({
-                                                message: 'Deleted ' + user.username,
+                                                message: 'Deleted ' + user.firstName + ' ' + user.lastName + ' (' + user.username + ')',
                                                 type: 'success'
                                             });
 
