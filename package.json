@@ -36,7 +36,7 @@
     "start": "node server",
     "start:dev": "node --debug server",
     "start:webpack": "npm run server:dev",
-    "tslint": "tslint",
+    "tslint": "tslint ./public/app/**/*.ts",
     "typedoc": "typedoc",
     "version": "npm run build",
     "watch:dev:hmr": "npm run watch:dev -- --hot",
