@@ -1,28 +1,28 @@
-import {NgModule, ApplicationRef} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-import {RouterModule} from '@angular/router';
-import {removeNgStyles, createNewHosts, createInputTransfer} from '@angularclass/hmr';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
-import {ServiceModule} from './services/service.module';
+import { ServiceModule } from './services/service.module';
 
 import './rxjs-extensions';
 
 /*
  * Platform and Environment providers/directives/pipes
  */
-import {ENV_PROVIDERS} from './environment';
-import {ROUTES} from './app.routes';
+import { ENV_PROVIDERS } from './environment';
+import { ROUTES } from './app.routes';
 // App is our top level component
-import {App} from './app.component';
-import {APP_RESOLVER_PROVIDERS} from './app.resolver';
-import {AppState, InteralStateType} from './app.service';
-import {AppConfig} from './app.config';
-import {AppGuard} from './app.guard';
-import {ErrorComponent} from './error/error.component';
-import {NotificationService} from './services/notification.service';
-import {AppContextService} from './services/app.context.service';
+import { App } from './app.component';
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { AppState, InteralStateType } from './app.service';
+import { AppConfig } from './app.config';
+import { AppGuard } from './app.guard';
+import { ErrorComponent } from './error/error.component';
+import { NotificationService } from './services/notification.service';
+import { AppContextService } from './services/app.context.service';
 
 // Application wide providers
 const APP_PROVIDERS = [

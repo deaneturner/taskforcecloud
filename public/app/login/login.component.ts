@@ -1,10 +1,10 @@
-import {Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
+import { Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
-import {AuthService} from '../services/auth.service';
-import {User} from '../model/user.interface';
-import {AppContextService} from '../services/app.context.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user.interface';
+import { AppContextService } from '../services/app.context.service';
 
 @Component({
     selector: 'login',
@@ -18,13 +18,28 @@ import {AppContextService} from '../services/app.context.service';
 })
 export class Login implements OnInit, AfterViewChecked {
     appConfig: any;
+    user: User;
+    loginForm: NgForm;
+    formErrors: any  = {
+        'username': [],
+        'password': []
+    };
+    validationMessages: any = {
+        'username': {
+            'required': 'User name is required.',
+            'pattern': 'User name must be formatted as as an email address.',
+            'exists': 'Authentication failed, user not found.'
+        },
+        'password': {
+            'required': 'Password is required.',
+            'match': 'Authentication failed, wrong password.'
+        }
+    };
 
     constructor(private service: AuthService,
                 private appContextService: AppContextService,
                 public router: Router) {
     }
-
-    public user: User;
 
     ngOnInit() {
         this.user = {
@@ -33,28 +48,29 @@ export class Login implements OnInit, AfterViewChecked {
             lastName: '',
             password: '',
             isKeepLoggedIn: false
-        }
+        };
     }
 
     login(isValid: boolean, loginForm: User) {
         let user = loginForm;
-        isValid && this.service.loginfn(loginForm).then((res: any) => {
-            if (res.success) {
-                this.router.navigate(['/app/dashboard']);
-                this.appContextService.publishCurrentUser(user);
-            } else if (res.success === false) {
-                var field = res.field;
-                this.formErrors[field].push(this.validationMessages[field][res.msgKey]);
-            }
-        });
+        if (isValid) {
+            this.service.loginfn(loginForm).then((res: any) => {
+                if (res.success) {
+                    this.router.navigate(['/app/dashboard']);
+                    this.appContextService.publishCurrentUser(user);
+                } else if (res.success === false) {
+                    const field = res.field;
+                    this.formErrors[field].push(this.validationMessages[field][res.msgKey]);
+                }
+            });
+        }
     }
 
     /*
      * FORM
      */
-
-    loginForm: NgForm;
-    @ViewChild('loginForm') currentForm: NgForm;
+    @ViewChild('loginForm')
+    currentForm: NgForm;
 
     ngAfterViewChecked() {
         this.formChanged();
@@ -77,34 +93,21 @@ export class Login implements OnInit, AfterViewChecked {
         }
         const form = this.loginForm.form;
 
-        for (const field in this.formErrors) {
-            // clear previous error message (if any)
-            this.formErrors[field] = [];
-            const control = form.get(field);
+        for (let field in this.formErrors) {
+            if (field) {
+                // clear previous error message (if any)
+                this.formErrors[field] = [];
+                const control = form.get(field);
 
-            if (control && control.dirty && !control.valid) {
-                const messages = this.validationMessages[field];
-                for (const key in control.errors) {
-                    this.formErrors[field].push(messages[key]);
+                if (control && control.dirty && !control.valid) {
+                    const messages = this.validationMessages[field];
+                    for (let key in control.errors) {
+                        if (key) {
+                            this.formErrors[field].push(messages[key]);
+                        }
+                    }
                 }
             }
         }
     }
-
-    formErrors = {
-        'username': [],
-        'password': []
-    };
-
-    validationMessages = {
-        'username': {
-            'required': 'User name is required.',
-            'pattern': 'User name must be formatted as as an email address.',
-            'exists': 'Authentication failed, user not found.'
-        },
-        'password': {
-            'required': 'Password is required.',
-            'match': 'Authentication failed, wrong password.'
-        }
-    };
 }

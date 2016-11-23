@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnInit, ElementRef, Output} from '@angular/core';
-import {AppConfig} from '../../app.config';
-import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import { Component, EventEmitter, OnInit, ElementRef, Output } from '@angular/core';
+import { AppConfig } from '../../app.config';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 declare var jQuery: any;
 
@@ -48,7 +48,8 @@ export class Navbar implements OnInit {
         setTimeout(() => {
             let $chatNotification = jQuery('#chat-notification');
             $chatNotification.removeClass('hide').addClass('animated fadeIn')
-                .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+                .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                    () => {
                     $chatNotification.removeClass('animated fadeIn');
                     setTimeout(() => {
                         $chatNotification.addClass('animated fadeOut')

@@ -1,9 +1,9 @@
-import {Response} from '@angular/http';
-import {Observable} from 'rxjs/Rx';
+import { Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 import 'messenger/build/js/messenger.min';
 declare var Messenger: any;
 
-import {ModalComponent} from '../shared/modal-window/modal.component';
+import { ModalComponent } from '../shared/modal-window/modal.component';
 
 export class NotificationService {
     modal: any = {
@@ -15,11 +15,11 @@ export class NotificationService {
         Messenger.options = {
             extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-center',
             theme: 'air'
-        }
+        };
     }
 
     displayMessage(config: any) {
-        Messenger().post( {
+        Messenger().post({
             message: config.message,
             type: config.type,
             showCloseButton: true
@@ -33,10 +33,10 @@ export class NotificationService {
             error = {
                 code: 'Connection Error',
                 message: 'No data connection found!'
-            }
+            };
         }
         // this.displayMessage is not available due to rxjs/Rx closure
-        Messenger().post( {
+        Messenger().post({
             message: error.code + ': ' + error.message,
             type: 'error',
             showCloseButton: true
