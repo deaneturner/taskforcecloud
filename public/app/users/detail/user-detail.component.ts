@@ -75,38 +75,56 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
                 this.navigate(['app/users/edit', this.user._id], {selectedUser: this.user});
                 break;
             case 'delete':
-                this.notificationService.showModal({
-                    title: 'Confirm Delete',
-                    subTitle: null,
-                    content: 'Are you sure you want to delete user:',
-                    subContent: self.user.firstName + ' ' + self.user.lastName + ' (' + self.user.username + ')',
-                    buttons: [{
-                        title: 'Cancel',
-                        onClick: ($event) => {
-                            self.notificationService.closeModal()
-                        },
-                        class: 'btn btn-gray'
-                    }, {
-                        title: 'Yes, delete',
-                        onClick: ($event) => {
-                            self.userService.deleteUser(self.activatedRoute.snapshot.params['id'])
-                                .subscribe(
-                                    user => {
-                                        self.notificationService.displayMessage({
-                                            message: 'Deleted ' + user.username,
-                                            type: 'success'
-                                        });
+                // check current user is not selected user
+                if(self.appState.get('currentUser').id === this.user.id) {
+                    // prevent delete current user
+                    this.notificationService.showModal({
+                        title: 'Cancel delete',
+                        subTitle: null,
+                        content: 'Cannot delete the currently logged in user:',
+                        subContent: self.user.firstName + ' ' + self.user.lastName + ' (' + self.user.username + ')',
+                        buttons: [{
+                            title: 'OK',
+                            onClick: ($event) => {
+                                self.notificationService.closeModal()
+                            },
+                            class: 'btn btn-success'
+                        }]
+                    });
+                } else {
+                    this.notificationService.showModal({
+                        title: 'Confirm Delete',
+                        subTitle: null,
+                        content: 'Are you sure you want to delete user:',
+                        subContent: self.user.firstName + ' ' + self.user.lastName + ' (' + self.user.username + ')',
+                        buttons: [{
+                            title: 'Cancel',
+                            onClick: ($event) => {
+                                self.notificationService.closeModal()
+                            },
+                            class: 'btn btn-gray'
+                        }, {
+                            title: 'Yes, delete',
+                            onClick: ($event) => {
+                                self.userService.deleteUser(self.activatedRoute.snapshot.params['id'])
+                                    .subscribe(
+                                        user => {
+                                            self.notificationService.displayMessage({
+                                                message: 'Deleted ' + user.username,
+                                                type: 'success'
+                                            });
 
-                                        self.notificationService.closeModal();
-                                        self.router.navigate(['/app/users']);
-                                    },
-                                    error => {
-                                    }  // error is handled by service
-                                );
-                        },
-                        class: 'btn btn-success'
-                    }]
-                });
+                                            self.notificationService.closeModal();
+                                            self.router.navigate(['/app/users']);
+                                        },
+                                        error => {
+                                        }  // error is handled by service
+                                    );
+                            },
+                            class: 'btn btn-success'
+                        }]
+                    });
+                }
                 break;
         }
     }
