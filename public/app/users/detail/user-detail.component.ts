@@ -61,18 +61,18 @@ export class UserDetailComponent implements OnInit {
                 break;
             case 'delete':
                 this.notificationService.showModal({
-                    title: 'TITLE2',
-                    subTitle: 'SUBTITLE2',
-                    content: 'CONTENT',
-                    subContent: 'SUBCONTENT',
+                    title: 'Confirm Delete',
+                    subTitle: null,
+                    content: 'Are you sure you want to delete user:',
+                    subContent: self.user.firstName + ' ' +self.user.lastName + ' (' + self.user.username + ')',
                     buttons: [{
-                        title: 'Close',
+                        title: 'Cancel',
                         onClick: ($event) => {
                             self.notificationService.closeModal()
                         },
                         class: 'btn btn-gray'
                     }, {
-                        title: 'Save changes',
+                        title: 'Yes, delete',
                         onClick: ($event) => {
                             self.userService.deleteUser(self.activatedRoute.snapshot.params['id'])
                                 .subscribe(
