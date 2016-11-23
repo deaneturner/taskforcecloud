@@ -78,9 +78,12 @@ export class UserDetailComponent implements OnInit {
                                 .subscribe(
                                     user => {
                                         self.notificationService.displayMessage({
-                                            title: 'Deleted ' + user.username,
+                                            message: 'Deleted ' + user.username,
                                             type: 'success'
-                                        })
+                                        });
+
+                                        self.notificationService.closeModal();
+                                        self.router.navigate(['/app/users']);
                                     },
                                     error => {
                                     }  // error is handled by service

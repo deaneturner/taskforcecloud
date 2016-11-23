@@ -50,10 +50,10 @@ module.exports = function (lib) {
         'responsClass': 'User',
         'nickname': 'deleteUser'
     }, function (req, res, next) {
-        lib.db.model('User').findOne({_id: id}).exec(function (err, user) {
+        lib.db.model('User').findOne({_id: req.params.id}).exec(function (err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
-            //user.remove().exec();
-            controller.writeHAL(res, {});
+            user.remove();
+            controller.writeHAL(res, user);
         });
     });
 
