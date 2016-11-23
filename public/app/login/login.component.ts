@@ -36,6 +36,9 @@ export class Login implements OnInit, AfterViewChecked {
         }
     };
 
+    @ViewChild('loginForm')
+    currentForm: NgForm;
+
     constructor(private service: AuthService,
                 private appContextService: AppContextService,
                 public router: Router) {
@@ -69,9 +72,6 @@ export class Login implements OnInit, AfterViewChecked {
     /*
      * FORM
      */
-    @ViewChild('loginForm')
-    currentForm: NgForm;
-
     ngAfterViewChecked() {
         this.formChanged();
     }

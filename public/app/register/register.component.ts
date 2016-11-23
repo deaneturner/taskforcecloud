@@ -42,6 +42,9 @@ export class Register implements OnInit {
         }
     };
 
+    @ViewChild('registrationForm')
+    currentForm: NgForm;
+
     constructor(private service: AuthService,
                 public router: Router) {
     }
@@ -75,7 +78,6 @@ export class Register implements OnInit {
     /*
      * FORM
      */
-    @ViewChild('registrationForm') currentForm: NgForm;
 
     ngAfterViewChecked() {
         this.formChanged();
