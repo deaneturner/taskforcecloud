@@ -1,6 +1,6 @@
-var BaseController = require("./basecontroller");
-var _ = require("underscore");
-var swagger = require("swagger-node-restify");
+var BaseController = require('./basecontroller');
+var _ = require('underscore');
+var swagger = require('swagger-node-restify');
 
 function Clients() {
 }

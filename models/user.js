@@ -1,11 +1,11 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 var jsonSelect = require('mongoose-json-select');
-var helpers = require("../lib/helpers");
-var _ = require("underscore");
+var helpers = require('../lib/helpers');
+var _ = require('underscore');
 var bcrypt = require('bcrypt');
 
 module.exports = function(db) {
-    var schema = require("../schemas/user.js");
+    var schema = require('../schemas/user.js');
     var modelDef = db.getModelFromSchema(schema);
 
     modelDef.schema.pre('save', function(next) {

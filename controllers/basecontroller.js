@@ -1,8 +1,8 @@
-var _ = require("underscore");
-var restify = require("restify");
-var colors = require("colors");
-var halson = require("halson");
-var lib = require("../lib/index");
+var _ = require('underscore');
+var restify = require('restify');
+var colors = require('colors');
+var halson = require('halson');
+var lib = require('../lib/index');
 
 function BaseController() {
     this.actions = [];
@@ -14,7 +14,7 @@ BaseController.prototype.setUpActions = function(app, sw) {
     _.each(this.actions, function(act) {
         var method = act['spec']['method'];
         if (sw) {
-            console.log("Setting up auto-doc for (", method, ") - ", act['spec']['nickname']);
+            console.log('Setting up auto-doc for (', method, ') - ', act['spec']['nickname']);
             if (method === 'DEL') {
                 method = 'DELETE';
             }
@@ -39,7 +39,7 @@ BaseController.prototype.RESTError = function(type, msg) {
     if (restify[type]) {
         return new restify[type](msg.toString());
     } else {
-        console.log("Type " + type + " of error not found".red);
+        console.log('Type ' + type + ' of error not found'.red);
     }
 };
 

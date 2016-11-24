@@ -1,9 +1,9 @@
-var BaseController = require("./basecontroller");
-var _ = require("underscore");
-var swagger = require("swagger-node-restify");
+var BaseController = require('./basecontroller');
+var _ = require('underscore');
+var swagger = require('swagger-node-restify');
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var lib = require("../lib");
+var lib = require('../lib');
 var User = require('../models/user');
 
 function Login() {
@@ -31,9 +31,8 @@ module.exports = function(lib) {
         'responsClass': 'User',
         'nickname': 'loginUser'
     }, function(req, res, next) {
-
         // if (!req.body.username || !req.body.password) {
-        //     return res.status(400).send("You must send the username and the password");
+        //     return res.status(400).send('You must send the username and the password');
         // }
 
         var userModel = lib.db.model('User');
@@ -43,7 +42,7 @@ module.exports = function(lib) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
             if (!user) {
-                //res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
+                // res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
                 controller.writeHAL(res, {success: false, field: 'username', msgKey: 'exists'});
             }
 
