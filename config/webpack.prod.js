@@ -203,8 +203,7 @@ module.exports = function(env) {
      */
     tslint: {
       emitErrors: true,
-      failOnHint: true,
-      resourcePath: './public/app/**/*.ts'
+      failOnHint: true
     },
 
     /**
