@@ -26,7 +26,7 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
     HMR: false
 });
 
-module.exports = function (env) {
+module.exports = function(env) {
     return webpackMerge(commonConfig({env: ENV}), {
 
         /**

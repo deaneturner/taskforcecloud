@@ -13,7 +13,7 @@ var server = restify.createServer(config.server);
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
-restify.defaultResponseHeaders = function (data) {
+restify.defaultResponseHeaders = function(data) {
     this.header('Access-Control-Allow-Origin', '*');
 };
 
@@ -118,10 +118,10 @@ db.connect(function(err) {
     }
 });
 
-mongoose.connection.on('open', function () {
+mongoose.connection.on('open', function() {
     server.use(morgan('dev'));
 
-    var serverInstance = server.listen(config.server.port, function () {
+    var serverInstance = server.listen(config.server.port, function() {
         var port = serverInstance.address().port;
         console.log("App now running on port", port);
         console.log("process.env.NODE_ENV", process.env.NODE_ENV);

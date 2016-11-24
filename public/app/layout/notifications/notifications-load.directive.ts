@@ -14,7 +14,7 @@ export class NotificationLoad implements OnInit {
     }
 
     ngOnInit(): void {
-        this.$el.on('click change', function (e): boolean {
+        this.$el.on('click change', function(e): boolean {
             let $this = jQuery(this),
                 $target = jQuery($this.data('ajax-target'));
             if ($target.length > 0) {

@@ -4,18 +4,18 @@ var helpers = require("../lib/helpers");
 var _ = require("underscore");
 var bcrypt = require('bcrypt');
 
-module.exports = function (db) {
+module.exports = function(db) {
     var schema = require("../schemas/user.js");
     var modelDef = db.getModelFromSchema(schema);
 
-    modelDef.schema.pre('save', function (next) {
+    modelDef.schema.pre('save', function(next) {
         var user = this;
         if (this.isModified('password') || this.isNew) {
-            bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.genSalt(10, function(err, salt) {
                 if (err) {
                     return next(err);
                 }
-                bcrypt.hash(user.password, salt, function (err, hash) {
+                bcrypt.hash(user.password, salt, function(err, hash) {
                     if (err) {
                         return next(err);
                     }
@@ -28,12 +28,12 @@ module.exports = function (db) {
         }
     });
 
-    modelDef.schema.methods.toHAL = function () {
+    modelDef.schema.methods.toHAL = function() {
         return helpers.makeHAL(this.toJSON());
     };
 
-    modelDef.schema.methods.comparePassword = function (passw, cb) {
-        bcrypt.compare(passw, this.password, function (err, isMatch) {
+    modelDef.schema.methods.comparePassword = function(passw, cb) {
+        bcrypt.compare(passw, this.password, function(err, isMatch) {
             if (err) {
                 return cb(err);
             }

@@ -249,7 +249,7 @@ export class Layout implements OnInit {
             this.enableSwipeCollapsing();
         }
 
-        this.$sidebar.find('.collapse').on('show.bs.collapse', function (e): void {
+        this.$sidebar.find('.collapse').on('show.bs.collapse', function(e): void {
             // execute only if we're actually the .collapse element initiated event
             // return for bubbled events
             if (e.target !== e.currentTarget) {
@@ -262,7 +262,7 @@ export class Layout implements OnInit {
         })
         /* adding additional classes to navigation link li-parent
          for several purposes. see navigation styles */
-            .on('show.bs.collapse', function (e): void {
+            .on('show.bs.collapse', function(e): void {
                 // execute only if we're actually the .collapse element initiated event
                 // return for bubbled events
                 if (e.target !== e.currentTarget) {
@@ -270,7 +270,7 @@ export class Layout implements OnInit {
                 }
 
                 jQuery(this).closest('li').addClass('open');
-            }).on('hide.bs.collapse', function (e): void {
+            }).on('hide.bs.collapse', function(e): void {
             // execute only if we're actually the .collapse element initiated event
             // return for bubbled events
             if (e.target !== e.currentTarget) {

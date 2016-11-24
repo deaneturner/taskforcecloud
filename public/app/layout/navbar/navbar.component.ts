@@ -63,7 +63,7 @@ export class Navbar implements OnInit {
                 .append('<i class="chat-notification-sing animated bounceIn"></i>');
         }, 4000);
 
-        this.$el.find('.input-group-addon + .form-control').on('blur focus', function (e): void {
+        this.$el.find('.input-group-addon + .form-control').on('blur focus', function(e): void {
             jQuery(this).parents('.input-group')
                 [e.type === 'focus' ? 'addClass' : 'removeClass']('focus');
         });

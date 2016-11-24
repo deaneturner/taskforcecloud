@@ -9,9 +9,9 @@ function BaseController() {
     this.server = null;
 }
 
-BaseController.prototype.setUpActions = function (app, sw) {
+BaseController.prototype.setUpActions = function(app, sw) {
     this.server = app;
-    _.each(this.actions, function (act) {
+    _.each(this.actions, function(act) {
         var method = act['spec']['method'];
         if (sw) {
             console.log("Setting up auto-doc for (", method, ") - ", act['spec']['nickname']);
@@ -27,7 +27,7 @@ BaseController.prototype.setUpActions = function (app, sw) {
     })
 };
 
-BaseController.prototype.addAction = function (spec, fn) {
+BaseController.prototype.addAction = function(spec, fn) {
     var newAct = {
         'spec': spec,
         action: fn
@@ -35,7 +35,7 @@ BaseController.prototype.addAction = function (spec, fn) {
     this.actions.push(newAct);
 };
 
-BaseController.prototype.RESTError = function (type, msg) {
+BaseController.prototype.RESTError = function(type, msg) {
     if (restify[type]) {
         return new restify[type](msg.toString());
     } else {
@@ -47,10 +47,10 @@ BaseController.prototype.RESTError = function (type, msg) {
  Takes care of calling the "toHAL" method on every resource before writing it
  back to the client
  */
-BaseController.prototype.writeHAL = function (res, obj) {
+BaseController.prototype.writeHAL = function(res, obj) {
     if (Array.isArray(obj)) {
         var newArr = [];
-        _.each(obj, function (item, k) {
+        _.each(obj, function(item, k) {
             item = item.toHAL();
             newArr.push(item);
         });
@@ -71,11 +71,11 @@ BaseController.prototype.writeHAL = function (res, obj) {
  @links(optional) An array of links objects ({name, href, title(optional)})
  @embed(optional) A list of embedded JSON objects with the form: ({name, data})
 
-BaseController.prototype.toHAL = function (data, links, embed) {
+BaseController.prototype.toHAL = function(data, links, embed) {
     var obj = halson(data)
 
     if (links && links.length > 0) {
-        _.each(links, function (lnk) {
+        _.each(links, function(lnk) {
             obj.addLink(lnk.name, {
                 href: lnk.href,
                 title: lnk.title || ''
@@ -84,7 +84,7 @@ BaseController.prototype.toHAL = function (data, links, embed) {
     }
 
     if (embed && embed.length > 0) {
-        _.each(embed, function (item) {
+        _.each(embed, function(item) {
             obj.addEmbed(item.name, item.data)
         })
     }

@@ -11,7 +11,7 @@ function Login() {
 
 Login.prototype = new BaseController();
 
-module.exports = function (lib) {
+module.exports = function(lib) {
     var controller = new Login();
 
     function createToken(user, isKeepLoggedIn) {
@@ -30,7 +30,7 @@ module.exports = function (lib) {
         'description': 'Finds the user and logs them in',
         'responsClass': 'User',
         'nickname': 'loginUser'
-    }, function (req, res, next) {
+    }, function(req, res, next) {
 
         // if (!req.body.username || !req.body.password) {
         //     return res.status(400).send("You must send the username and the password");
@@ -39,7 +39,7 @@ module.exports = function (lib) {
         var userModel = lib.db.model('User');
         userModel.findOne({
             username: req.params.username
-        }).exec(function (err, user) {
+        }).exec(function(err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
             if (!user) {
@@ -48,7 +48,7 @@ module.exports = function (lib) {
             }
 
             else {
-                user.comparePassword(req.params.password, function (err, isMatch) {
+                user.comparePassword(req.params.password, function(err, isMatch) {
                     if (isMatch && !err) {
                         controller.writeHAL(res, {
                             success: true,
@@ -69,11 +69,11 @@ module.exports = function (lib) {
         'description': 'Registers the user and then logs them in',
         'responsClass': 'User',
         'nickname': 'registerUser'
-    }, function (req, res, next) {
+    }, function(req, res, next) {
         var userModel = lib.db.model('User');
         userModel.findOne({
             username: req.params.username
-        }).exec(function (err, user) {
+        }).exec(function(err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
             if (!user) {
@@ -86,7 +86,7 @@ module.exports = function (lib) {
                         isKeepLoggedIn: req.params.isKeepLoggedIn
                     });
 
-                    newUserModel.save(function (err, newUser) {
+                    newUserModel.save(function(err, newUser) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
 
                         controller.writeHAL(res, {
