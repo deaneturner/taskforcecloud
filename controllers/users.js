@@ -1,8 +1,8 @@
-var BaseController = require("./basecontroller");
-var _ = require("underscore");
-var swagger = require("swagger-node-restify");
+var BaseController = require('./basecontroller');
+var _ = require('underscore');
+var swagger = require('swagger-node-restify');
 var jwt = require('jwt-simple');
-var lib = require("../lib");
+var lib = require('../lib');
 
 function Users() {
 }

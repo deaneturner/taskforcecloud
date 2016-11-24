@@ -45,7 +45,7 @@ module.exports = function(options) {
          *
          * See: http://webpack.github.io/docs/configuration.html#cache
          */
-        //cache: false,
+        // cache: false,
 
         /*
          * The entry point for the bundle
@@ -76,7 +76,7 @@ module.exports = function(options) {
             extensions: ['', '.ts', '.js', '.json'],
 
             // An array of directory names to be resolved to the current directory
-            modules: [helpers.root('public'), 'node_modules'],
+            modules: [helpers.root('public'), 'node_modules']
 
         },
 
@@ -279,8 +279,8 @@ module.exports = function(options) {
                 $: 'jquery',
                 jquery: 'jquery',
                 'window.jQuery': 'jquery',
-                "Tether": 'tether',
-                "window.Tether": "tether",
+                'Tether': 'tether',
+                'window.Tether': 'tether',
                 Hammer: 'hammerjs/hammer',
                 moment: 'moment'
             }),

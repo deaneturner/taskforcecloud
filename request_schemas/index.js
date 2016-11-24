@@ -1,3 +1,3 @@
 module.exports = {
-	booksales: require("./booksales")
-}
+    booksales: require('./booksales')
+};
