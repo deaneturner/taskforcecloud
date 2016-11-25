@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 import { User } from '../model/user.interface';
 
@@ -60,7 +60,9 @@ export class AuthService {
         const headers = new Headers();
         const creds = 'username=' + user.username +
             '&password=' + user.password +
-            '&confirmPassword=' + user.confirmPassword + '&isKeepLoggedIn=' + user.isKeepLoggedIn;
+            '&confirmPassword=' + user.confirmPassword + '&isKeepLoggedIn=' + user.isKeepLoggedIn +
+            '&firstName=' + user.firstName +
+            '&lastName=' + user.lastName;
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 

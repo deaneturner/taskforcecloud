@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { AppContextService } from '../../services/app.context.service';
 import { BaseComponent } from '../../shared/component/base.component';
 import { UserService } from '../../services/user.service';
 import { AppState } from '../../app.service';
@@ -46,6 +47,7 @@ export class UserEditComponent extends BaseComponent implements OnInit {
 
     constructor(appState: AppState,
                 router: Router,
+                private appContextService: AppContextService,
                 private activatedRoute: ActivatedRoute,
                 private userService: UserService) {
         super(appState, router);
@@ -74,14 +76,21 @@ export class UserEditComponent extends BaseComponent implements OnInit {
             );
     }
 
-    update(isValid: boolean, userForm: User) {
+    updateUser(isValid: boolean, userForm: User) {
         const self = this;
         if (isValid) {
-            this.userService.updateUser(userForm)
+            // temp
+            delete userForm.password;
+            this.userService.updateUser(this.user._id, userForm)
                 .subscribe(
                     res => {
                         if (res.success) {
-                            self.router.navigate(['/app/users/edit', self.user._id]);
+                            if (self.appState.get('currentUser')._id === res.data._id) {
+                                this.appContextService.publishCurrentUser(res.data);
+                            }
+                            self.appState.set('selectedUser', res.data);
+                            self.navigate(['/app/users/detail', self.user._id],
+                                {selectedUser: res.data});
                         } else if (res.success === false) {
                             const field = res.field;
                             // clear previous error message (if any)

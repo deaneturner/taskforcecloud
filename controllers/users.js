@@ -1,6 +1,7 @@
 var BaseController = require('./basecontroller');
 var swagger = require('swagger-node-restify');
 var jwt = require('jwt-simple');
+var _ = require('underscore');
 
 function Users() {
 }
@@ -54,20 +55,23 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
-        'path': '/api/users',
+        'path': '/api/users/:id',
         'method': 'PUT',
         'params': [swagger.bodyParam('user', 'The JSON representation of the user', 'string')],
         'summary': 'Updates a user in the database',
         'responsClass': 'User',
         'nickname': 'updateUser'
     }, function(req, res, next) {
-        var updateUser = req.body;
-
-        var updatedUserModel = lib.db.model('User')(updateUser);
-        updatedUserModel.update(function(err, user) {
-            if (err) return next(controller.RESTError('InternalServerError', err));
-            controller.writeHAL(res, user);
-        });
+        var id = req.params.id;
+        if (!id) {
+            return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
+        } else {
+            var model = lib.db.model('User');
+            model.findByIdAndUpdate(req.params.id, {$set: JSON.parse(req.body)}, {new: true}, function(err, updatedUser) {
+                if (err) return next(controller.RESTError('InternalServerError', err));
+                controller.writeHAL(res, {success: true, data: updatedUser});
+            });
+        }
     });
 
     controller.addAction({
