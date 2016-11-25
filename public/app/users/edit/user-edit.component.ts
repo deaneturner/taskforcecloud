@@ -13,7 +13,7 @@ import { User } from '../../model/user.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class UserEditComponent implements OnInit {
-    user: User;
+    user: any = {};
     userForm: NgForm;
     formErrors: any = {
         'username': [],
@@ -69,15 +69,6 @@ export class UserEditComponent implements OnInit {
                     }
                 }
             );
-
-        this.user = {
-            username: '',
-            firstName: '',
-            lastName: '',
-            password: '',
-            confirmPassword: '',
-            isKeepLoggedIn: false
-        };
     }
 
     // register(isValid: boolean, registrationForm: User) {
