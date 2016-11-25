@@ -16,7 +16,7 @@ import { UserEditComponent } from '../edit/user-edit.component';
     encapsulation: ViewEncapsulation.None
 })
 export class UserDetailComponent extends BaseComponent implements OnInit {
-    panel: any;
+    panel: any
     user: any = {};
 
     @ViewChild(UserEditComponent)

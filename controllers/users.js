@@ -54,6 +54,23 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
+        'path': '/api/users',
+        'method': 'PUT',
+        'params': [swagger.bodyParam('user', 'The JSON representation of the user', 'string')],
+        'summary': 'Updates a user in the database',
+        'responsClass': 'User',
+        'nickname': 'updateUser'
+    }, function(req, res, next) {
+        var updateUser = req.body;
+
+        var updatedUserModel = lib.db.model('User')(updateUser);
+        updatedUserModel.update(function(err, user) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, user);
+        });
+    });
+
+    controller.addAction({
         'path': '/api/users/:id',
         'method': 'DEL',
         'params': [swagger.bodyParam('id', 'The id of the user to delete', 'string')],

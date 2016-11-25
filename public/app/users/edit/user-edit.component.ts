@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
+import { BaseComponent } from '../../shared/component/base.component';
 import { UserService } from '../../services/user.service';
 import { AppState } from '../../app.service';
 import { User } from '../../model/user.interface';
@@ -12,7 +13,7 @@ import { User } from '../../model/user.interface';
     styleUrls: ['user-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent extends BaseComponent implements OnInit {
     user: any = {};
     userForm: NgForm;
     formErrors: any = {
@@ -43,9 +44,11 @@ export class UserEditComponent implements OnInit {
     @ViewChild('userForm')
     currentForm: NgForm;
 
-    constructor(private appState: AppState,
+    constructor(appState: AppState,
+                router: Router,
                 private activatedRoute: ActivatedRoute,
                 private userService: UserService) {
+        super(appState, router);
     }
 
     ngOnInit(): void {
@@ -71,20 +74,30 @@ export class UserEditComponent implements OnInit {
             );
     }
 
-    // register(isValid: boolean, registrationForm: User) {
-    //     if (isValid) {
-    //         this.service.registerfn(registrationForm).then((res: any) => {
-    //             if (res.success) {
-    //                 this.router.navigate(['/app/dashboard']);
-    //             } else if (res.success === false) {
-    //                 const field = res.field;
-    //                 // clear previous error message (if any)
-    //                 this.formErrors[field] = [];
-    //                 this.formErrors[field].push(this.validationMessages[field][res.msgKey]);
-    //             }
-    //         });
-    //     }
-    // }
+    update(isValid: boolean, userForm: User) {
+        const self = this;
+        if (isValid) {
+            this.userService.updateUser(userForm)
+                .subscribe(
+                    res => {
+                        if (res.success) {
+                            self.router.navigate(['/app/users/edit', self.user._id]);
+                        } else if (res.success === false) {
+                            const field = res.field;
+                            // clear previous error message (if any)
+                            self.formErrors[field] = [];
+                            self.formErrors[field].push(self.validationMessages[field][res.msgKey]);
+                        }
+                    },
+                    error => {
+                    }  // error is handled by service
+                );
+        }
+    }
+
+    goToDetail() {
+        this.navigate(['app/users/detail', this.user._id], {selectedUser: this.user});
+    }
 
     /*
      * FORM
@@ -105,7 +118,7 @@ export class UserEditComponent implements OnInit {
         }
     }
 
-    onValueChanged(data?: any) {
+    onValueChanged(data ?: any) {
         if (!this.userForm) {
             return;
         }

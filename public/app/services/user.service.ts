@@ -30,6 +30,12 @@ export class UserService {
             .catch(this.notificationService.handleError);
     }
 
+    updateUser(user: any) {
+        return this.http.post('/api/users/' + user._id, user)
+            .map((response: Response) => <User>(response.json()))
+            .catch(this.notificationService.handleError);
+    }
+
     deleteUser(id: string) {
         return this.http.delete('/api/users/' + id)
             .map((response: Response) => <User>(response.json()))

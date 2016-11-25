@@ -40,10 +40,18 @@
                         <input class="form-control" type="text" name="firstName"
                                placeholder="First Name"
                                [(ngModel)]="user.firstName" required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.firstName">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" name="lastName" placeholder="Last Name"
                                [(ngModel)]="user.lastName" required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.lastName">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -62,28 +70,12 @@
             </div>
             <div class="clearfix">
                 <div class="btn-toolbar pull-xs-right m-t-1">
-                    <button class="btn btn-secondary btn-sm" [routerLink]="['/login']">Back to Login
+                    <button class="btn btn-secondary btn-sm" (click)="goToDetail()">Cancel
                     </button>
                     <button type="submit" class="btn btn-inverse btn-sm"
-                            (click)="register(userForm.valid, userForm.value)"
-                            [disabled]="!userForm.valid">Create
-                        Account
+                            (click)="updateUser(userForm.valid, userForm.value)"
+                            [disabled]="!userForm.valid">Save
                     </button>
-                </div>
-            </div>
-            <div class="row m-t-1">
-                <div class="col-md-6 push-md-6">
-                    <div class="clearfix">
-                        <div class="abc-checkbox widget-register-info pull-xs-right">
-                            <input type="checkbox" id="isKeepLoggedIn" name="isKeepLoggedIn"
-                                   [(ngModel)]="user.isKeepLoggedIn">
-                            <label for="isKeepLoggedIn">Keep me signed in </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 pull-md-6">
-                    <a class="mr-n-lg" href="#">Trouble with account?</a>
                 </div>
             </div>
         </form>
