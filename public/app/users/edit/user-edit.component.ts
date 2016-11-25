@@ -95,7 +95,9 @@ export class UserEditComponent extends BaseComponent implements OnInit {
         }
     }
 
-    goToDetail() {
+    goToDetail(event) {
+        event.preventDefault();
+        event.stopPropagation();
         this.navigate(['app/users/detail', this.user._id], {selectedUser: this.user});
     }
 
