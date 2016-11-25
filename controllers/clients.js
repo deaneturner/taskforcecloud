@@ -37,7 +37,7 @@ module.exports = function(lib) {
         newClientModel.save(function(err, client) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, client);
-        })
+        });
     });
 
     controller.addAction({
@@ -54,7 +54,7 @@ module.exports = function(lib) {
                 if (err) return next(controller.RESTError('InternalServerError', err));
                 if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client id cannot be found'));
                 controller.writeHAL(res, client);
-            })
+            });
         } else {
             next(controller.RESTError('InvalidArgumentError', 'Invalid client id'));
         }
@@ -79,13 +79,11 @@ module.exports = function(lib) {
                     client = _.extend(client, req.body);
                     client.save(function(err, newClient) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
-                        controller.writeHAL(res, newClient)
-                    })
-                })
+                        controller.writeHAL(res, newClient);
+                    });
+                });
         }
-
     });
-
     return controller;
 };
 

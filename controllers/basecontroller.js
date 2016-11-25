@@ -1,8 +1,6 @@
 var _ = require('underscore');
 var restify = require('restify');
-var colors = require('colors');
 var halson = require('halson');
-var lib = require('../lib/index');
 
 function BaseController() {
     this.actions = [];
@@ -24,7 +22,7 @@ BaseController.prototype.setUpActions = function(app, sw) {
             method = 'DEL';
         }
         app[method.toLowerCase()](act['spec']['path'], act['action']);
-    })
+    });
 };
 
 BaseController.prototype.addAction = function(spec, fn) {
@@ -56,8 +54,9 @@ BaseController.prototype.writeHAL = function(res, obj) {
         });
         obj = halson(newArr); // lib.helpers.makeHAL(newArr)
     } else {
-        if (obj && obj.toHAL)
+        if (obj && obj.toHAL) {
             obj = obj.toHAL();
+        }
     }
     if (!obj) {
         obj = {};

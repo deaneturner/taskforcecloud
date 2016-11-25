@@ -15,7 +15,7 @@ const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
 /*
  * Webpack Constants
  */
-const HMR = helpers.hasProcessFlag('hot');
+// const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
     title: 'Task Force Cloud',
     baseUrl: '/',
@@ -28,7 +28,8 @@ const METADATA = {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function(options) {
-    isProd = options.env === 'production';
+    // isProd = options.env === 'production';
+    var isProd = options.env === 'production';
     return {
 
         /*

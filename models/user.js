@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
-var jsonSelect = require('mongoose-json-select');
 var helpers = require('../lib/helpers');
-var _ = require('underscore');
 var bcrypt = require('bcrypt');
 
 module.exports = function(db) {

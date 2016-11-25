@@ -5,11 +5,11 @@ const commonConfig = require('./webpack.common'); // the settings that are commo
 /**
  * Webpack Plugins
  */
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+// const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
-const IgnorePlugin = require('webpack/lib/IgnorePlugin');
-const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+// const IgnorePlugin = require('webpack/lib/IgnorePlugin');
+// const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
@@ -151,12 +151,10 @@ module.exports = function(env) {
                 //   unused: false
                 // }, // debug
                 // comments: true, //debug
-
-
-                beautify: false, //prod
-                mangle: {screw_ie8: true, keep_fnames: true, except: ['$super']}, //prod
-                compress: {screw_ie8: true}, //prod
-                comments: false //prod
+                beautify: false, // prod
+                mangle: {screw_ie8: true, keep_fnames: true, except: ['$super']}, // prod
+                compress: {screw_ie8: true}, // prod
+                comments: false // prod
             }),
 
             /**
@@ -169,7 +167,7 @@ module.exports = function(env) {
             new NormalModuleReplacementPlugin(
                 /angular2-hmr/,
                 helpers.root('config/modules/angular2-hmr-prod.js')
-            ),
+            )
 
             /**
              * Plugin: IgnorePlugin
@@ -221,7 +219,8 @@ module.exports = function(env) {
                 [/\*/, /(?:)/],
                 [/\[?\(?/, /(?:)/]
             ],
-            customAttrAssign: [/\)?\]?=/]
+            customAttrAssign: [/\)?]?=/]
+            // customAttrAssign: [/\)?\]?=/]
         },
 
         /*
@@ -240,4 +239,5 @@ module.exports = function(env) {
         }
 
     });
-}
+};
+

@@ -6,7 +6,6 @@ const lib = require('./lib');
 const config = lib.config;
 const db = lib.db;
 const morgan = require('morgan');
-const colors = require('colors');
 const swagger = require('swagger-node-restify');
 
 var server = restify.createServer(config.server);
@@ -32,7 +31,7 @@ restify.defaultResponseHeaders = function(data) {
  */
 server.use(function(req, res, next) {
     var results = lib.schemaValidator.validateRequest(req);
-    if(results.valid) {
+    if (results.valid) {
         next();
     } else {
         res.send(400, results);
@@ -74,7 +73,7 @@ if (isDevelopment) {
     server.use(webpackHotMiddleware(compiler));
 
     server.get(/^\/swagger-ui(\/.*)?/, restify.serveStatic({
-        directory: __dirname + '/',
+        directory: path.join(__dirname, '/'),
         default: 'index.html'
     }));
 
@@ -95,10 +94,9 @@ if (isDevelopment) {
     swagger.configureSwaggerPaths('', '/api-docs', ''); // remove the {format} part of the paths, to
     swagger.configure('http://localhost:' + config.server.port, '0.1');
     console.log('swagger-ui: ' + 'http://localhost:' + config.server.port + '/swagger-ui');
-
 } else {
     server.get(/^(?!\/api(\/.*)?).*/, restify.serveStatic({
-        'directory': __dirname + '/dist',
+        'directory': path.join(__dirname, '/dist'),
         'default': 'index.html'
     }));
 
@@ -106,14 +104,13 @@ if (isDevelopment) {
 }
 
 db.connect(function(err) {
-    if(err) {
+    if (err) {
         console.log('Error trying to connect to database: '.red, err.stack.red);
-        console.log('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        console.log('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         console.log('If running heroku LOCAL, ensure the dev procfile is being used. (e.g. heroku local -f Procfile-dev)');
-        console.log('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        console.log('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         process.exit(1);
-    }
-    else {
+    } else {
         console.log('Database service successfully started'.green);
     }
 });

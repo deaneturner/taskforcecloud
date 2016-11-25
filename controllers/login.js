@@ -1,10 +1,7 @@
 var BaseController = require('./basecontroller');
-var _ = require('underscore');
 var swagger = require('swagger-node-restify');
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var lib = require('../lib');
-var User = require('../models/user');
 
 function Login() {
 }
@@ -44,9 +41,7 @@ module.exports = function(lib) {
             if (!user) {
                 // res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
                 controller.writeHAL(res, {success: false, field: 'username', msgKey: 'exists'});
-            }
-
-            else {
+            } else {
                 user.comparePassword(req.params.password, function(err, isMatch) {
                     if (isMatch && !err) {
                         controller.writeHAL(res, {
@@ -97,8 +92,7 @@ module.exports = function(lib) {
                     // invalid password
                     controller.writeHAL(res, {success: false, field: 'password', msgKey: 'pattern'});
                 }
-            }
-            else {
+            } else {
                 // user exists
                 controller.writeHAL(res, {success: false, field: 'username', msgKey: 'exists'});
             }
