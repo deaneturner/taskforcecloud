@@ -1,7 +1,7 @@
 <div class="container">
     <main id="content" class="widget-register-container" role="main">
         <div class="row">
-            <div class="col-xl-4 col-md-6 col-xs-10 offset-xl-4 offset-md-3 offset-xs-1">
+            <div class="col-xl-8 col-md-8 col-xs-10 offset-xl-2 offset-md-2 offset-xs-1">
                 <h5 class="widget-register-logo animated fadeInUp">
                     <i class="fa fa-circle text-gray"></i>
                     TF&nbsp;<i class="fa fa-cloud"></i>
@@ -13,44 +13,60 @@
                     </header>
                     <div class="widget-body">
                         <!--<p class="widget-register-info">-->
-                            <!--Use Facebook, Twitter or your email to sign in.-->
+                        <!--Use Facebook, Twitter or your email to sign in.-->
                         <!--</p>-->
                         <p class="widget-register-info">
                             Have an account? <a [routerLink]="['/login']">Log in now!</a>
                         </p>
                         <form class="register-form mt-lg" role="form" #registrationForm="ngForm" novalidate>
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="username" placeholder="Username (E-mail Address)"
-                                       [(ngModel)]="user.username" required
-                                       pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" required>
-                                <ul class="validation-errors-list filled" *ngFor="let err of formErrors.username">
-                                    <li class="validation-type">{{ err }}</li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-lg-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="username"
+                                               placeholder="Username (E-mail Address)"
+                                               [(ngModel)]="user.username" required
+                                               pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" required>
+                                        <ul class="validation-errors-list filled"
+                                            *ngFor="let err of formErrors.username">
+                                            <li class="validation-type">{{ err }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="password"
+                                               placeholder="Password"
+                                               [(ngModel)]="user.password" validateEqual="confirmPassword"
+                                               reverse="true"
+                                               pattern="^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*" required>
+                                        <ul class="validation-errors-list filled"
+                                            *ngFor="let err of formErrors.password">
+                                            <li class="validation-type">{{ err }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="firstName"
+                                               placeholder="First Name"
+                                               [(ngModel)]="user.firstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="lastName" placeholder="Last Name"
+                                               [(ngModel)]="user.lastName" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="firstName" placeholder="First Name"
-                                       [(ngModel)]="user.firstName" required>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="lastName" placeholder="First Name"
-                                       [(ngModel)]="user.lastName" required>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="password" name="password" placeholder="Password"
-                                       [(ngModel)]="user.password" validateEqual="confirmPassword" reverse="true"
-                                       pattern="^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*" required>
-                                <ul class="validation-errors-list filled" *ngFor="let err of formErrors.password">
-                                    <li class="validation-type">{{ err }}</li>
-                                </ul>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="password" name="confirmPassword"
-                                       placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"
-                                       validateEqual="password" required>
-                                <ul class="validation-errors-list filled"
-                                    *ngFor="let err of formErrors.confirmPassword">
-                                    <li class="validation-type">{{ err }}</li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-lg-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="confirmPassword"
+                                               placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"
+                                               validateEqual="password" required>
+                                        <ul class="validation-errors-list filled"
+                                            *ngFor="let err of formErrors.confirmPassword">
+                                            <li class="validation-type">{{ err }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <div class="clearfix">
                                 <div class="btn-toolbar pull-xs-right m-t-1">
