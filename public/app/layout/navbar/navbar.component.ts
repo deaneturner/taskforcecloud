@@ -41,7 +41,6 @@ export class Navbar implements OnInit {
     }
 
     ngOnInit(): void {
-
         setTimeout(() => {
             let $chatNotification = jQuery('#chat-notification');
             $chatNotification.removeClass('hide').addClass('animated fadeIn')

@@ -68,7 +68,8 @@ export class UserService {
     }
 
     selectUser(routerLink: any[]) {
-        if (this.getSelectedUser()._id !== routerLink[routerLink.length - 1]) {
+        if (this.getSelectedUser() &&
+            (this.getSelectedUser()._id !== routerLink[routerLink.length - 1])) {
             this.clearCache('cachedUserObservable');
         }
         this.router.navigate(routerLink);
