@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AppContextService } from '../../services/app.context.service';
-import { BaseComponent } from '../../shared/component/base.component';
 import { UserService } from '../../services/user.service';
 import { AppState } from '../../app.service';
 import { User } from '../../model/user.interface';
@@ -14,7 +13,7 @@ import { User } from '../../model/user.interface';
     styleUrls: ['user-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserEditComponent extends BaseComponent implements OnInit {
+export class UserEditComponent implements OnInit {
     user: any = {};
     userForm: NgForm;
     formErrors: any = {
@@ -45,12 +44,11 @@ export class UserEditComponent extends BaseComponent implements OnInit {
     @ViewChild('userForm')
     currentForm: NgForm;
 
-    constructor(appState: AppState,
-                router: Router,
+    constructor(private appState: AppState,
+                private router: Router,
                 private appContextService: AppContextService,
                 private activatedRoute: ActivatedRoute,
                 private userService: UserService) {
-        super(appState, router);
     }
 
     ngOnInit(): void {
@@ -60,7 +58,7 @@ export class UserEditComponent extends BaseComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    if (params['id'] !== self.appState.get('selectedUser')._id) {
+                    if (params['id'] !== self.user._id) {
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
@@ -69,8 +67,6 @@ export class UserEditComponent extends BaseComponent implements OnInit {
                                 error => {
                                 } // error is handled by service
                             );
-                    } else {
-                        self.user = self.appState.get('selectedUser');
                     }
                 }
             );
@@ -85,12 +81,11 @@ export class UserEditComponent extends BaseComponent implements OnInit {
                 .subscribe(
                     res => {
                         if (res.success) {
+                            self.userService.clearCache('cachedUserObservable');
                             if (self.appState.get('currentUser')._id === res.data._id) {
                                 this.appContextService.publishCurrentUser(res.data);
                             }
-                            self.appState.set('selectedUser', res.data);
-                            self.navigate(['/app/users/detail', self.user._id],
-                                {selectedUser: res.data});
+                            self.router.navigate(['/app/users/detail', self.user._id]);
                         } else if (res.success === false) {
                             const field = res.field;
                             // clear previous error message (if any)
@@ -107,7 +102,7 @@ export class UserEditComponent extends BaseComponent implements OnInit {
     goToDetail(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.navigate(['app/users/detail', this.user._id], {selectedUser: this.user});
+        this.router.navigate(['app/users/detail', this.user._id]);
         // return false;
     }
 

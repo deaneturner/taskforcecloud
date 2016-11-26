@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { UserDetailComponent } from './user-detail.component';
-import { UserService } from '../../services/user.service';
 
 export const routes = [
     {path: '', component: UserDetailComponent, pathMatch: 'full'}
@@ -18,8 +17,7 @@ export const routes = [
         CommonModule,
         FormsModule,
         RouterModule.forChild(routes)
-    ],
-    providers: [UserService]
+    ]
 })
 export default class UserDetailModule {
     static routes = routes;

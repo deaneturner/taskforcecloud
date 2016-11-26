@@ -9,13 +9,24 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class UserService {
+    cachedUserObservable: any;
+
     constructor(private http: Http, private notificationService: NotificationService) {
     }
 
+    clearCache(cachedObservable: string) {
+        this[cachedObservable] = null;
+    }
+
     getUser(id: string) {
-        return this.http.get('/api/users/' + id)
-            .map((response: Response) => <User>(response.json()))
-            .catch(this.notificationService.handleError);
+        if (!this.cachedUserObservable) {
+            this.cachedUserObservable = this.http.get('/api/users/' + id)
+                .map((res: Response) => <User>(res.json()))
+                .publishReplay(1)
+                .refCount()
+                .catch(this.notificationService.handleError);
+        }
+        return this.cachedUserObservable;
     }
 
     getUsers(query?: any) {

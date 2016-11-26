@@ -1,9 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AppState } from '../../app.service';
-import { BaseComponent } from '../../shared/component/base.component';
-
 import { User } from '../../model/user.interface';
 import { UserService } from '../../services/user.service';
 
@@ -13,15 +10,12 @@ import { UserService } from '../../services/user.service';
     styleUrls: ['./user-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserListComponent extends BaseComponent {
-    appConfig: any;
-
+export class UserListComponent {
+    selectedUser: string;
     users: Array<User>;
 
-    constructor(appState: AppState,
-                router: Router,
+    constructor(private router: Router,
                 private userService: UserService) {
-        super(appState, router);
     }
 
     ngOnInit(): void {
@@ -35,5 +29,15 @@ export class UserListComponent extends BaseComponent {
                 error => {
                 }  // error is handled by service
             );
+    }
+
+    selectUser(routerLink: any[]) {
+        // let selectedUser = routerLink[routerLink.length - 1];
+        // if (this.selectedUser !== selectedUser) {
+        //     this.selectedUser = selectedUser;
+        //     this.userService.clearCache('cachedUserObservable');
+        // }
+        this.userService.clearCache('cachedUserObservable');
+        this.router.navigate(routerLink);
     }
 }

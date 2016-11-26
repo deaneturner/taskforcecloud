@@ -1,10 +1,7 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { BaseComponent } from '../../shared/component/base.component';
-import { AppConfig } from '../../app.config';
 import { AppState } from '../../app.service';
-
 import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { UserEditComponent } from '../edit/user-edit.component';
@@ -15,20 +12,18 @@ import { UserEditComponent } from '../edit/user-edit.component';
     styleUrls: ['user-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserDetailComponent extends BaseComponent implements OnInit {
+export class UserDetailComponent implements OnInit {
     panel: any;
     user: any = {};
 
     @ViewChild(UserEditComponent)
     public userEditComponent: UserEditComponent;
 
-    constructor(appConfig: AppConfig,
-                appState: AppState,
-                router: Router,
+    constructor(private appState: AppState,
+                private router: Router,
                 private notificationService: NotificationService,
                 private userService: UserService,
                 private activatedRoute: ActivatedRoute) {
-        super(appState, router);
     }
 
     ngOnInit(): void {
@@ -48,11 +43,10 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
             }]
         };
 
-        // TODO: refactor to base controller
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    if (params['id'] !== self.appState.get('selectedUser')._id) {
+                    if (params['id'] !== self.user._id) {
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
@@ -61,8 +55,6 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
                                 error => {
                                 } // error is handled by service
                             );
-                    } else {
-                        self.user = self.appState.get('selectedUser');
                     }
                 }
             );
@@ -72,7 +64,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.navigate(['app/users/edit', this.user._id], {selectedUser: this.user});
+                this.router.navigate(['app/users/edit', this.user._id]);
                 break;
             case 'delete':
                 // check current user is not selected user
