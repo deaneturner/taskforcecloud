@@ -87,7 +87,7 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" (click)="userService.selectUser(['/app/users/detail/', currentUser._id])"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
+                    <li><a class="dropdown-item" (click)="userService.cacheManager.selectUser(['/app/users/detail/', currentUser._id])"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
                     </li>
                     <li class="dropdown-divider"></li>
                     <li><a class="dropdown-item" [routerLink]="['/error']">Calendar</a></li>

@@ -11,15 +11,25 @@ import * as _ from 'lodash';
 @Injectable()
 export class UserService {
     cachedUserObservable: any;
-    selectedUser: any;
+    cacheManager: any;
 
     constructor(private http: Http,
                 private notificationService: NotificationService,
                 private router: Router) {
-    }
 
-    clearCache(cachedObservable: string) {
-        this[cachedObservable] = null;
+        this.cacheManager = {
+            selectedUser: {},
+            clearCache: (cachedObservable: string) => {
+                this[cachedObservable] = null;
+            },
+            selectUser: (routerLink: any[]) => {
+                if (this.cacheManager.selectedUser &&
+                    (this.cacheManager.selectedUser._id !== routerLink[routerLink.length - 1])) {
+                    this.cacheManager.clearCache('cachedUserObservable');
+                }
+                this.router.navigate(routerLink);
+            }
+        };
     }
 
     getUser(id: string) {
@@ -33,7 +43,7 @@ export class UserService {
         return this.cachedUserObservable;
     }
 
-    getUsers(query?: any) {
+    getUsers(query ?: any) {
         return this.http.get('/api/users')
             .map((response: Response) => <User[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
@@ -57,21 +67,5 @@ export class UserService {
         return this.http.delete('/api/users/' + id)
             .map((response: Response) => <User>(response.json()))
             .catch(this.notificationService.handleError);
-    }
-
-    getSelectedUser() {
-        return this.selectedUser;
-    }
-
-    setSelectedUser(selectedUser: string) {
-        this.selectedUser = selectedUser;
-    }
-
-    selectUser(routerLink: any[]) {
-        if (this.getSelectedUser() &&
-            (this.getSelectedUser()._id !== routerLink[routerLink.length - 1])) {
-            this.clearCache('cachedUserObservable');
-        }
-        this.router.navigate(routerLink);
     }
 }

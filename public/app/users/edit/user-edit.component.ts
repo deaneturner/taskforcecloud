@@ -58,13 +58,13 @@ export class UserEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const selectedUser = self.userService.getSelectedUser() || {};
+                    const selectedUser = self.userService.cacheManager.selectedUser || {};
                     if (params['id'] !== selectedUser._id) {
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
                                     self.user = user;
-                                    self.userService.setSelectedUser(user);
+                                    self.userService.cacheManager.selectedUser = user;
                                 },
                                 error => {
                                 } // error is handled by service
@@ -85,7 +85,7 @@ export class UserEditComponent implements OnInit {
                 .subscribe(
                     res => {
                         if (res.success) {
-                            self.userService.clearCache('cachedUserObservable');
+                            self.userService.cacheManager.clearCache('cachedUserObservable');
                             if (self.appState.get('currentUser')._id === res.data._id) {
                                 this.appContextService.publishCurrentUser(res.data);
                             }
@@ -106,7 +106,7 @@ export class UserEditComponent implements OnInit {
     goToDetail(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.userService.selectUser(['/app/users/detail/', this.user._id]);
+        this.userService.cacheManager.selectUser(['/app/users/detail/', this.user._id]);
 
     }
 

@@ -46,14 +46,14 @@ export class UserDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const selectedUser = self.userService.getSelectedUser() || {};
+                    const selectedUser = self.userService.cacheManager.selectedUser || {};
                     if (params['id'] !== selectedUser._id) {
-                        self.userService.clearCache('cachedUserObservable');
+                        self.userService.cacheManager.clearCache('cachedUserObservable');
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
                                     self.user = user;
-                                    self.userService.setSelectedUser(user);
+                                    self.userService.cacheManager.selectedUser = user;
                                 },
                                 error => {
                                 } // error is handled by service
@@ -69,7 +69,7 @@ export class UserDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.userService.selectUser(['/app/users/edit/', this.user._id]);
+                this.userService.cacheManager.selectUser(['/app/users/edit/', this.user._id]);
                 break;
             case 'delete':
                 // check current user is not selected user
