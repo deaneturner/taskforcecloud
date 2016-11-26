@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 
 import { NotificationService } from './notification.service';
 
@@ -27,6 +27,14 @@ export class UserService {
     getUserByToken() {
         return this.http.get('/api/users/token/' + window.localStorage.getItem('id_token'))
             .map((response: Response) => <string>response.json())
+            .catch(this.notificationService.handleError);
+    }
+
+    updateUser(id: string, user: any) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/X-www-form-urlencoded');
+        return this.http.put('/api/users/' + id, user, {headers: headers})
+            .map((response: Response) => <User>(response.json()))
             .catch(this.notificationService.handleError);
     }
 

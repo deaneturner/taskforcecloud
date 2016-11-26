@@ -77,6 +77,8 @@ module.exports = function(lib) {
                     var newUserModel = lib.db.model('User')({
                         username: req.params.username,
                         password: req.params.password,
+                        firstName: req.params.firstName,
+                        lastName: req.params.lastName,
                         isKeepLoggedIn: req.params.isKeepLoggedIn
                     });
 

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';

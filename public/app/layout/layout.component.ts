@@ -6,7 +6,6 @@ import { AppState } from '../app.service';
 import { AppConfig } from '../app.config';
 
 import { AppContextService } from '../services/app.context.service';
-import { NotificationService } from '../services/notification.service';
 import { ModalComponent } from '../shared/modal-window/modal.component';
 import { Navbar } from './navbar/navbar.component';
 import { Sidebar } from './sidebar/sidebar.component';
