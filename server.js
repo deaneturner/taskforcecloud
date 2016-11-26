@@ -7,6 +7,7 @@ const config = lib.config;
 const db = lib.db;
 const morgan = require('morgan');
 const swagger = require('swagger-node-restify');
+const validateRequest = lib.validateRequest;
 
 var server = restify.createServer(config.server);
 server.use(restify.queryParser());
@@ -26,11 +27,7 @@ restify.defaultResponseHeaders = function(data) {
 //   }
 // });
 
-server.use(function(err, req, res, next) {
-    if (err.name === 'UnauthorizedError') {
-        res.send(401, 'invalid token...');
-    }
-});
+server.use(validateRequest);
 
 /**
  Validate each request, as long as there is a schema for it

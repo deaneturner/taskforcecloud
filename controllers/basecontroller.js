@@ -1,7 +1,6 @@
 var _ = require('underscore');
 var restify = require('restify');
 var halson = require('halson');
-var jwt = require('restify-jwt');
 
 function BaseController() {
     this.actions = [];
@@ -22,11 +21,7 @@ BaseController.prototype.setUpActions = function(app, sw, lib) {
         if (method === 'DELETE') {
             method = 'DEL';
         }
-        app[method.toLowerCase()](act['spec']['path'],
-            act['action'],
-            jwt({
-                secret: lib.config.secretKey
-            }));
+        app[method.toLowerCase()](act['spec']['path'], act['action']);
     });
 };
 
