@@ -1,13 +1,14 @@
 var _ = require('underscore');
 var restify = require('restify');
 var halson = require('halson');
+var jwt = require('restify-jwt');
 
 function BaseController() {
     this.actions = [];
     this.server = null;
 }
 
-BaseController.prototype.setUpActions = function(app, sw) {
+BaseController.prototype.setUpActions = function(app, sw, lib) {
     this.server = app;
     _.each(this.actions, function(act) {
         var method = act['spec']['method'];
@@ -21,7 +22,11 @@ BaseController.prototype.setUpActions = function(app, sw) {
         if (method === 'DELETE') {
             method = 'DEL';
         }
-        app[method.toLowerCase()](act['spec']['path'], act['action']);
+        app[method.toLowerCase()](act['spec']['path'],
+            act['action'],
+            jwt({
+                secret: lib.config.secretKey
+            }));
     });
 };
 

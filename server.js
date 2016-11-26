@@ -26,6 +26,12 @@ restify.defaultResponseHeaders = function(data) {
 //   }
 // });
 
+server.use(function(err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.send(401, 'invalid token...');
+    }
+});
+
 /**
  Validate each request, as long as there is a schema for it
  */
