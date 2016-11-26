@@ -48,6 +48,7 @@ export class UserDetailComponent implements OnInit {
                 params => {
                     const selectedUser = self.userService.getSelectedUser() || {};
                     if (params['id'] !== selectedUser._id) {
+                        self.userService.clearCache('cachedUserObservable');
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
