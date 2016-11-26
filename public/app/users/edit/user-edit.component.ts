@@ -58,15 +58,19 @@ export class UserEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    if (params['id'] !== self.user._id) {
+                    const selectedUser = self.userService.getSelectedUser() || {};
+                    if (params['id'] !== selectedUser._id) {
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
                                     self.user = user;
+                                    self.userService.setSelectedUser(user);
                                 },
                                 error => {
                                 } // error is handled by service
                             );
+                    } else if (selectedUser) {
+                        self.user = selectedUser;
                     }
                 }
             );
@@ -102,8 +106,8 @@ export class UserEditComponent implements OnInit {
     goToDetail(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.router.navigate(['app/users/detail', this.user._id]);
-        // return false;
+        this.userService.selectUser(['/app/users/detail/', this.user._id]);
+
     }
 
     /*

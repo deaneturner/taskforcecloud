@@ -46,15 +46,19 @@ export class UserDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    if (params['id'] !== self.user._id) {
+                    const selectedUser = self.userService.getSelectedUser() || {};
+                    if (params['id'] !== selectedUser._id) {
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
                                     self.user = user;
+                                    self.userService.setSelectedUser(user);
                                 },
                                 error => {
                                 } // error is handled by service
                             );
+                    } else if (selectedUser) {
+                        self.user = selectedUser;
                     }
                 }
             );
@@ -64,7 +68,7 @@ export class UserDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['app/users/edit', this.user._id]);
+                this.userService.selectUser(['/app/users/edit/', this.user._id]);
                 break;
             case 'delete':
                 // check current user is not selected user

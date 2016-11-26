@@ -1,5 +1,5 @@
 import { Component,
-    ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
+    ViewEncapsulation, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppState } from '../app.service';

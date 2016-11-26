@@ -30,14 +30,4 @@ export class UserListComponent {
                 }  // error is handled by service
             );
     }
-
-    selectUser(routerLink: any[]) {
-        // let selectedUser = routerLink[routerLink.length - 1];
-        // if (this.selectedUser !== selectedUser) {
-        //     this.selectedUser = selectedUser;
-        //     this.userService.clearCache('cachedUserObservable');
-        // }
-        this.userService.clearCache('cachedUserObservable');
-        this.router.navigate(routerLink);
-    }
 }

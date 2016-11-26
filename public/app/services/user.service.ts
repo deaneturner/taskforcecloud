@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { NotificationService } from './notification.service';
 
@@ -10,8 +11,11 @@ import * as _ from 'lodash';
 @Injectable()
 export class UserService {
     cachedUserObservable: any;
+    selectedUser: any;
 
-    constructor(private http: Http, private notificationService: NotificationService) {
+    constructor(private http: Http,
+                private notificationService: NotificationService,
+                private router: Router) {
     }
 
     clearCache(cachedObservable: string) {
@@ -53,5 +57,20 @@ export class UserService {
         return this.http.delete('/api/users/' + id)
             .map((response: Response) => <User>(response.json()))
             .catch(this.notificationService.handleError);
+    }
+
+    getSelectedUser() {
+        return this.selectedUser;
+    }
+
+    setSelectedUser(selectedUser: string) {
+        this.selectedUser = selectedUser;
+    }
+
+    selectUser(routerLink: any[]) {
+        if (this.getSelectedUser()._id !== routerLink[routerLink.length - 1]) {
+            this.clearCache('cachedUserObservable');
+        }
+        this.router.navigate(routerLink);
     }
 }
