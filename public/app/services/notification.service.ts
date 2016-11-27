@@ -28,16 +28,9 @@ export class NotificationService {
 
     handleError(response: Response) {
         let error = response.json();
-        if (!error || !error.code || !error.message) {
-            // no http connection
-            error = {
-                code: 'Connection Error',
-                message: 'No data connection found!'
-            };
-        }
         // this.displayMessage is not available due to rxjs/Rx closure
         Messenger().post({
-            message: error.code + ': ' + error.message,
+            message: (error.code || error.status) + ': ' + error.message,
             type: 'error',
             showCloseButton: true
         });

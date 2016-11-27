@@ -7,7 +7,6 @@ const config = lib.config;
 const db = lib.db;
 const morgan = require('morgan');
 const swagger = require('swagger-node-restify');
-const validateRequest = lib.validateRequest;
 
 var server = restify.createServer(config.server);
 server.use(restify.queryParser());
@@ -27,7 +26,17 @@ restify.defaultResponseHeaders = function(data) {
 //   }
 // });
 
-server.use(validateRequest);
+/**
+ Validate each request, inspecting jwt
+ */
+server.use(function(req, res, next) {
+    var results = lib.jwtValidator.validateRequest(req, res, next);
+    if (results.valid) {
+        next();
+    } else {
+        res.send();
+    }
+});
 
 /**
  Validate each request, as long as there is a schema for it
