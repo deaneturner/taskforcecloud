@@ -1,11 +1,12 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 import { ServiceModule } from './services/service.module';
+import { HttpTokenDecorator } from './app.decorators';
 
 import './rxjs-extensions';
 
@@ -33,9 +34,7 @@ const APP_PROVIDERS = [
     AppConfig,
     AppGuard,
     NotificationService,
-    AppContextService,
-    LoggingAspect,
-    TokenAspect
+    AppContextService
 ];
 
 type StoreType = {
@@ -62,7 +61,15 @@ type StoreType = {
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,
-        APP_PROVIDERS
+        APP_PROVIDERS,
+        {
+            provide: Http,
+            useFactory: (xhrBackend: XHRBackend, requestOptions: RequestOptions) =>
+                new HttpTokenDecorator(
+                    new Http(xhrBackend, requestOptions)
+                ),
+            deps: [XHRBackend, RequestOptions]
+        }
     ]
 })
 export class AppModule {

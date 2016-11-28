@@ -14,7 +14,6 @@ import * as _ from 'lodash';
 export class UserService {
     cachedUserObservable: any;
     cacheManager: any;
-    httpOptions: any = {};  // parameter hook for aspect
 
     constructor(private http: Http,
                 private notificationService: NotificationService,
@@ -53,8 +52,12 @@ export class UserService {
     }
 
     getUserByToken() {
+        let headers = new Headers({
+            'jwt': window.localStorage.getItem('id_token')
+        });
+        let options = new RequestOptions({headers: headers});
         return this.http.get('/api/users/token/' +
-            window.localStorage.getItem('id_token'), this.httpOptions)
+            window.localStorage.getItem('id_token'), options)
             .map((response: Response) => <string>response.json())
             .catch(this.notificationService.handleError);
     }
