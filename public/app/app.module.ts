@@ -23,6 +23,7 @@ import { AppGuard } from './app.guard';
 import { ErrorComponent } from './error/error.component';
 import { NotificationService } from './services/notification.service';
 import { AppContextService } from './services/app.context.service';
+import { LoggingAspect } from './shared/aspects/logging.aspect';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -31,7 +32,8 @@ const APP_PROVIDERS = [
     AppConfig,
     AppGuard,
     NotificationService,
-    AppContextService
+    AppContextService,
+    LoggingAspect
 ];
 
 type StoreType = {

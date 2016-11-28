@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Router } from '@angular/router';
+import { Wove } from 'aspect.js-angular';
 
 import { NotificationService } from './notification.service';
 
@@ -8,6 +9,7 @@ import { User } from '../model/user.interface';
 
 import * as _ from 'lodash';
 
+@Wove()
 @Injectable()
 export class UserService {
     cachedUserObservable: any;
