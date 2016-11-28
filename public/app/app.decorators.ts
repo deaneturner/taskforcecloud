@@ -32,51 +32,22 @@ export class HttpTokenDecorator extends HttpDecorator {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        const token = window.localStorage.getItem('id_token');
-        const headers = new Headers({
-            'jwt': token
-        });
-        if (!options) {
-            options = new RequestOptions({headers: headers});
-        } else if (!options.headers) {
-            options.headers = headers;
-        } else if (options.headers) {
-            options.headers.set('jwt', token);
-        }
-        return super.get(url, options);
+        return super.get(url, this.addTokenToHeader(options));
     }
 
     put(url: string, data: any, options?: RequestOptionsArgs): Observable<Response> {
-        const token = window.localStorage.getItem('id_token');
-        const headers = new Headers({
-            'jwt': token
-        });
-        if (!options) {
-            options = new RequestOptions({headers: headers});
-        } else if (!options.headers) {
-            options.headers = headers;
-        } else if (options.headers) {
-            options.headers.set('jwt', token);
-        }
-        return super.put(url, data, options);
+        return super.put(url, data, this.addTokenToHeader(options));
     }
 
     post(url: string, data: any, options?: RequestOptionsArgs): Observable<Response> {
-        const token = window.localStorage.getItem('id_token');
-        const headers = new Headers({
-            'jwt': token
-        });
-        if (!options) {
-            options = new RequestOptions({headers: headers});
-        } else if (!options.headers) {
-            options.headers = headers;
-        } else if (options.headers) {
-            options.headers.set('jwt', token);
-        }
-        return super.post(url, data, options);
+        return super.post(url, data, this.addTokenToHeader(options));
     }
 
     delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        return super.delete(url, this.addTokenToHeader(options));
+    }
+
+    addTokenToHeader(options) {
         const token = window.localStorage.getItem('id_token');
         const headers = new Headers({
             'jwt': token
@@ -88,6 +59,6 @@ export class HttpTokenDecorator extends HttpDecorator {
         } else if (options.headers) {
             options.headers.set('jwt', token);
         }
-        return super.delete(url, options);
+        return options;
     }
 }
