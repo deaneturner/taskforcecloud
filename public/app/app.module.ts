@@ -24,6 +24,7 @@ import { ErrorComponent } from './error/error.component';
 import { NotificationService } from './services/notification.service';
 import { AppContextService } from './services/app.context.service';
 import { LoggingAspect } from './shared/aspects/logging.aspect';
+import { TokenAspect } from './shared/aspects/token.aspect';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -33,7 +34,8 @@ const APP_PROVIDERS = [
     AppGuard,
     NotificationService,
     AppContextService,
-    LoggingAspect
+    LoggingAspect,
+    TokenAspect
 ];
 
 type StoreType = {
