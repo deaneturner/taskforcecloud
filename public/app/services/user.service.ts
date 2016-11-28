@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Router } from '@angular/router';
-import { Wove } from 'aspect.js-angular';
+import { Wove } from 'aspect.js';
 
 import { NotificationService } from './notification.service';
 

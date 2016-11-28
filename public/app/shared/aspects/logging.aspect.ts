@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { beforeMethod, Metadata } from 'aspect.js';
+import { beforeMethod, afterMethod, Metadata } from 'aspect.js';
 
 @Injectable()
 export class LoggingAspect {
@@ -12,5 +12,14 @@ export class LoggingAspect {
       Called ${meta.className}.${meta.method.name}
       with args: ${meta.method.args.join(', ')}.`
         );
+    }
+
+    @afterMethod({
+        classNamePattern: /(User)Service/,
+        methodNamePattern: /^(get)/
+    })
+    after(meta: Metadata) {
+        console.log(`Inside logger after for ${meta.className}.${meta.method.name}
+        'with args ${meta.method.args.join(', ')}`);
     }
 }
