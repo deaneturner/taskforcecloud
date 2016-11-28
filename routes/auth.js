@@ -45,10 +45,10 @@ var auth = {
         return dbUserObj;
     },
 
-    validateUser: function(username) {
+    validateUser: function(id) {
         // spoofing the DB response for simplicity
         var dbUserObj = { // spoofing a userobject from the DB.
-            name: 'arvind',
+            name: '5807dabb923118000f707626',
             role: 'admin',
             username: 'arvind@myapp.com'
         };
