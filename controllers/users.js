@@ -1,7 +1,6 @@
 var BaseController = require('./basecontroller');
 var swagger = require('swagger-node-restify');
 var jwt = require('jwt-simple');
-var _ = require('underscore');
 
 function Users() {
 }

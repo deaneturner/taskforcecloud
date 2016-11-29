@@ -30,12 +30,7 @@ restify.defaultResponseHeaders = function(data) {
  Validate each request, inspecting json web token
  */
 server.use(function(req, res, next) {
-    var results = lib.jwtValidator.validateRequest(req, res, next);
-    if (results.valid) {
-        next();
-    } else {
-        res.send();
-    }
+    lib.jwtValidator.validateRequest(req, res, next);
 });
 
 /**
