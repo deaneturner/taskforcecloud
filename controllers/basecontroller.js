@@ -7,7 +7,7 @@ function BaseController() {
     this.server = null;
 }
 
-BaseController.prototype.setUpActions = function(app, sw) {
+BaseController.prototype.setUpActions = function(app, sw, lib) {
     this.server = app;
     _.each(this.actions, function(act) {
         var method = act['spec']['method'];

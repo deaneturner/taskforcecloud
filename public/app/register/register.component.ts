@@ -56,7 +56,8 @@ export class Register implements OnInit {
             lastName: '',
             password: '',
             confirmPassword: '',
-            isKeepLoggedIn: false
+            role: '',
+            isKeepLoggedIn: true
         };
     }
 

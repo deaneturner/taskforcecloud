@@ -16,6 +16,10 @@ module.exports = {
         'lastName': {
             'type': 'string',
             'description': 'User\'s last name'
+        },
+        'role': {
+            'type': 'string',
+            'description': 'User\'s authorization role'
         }
     }
 };

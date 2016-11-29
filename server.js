@@ -27,6 +27,13 @@ restify.defaultResponseHeaders = function(data) {
 // });
 
 /**
+ Validate each request, inspecting json web token
+ */
+server.use(function(req, res, next) {
+    lib.jwtValidator.validateRequest(req, res, next);
+});
+
+/**
  Validate each request, as long as there is a schema for it
  */
 server.use(function(req, res, next) {
