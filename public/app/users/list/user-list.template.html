@@ -3,8 +3,9 @@
         <span class="thumb-sm pull-xs-left mr">
                     <img class="img-circle" src="{{ user.imgSrc || 'assets/img/avatar.png' }}" alt="...">
                 </span>
-        <i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="user.indicatorClass"></i>
-        <h6 class="no-margin">{{ user.username || 'unknown'}}</h6>
+        <!--<i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="user.indicatorClass"></i>-->
+        <h6 class="no-margin pull-xs-right">{{ user.role || ''}}</h6>
+        <h6 class="no-margin">{{ user.username || ''}}</h6>
         <small class="text-muted">{{ user.firstName }} {{ user.lastName }}</small>
     </a>
 </div>

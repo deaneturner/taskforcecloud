@@ -50,7 +50,8 @@ export class Login implements OnInit, AfterViewChecked {
             firstName: '',
             lastName: '',
             password: '',
-            isKeepLoggedIn: false
+            role: '',
+            isKeepLoggedIn: true
         };
     }
 

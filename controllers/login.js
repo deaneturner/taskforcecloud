@@ -79,6 +79,7 @@ module.exports = function(lib) {
                         password: req.params.password,
                         firstName: req.params.firstName,
                         lastName: req.params.lastName,
+                        role: 'admin',
                         isKeepLoggedIn: req.params.isKeepLoggedIn
                     });
 
