@@ -35,25 +35,10 @@
                                         </ul>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" name="password"
-                                               placeholder="Password"
-                                               [(ngModel)]="user.password" validateEqual="confirmPassword"
-                                               reverse="true"
-                                               pattern="^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*"
-                                               tabindex="2"
-                                               required>
-                                        <ul class="validation-errors-list filled"
-                                            *ngFor="let err of formErrors.password">
-                                            <li class="validation-type">{{ err }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-xs-12">
-                                    <div class="form-group">
                                         <input class="form-control" type="text" name="firstName"
                                                placeholder="First Name"
                                                [(ngModel)]="user.firstName"
-                                               tabindex="3"
+                                               tabindex="2"
                                                required>
                                         <ul class="validation-errors-list filled"
                                             *ngFor="let err of formErrors.firstName">
@@ -63,22 +48,31 @@
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="lastName" placeholder="Last Name"
                                                [(ngModel)]="user.lastName"
-                                               tabindex="4"
+                                               tabindex="3"
                                                required>
                                         <ul class="validation-errors-list filled"
                                             *ngFor="let err of formErrors.lastName">
                                             <li class="validation-type">{{ err }}</li>
                                         </ul>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="password"
+                                               placeholder="Password"
+                                               [(ngModel)]="user.password" validateEqual="confirmPassword"
+                                               reverse="true"
+                                               pattern="^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*"
+                                               tabindex="4"
+                                               required>
+                                        <ul class="validation-errors-list filled"
+                                            *ngFor="let err of formErrors.password">
+                                            <li class="validation-type">{{ err }}</li>
+                                        </ul>
+                                    </div>
                                     <div class="form-group">
                                         <input class="form-control" type="password" name="confirmPassword"
                                                placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"
                                                validateEqual="password"
-                                               tabindex="2"
+                                               tabindex="5"
                                                required>
                                         <ul class="validation-errors-list filled"
                                             *ngFor="let err of formErrors.confirmPassword">
@@ -86,36 +80,37 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="btn-toolbar pull-xs-right m-t-1">
-                                    <button class="btn btn-secondary btn-sm" [routerLink]="['/login']">Back to Login
-                                    </button>
-                                    <button type="submit"
-                                            class="btn btn-inverse btn-sm"
-                                            (click)="register(registrationForm.valid, registrationForm.value)"
-                                            [disabled]="!registrationForm.valid"
-                                            tabindex="6">Create
-                                        Account
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row m-t-1">
-                                <div class="col-md-6 push-md-6">
-                                    <div class="clearfix">
-                                        <div class="abc-checkbox widget-register-info pull-xs-right">
-                                            <input type="checkbox"
-                                                   id="isKeepLoggedIn"
-                                                   name="isKeepLoggedIn"
-                                                   tabindex="5"
-                                                   [(ngModel)]="user.isKeepLoggedIn">
-                                            <label for="isKeepLoggedIn">Keep me signed in </label>
-                                        </div>
+                                <div class="clearfix">
+                                    <div class="btn-toolbar pull-xs-right m-t-1">
+                                        <button class="btn btn-secondary btn-sm"
+                                                [routerLink]="['/login']"
+                                                tabindex="-1">Back to Login
+                                        </button>
+                                        <button type="submit"
+                                                class="btn btn-inverse btn-sm"
+                                                (click)="register(registrationForm.valid, registrationForm.value)"
+                                                [disabled]="!registrationForm.valid"
+                                                tabindex="6">Create
+                                            Account
+                                        </button>
                                     </div>
                                 </div>
+                                <div class="row m-t-1">
+                                    <div class="col-md-6 push-md-6">
+                                        <div class="clearfix">
+                                            <div class="abc-checkbox widget-register-info pull-xs-right">
+                                                <input type="checkbox"
+                                                       id="isKeepLoggedIn"
+                                                       name="isKeepLoggedIn"
+                                                       [(ngModel)]="user.isKeepLoggedIn">
+                                                <label for="isKeepLoggedIn">Keep me signed in </label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <div class="col-md-6 pull-md-6">
-                                    <a class="mr-n-lg" href="#">Trouble with account?</a>
+                                    <div class="col-md-6 pull-md-6">
+                                        <a class="mr-n-lg" href="#" tabindex="-1">Trouble with account?</a>
+                                    </div>
                                 </div>
                             </div>
                         </form>
