@@ -64,6 +64,8 @@ export class Login implements OnInit, AfterViewChecked {
                     this.appContextService.publishCurrentUser(user);
                 } else if (res.success === false) {
                     const field = res.field;
+                    // clear any previous errors
+                    this.formErrors[field] = [];
                     this.formErrors[field].push(this.validationMessages[field][res.msgKey]);
                 }
             });
