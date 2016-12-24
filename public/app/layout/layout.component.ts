@@ -189,19 +189,21 @@ export class Layout implements OnInit {
         // }
     }
 
-    registerSubscribe() {
+    initCurrentUser() {
         const self = this;
-        // subscribe
+        // subscribe to retrieval of current user
         this.messageBusService.getCurrentUser().subscribe(
             currentUser => {
+                // navbar and sidebar
                 self.navbarComponent.currentUser = currentUser;
                 self.sidebarComponent.currentUser = currentUser;
                 self.appState.set('currentUser', currentUser);
             });
-        // register
-        // initialize current user
-        this.messageBusService.publishCurrentUserByToken();
-
+        /*
+         * Trigger the retrieval of current user object.
+         * Subscription (above) will set current user.
+         */
+        this.messageBusService.retrieveCurrentUser();
     }
 
     ngOnInit(): void {
@@ -209,7 +211,7 @@ export class Layout implements OnInit {
         /*
          * Current User Register / Subscribe
          */
-        this.registerSubscribe();
+        this.initCurrentUser();
 
         if (localStorage.getItem('nav-static') === 'true') {
             this.config.state['nav-static'] = true;
