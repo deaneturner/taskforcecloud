@@ -4,9 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from './user.service';
 
-/*
- * Top-level application message bus
- */
 @Injectable()
 export class MessageBusService {
     private currentUserSubject = new Subject<string>();

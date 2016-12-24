@@ -3,6 +3,7 @@ import { Http, RequestOptions, Response, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { NotificationService } from './notification.service';
+import { AppState } from '../app.service';
 
 import { User } from '../model/user.interface';
 
@@ -15,6 +16,7 @@ export class UserService {
 
     constructor(private http: Http,
                 private notificationService: NotificationService,
+                private appState: AppState,
                 private router: Router) {
 
         /*
@@ -24,7 +26,18 @@ export class UserService {
          *  - User (property key = cachedUserObservable)
          */
         this.cacheManager = {
-            selectedUser: {},
+            /*
+             * Get the cache for an object using its property key
+             */
+            getCache: (cachedObservableKey: string) => {
+                return this[cachedObservableKey];
+            },
+            /*
+             * Set the cache for an object using its property key
+             */
+            setCache: (cachedObservableKey: string, cachedObservable: any) => {
+                this[cachedObservableKey] = cachedObservable;
+            },
             /*
              * Clear the cache for an object using its property key
              */
@@ -32,17 +45,18 @@ export class UserService {
                 this[cachedObservable] = null;
             },
             /*
-             * Route to the given router link and clear the cache as necessary
+             * Route to the given router link and clear the cache if the user id has changed
              */
             selectUser: (routerLink: any[]) => {
                 /*
-                 * If there is a cache to clear and the router link navigates to another user,
+                 * If router link navigates to another user,
                  * clear the cache using the associate property key
                  */
+                const userCache = this.cacheManager.getCache('cachedUserObservable');
                 if (// there is a cached user
-                    this.cacheManager.selectedUser &&
+                    userCache &&
                     // and the route is not a link to the currently selected user id
-                    (this.cacheManager.selectedUser._id !== routerLink[routerLink.length - 1])) {
+                    (userCache._id !== routerLink[routerLink.length - 1])) {
                     // clear the cache stored via the cachedUserObservable property
                     this.cacheManager.clearCache('cachedUserObservable');
                 }
@@ -88,7 +102,12 @@ export class UserService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.put('/api/users/' + id, user, {headers: headers})
-            .map((response: Response) => <User>(response.json()))
+            .map((response: any) => {
+                const res = response.json();
+                // update the cache with the latest model
+                this.cacheManager.setCache('cachedUserObservable', res.data);
+                return <User>(res);
+            })
             .catch(this.notificationService.handleError);
     }
 

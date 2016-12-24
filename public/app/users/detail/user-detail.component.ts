@@ -46,14 +46,16 @@ export class UserDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const selectedUser = self.userService.cacheManager.selectedUser || {};
+                    const selectedUser = self.userService.cacheManager
+                            .getCache('cachedUserObservable') || {};
                     if (params['id'] !== selectedUser._id) {
-                        self.userService.cacheManager.clearCache('cachedUserObservable');
+                        // self.userService.cacheManager.clearCache('cachedUserObservable');
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
                                     self.user = user;
-                                    self.userService.cacheManager.selectedUser = user;
+                                    self.userService.cacheManager
+                                        .setCache('cachedUserObservable', user);
                                 },
                                 error => {
                                 } // error is handled by service
