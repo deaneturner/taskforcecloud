@@ -22,14 +22,18 @@
                             <div class="form-group">
                                 <input type="email" class="form-control" name="username" placeholder="Username (E-mail Address)"
                                        [(ngModel)]="user.username" required
-                                       pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" required>
+                                       pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                                       tabindex="1"
+                                       required>
                                 <ul class="validation-errors-list filled" *ngFor="let err of formErrors.username">
                                     <li class="validation-type">{{ err }}</li>
                                 </ul>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" type="password" name="password" placeholder="Password"
-                                       [(ngModel)]="user.password" required>
+                                       [(ngModel)]="user.password"
+                                       tabindex="2"
+                                       required>
                                 <ul class="validation-errors-list filled" *ngFor="let err of formErrors.password">
                                     <li class="validation-type">{{ err }}</li>
                                 </ul>
@@ -41,7 +45,8 @@
                                     </button>
                                     <button type="submit" class="btn btn-inverse btn-sm"
                                             (click)="login(loginForm.valid, loginForm.value)"
-                                            [disabled]="!loginForm.valid">Login
+                                            [disabled]="!loginForm.valid"
+                                            tabindex="4">Login
                                     </button>
                                 </div>
                             </div>
@@ -50,7 +55,8 @@
                                     <div class="clearfix">
                                         <div class="abc-checkbox widget-login-info pull-xs-right">
                                             <input type="checkbox" id="isKeepLoggedIn" name="isKeepLoggedIn"
-                                                   [(ngModel)]="user.isKeepLoggedIn">
+                                                   [(ngModel)]="user.isKeepLoggedIn"
+                                                   tabindex="3">
                                             <label for="isKeepLoggedIn">Keep me signed in </label>
                                         </div>
                                     </div>

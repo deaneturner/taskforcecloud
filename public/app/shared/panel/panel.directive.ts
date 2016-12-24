@@ -1,4 +1,4 @@
-import {Directive, Input} from '@angular/core';
+import { Directive, Input } from '@angular/core';
 declare var jQuery: any;
 
 @Directive({
@@ -60,7 +60,7 @@ export class PanelDirective {
         /**
          * Init tooltips for all widget controls on page
          */
-        //jQuery('.widget-controls > a').tooltip({placement: 'bottom'});
+        // jQuery('.widget-controls > a').tooltip({placement: 'bottom'});
     }
 
     ngOnInit(): void {

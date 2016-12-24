@@ -1,6 +1,6 @@
-import {Component, ViewEncapsulation, ViewChild, Input} from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, Input } from '@angular/core';
 
-import {NotificationService} from '../../services/notification.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
     selector: 'tfc-modal-component',

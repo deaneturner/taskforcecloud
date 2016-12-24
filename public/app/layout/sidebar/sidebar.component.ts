@@ -1,8 +1,9 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
-import {Router, NavigationEnd} from '@angular/router';
-import {Location} from '@angular/common';
-import {AppConfig} from '../../app.config';
-import {AuthService} from '../../services/auth.service';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+
 declare var jQuery: any;
 
 @Component({
@@ -14,13 +15,14 @@ declare var jQuery: any;
 export class Sidebar implements OnInit {
     $el: any;
     config: any;
-    router: Router;
-    location: Location;
     currentUser: any = {};
 
-    constructor(config: AppConfig, el: ElementRef, router: Router, location: Location, private service: AuthService) {
+    constructor(private el: ElementRef,
+                private router: Router,
+                private location: Location,
+                private service: AuthService,
+                public userService: UserService) {
         this.$el = jQuery(el.nativeElement);
-        this.config = config.getConfig();
         this.router = router;
         this.location = location;
     }

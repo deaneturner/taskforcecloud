@@ -1,17 +1,15 @@
-var BaseController = require("./basecontroller");
-var _ = require("underscore");
-var swagger = require("swagger-node-restify");
+var BaseController = require('./basecontroller');
+var swagger = require('swagger-node-restify');
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var lib = require("../lib");
-var User = require('../models/user');
+var constants = require('../lib/constants');
 
 function Login() {
 }
 
 Login.prototype = new BaseController();
 
-module.exports = function (lib) {
+module.exports = function(lib) {
     var controller = new Login();
 
     function createToken(user, isKeepLoggedIn) {
@@ -30,25 +28,22 @@ module.exports = function (lib) {
         'description': 'Finds the user and logs them in',
         'responsClass': 'User',
         'nickname': 'loginUser'
-    }, function (req, res, next) {
-
+    }, function(req, res, next) {
         // if (!req.body.username || !req.body.password) {
-        //     return res.status(400).send("You must send the username and the password");
+        //     return res.status(400).send('You must send the username and the password');
         // }
 
         var userModel = lib.db.model('User');
         userModel.findOne({
             username: req.params.username
-        }).exec(function (err, user) {
+        }).exec(function(err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
             if (!user) {
-                //res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
+                // res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
                 controller.writeHAL(res, {success: false, field: 'username', msgKey: 'exists'});
-            }
-
-            else {
-                user.comparePassword(req.params.password, function (err, isMatch) {
+            } else {
+                user.comparePassword(req.params.password, function(err, isMatch) {
                     if (isMatch && !err) {
                         controller.writeHAL(res, {
                             success: true,
@@ -69,11 +64,11 @@ module.exports = function (lib) {
         'description': 'Registers the user and then logs them in',
         'responsClass': 'User',
         'nickname': 'registerUser'
-    }, function (req, res, next) {
+    }, function(req, res, next) {
         var userModel = lib.db.model('User');
         userModel.findOne({
             username: req.params.username
-        }).exec(function (err, user) {
+        }).exec(function(err, user) {
             if (err) return next(controller.RESTError('InternalServerError', err));
 
             if (!user) {
@@ -83,10 +78,13 @@ module.exports = function (lib) {
                     var newUserModel = lib.db.model('User')({
                         username: req.params.username,
                         password: req.params.password,
+                        firstName: req.params.firstName,
+                        lastName: req.params.lastName,
+                        role: constants.roles.default,
                         isKeepLoggedIn: req.params.isKeepLoggedIn
                     });
 
-                    newUserModel.save(function (err, newUser) {
+                    newUserModel.save(function(err, newUser) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
 
                         controller.writeHAL(res, {
@@ -98,8 +96,7 @@ module.exports = function (lib) {
                     // invalid password
                     controller.writeHAL(res, {success: false, field: 'password', msgKey: 'pattern'});
                 }
-            }
-            else {
+            } else {
                 // user exists
                 controller.writeHAL(res, {success: false, field: 'username', msgKey: 'exists'});
             }

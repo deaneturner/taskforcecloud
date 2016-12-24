@@ -1,20 +1,18 @@
-var _ = require("underscore");
-var restify = require("restify");
-var colors = require("colors");
-var halson = require("halson");
-var lib = require("../lib/index");
+var _ = require('underscore');
+var restify = require('restify');
+var halson = require('halson');
 
 function BaseController() {
     this.actions = [];
     this.server = null;
 }
 
-BaseController.prototype.setUpActions = function (app, sw) {
+BaseController.prototype.setUpActions = function(app, sw, lib) {
     this.server = app;
-    _.each(this.actions, function (act) {
+    _.each(this.actions, function(act) {
         var method = act['spec']['method'];
         if (sw) {
-            console.log("Setting up auto-doc for (", method, ") - ", act['spec']['nickname']);
+            console.log('Setting up auto-doc for (', method, ') - ', act['spec']['nickname']);
             if (method === 'DEL') {
                 method = 'DELETE';
             }
@@ -24,10 +22,10 @@ BaseController.prototype.setUpActions = function (app, sw) {
             method = 'DEL';
         }
         app[method.toLowerCase()](act['spec']['path'], act['action']);
-    })
+    });
 };
 
-BaseController.prototype.addAction = function (spec, fn) {
+BaseController.prototype.addAction = function(spec, fn) {
     var newAct = {
         'spec': spec,
         action: fn
@@ -35,11 +33,11 @@ BaseController.prototype.addAction = function (spec, fn) {
     this.actions.push(newAct);
 };
 
-BaseController.prototype.RESTError = function (type, msg) {
+BaseController.prototype.RESTError = function(type, msg) {
     if (restify[type]) {
         return new restify[type](msg.toString());
     } else {
-        console.log("Type " + type + " of error not found".red);
+        console.log('Type ' + type + ' of error not found'.red);
     }
 };
 
@@ -47,17 +45,18 @@ BaseController.prototype.RESTError = function (type, msg) {
  Takes care of calling the "toHAL" method on every resource before writing it
  back to the client
  */
-BaseController.prototype.writeHAL = function (res, obj) {
+BaseController.prototype.writeHAL = function(res, obj) {
     if (Array.isArray(obj)) {
         var newArr = [];
-        _.each(obj, function (item, k) {
+        _.each(obj, function(item, k) {
             item = item.toHAL();
             newArr.push(item);
         });
-        obj = halson(newArr); //lib.helpers.makeHAL(newArr)
+        obj = halson(newArr); // lib.helpers.makeHAL(newArr)
     } else {
-        if (obj && obj.toHAL)
+        if (obj && obj.toHAL) {
             obj = obj.toHAL();
+        }
     }
     if (!obj) {
         obj = {};
@@ -65,32 +64,32 @@ BaseController.prototype.writeHAL = function (res, obj) {
     res.json(obj);
 };
 
-/**
+/*
  Returns a HAL object, using the attributes passed.
  @data Is the JSON data
  @links(optional) An array of links objects ({name, href, title(optional)})
  @embed(optional) A list of embedded JSON objects with the form: ({name, data})
- BaseController.prototype.toHAL = function(data, links, embed) {
-	var obj = halson(data)
 
-	if(links && links.length > 0) {
-		_.each(links, function(lnk) {
-			obj.addLink(lnk.name, {
-				href: lnk.href,
-				title: lnk.title || ''
-			})
-		})
-	}
+BaseController.prototype.toHAL = function(data, links, embed) {
+    var obj = halson(data)
 
-	if(embed && embed.length > 0) {
-		_.each(embed, function (item) {
-			obj.addEmbed(item.name, item.data)
-		})
-	}
+    if (links && links.length > 0) {
+        _.each(links, function(lnk) {
+            obj.addLink(lnk.name, {
+                href: lnk.href,
+                title: lnk.title || ''
+            })
+        })
+    }
 
-	return obj
+    if (embed && embed.length > 0) {
+        _.each(embed, function(item) {
+            obj.addEmbed(item.name, item.data)
+        })
+    }
+
+    return obj
 }
+*/
 
-
- */
 module.exports = BaseController;

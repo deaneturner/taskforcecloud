@@ -1,10 +1,9 @@
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { EqualValidator } from '../forms/equal-validator.directive';
 
-import {UserEditComponent} from './user-edit.component';
-import {UserService} from '../../services/user.service';
+import { UserEditComponent } from './user-edit.component';
 
 export const routes = [
     {path: '', component: UserEditComponent, pathMatch: 'full'}
@@ -12,14 +11,13 @@ export const routes = [
 
 @NgModule({
     declarations: [
-        UserEditComponent
+        UserEditComponent,
+        EqualValidator
     ],
     imports: [
         CommonModule,
-        FormsModule,
         RouterModule.forChild(routes)
-    ],
-    providers: [UserService]
+    ]
 })
 export default class UserEditModule {
     static routes = routes;

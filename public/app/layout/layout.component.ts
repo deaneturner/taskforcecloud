@@ -1,14 +1,14 @@
-import {Component, ViewEncapsulation, ElementRef, ViewChild, OnInit, AfterViewChecked} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component,
+    ViewEncapsulation, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {AppState} from '../app.service';
-import {AppConfig} from '../app.config';
+import { AppState } from '../app.service';
+import { AppConfig } from '../app.config';
 
-import {AppContextService} from '../services/app.context.service';
-import {NotificationService} from '../services/notification.service';
-import {ModalComponent} from '../shared/modal-window/modal.component';
-import {Navbar} from './navbar/navbar.component';
-import {Sidebar} from './sidebar/sidebar.component';
+import { AppContextService } from '../services/app.context.service';
+import { ModalComponent } from '../shared/modal-window/modal.component';
+import { Navbar } from './navbar/navbar.component';
+import { Sidebar } from './sidebar/sidebar.component';
 
 declare var jQuery: any;
 declare var Hammer: any;
@@ -146,9 +146,9 @@ export class Layout implements OnInit {
     }
 
     _sidebarMouseLeave(): void {
-        //if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
+        // if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
         this.collapseNavigation();
-        //}
+        // }
     }
 
     enableSwipeCollapsing(): void {
@@ -186,11 +186,11 @@ export class Layout implements OnInit {
         // if (this.configFn.isScreen('xs')
         //     || this.configFn.isScreen('sm') || this.configFn.isScreen('md')) {
         this.collapseNavigation();
-        //}
+        // }
     }
 
     registerSubscribe() {
-        var self = this;
+        const self = this;
         // subscribe
         this.appContextService.getCurrentUser().subscribe(
             currentUser => {
@@ -248,7 +248,7 @@ export class Layout implements OnInit {
             this.enableSwipeCollapsing();
         }
 
-        this.$sidebar.find('.collapse').on('show.bs.collapse', function (e): void {
+        this.$sidebar.find('.collapse').on('show.bs.collapse', function(e): void {
             // execute only if we're actually the .collapse element initiated event
             // return for bubbled events
             if (e.target !== e.currentTarget) {
@@ -261,7 +261,7 @@ export class Layout implements OnInit {
         })
         /* adding additional classes to navigation link li-parent
          for several purposes. see navigation styles */
-            .on('show.bs.collapse', function (e): void {
+            .on('show.bs.collapse', function(e): void {
                 // execute only if we're actually the .collapse element initiated event
                 // return for bubbled events
                 if (e.target !== e.currentTarget) {
@@ -269,7 +269,7 @@ export class Layout implements OnInit {
                 }
 
                 jQuery(this).closest('li').addClass('open');
-            }).on('hide.bs.collapse', function (e): void {
+            }).on('hide.bs.collapse', function(e): void {
             // execute only if we're actually the .collapse element initiated event
             // return for bubbled events
             if (e.target !== e.currentTarget) {

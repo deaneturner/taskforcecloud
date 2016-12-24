@@ -1,5 +1,4 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
-import {AppConfig} from '../app.config';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 declare var jQuery: any;
 
 @Component({
@@ -26,8 +25,7 @@ export class UsersComponent implements OnInit {
         tolerance: 'pointer'
     };
 
-    constructor(appConfig: AppConfig) {
-        this.appConfig = appConfig.getConfig();
+    constructor() {
     }
 
     ngOnInit(): void {

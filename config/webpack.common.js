@@ -15,7 +15,7 @@ const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
 /*
  * Webpack Constants
  */
-const HMR = helpers.hasProcessFlag('hot');
+// const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
     title: 'Task Force Cloud',
     baseUrl: '/',
@@ -27,8 +27,9 @@ const METADATA = {
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function (options) {
-    isProd = options.env === 'production';
+module.exports = function(options) {
+    // isProd = options.env === 'production';
+    var isProd = options.env === 'production';
     return {
 
         /*
@@ -45,7 +46,7 @@ module.exports = function (options) {
          *
          * See: http://webpack.github.io/docs/configuration.html#cache
          */
-        //cache: false,
+        // cache: false,
 
         /*
          * The entry point for the bundle
@@ -76,7 +77,7 @@ module.exports = function (options) {
             extensions: ['', '.ts', '.js', '.json'],
 
             // An array of directory names to be resolved to the current directory
-            modules: [helpers.root('public'), 'node_modules'],
+            modules: [helpers.root('public'), 'node_modules']
 
         },
 
@@ -102,6 +103,11 @@ module.exports = function (options) {
                         flags: 'g'
                     },
                     include: [helpers.root('public')]
+                },
+                {
+                    test: /\.ts$/,
+                    include: [helpers.root('public/app')],
+                    loader: 'tslint-loader'
                 }
 
             ],
@@ -274,8 +280,8 @@ module.exports = function (options) {
                 $: 'jquery',
                 jquery: 'jquery',
                 'window.jQuery': 'jquery',
-                "Tether": 'tether',
-                "window.Tether": "tether",
+                'Tether': 'tether',
+                'window.Tether': 'tether',
                 Hammer: 'hammerjs/hammer',
                 moment: 'moment'
             }),
