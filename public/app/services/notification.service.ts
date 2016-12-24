@@ -1,10 +1,10 @@
+import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'messenger/build/js/messenger.min';
 declare var Messenger: any;
 
-import { ModalComponent } from '../shared/modal-window/modal.component';
-
+@Injectable()
 export class NotificationService {
     modal: any = {
         el: '',
