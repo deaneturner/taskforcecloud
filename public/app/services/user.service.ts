@@ -17,25 +17,49 @@ export class UserService {
                 private notificationService: NotificationService,
                 private router: Router) {
 
+        /*
+         * Cache Manager - reduce repeated http requests for working objects by caching them
+         *
+         *  Current objects:
+         *  - User (property key = cachedUserObservable)
+         */
         this.cacheManager = {
             selectedUser: {},
+            /*
+             * Clear the cache for an object using its property key
+             */
             clearCache: (cachedObservable: string) => {
                 this[cachedObservable] = null;
             },
+            /*
+             * Route to the given router link and clear the cache as necessary
+             */
             selectUser: (routerLink: any[]) => {
-                if (this.cacheManager.selectedUser &&
+                /*
+                 * If there is a cache to clear and the router link navigates to another user,
+                 * clear the cache using the associate property key
+                 */
+                if (// there is a cached user
+                    this.cacheManager.selectedUser &&
+                    // and the route is not a link to the currently selected user id
                     (this.cacheManager.selectedUser._id !== routerLink[routerLink.length - 1])) {
+                    // clear the cache stored via the cachedUserObservable property
                     this.cacheManager.clearCache('cachedUserObservable');
                 }
+                // route to link
                 this.router.navigate(routerLink);
             }
         };
     }
 
+    /*
+     * Retrieve a user observable - either the cached observable or new http response observable.
+     */
     getUser(id: string) {
-        if (!this.cachedUserObservable) {
+        if (!this.cachedUserObservable || (this.cachedUserObservable.id !== id)) {
             this.cachedUserObservable = this.http.get('/api/users/' + id)
                 .map((res: Response) => <User>(res.json()))
+                // keep one item in stack
                 .publishReplay(1)
                 .refCount()
                 .catch(this.notificationService.handleError);
