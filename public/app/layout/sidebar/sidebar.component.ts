@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { MessageBusService } from '../../services/message.bus.service';
 
 declare var jQuery: any;
 
@@ -21,7 +22,8 @@ export class Sidebar implements OnInit {
                 private router: Router,
                 private location: Location,
                 private service: AuthService,
-                public userService: UserService) {
+                public userService: UserService,
+                private messageBusService: MessageBusService) {
         this.$el = jQuery(el.nativeElement);
         this.router = router;
         this.location = location;
@@ -62,6 +64,10 @@ export class Sidebar implements OnInit {
     }
 
     ngOnInit(): void {
+        this.messageBusService.getCurrentUser().subscribe(
+            currentUser => {
+                this.currentUser = currentUser;
+            });
         jQuery(window).on('sn:resize', this.initSidebarScroll.bind(this));
         this.initSidebarScroll();
 

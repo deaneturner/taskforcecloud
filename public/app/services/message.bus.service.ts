@@ -20,7 +20,7 @@ export class MessageBusService {
         this.currentUserSubject.next(currentUser);
     }
 
-    publishCurrentUserByToken() {
+    retrieveCurrentUser() {
         const self = this;
         this.userService.getUserByToken()
             .subscribe(
