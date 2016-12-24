@@ -5,7 +5,6 @@ import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
-import { ServiceModule } from './services/service.module';
 import { HttpTokenDecorator } from './app.decorators';
 
 import './rxjs-extensions';
@@ -24,6 +23,7 @@ import { AppGuard } from './app.guard';
 import { ErrorComponent } from './error/error.component';
 import { NotificationService } from './services/notification.service';
 import { MessageBusService } from './services/message.bus.service';
+import { UserService } from './services/user.service';
 import { LoggingAspect } from './shared/aspects/logging.aspect';
 import { TokenAspect } from './shared/aspects/token.aspect';
 
@@ -34,6 +34,7 @@ const APP_PROVIDERS = [
     AppConfig,
     AppGuard,
     NotificationService,
+    UserService,
     MessageBusService
 ];
 
@@ -56,7 +57,6 @@ type StoreType = {
         BrowserModule,
         FormsModule,
         HttpModule,
-        ServiceModule,
         RouterModule.forRoot(ROUTES, {useHash: true})
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection
