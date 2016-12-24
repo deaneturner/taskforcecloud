@@ -66,10 +66,13 @@ module.exports = function(lib) {
             return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
         } else {
             var model = lib.db.model('User');
-            model.findByIdAndUpdate(req.params.id, {$set: JSON.parse(req.body)}, {new: true}, function(err, updatedUser) {
-                if (err) return next(controller.RESTError('InternalServerError', err));
-                controller.writeHAL(res, {success: true, data: updatedUser});
-            });
+            model.findByIdAndUpdate(req.params.id,
+                {$set: JSON.parse(req.body)},
+                {new: true},
+                function(err, updatedUser) {
+                    if (err) return next(controller.RESTError('InternalServerError', err));
+                    controller.writeHAL(res, {success: true, data: updatedUser});
+                });
         }
     });
 
