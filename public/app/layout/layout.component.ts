@@ -7,8 +7,6 @@ import { AppConfig } from '../app.config';
 
 import { MessageBusService } from '../services/message.bus.service';
 import { ModalComponent } from '../shared/modal-window/modal.component';
-import { Navbar } from './navbar/navbar.component';
-import { Sidebar } from './sidebar/sidebar.component';
 
 declare var jQuery: any;
 declare var Hammer: any;
@@ -34,12 +32,6 @@ export class Layout implements OnInit {
 
     @ViewChild(ModalComponent)
     modalComponent: ModalComponent;
-
-    @ViewChild(Navbar)
-    navbarComponent: Navbar;
-
-    @ViewChild(Sidebar)
-    sidebarComponent: Sidebar;
 
     constructor(config: AppConfig,
                 el: ElementRef,
@@ -189,14 +181,15 @@ export class Layout implements OnInit {
         // }
     }
 
+    /*
+     * Trigger retrieval of current user and notify subscribers (sidebar, navbar).
+     * Set current user on application state.
+     */
     initCurrentUser() {
         const self = this;
         // subscribe to retrieval of current user
         this.messageBusService.getCurrentUser().subscribe(
             currentUser => {
-                // navbar and sidebar
-                self.navbarComponent.currentUser = currentUser;
-                self.sidebarComponent.currentUser = currentUser;
                 self.appState.set('currentUser', currentUser);
             });
         /*
@@ -207,10 +200,6 @@ export class Layout implements OnInit {
     }
 
     ngOnInit(): void {
-
-        /*
-         * Current User Register / Subscribe
-         */
         this.initCurrentUser();
 
         if (localStorage.getItem('nav-static') === 'true') {

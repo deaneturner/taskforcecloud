@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, ElementRef, Output } from '@angular/co
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { MessageBusService } from '../../services/message.bus.service';
 
 declare var jQuery: any;
 
@@ -18,7 +19,8 @@ export class Navbar implements OnInit {
     constructor(private authService: AuthService,
                 private router: Router,
                 private el: ElementRef,
-                public userService: UserService) {
+                public userService: UserService,
+                private messageBusService: MessageBusService) {
         this.$el = jQuery(el.nativeElement);
     }
 
@@ -41,6 +43,10 @@ export class Navbar implements OnInit {
     }
 
     ngOnInit(): void {
+        this.messageBusService.getCurrentUser().subscribe(
+            currentUser => {
+                this.currentUser = currentUser;
+            });
         setTimeout(() => {
             let $chatNotification = jQuery('#chat-notification');
             $chatNotification.removeClass('hide').addClass('animated fadeIn')
