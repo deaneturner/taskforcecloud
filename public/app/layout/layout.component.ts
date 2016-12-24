@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AppState } from '../app.service';
 import { AppConfig } from '../app.config';
 
-import { AppContextService } from '../services/app.context.service';
+import { MessageBusService } from '../services/message.bus.service';
 import { ModalComponent } from '../shared/modal-window/modal.component';
 import { Navbar } from './navbar/navbar.component';
 import { Sidebar } from './sidebar/sidebar.component';
@@ -45,7 +45,7 @@ export class Layout implements OnInit {
                 el: ElementRef,
                 router: Router,
                 private appState: AppState,
-                private appContextService: AppContextService) {
+                private messageBusService: MessageBusService) {
         this.el = el;
         this.config = config.getConfig();
         this.configFn = config;
@@ -192,7 +192,7 @@ export class Layout implements OnInit {
     registerSubscribe() {
         const self = this;
         // subscribe
-        this.appContextService.getCurrentUser().subscribe(
+        this.messageBusService.getCurrentUser().subscribe(
             currentUser => {
                 self.navbarComponent.currentUser = currentUser;
                 self.sidebarComponent.currentUser = currentUser;
@@ -200,7 +200,7 @@ export class Layout implements OnInit {
             });
         // register
         // initialize current user
-        this.appContextService.publishCurrentUserByToken();
+        this.messageBusService.publishCurrentUserByToken();
 
     }
 

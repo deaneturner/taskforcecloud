@@ -23,7 +23,7 @@ import { AppConfig } from './app.config';
 import { AppGuard } from './app.guard';
 import { ErrorComponent } from './error/error.component';
 import { NotificationService } from './services/notification.service';
-import { AppContextService } from './services/app.context.service';
+import { MessageBusService } from './services/message.bus.service';
 import { LoggingAspect } from './shared/aspects/logging.aspect';
 import { TokenAspect } from './shared/aspects/token.aspect';
 
@@ -34,7 +34,7 @@ const APP_PROVIDERS = [
     AppConfig,
     AppGuard,
     NotificationService,
-    AppContextService
+    MessageBusService
 ];
 
 type StoreType = {

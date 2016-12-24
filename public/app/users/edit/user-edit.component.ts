@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AppContextService } from '../../services/app.context.service';
+import { MessageBusService } from '../../services/message.bus.service';
 import { UserService } from '../../services/user.service';
 import { AppState } from '../../app.service';
 import { User } from '../../model/user.interface';
@@ -46,7 +46,7 @@ export class UserEditComponent implements OnInit {
 
     constructor(private appState: AppState,
                 private router: Router,
-                private appContextService: AppContextService,
+                private messageBusService: MessageBusService,
                 private activatedRoute: ActivatedRoute,
                 private userService: UserService) {
     }
@@ -87,7 +87,7 @@ export class UserEditComponent implements OnInit {
                         if (res.success) {
                             self.userService.cacheManager.clearCache('cachedUserObservable');
                             if (self.appState.get('currentUser')._id === res.data._id) {
-                                this.appContextService.publishCurrentUser(res.data);
+                                this.messageBusService.publishCurrentUser(res.data);
                             }
                             self.router.navigate(['/app/users/detail', self.user._id]);
                         } else if (res.success === false) {
