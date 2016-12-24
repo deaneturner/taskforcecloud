@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserService } from './user.service';
 
 @Injectable()
-export class AppContextService {
+export class MessageBusService {
     private currentUserSubject = new Subject<string>();
     private currentUserObservable$ = this.currentUserSubject.asObservable();
 

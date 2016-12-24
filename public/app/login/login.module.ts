@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AppContextService } from '../services/app.context.service';
+import { MessageBusService } from '../services/message.bus.service';
 import { Login } from './login.component';
 
 export const routes = [
@@ -19,7 +19,7 @@ export const routes = [
         FormsModule,
         RouterModule.forChild(routes),
     ],
-    providers: [AppContextService]
+    providers: [MessageBusService]
 })
 export default class LoginModule {
     static routes = routes;

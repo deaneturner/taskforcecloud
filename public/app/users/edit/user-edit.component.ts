@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AppContextService } from '../../services/app.context.service';
+import { MessageBusService } from '../../services/message.bus.service';
 import { UserService } from '../../services/user.service';
 import { AppState } from '../../app.service';
 import { User } from '../../model/user.interface';
@@ -46,7 +46,7 @@ export class UserEditComponent implements OnInit {
 
     constructor(private appState: AppState,
                 private router: Router,
-                private appContextService: AppContextService,
+                private messageBusService: MessageBusService,
                 private activatedRoute: ActivatedRoute,
                 private userService: UserService) {
     }
@@ -58,13 +58,15 @@ export class UserEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const selectedUser = self.userService.cacheManager.selectedUser || {};
+                    const selectedUser = self.userService.cacheManager
+                            .getCache('cachedUserObservable') || {};
                     if (params['id'] !== selectedUser._id) {
                         self.userService.getUser(params['id'])
                             .subscribe(
                                 user => {
                                     self.user = user;
-                                    self.userService.cacheManager.selectedUser = user;
+                                    self.userService.cacheManager
+                                        .setCache('cachedUserObservable', user);
                                 },
                                 error => {
                                 } // error is handled by service
@@ -85,9 +87,13 @@ export class UserEditComponent implements OnInit {
                 .subscribe(
                     res => {
                         if (res.success) {
-                            self.userService.cacheManager.clearCache('cachedUserObservable');
-                            if (self.appState.get('currentUser')._id === res.data._id) {
-                                this.appContextService.publishCurrentUser(res.data);
+                            /*
+                             * If updating the current user, publish the change via the message bus
+                             */
+                            if (// is the current user
+                                self.appState.get('currentUser')._id === res.data._id) {
+                                // publish new user data
+                                this.messageBusService.publishCurrentUser(res.data);
                             }
                             self.router.navigate(['/app/users/detail', self.user._id]);
                         } else if (res.success === false) {
