@@ -1,8 +1,9 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item">YOU ARE HERE</li>
-    <li class="active breadcrumb-item">User Detail</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/users']">Users</li>
+    <li class="active breadcrumb-item">{{user.username}}</li>
 </ol>
-<h1 class="page-title">User - <span class="fw-semi-bold">Profile</span></h1>
+<h1 class="page-title">Detail User - <span class="fw-semi-bold">{{user.username}}</span></h1>
 <div class="row user-detail">
     <div class="col-lg-6 col-xs-12">
         <tfc-panel [title]="panel.title" [collapsed]="panel.collapsed" [showFullscreen]="panel.fullScreen"

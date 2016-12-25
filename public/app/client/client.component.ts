@@ -34,7 +34,7 @@ export class ClientComponent {
         jQuery('.widget-container').sortable(this.sortOptions);
 
         this.panel = {
-            title: 'Objectives',
+            title: 'Clients',
             iconClass: ['glyphicon-check'],
             data: [{
                 name: 'Maikel Basso',
