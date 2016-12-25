@@ -1,8 +1,9 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item">YOU ARE HERE</li>
-    <li class="active breadcrumb-item">User Detail</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/users']">Users</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/users/detail/', user._id]">{{user.username}}</li>
 </ol>
-<h1 class="page-title">Edit User <span class="fw-semi-bold">Profile</span></h1>
+<h1 class="page-title">Edit User - <span class="fw-semi-bold">{{user.username}}</span></h1>
 <section class="widget" widget id="autoload-widget"
          data-widgster-load="assets/demo/grid/autoload.php"
          data-post-processing="true"
