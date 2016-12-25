@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { ClientComponent } from './client.component';
 import { PanelModule } from '../shared/panel/panel.module';
-import { ObjectiveListModule } from '../objective/list/objective-list.module';
+import { ClientListModule } from './list/client-list.module';
 
 import { AppGuard } from '../app.guard';
 
@@ -15,7 +15,7 @@ export const routes = [
 ];
 
 @NgModule({
-    imports: [PanelModule, ObjectiveListModule, CommonModule, RouterModule.forChild(routes)],
+    imports: [PanelModule, ClientListModule, CommonModule, RouterModule.forChild(routes)],
     declarations: [ClientComponent]
 })
 export default class ClientModule {
