@@ -35,7 +35,7 @@ export class ClientComponent {
 
         this.panel = {
             title: 'Clients',
-            iconClass: ['glyphicon-check'],
+            iconClass: ['fa-handshake-o'],
             data: [{
                 name: 'Maikel Basso',
                 imgSrc: 'assets/img/people/a1.jpg',
