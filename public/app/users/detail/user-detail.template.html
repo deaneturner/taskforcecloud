@@ -1,12 +1,15 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item">YOU ARE HERE</li>
-    <li class="active breadcrumb-item">User Detail</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/users']">Users</li>
+    <li class="active breadcrumb-item">{{user.username}}</li>
 </ol>
-<h1 class="page-title">User - <span class="fw-semi-bold">Profile</span></h1>
+<h1 class="page-title">Detail - <span class="fw-semi-bold">User</span></h1>
 <div class="row user-detail">
     <div class="col-lg-6 col-xs-12">
-        <tfc-panel [title]="panel.title" [collapsed]="panel.collapsed" [showFullscreen]="panel.fullScreen"
-                   [menu]="panel.menu">
+        <tfc-panel
+                [collapsed]="panel.collapsed"
+                [showFullscreen]="panel.fullScreen"
+                [menu]="panel.menu">
             <section class="widget">
                 <div class="widget-body">
                     <div class="widget-top-overflow text-white">
@@ -20,17 +23,16 @@
               <span class="thumb-xlg">
                 <img class="img-circle" src="assets/img/avatar.png" alt="...">
               </span>
-                                <h5 class="fw-normal">Adam <span class="fw-semi-bold">Johns</span></h5>
+                                <h5 class="fw-normal">{{user.firstName}} <span class="fw-semi-bold">{{user.lastName}}</span></h5>
                                 <div>{{user.username}}</div>
-                                <p>{{user.firstName}} {{user.lastName}}</p>
                                 <p>{{user.role}}</p>
                                 <a href="#" class="btn btn-danger btn-sm mt">
                                     &nbsp;Send
                                     <i class="fa fa-envelope ml-xs"></i>&nbsp;
                                 </a>
                                 <ul class="contacts">
-                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> +375 29 555-55-55</a></li>
-                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> psmith@example.com</a>
+                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{user.phone || '(---) --- -----'}}</a></li>
+                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{user.email || '--- @ ---- . com'}}</a>
                                     </li>
                                     <li><i class="fa fa-map-marker fa-fw mr-xs"></i><a href="#"> Minsk, Belarus</a></li>
                                 </ul>

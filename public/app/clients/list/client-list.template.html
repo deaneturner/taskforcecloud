@@ -1,0 +1,11 @@
+<div class="list-group list-group-lg">
+    <a *ngFor="let item of data" href="#" class="list-group-item">
+        <!--<span class="thumb-sm pull-xs-left mr">-->
+        <!--<img class="img-circle" src="{{ item.imgSrc }}" alt="...">-->
+        <!--</span>-->
+        <i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="item.indicatorClass"></i>
+        <h6 class="no-margin">{{ item.name}}</h6>
+        <small class="text-muted">{{ item.lastUpdated}}</small>
+    </a>
+</div>
+

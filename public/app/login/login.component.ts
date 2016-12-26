@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { AuthService } from '../services/auth.service';
 import { User } from '../model/user.interface';
-import { AppContextService } from '../services/app.context.service';
+import { MessageBusService } from '../services/message.bus.service';
 
 @Component({
     selector: 'login',
@@ -40,7 +40,7 @@ export class Login implements OnInit, AfterViewChecked {
     currentForm: NgForm;
 
     constructor(private service: AuthService,
-                private appContextService: AppContextService,
+                private messageBusService: MessageBusService,
                 public router: Router) {
     }
 
@@ -51,6 +51,8 @@ export class Login implements OnInit, AfterViewChecked {
             lastName: '',
             password: '',
             role: '',
+            email: '',
+            phone: '',
             isKeepLoggedIn: true
         };
     }
@@ -61,7 +63,7 @@ export class Login implements OnInit, AfterViewChecked {
             this.service.loginfn(loginForm).then((res: any) => {
                 if (res.success) {
                     this.router.navigate(['/app/dashboard']);
-                    this.appContextService.publishCurrentUser(user);
+                    this.messageBusService.publishCurrentUser(user);
                 } else if (res.success === false) {
                     const field = res.field;
                     // clear any previous errors

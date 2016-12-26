@@ -17,7 +17,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { NotificationLoad } from './notifications/notifications-load.directive';
 import { Notifications } from './notifications/notifications.component';
 import { ModalComponent } from '../shared/modal-window/modal.component';
-import { AppContextService } from '../services/app.context.service';
+import { MessageBusService } from '../services/message.bus.service';
 import { UserService } from '../services/user.service';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { UserService } from '../services/user.service';
         Sidebar,
         Navbar,
         ChatSidebar, SearchPipe, Notifications, NotificationLoad, ChatMessage, ModalComponent],
-    providers: [AppContextService, UserService]
+    providers: [MessageBusService, UserService]
 })
 export default class LayoutModule {
 }

@@ -1,8 +1,9 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item">YOU ARE HERE</li>
-    <li class="active breadcrumb-item">User Detail</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/users']">Users</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/users/detail/', user._id]">{{user.username}}</li>
 </ol>
-<h1 class="page-title">Edit User <span class="fw-semi-bold">Profile</span></h1>
+<h1 class="page-title">Edit - <span class="fw-semi-bold">User</span></h1>
 <section class="widget" widget id="autoload-widget"
          data-widgster-load="assets/demo/grid/autoload.php"
          data-post-processing="true"
@@ -14,20 +15,42 @@
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
-                        <input type="email" class="form-control" name="username"
-                               placeholder="Username (E-mail Address)"
-                               [(ngModel)]="user.username" required
-                               pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" required>
+                        <label for="firstName">First Name</label>
+                        <input class="form-control"
+                               type="text"
+                               id="firstName"
+                               name="firstName"
+                               placeholder="First Name"
+                               [(ngModel)]="user.firstName"
+                               required>
                         <ul class="validation-errors-list filled"
-                            *ngFor="let err of formErrors.username">
+                            *ngFor="let err of formErrors.firstName">
                             <li class="validation-type">{{ err }}</li>
                         </ul>
                     </div>
                     <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input class="form-control"
+                               type="text"
+                               id="lastName"
+                               name="lastName"
+                               placeholder="Last Name"
+                               [(ngModel)]="user.lastName"
+                               required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.lastName">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="role">Role</label>
                         <select class="form-control selectpicker"
                                 data-style="btn-danger btn-sm"
                                 data-width="auto"
-                                tabindex="-1" id="simple-red-select"
+                                tabindex="-1"
+                                id="role"
                                 name="role"
                                 [(ngModel)]="user.role"
                                 required>
@@ -38,22 +61,31 @@
                             <option value="Inactive">Inactive</option>
                         </select>
                     </div>
-                </div>
-                <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="firstName"
-                               placeholder="First Name"
-                               [(ngModel)]="user.firstName" required>
+                        <label for="email">E-mail</label>
+                        <input class="form-control"
+                               type="text"
+                               id="email"
+                               name="email"
+                               placeholder="E-mail"
+                               [(ngModel)]="user.email"
+                               pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                               required>
                         <ul class="validation-errors-list filled"
-                            *ngFor="let err of formErrors.firstName">
+                            *ngFor="let err of formErrors.email">
                             <li class="validation-type">{{ err }}</li>
                         </ul>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="lastName" placeholder="Last Name"
-                               [(ngModel)]="user.lastName" required>
+                        <label for="phone">Phone</label>
+                        <input class="form-control"
+                               type="text"
+                               id="phone"
+                               name="phone"
+                               placeholder="Phone"
+                               [(ngModel)]="user.phone">
                         <ul class="validation-errors-list filled"
-                            *ngFor="let err of formErrors.lastName">
+                            *ngFor="let err of formErrors.phone">
                             <li class="validation-type">{{ err }}</li>
                         </ul>
                     </div>

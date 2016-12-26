@@ -81,6 +81,7 @@ module.exports = function(lib) {
                         firstName: req.params.firstName,
                         lastName: req.params.lastName,
                         role: constants.roles.default,
+                        email: req.params.username,
                         isKeepLoggedIn: req.params.isKeepLoggedIn
                     });
 

@@ -1,14 +1,16 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppConfig } from '../app.config';
+
 declare var jQuery: any;
 
 @Component({
     selector: 'client',
-    templateUrl: './client.template.html',
-    styleUrls: ['./client.style.scss'],
+    templateUrl: './clients.template.html',
+    styleUrls: ['./clients.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientComponent {
+export class ClientsComponent {
     appConfig: any;
     panel: any;
     sortOptions: Object = {
@@ -26,7 +28,8 @@ export class ClientComponent {
         tolerance: 'pointer'
     };
 
-    constructor(config: AppConfig) {
+    constructor(config: AppConfig,
+                private router: Router) {
         this.appConfig = config.getConfig();
     }
 
@@ -34,8 +37,15 @@ export class ClientComponent {
         jQuery('.widget-container').sortable(this.sortOptions);
 
         this.panel = {
-            title: 'Objectives',
-            iconClass: ['glyphicon-check'],
+            title: 'Clients',
+            iconClass: ['fa-handshake-o'],
+            collapsed: false,
+            close: false,
+            fullScreen: false,
+            menu: [{
+                title: 'Add',
+                onMenuSelect: () => this.onMenuSelect('add')
+            }],
             data: [{
                 name: 'Maikel Basso',
                 imgSrc: 'assets/img/people/a1.jpg',
@@ -58,5 +68,15 @@ export class ClientComponent {
                 indicatorClass: ['text-warning']
             }]
         };
+    }
+
+    onMenuSelect(action: string) {
+        const self = this;
+        switch (action) {
+            case 'add':
+                this.router.navigate(['/app/clients/edit/new']);
+                break;
+            default: // do nothing
+        }
     }
 }

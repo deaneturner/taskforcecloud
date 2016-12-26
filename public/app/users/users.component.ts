@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
     ngOnInit(): void {
         this.panel = {
             title: 'Users',
-            iconClass: ['glyphicon-user']
+            iconClass: ['fa-user-o']
         };
     }
 }

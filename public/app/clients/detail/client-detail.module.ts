@@ -4,20 +4,20 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { ClientComponent } from './client.component';
+import { ClientDetailComponent } from './client-detail.component';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ObjectiveListModule } from '../objective/list/objective-list.module';
 
 import { AppGuard } from '../app.guard';
 
 export const routes = [
-    {path: '', component: ClientComponent, pathMatch: 'full', canActivate: [AppGuard]}
+    {path: '', component: ClientDetailComponent, pathMatch: 'full', canActivate: [AppGuard]}
 ];
 
 @NgModule({
     imports: [PanelModule, ObjectiveListModule, CommonModule, RouterModule.forChild(routes)],
-    declarations: [ClientComponent]
+    declarations: [ClientDetailComponent]
 })
-export default class ClientModule {
+export default class ClientDetailModule {
     static routes = routes;
 }

@@ -5,10 +5,8 @@ import { Router } from '@angular/router';
 import { AppState } from '../app.service';
 import { AppConfig } from '../app.config';
 
-import { AppContextService } from '../services/app.context.service';
+import { MessageBusService } from '../services/message.bus.service';
 import { ModalComponent } from '../shared/modal-window/modal.component';
-import { Navbar } from './navbar/navbar.component';
-import { Sidebar } from './sidebar/sidebar.component';
 
 declare var jQuery: any;
 declare var Hammer: any;
@@ -35,17 +33,11 @@ export class Layout implements OnInit {
     @ViewChild(ModalComponent)
     modalComponent: ModalComponent;
 
-    @ViewChild(Navbar)
-    navbarComponent: Navbar;
-
-    @ViewChild(Sidebar)
-    sidebarComponent: Sidebar;
-
     constructor(config: AppConfig,
                 el: ElementRef,
                 router: Router,
                 private appState: AppState,
-                private appContextService: AppContextService) {
+                private messageBusService: MessageBusService) {
         this.el = el;
         this.config = config.getConfig();
         this.configFn = config;
@@ -189,27 +181,26 @@ export class Layout implements OnInit {
         // }
     }
 
-    registerSubscribe() {
+    /*
+     * Trigger retrieval of current user and notify subscribers (sidebar, navbar).
+     * Set current user on application state.
+     */
+    initCurrentUser() {
         const self = this;
-        // subscribe
-        this.appContextService.getCurrentUser().subscribe(
+        // subscribe to retrieval of current user
+        this.messageBusService.getCurrentUser().subscribe(
             currentUser => {
-                self.navbarComponent.currentUser = currentUser;
-                self.sidebarComponent.currentUser = currentUser;
                 self.appState.set('currentUser', currentUser);
             });
-        // register
-        // initialize current user
-        this.appContextService.publishCurrentUserByToken();
-
+        /*
+         * Trigger the retrieval of current user object.
+         * Subscription (above) will set current user.
+         */
+        this.messageBusService.retrieveCurrentUser();
     }
 
     ngOnInit(): void {
-
-        /*
-         * Current User Register / Subscribe
-         */
-        this.registerSubscribe();
+        this.initCurrentUser();
 
         if (localStorage.getItem('nav-static') === 'true') {
             this.config.state['nav-static'] = true;
