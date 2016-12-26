@@ -12,7 +12,12 @@
 </ol>
 <div class="row">
     <div class="col-lg-6">
-        <tfc-panel [title]="panel.title" [iconClass]="panel.iconClass" [collapsed]="panel.collapsed">
+        <tfc-panel
+                [iconClass]="panel.iconClass"
+                [title]="panel.title"
+                [collapsed]="panel.collapsed"
+                [showFullscreen]="panel.fullScreen"
+                [menu]="panel.menu">
             <tfc-client-list [data]="panel.data"></tfc-client-list>
         </tfc-panel>
     </div>

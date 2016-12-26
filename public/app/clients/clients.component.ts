@@ -36,6 +36,13 @@ export class ClientsComponent {
         this.panel = {
             title: 'Clients',
             iconClass: ['fa-handshake-o'],
+            collapsed: false,
+            close: false,
+            fullScreen: false,
+            menu: [{
+                title: 'Add',
+                onMenuSelect: () => this.onMenuSelect('add')
+            }],
             data: [{
                 name: 'Maikel Basso',
                 imgSrc: 'assets/img/people/a1.jpg',
@@ -58,5 +65,14 @@ export class ClientsComponent {
                 indicatorClass: ['text-warning']
             }]
         };
+    }
+
+    onMenuSelect(action: string) {
+        const self = this;
+        switch (action) {
+            case 'add':
+                break;
+            default: // do nothing
+        }
     }
 }
