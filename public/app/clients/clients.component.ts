@@ -4,11 +4,11 @@ declare var jQuery: any;
 
 @Component({
     selector: 'client',
-    templateUrl: './client.template.html',
-    styleUrls: ['./client.style.scss'],
+    templateUrl: './clients.template.html',
+    styleUrls: ['./clients.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientComponent {
+export class ClientsComponent {
     appConfig: any;
     panel: any;
     sortOptions: Object = {
