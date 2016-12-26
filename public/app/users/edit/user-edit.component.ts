@@ -17,15 +17,14 @@ export class UserEditComponent implements OnInit {
     user: any = {};
     userForm: NgForm;
     formErrors: any = {
-        'username': [],
+        'email': [],
         'password': [],
         'confirmPassword': []
     };
     validationMessages: any = {
-        'username': {
-            'required': 'User name is required.',
-            'pattern': 'User name must be formatted as as an email address.',
-            'exists': 'A user with this user name currently exists.'
+        'email': {
+            'required': 'E-mail is required.',
+            'pattern': 'E-mail must be formatted as as an email address.'
         },
         'password': {
             'required': 'Password is required.',
