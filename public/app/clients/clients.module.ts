@@ -9,11 +9,14 @@ import { ClientEditComponent } from './edit/client-edit.component';
 import { ClientListModule } from './list/client-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 
+import { ClientService } from '../services/client.service';
+
 import { ROUTES }       from './clients.routes';
 
 @NgModule({
     imports: [PanelModule, ClientListModule, CommonModule, FormsModule, ROUTES],
-    declarations: [ClientsComponent, ClientEditComponent]
+    declarations: [ClientsComponent, ClientEditComponent],
+    providers: [ClientService]
 })
 export default class ClientModule {
 }

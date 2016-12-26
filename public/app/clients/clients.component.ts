@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppConfig } from '../app.config';
+
 declare var jQuery: any;
 
 @Component({
@@ -26,7 +28,8 @@ export class ClientsComponent {
         tolerance: 'pointer'
     };
 
-    constructor(config: AppConfig) {
+    constructor(config: AppConfig,
+                private router: Router) {
         this.appConfig = config.getConfig();
     }
 
@@ -71,6 +74,7 @@ export class ClientsComponent {
         const self = this;
         switch (action) {
             case 'add':
+                this.router.navigate(['/app/clients/edit/new']);
                 break;
             default: // do nothing
         }

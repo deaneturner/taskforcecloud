@@ -11,7 +11,7 @@
          data-widgster-show-loader="false">
     <header></header>
     <div class="widget-body">
-        <form class="user-form mt-lg" role="form" #userForm="ngForm" novalidate>
+        <form class="client-form mt-lg" role="form" #clientForm="ngForm" novalidate>
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
@@ -21,7 +21,7 @@
                                id="firstName"
                                name="firstName"
                                placeholder="First Name"
-                               [(ngModel)]="user.firstName"
+                               [(ngModel)]="client.firstName"
                                required>
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.firstName">
@@ -35,7 +35,7 @@
                                id="lastName"
                                name="lastName"
                                placeholder="Last Name"
-                               [(ngModel)]="user.lastName"
+                               [(ngModel)]="client.lastName"
                                required>
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.lastName">
@@ -52,7 +52,7 @@
                                 tabindex="-1"
                                 id="role"
                                 name="role"
-                                [(ngModel)]="user.role"
+                                [(ngModel)]="client.role"
                                 required>
                             <option value=""></option>
                             <option value="Administrator">Administrator</option>
@@ -68,7 +68,7 @@
                                id="email"
                                name="email"
                                placeholder="E-mail"
-                               [(ngModel)]="user.email"
+                               [(ngModel)]="client.email"
                                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
                                required>
                         <ul class="validation-errors-list filled"
@@ -83,7 +83,7 @@
                                id="phone"
                                name="phone"
                                placeholder="Phone"
-                               [(ngModel)]="user.phone">
+                               [(ngModel)]="client.phone">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.phone">
                             <li class="validation-type">{{ err }}</li>
@@ -95,7 +95,7 @@
                 <div class="col-lg-6 col-xs-12">
                     <!--<div class="form-group">-->
                     <!--<input class="form-control" type="password" name="confirmPassword"-->
-                    <!--placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"-->
+                    <!--placeholder="Confirm Password" [(ngModel)]="client.confirmPassword"-->
                     <!--validateEqual="password">-->
                     <!--<ul class="validation-errors-list filled"-->
                     <!--*ngFor="let err of formErrors.confirmPassword">-->
@@ -109,8 +109,8 @@
                     <button class="btn btn-secondary btn-sm" (click)="goToDetail($event)">Cancel
                     </button>
                     <button type="submit" class="btn btn-inverse btn-sm"
-                            (click)="updateUser(userForm.valid, userForm.value)"
-                            [disabled]="!userForm.valid">Save
+                            (click)="updateClient(clientForm.valid, clientForm.value)"
+                            [disabled]="!clientForm.valid">Save
                     </button>
                 </div>
             </div>
