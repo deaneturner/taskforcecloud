@@ -45,7 +45,7 @@ export class Register implements OnInit {
     @ViewChild('registrationForm')
     currentForm: NgForm;
 
-    constructor(private service: AuthService,
+    constructor(private authService: AuthService,
                 public router: Router) {
     }
 
@@ -63,7 +63,7 @@ export class Register implements OnInit {
 
     register(isValid: boolean, registrationForm: User) {
         if (isValid) {
-            this.service.registerfn(registrationForm).then((res: any) => {
+            this.authService.registerfn(registrationForm).then((res: any) => {
                 if (res.success) {
                     this.router.navigate(['/app/dashboard']);
                 } else if (res.success === false) {

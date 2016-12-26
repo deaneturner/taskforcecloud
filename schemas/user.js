@@ -20,6 +20,14 @@ module.exports = {
         'role': {
             'type': 'string',
             'description': 'User\'s authorization role'
+        },
+        'email': {
+            'type': 'string',
+            'description': 'User\'s email'
+        },
+        'phone': {
+            'type': 'string',
+            'description': 'User\'s phone'
         }
     }
 };

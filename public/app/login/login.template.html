@@ -13,15 +13,17 @@
                     </header>
                     <div class="widget-body">
                         <!--<p class="widget-login-info">-->
-                            <!--Use Facebook, Twitter or your email to sign in.-->
+                        <!--Use Facebook, Twitter or your email to sign in.-->
                         <!--</p>-->
                         <p class="widget-login-info">
                             Don't have an account? <a [routerLink]="['/register']">Sign up now!</a>
                         </p>
                         <form class="login-form mt-lg" role="form" #loginForm="ngForm" novalidate>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="username" placeholder="Username (E-mail Address)"
-                                       [(ngModel)]="user.username" required
+                                <input type="email" class="form-control"
+                                       name="username"
+                                       placeholder="Username (E-mail Address)"
+                                       [(ngModel)]="user.username"
                                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
                                        tabindex="1"
                                        required>
@@ -30,7 +32,10 @@
                                 </ul>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="password" name="password" placeholder="Password"
+                                <input class="form-control"
+                                       type="password"
+                                       name="password"
+                                       placeholder="Password"
                                        [(ngModel)]="user.password"
                                        tabindex="2"
                                        required>
