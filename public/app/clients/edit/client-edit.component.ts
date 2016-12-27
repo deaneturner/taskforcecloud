@@ -51,15 +51,34 @@ export class ClientEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.client = {
-            company: '',
-            firstName: '',
-            lastName: '',
-            address1: '',
-            address2: '',
-            email: '',
-            phone: ''
-        };
+        const self = this;
+
+        this.activatedRoute.params
+            .subscribe(
+                params => {
+                    const paramId = params['id'];
+                    if (paramId === 'new') {
+                        self.client = {
+                            company: '',
+                            firstName: '',
+                            lastName: '',
+                            address1: '',
+                            address2: '',
+                            email: '',
+                            phone: ''
+                        };
+                    } else {
+                        this.clientService.getClient(paramId)
+                            .subscribe(
+                                client => {
+                                    self.client = client;
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
+                }
+            );
     }
 
     upsertClient(isValid: boolean, clientForm: Client) {

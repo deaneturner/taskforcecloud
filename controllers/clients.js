@@ -35,7 +35,7 @@ module.exports = function(lib) {
         var newClientModel = lib.db.model('Client')(newClient);
         newClientModel.save(function(err, client) {
             if (err) return next(controller.RESTError('InternalServerError', err));
-            controller.writeHAL(res, client);
+            controller.writeHAL(res, {success: true, data: client});
         });
     });
 
@@ -75,10 +75,10 @@ module.exports = function(lib) {
             model.findOne({_id: id})
                 .exec(function(err, client) {
                     if (err) return next(controller.RESTError('InternalServerError', err));
-                    client = _.extend(client, req.body);
+                    client = _.extend(client, JSON.parse(req.body));
                     client.save(function(err, newClient) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
-                        controller.writeHAL(res, newClient);
+                        controller.writeHAL(res, {success: true, data: newClient});
                     });
                 });
         }
