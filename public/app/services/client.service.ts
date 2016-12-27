@@ -19,9 +19,6 @@ export class ClientService {
     getClient(id: string) {
         return this.http.get('/api/clients/' + id)
                 .map((res: Response) => <Client>(res.json()))
-                // keep one item in stack
-                .publishReplay(1)
-                .refCount()
                 .catch(this.notificationService.handleError);
     }
 
