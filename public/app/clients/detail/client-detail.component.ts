@@ -89,7 +89,7 @@ export class ClientDetailComponent implements OnInit {
                                             message: 'Deleted ' +
                                             client.firstName + ' ' +
                                             client.lastName +
-                                            ' (' + client.company + ')',
+                                            ' (' + client.email + ')',
                                             type: 'success'
                                         });
 
