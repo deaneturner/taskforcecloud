@@ -11,7 +11,7 @@ module.exports = function(lib) {
     var controller = new Clients();
 
     controller.addAction({
-        'path': '/api/clients/{id}',
+        'path': '/api/clients/:id}',
         'method': 'GET',
         'summary': 'Returns the data of one client',
         'responsClass': 'Client',
@@ -59,7 +59,7 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
-        'path': '/api/clients/{id}',
+        'path': '/api/clients/:id',
         'method': 'PUT',
         'params': [swagger.pathParam('id', 'The id of the client', 'string'), swagger.bodyParam('client', 'The content to overwrite', 'string')],
         'summary': 'Updates the data of one client',
