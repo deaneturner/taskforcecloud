@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item">YOU ARE HERE</li>
     <li class="active breadcrumb-item" [routerLink]="['/app/clients']">Clients</li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.name}}</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.company}}</li>
 </ol>
 <h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Client</span></h1>
 <section class="widget" widget id="autoload-widget"
