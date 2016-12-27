@@ -11,7 +11,7 @@ module.exports = function(lib) {
     var controller = new Clients();
 
     controller.addAction({
-        'path': '/api/client/:id}',
+        'path': '/api/clients/:id}',
         'method': 'GET',
         'summary': 'Returns the data of one client',
         'responsClass': 'Client',
