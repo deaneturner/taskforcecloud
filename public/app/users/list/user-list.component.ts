@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { User } from '../../model/user.interface';
 import { UserService } from '../../services/user.service';
@@ -14,8 +13,7 @@ export class UserListComponent {
     selectedUser: string;
     users: Array<User>;
 
-    constructor(private router: Router,
-                private userService: UserService) {
+    constructor(private userService: UserService) {
     }
 
     ngOnInit(): void {

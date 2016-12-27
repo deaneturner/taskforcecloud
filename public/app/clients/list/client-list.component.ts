@@ -1,6 +1,8 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { AppConfig } from '../../app.config';
-declare var jQuery: any;
+import { Router } from '@angular/router';
+
+import { Client } from '../../model/client.interface';
+import { ClientService } from '../../services/client.service';
 
 @Component({
     selector: 'tfc-client-list',
@@ -9,13 +11,24 @@ declare var jQuery: any;
     encapsulation: ViewEncapsulation.None
 })
 export class ClientListComponent {
-    @Input() data: any;
-    appConfig: any;
+    selectedClient: string;
+    clients: Array<Client>;
 
-    constructor(appConfig: AppConfig) {
-        this.appConfig = appConfig.getConfig();
+    constructor(private router: Router,
+                private clientService: ClientService) {
     }
 
+
     ngOnInit(): void {
+        this.getClients();
     };
+
+    getClients() {
+        this.clientService.getClients()
+            .subscribe(
+                clients => this.clients = clients,
+                error => {
+                }  // error is handled by service
+            );
+    }
 }
