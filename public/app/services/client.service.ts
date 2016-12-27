@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response, Headers } from '@angular/http';
-import { Router } from '@angular/router';
+import { Http, Response, Headers } from '@angular/http';
 
 import { NotificationService } from './notification.service';
-import { AppState } from '../app.service';
 
 import { Client } from '../model/client.interface';
 
@@ -17,8 +15,9 @@ export class ClientService {
     }
 
     getClient(id: string) {
-        return this.http.get('/api/clients/' + id)
-                .map((res: Response) => <Client>(res.json()));
+        return this.http.get('/api/users/' + id)
+                .map((res: Response) => <Client>(res.json()))
+                .catch(this.notificationService.handleError);
     }
 
     getClients(query ?: any) {
