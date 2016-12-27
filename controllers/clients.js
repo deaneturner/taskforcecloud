@@ -31,8 +31,7 @@ module.exports = function(lib) {
         'responsClass': 'Client',
         'nickname': 'addClient'
     }, function(req, res, next) {
-        var newClient = req.body;
-
+        var newClient = _.extend({}, req.body);
         var newClientModel = lib.db.model('Client')(newClient);
         newClientModel.save(function(err, client) {
             if (err) return next(controller.RESTError('InternalServerError', err));

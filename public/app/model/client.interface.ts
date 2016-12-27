@@ -1,11 +1,9 @@
 export interface Client {
-    username: string;
-    password: string;
-    confirmPassword?: string;
+    company: string;
     firstName: string;
     lastName: string;
-    role: string;
+    address1: string;
+    address2: string;
     email: string;
     phone: string;
-    isKeepLoggedIn?: boolean;
 }

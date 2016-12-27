@@ -1,17 +1,29 @@
 module.exports = {
     'id': 'Client',
     'properties': {
-        'name': {
+        'company': {
             'type': 'string',
-            'description': 'Full name of the client'
+            'description': 'Company name of the client'
         },
-        'address': {
+        'firstName': {
             'type': 'string',
-            'description': 'Address of residence of this client'
+            'description': 'First name of the client'
         },
-        'phone_number': {
+        'lastName': {
             'type': 'string',
-            'description': 'Contact phone number for the client'
+            'description': 'lastName name of the client'
+        },
+        'address1': {
+            'type': 'string',
+            'description': 'Address1 of this client'
+        },
+        'address2': {
+            'type': 'string',
+            'description': 'Address2 of this client'
+        },
+        'phone': {
+            'type': 'string',
+            'description': 'Phone of the client'
         },
         'email': {
             'type': 'string',
