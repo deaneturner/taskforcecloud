@@ -11,19 +11,6 @@ module.exports = function(lib) {
     var controller = new Clients();
 
     controller.addAction({
-        'path': '/api/clients',
-        'method': 'GET',
-        'summary': 'Returns the list of clients ordered by name',
-        'responsClass': 'Client',
-        'nickname': 'getClients'
-    }, function(req, res, next) {
-        lib.db.model('Client').find().sort('name').exec(function(err, clients) {
-            if (err) return next(controller.RESTError('InternalServerError', err));
-            controller.writeHAL(res, clients);
-        });
-    });
-
-    controller.addAction({
         'path': '/api/clients/{id}',
         'method': 'GET',
         'summary': 'Returns the data of one client',
@@ -40,6 +27,19 @@ module.exports = function(lib) {
         } else {
             next(controller.RESTError('InvalidArgumentError', 'Invalid client id'));
         }
+    });
+
+    controller.addAction({
+        'path': '/api/clients',
+        'method': 'GET',
+        'summary': 'Returns the list of clients ordered by name',
+        'responsClass': 'Client',
+        'nickname': 'getClients'
+    }, function(req, res, next) {
+        lib.db.model('Client').find().sort('name').exec(function(err, clients) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, clients);
+        });
     });
 
     controller.addAction({

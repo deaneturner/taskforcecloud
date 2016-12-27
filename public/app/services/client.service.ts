@@ -18,8 +18,7 @@ export class ClientService {
 
     getClient(id: string) {
         return this.http.get('/api/clients/' + id)
-                .map((res: Response) => <Client>(res.json()))
-                .catch(this.notificationService.handleError);
+                .map((res: Response) => <Client>(res.json()));
     }
 
     getClients(query ?: any) {
