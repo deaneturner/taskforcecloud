@@ -98,6 +98,7 @@ module.exports = function(lib) {
             controller.writeHAL(res, client);
         });
     });
+
     return controller;
 };
 
