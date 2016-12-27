@@ -17,7 +17,7 @@ export class ClientService {
     }
 
     getClient(id: string) {
-        this.http.get('/api/clients/' + id)
+        return this.http.get('/api/clients/' + id)
                 .map((res: Response) => <Client>(res.json()))
                 // keep one item in stack
                 .publishReplay(1)

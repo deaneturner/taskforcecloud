@@ -31,7 +31,7 @@ module.exports = function(lib) {
         'responsClass': 'Client',
         'nickname': 'addClient'
     }, function(req, res, next) {
-        var newClient = _.extend({}, req.body);
+        var newClient = JSON.parse(req.body);
         var newClientModel = lib.db.model('Client')(newClient);
         newClientModel.save(function(err, client) {
             if (err) return next(controller.RESTError('InternalServerError', err));
@@ -82,6 +82,21 @@ module.exports = function(lib) {
                     });
                 });
         }
+    });
+
+    controller.addAction({
+        'path': '/api/clients/:id',
+        'method': 'DEL',
+        'params': [swagger.bodyParam('id', 'The id of the client to delete', 'string')],
+        'summary': 'Deletes a client from the database',
+        'responsClass': 'Client',
+        'nickname': 'deleteClient'
+    }, function(req, res, next) {
+        lib.db.model('Client').findOne({_id: req.params.id}).exec(function(err, client) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            client.remove();
+            controller.writeHAL(res, client);
+        });
     });
     return controller;
 };
