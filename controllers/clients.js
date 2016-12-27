@@ -50,7 +50,7 @@ module.exports = function(lib) {
         var id = req.params.id;
         if (id != null) {
             lib.db.model('Client').findOne({_id: id}).exec(function(err, client) {
-                // if (err) return next(controller.RESTError('InternalServerError', err));
+                if (err) return null;
                 if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client id cannot be found'));
                 controller.writeHAL(res, client);
             });
