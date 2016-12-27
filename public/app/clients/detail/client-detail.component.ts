@@ -46,7 +46,7 @@ export class ClientDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientService.getClient(params['id'])
+                    self.clientService.getClient('5861eb74d9191d001179586c')
                         .subscribe(
                             client => {
                                 self.client = client;
