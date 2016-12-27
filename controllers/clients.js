@@ -40,7 +40,7 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
-        'path': '/api/clients2/{id}',
+        'path': '/api/clients/{id}',
         'method': 'GET',
         'params': [swagger.pathParam('id', 'The id of the client', 'string')],
         'summary': 'Returns the data of one client',
