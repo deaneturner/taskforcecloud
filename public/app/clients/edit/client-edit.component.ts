@@ -16,9 +16,11 @@ export class ClientEditComponent implements OnInit {
     client: any = {};
     clientForm: NgForm;
     formErrors: any = {
+        'company': [],
+        'firstName': [],
+        'lastName': [],
         'email': [],
-        'password': [],
-        'confirmPassword': []
+        'phone': []
     };
     validationMessages: any = {
         'email': {
@@ -49,38 +51,76 @@ export class ClientEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.client = {
-            username: '',
-            firstName: '',
-            lastName: '',
-            password: '',
-            role: '',
-            email: '',
-            phone: '',
-            isKeepLoggedIn: true
-        };
+        const self = this;
+
+        this.activatedRoute.params
+            .subscribe(
+                params => {
+                    const paramId = params['id'];
+                    if (paramId === 'new') {
+                        self.client = {
+                            company: '',
+                            firstName: '',
+                            lastName: '',
+                            address1: '',
+                            address2: '',
+                            email: '',
+                            phone: ''
+                        };
+                    } else {
+                        this.clientService.getClient(paramId)
+                            .subscribe(
+                                client => {
+                                    self.client = client;
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
+                }
+            );
     }
 
-    updateClient(isValid: boolean, clientForm: Client) {
+    upsertClient(isValid: boolean, clientForm: Client) {
         const self = this;
         if (isValid) {
-            // temp
-            delete clientForm.password;
-            this.clientService.updateClient(this.client._id, clientForm)
-                .subscribe(
-                    res => {
-                        if (res.success) {
-                            self.router.navigate(['/app/clients/detail', self.client._id]);
-                        } else if (res.success === false) {
-                            const field = res.field;
-                            // clear previous error message (if any)
-                            self.formErrors[field] = [];
-                            self.formErrors[field].push(self.validationMessages[field][res.msgKey]);
-                        }
-                    },
-                    error => {
-                    }  // error is handled by service
-                );
+            if (this.client._id) {
+                // update
+                this.clientService.updateClient(this.client._id, clientForm)
+                    .subscribe(
+                        res => {
+                            if (res.success) {
+                                self.router.navigate(['/app/clients/detail', self.client._id]);
+                            } else if (res.success === false) {
+                                const field = res.field;
+                                // clear previous error message (if any)
+                                self.formErrors[field] = [];
+                                self.formErrors[field]
+                                    .push(self.validationMessages[field][res.msgKey]);
+                            }
+                        },
+                        error => {
+                        }  // error is handled by service
+                    );
+            } else {
+                // insert
+                this.clientService.insertClient(clientForm)
+                    .subscribe(
+                        res => {
+                            if (res.success) {
+                                self.router.navigate(['/app/clients/detail', res.data._id]);
+                            } else if (res.success === false) {
+                                const field = res.field;
+                                // clear previous error message (if any)
+                                self.formErrors[field] = [];
+                                self.formErrors[field]
+                                    .push(self.validationMessages[field][res.msgKey]);
+                            }
+                        },
+                        error => {
+                        }  // error is handled by service
+                    );
+            }
         }
     }
 

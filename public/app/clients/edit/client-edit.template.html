@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item">YOU ARE HERE</li>
     <li class="active breadcrumb-item" [routerLink]="['/app/clients']">Clients</li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.name}}</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.company}}</li>
 </ol>
 <h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Client</span></h1>
 <section class="widget" widget id="autoload-widget"
@@ -15,14 +15,26 @@
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
+                        <label for="company">Company</label>
+                        <input class="form-control"
+                               type="text"
+                               id="company"
+                               name="company"
+                               placeholder="Company"
+                               [(ngModel)]="client.company">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.company">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input class="form-control"
                                type="text"
                                id="firstName"
                                name="firstName"
                                placeholder="First Name"
-                               [(ngModel)]="client.firstName"
-                               required>
+                               [(ngModel)]="client.firstName">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.firstName">
                             <li class="validation-type">{{ err }}</li>
@@ -35,8 +47,7 @@
                                id="lastName"
                                name="lastName"
                                placeholder="Last Name"
-                               [(ngModel)]="client.lastName"
-                               required>
+                               [(ngModel)]="client.lastName">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.lastName">
                             <li class="validation-type">{{ err }}</li>
@@ -45,21 +56,30 @@
                 </div>
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
-                        <label for="role">Role</label>
-                        <select class="form-control selectpicker"
-                                data-style="btn-danger btn-sm"
-                                data-width="auto"
-                                tabindex="-1"
-                                id="role"
-                                name="role"
-                                [(ngModel)]="client.role"
-                                required>
-                            <option value=""></option>
-                            <option value="Administrator">Administrator</option>
-                            <option value="Supervisor">Supervisor</option>
-                            <option value="Contributor">Contributor</option>
-                            <option value="Inactive">Inactive</option>
-                        </select>
+                        <label for="address1">Address 1</label>
+                        <input class="form-control"
+                               type="text"
+                               id="address1"
+                               name="address1"
+                               placeholder="Address 1"
+                               [(ngModel)]="client.address1">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.address1">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">Address 2</label>
+                        <input class="form-control"
+                               type="text"
+                               id="address2"
+                               name="address2"
+                               placeholder="Address 2"
+                               [(ngModel)]="client.address2">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.address2">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
@@ -109,7 +129,7 @@
                     <button class="btn btn-secondary btn-sm" (click)="goToDetail($event)">Cancel
                     </button>
                     <button type="submit" class="btn btn-inverse btn-sm"
-                            (click)="updateClient(clientForm.valid, clientForm.value)"
+                            (click)="upsertClient(clientForm.valid, clientForm.value)"
                             [disabled]="!clientForm.valid">Save
                     </button>
                 </div>
