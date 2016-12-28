@@ -19,7 +19,7 @@ module.exports = function(lib) {
     }, function(req, res, next) {
         var id = req.params.id;
         if (id != null) {
-            lib.db.model('ClientService').findOne({_id: id}).exec(function(err, client) {
+            lib.db.model('Client').findOne({_id: id}).exec(function(err, client) {
                 if (err) return next(controller.RESTError('InternalServerError', err));
                 if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client id cannot be found'));
                 controller.writeHAL(res, client);
@@ -36,7 +36,7 @@ module.exports = function(lib) {
         'responsClass': 'ClientService',
         'nickname': 'getClientServices'
     }, function(req, res, next) {
-        lib.db.model('ClientService').find().sort('name').exec(function(err, clients) {
+        lib.db.model('Client').find().sort('name').exec(function(err, clients) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, clients);
         });
@@ -51,7 +51,7 @@ module.exports = function(lib) {
         'nickname': 'addClientService'
     }, function(req, res, next) {
         var newClient = JSON.parse(req.body);
-        var newClientModel = lib.db.model('ClientService')(newClient);
+        var newClientModel = lib.db.model('Client')(newClient);
         newClientModel.save(function(err, clientService) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, {success: true, data: clientService});
@@ -70,7 +70,7 @@ module.exports = function(lib) {
         if (!id) {
             return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
         } else {
-            var model = lib.db.model('ClientService');
+            var model = lib.db.model('Client');
             model.findOne({_id: id})
                 .exec(function(err, clientService) {
                     if (err) return next(controller.RESTError('InternalServerError', err));
@@ -91,7 +91,7 @@ module.exports = function(lib) {
         'responsClass': 'ClientService',
         'nickname': 'deleteClientService'
     }, function(req, res, next) {
-        lib.db.model('ClientService').findOne({_id: req.params.id}).exec(function(err, clientService) {
+        lib.db.model('Client').findOne({_id: req.params.id}).exec(function(err, clientService) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             clientService.remove();
             controller.writeHAL(res, clientService);
