@@ -21,7 +21,7 @@ export class ClientServiceService {
     }
 
     getClientServices(query ?: any) {
-        return this.http.get('/api/client-services')
+        return this.http.get('/api/clientservices')
             .map((response: Response) => <ClientService[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }
@@ -29,7 +29,7 @@ export class ClientServiceService {
     updateClientService(id: string, clientService: any) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
-        return this.http.put('/api/client-services/' + id, clientService, {headers: headers})
+        return this.http.put('/api/clientservices/' + id, clientService, {headers: headers})
             .map((response: any) => <ClientService>(response.json()))
             .catch(this.notificationService.handleError);
     }
@@ -37,13 +37,13 @@ export class ClientServiceService {
     insertClientService(clientService: any) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
-        return this.http.post('/api/client-services', clientService, {headers: headers})
+        return this.http.post('/api/clientservices', clientService, {headers: headers})
             .map((response: any) => <ClientService>(response.json()))
             .catch(this.notificationService.handleError);
     }
 
     deleteClientService(id: string) {
-        return this.http.delete('/api/client-services/' + id)
+        return this.http.delete('/api/clientservices/' + id)
             .map((response: Response) => <ClientService>(response.json()))
             .catch(this.notificationService.handleError);
     }

@@ -8,7 +8,7 @@ const routes: Routes = [
         {path: 'dashboard', loadChildren: () => System.import('../dashboard/dashboard.module')},
         {path: 'admin', loadChildren: () => System.import('../admin/admin.module')},
         {path: 'clients', loadChildren: () => System.import('../clients/clients.module')},
-        {path: 'client-services',
+        {path: 'clientservices',
             loadChildren: () => System.import('../client-services/client-services.module')},
         {path: 'grid', loadChildren: () => System.import('../grid/grid.module')},
         {path: 'users', loadChildren: () => System.import('../users/users.module.ts')}

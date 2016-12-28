@@ -74,7 +74,7 @@ export class ClientServicesComponent {
         const self = this;
         switch (action) {
             case 'add':
-                this.router.navigate(['/app/client-services/edit/new']);
+                this.router.navigate(['/app/clientservices/edit/new']);
                 break;
             default: // do nothing
         }

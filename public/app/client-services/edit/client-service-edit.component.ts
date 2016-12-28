@@ -93,7 +93,7 @@ export class ClientServiceEditComponent implements OnInit {
                             if (res.success) {
                                 self.router
                                     .navigate([
-                                        '/app/client-services/detail',
+                                        '/app/clientservices/detail',
                                         self.clientService._id
                                     ]);
                             } else if (res.success === false) {
@@ -113,7 +113,7 @@ export class ClientServiceEditComponent implements OnInit {
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.router.navigate(['/app/client-services/detail', res.data._id]);
+                                self.router.navigate(['/app/clientservices/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;
                                 // clear previous error message (if any)
@@ -132,7 +132,7 @@ export class ClientServiceEditComponent implements OnInit {
     goToDetail(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.router.navigate(['/app/client-services/detail/', this.clientService._id]);
+        this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
 
     }
 

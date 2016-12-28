@@ -62,7 +62,7 @@ export class ClientServiceDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/client-services/edit/', this.clientService._id]);
+                this.router.navigate(['/app/clientservices/edit/', this.clientService._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
@@ -94,7 +94,7 @@ export class ClientServiceDetailComponent implements OnInit {
                                         });
 
                                         self.notificationService.closeModal();
-                                        self.router.navigate(['/app/client-services']);
+                                        self.router.navigate(['/app/clientservices']);
                                     },
                                     error => {
                                     }  // error is handled by service
