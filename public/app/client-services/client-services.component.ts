@@ -37,8 +37,8 @@ export class ClientServicesComponent {
         jQuery('.widget-container').sortable(this.sortOptions);
 
         this.panel = {
-            title: 'Clients',
-            iconClass: ['fa-handshake-o'],
+            title: 'Services',
+            iconClass: ['fa-cubes'],
             collapsed: false,
             close: false,
             fullScreen: false,
