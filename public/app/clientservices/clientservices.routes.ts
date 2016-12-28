@@ -1,8 +1,8 @@
 import { Routes, RouterModule }  from '@angular/router';
 
-import { ClientServicesComponent } from './client-services.component';
-import { ClientServiceDetailComponent } from './detail/client-service-detail.component';
-import { ClientServiceEditComponent } from './edit/client-service-edit.component';
+import { ClientServicesComponent } from './clientservices.component';
+import { ClientServiceDetailComponent } from './detail/clientservice-detail.component';
+import { ClientServiceEditComponent } from './edit/clientservice-edit.component';
 
 import { AppGuard } from '../app.guard';
 

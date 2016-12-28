@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EqualValidator } from '../forms/equal-validator.directive';
 
-import { ClientServiceEditComponent } from './client-service-edit.component';
+import { ClientServiceEditComponent } from './clientservice-edit.component';
 
 export const routes = [
     {path: '', component: ClientServiceEditComponent, pathMatch: 'full'}

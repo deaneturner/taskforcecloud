@@ -6,8 +6,8 @@ declare var jQuery: any;
 
 @Component({
     selector: 'client-service',
-    templateUrl: './client-services.template.html',
-    styleUrls: ['./client-services.style.scss'],
+    templateUrl: './clientservices.template.html',
+    styleUrls: ['./clientservices.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServicesComponent {

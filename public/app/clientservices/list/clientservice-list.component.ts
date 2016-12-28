@@ -1,13 +1,13 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClientService } from '../../model/client-service.interface';
-import { ClientServiceService } from '../../services/client-service.service';
+import { ClientService } from '../../model/clientservice.interface';
+import { ClientServiceService } from '../../services/clientservice.service';
 
 @Component({
     selector: 'tfc-client-service-list',
-    templateUrl: './client-service-list.template.html',
-    styleUrls: ['./client-service-list.style.scss'],
+    templateUrl: './clientservice-list.template.html',
+    styleUrls: ['./clientservice-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceListComponent {

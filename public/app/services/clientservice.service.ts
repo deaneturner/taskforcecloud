@@ -3,7 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 
 import { NotificationService } from './notification.service';
 
-import { ClientService } from '../model/client-service.interface';
+import { ClientService } from '../model/clientservice.interface';
 
 import * as _ from 'lodash';
 

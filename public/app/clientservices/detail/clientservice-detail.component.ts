@@ -3,13 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AppState } from '../../app.service';
 import { NotificationService } from '../../services/notification.service';
-import { ClientServiceService } from '../../services/client-service.service';
-import { ClientServiceEditComponent } from '../edit/client-service-edit.component';
+import { ClientServiceService } from '../../services/clientservice.service';
+import { ClientServiceEditComponent } from '../edit/clientservice-edit.component';
 
 @Component({
-    selector: 'client-service-detail',
-    templateUrl: 'client-service-detail.template.html',
-    styleUrls: ['client-service-detail.style.scss'],
+    selector: 'clientservice-detail',
+    templateUrl: 'clientservice-detail.template.html',
+    styleUrls: ['clientservice-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceDetailComponent implements OnInit {

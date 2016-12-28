@@ -4,14 +4,14 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ClientServicesComponent } from './client-services.component';
-import { ClientServiceDetailComponent } from './detail/client-service-detail.component';
-import { ClientServiceEditComponent } from './edit/client-service-edit.component';
-import { ClientServiceListModule } from './list/client-service-list.module';
+import { ClientServicesComponent } from './clientservices.component';
+import { ClientServiceDetailComponent } from './detail/clientservice-detail.component';
+import { ClientServiceEditComponent } from './edit/clientservice-edit.component';
+import { ClientServiceListModule } from './list/clientservice-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
-import { ClientServiceService } from '../services/client-service.service';
+import { ClientServiceService } from '../services/clientservice.service';
 
-import { ROUTES }       from './client-services.routes';
+import { ROUTES }       from './clientservices.routes';
 
 @NgModule({
     imports: [PanelModule, ClientServiceListModule, CommonModule, FormsModule, ROUTES],
