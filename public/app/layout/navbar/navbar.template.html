@@ -77,7 +77,7 @@
                 <a class="nav-link dropdown-toggle dropdown-toggle-notifications"
                    id="notifications-dropdown-toggle" data-toggle="dropdown">
                 <span class="thumb-sm avatar pull-xs-left">
-                    <img class="img-circle" src="assets/img/avatar.png" alt="...">
+                    <i class="fa fa-user-o fa-2x"></i>
                 </span>
                     &nbsp;
                     {{currentUser.firstName}} <strong>{{currentUser.lastName}}</strong>&nbsp;
@@ -87,7 +87,7 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" (click)="userService.cacheManager.selectUser(['/app/users/detail/', currentUser._id])"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
+                    <li><a class="dropdown-item" (click)="userService.cacheManager.selectUser(['/app/users/detail/', currentUser._id])"><i class="fa fa-user-o"></i> &nbsp; My Account</a>
                     </li>
                     <li class="dropdown-divider"></li>
                     <li><a class="dropdown-item" [routerLink]="['/error']">Calendar</a></li>
