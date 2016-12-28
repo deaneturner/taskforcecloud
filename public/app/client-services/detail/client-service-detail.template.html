@@ -1,9 +1,9 @@
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-user-o"></i></li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/users']">Users</li>
-    <li class="active breadcrumb-item">{{user.username}}</li>
+    <li class="breadcrumb-item"><i class="fa fa-cubes"></i></li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices']">Services</li>
+    <li class="active breadcrumb-item">{{clientService.company}}</li>
 </ol>
-<h1 class="page-title">Detail - <span class="fw-semi-bold">User</span></h1>
+<h1 class="page-title">Detail - <span class="fw-semi-bold">Service</span></h1>
 <div class="row user-profile">
     <div class="col-lg-6 col-xs-12">
         <tfc-panel
@@ -19,20 +19,20 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5 col-xs-12 text-xs-center">
-                            <div class="post-user post-user-profile">
+                            <div class="post-client-service post-client-service-profile">
               <span class="thumb-xlg">
-                <i class="fa fa-user-o fa-5x"></i>
+                <i class="fa fa-cubes fa-5x"></i>
               </span>
-                                <h5 class="fw-normal">{{user.firstName}} <span class="fw-semi-bold">{{user.lastName}}</span></h5>
-                                <div>{{user.username}}</div>
-                                <p>{{user.role}}</p>
+                                <h5 class="fw-normal">{{clientService.firstName}} <span class="fw-semi-bold">{{clientService.lastName}}</span></h5>
+                                <div>{{clientService.company}}</div>
+                                <p>{{clientService.address1}}</p>
                                 <a href="#" class="btn btn-danger btn-sm mt">
                                     &nbsp;Send
                                     <i class="fa fa-envelope ml-xs"></i>&nbsp;
                                 </a>
                                 <ul class="contacts">
-                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{user.phone || '(---) --- -----'}}</a></li>
-                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{user.email || '--- @ ---- . com'}}</a>
+                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{clientService.phone || '(---) --- -----'}}</a></li>
+                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{clientService.email || '--- @ ---- . com'}}</a>
                                     </li>
                                     <li><i class="fa fa-map-marker fa-fw mr-xs"></i><a href="#"> Minsk, Belarus</a></li>
                                 </ul>

@@ -5,7 +5,7 @@
     <div class="sidebar-status hidden-md-up">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-xs-right">
-        <img class="img-circle" src="assets/img/avatar.png" alt="...">
+        <i class="fa fa-user-o fa-1x"></i>
               </span>
             <!-- .circle is a pretty cool way to add a bit of beauty to raw data.
                  should be used with bg-* and text-* classes for colors -->
@@ -17,7 +17,7 @@
             <b class="caret"></b>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
-            <li><a class="dropdown-item" (click)="userService.cacheManager.selectUser(['/app/users/detail/', currentUser._id])"><i class="glyphicon glyphicon-user"></i> &nbsp; My Account</a>
+            <li><a class="dropdown-item" (click)="userService.cacheManager.selectUser(['/app/users/detail/', currentUser._id])"><i class="fa fa-user-o"></i> &nbsp; My Account</a>
             </li>
             <li class="dropdown-divider"></li>
             <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Calendar</a></li>
@@ -65,6 +65,17 @@
           <i class="fa fa-handshake-o"></i>
       </span>
                 Client Detail
+                <!--<span class="tag tag-danger">-->
+                <!--9-->
+                <!--</span>-->
+            </a>
+        </li>
+        <li>
+            <a [routerLink]=" ['clientservices'] ">
+      <span class="icon">
+          <i class="fa fa-cubes"></i>
+      </span>
+                Services
                 <!--<span class="tag tag-danger">-->
                 <!--9-->
                 <!--</span>-->

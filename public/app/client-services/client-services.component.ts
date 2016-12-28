@@ -5,12 +5,12 @@ import { AppConfig } from '../app.config';
 declare var jQuery: any;
 
 @Component({
-    selector: 'client',
-    templateUrl: './clients.template.html',
-    styleUrls: ['./clients.style.scss'],
+    selector: 'client-service',
+    templateUrl: './client-services.template.html',
+    styleUrls: ['./client-services.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientsComponent {
+export class ClientServicesComponent {
     appConfig: any;
     panel: any;
     sortOptions: Object = {
@@ -37,8 +37,8 @@ export class ClientsComponent {
         jQuery('.widget-container').sortable(this.sortOptions);
 
         this.panel = {
-            title: 'Clients',
-            iconClass: ['fa-handshake-o'],
+            title: 'Services',
+            iconClass: ['fa-cubes'],
             collapsed: false,
             close: false,
             fullScreen: false,
@@ -53,7 +53,7 @@ export class ClientsComponent {
         const self = this;
         switch (action) {
             case 'add':
-                this.router.navigate(['/app/clients/edit/new']);
+                this.router.navigate(['/app/clientservices/edit/new']);
                 break;
             default: // do nothing
         }

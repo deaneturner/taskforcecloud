@@ -1,9 +1,9 @@
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-handshake-o"></i></li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients']">Clients</li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.company}}</li>
+    <li class="breadcrumb-item"><i class="fa fa-cubes"></i></li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices']">Services</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices/detail/', clientService._id]">{{clientService.company}}</li>
 </ol>
-<h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Client</span></h1>
+<h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Service</span></h1>
 <section class="widget" widget id="autoload-widget"
          data-widgster-load="assets/demo/grid/autoload.php"
          data-post-processing="true"
@@ -11,7 +11,7 @@
          data-widgster-show-loader="false">
     <header></header>
     <div class="widget-body">
-        <form class="client-form mt-lg" role="form" #clientForm="ngForm" novalidate>
+        <form class="client-service-form mt-lg" role="form" #clientServiceForm="ngForm" novalidate>
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
@@ -21,7 +21,7 @@
                                id="company"
                                name="company"
                                placeholder="Company"
-                               [(ngModel)]="client.company">
+                               [(ngModel)]="clientService.company">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.company">
                             <li class="validation-type">{{ err }}</li>
@@ -34,7 +34,7 @@
                                id="firstName"
                                name="firstName"
                                placeholder="First Name"
-                               [(ngModel)]="client.firstName">
+                               [(ngModel)]="clientService.firstName">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.firstName">
                             <li class="validation-type">{{ err }}</li>
@@ -47,7 +47,7 @@
                                id="lastName"
                                name="lastName"
                                placeholder="Last Name"
-                               [(ngModel)]="client.lastName">
+                               [(ngModel)]="clientService.lastName">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.lastName">
                             <li class="validation-type">{{ err }}</li>
@@ -62,7 +62,7 @@
                                id="address1"
                                name="address1"
                                placeholder="Address 1"
-                               [(ngModel)]="client.address1">
+                               [(ngModel)]="clientService.address1">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.address1">
                             <li class="validation-type">{{ err }}</li>
@@ -75,7 +75,7 @@
                                id="address2"
                                name="address2"
                                placeholder="Address 2"
-                               [(ngModel)]="client.address2">
+                               [(ngModel)]="clientService.address2">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.address2">
                             <li class="validation-type">{{ err }}</li>
@@ -88,7 +88,7 @@
                                id="email"
                                name="email"
                                placeholder="E-mail"
-                               [(ngModel)]="client.email"
+                               [(ngModel)]="clientService.email"
                                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
                                required>
                         <ul class="validation-errors-list filled"
@@ -103,7 +103,7 @@
                                id="phone"
                                name="phone"
                                placeholder="Phone"
-                               [(ngModel)]="client.phone">
+                               [(ngModel)]="clientService.phone">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.phone">
                             <li class="validation-type">{{ err }}</li>
@@ -115,7 +115,7 @@
                 <div class="col-lg-6 col-xs-12">
                     <!--<div class="form-group">-->
                     <!--<input class="form-control" type="password" name="confirmPassword"-->
-                    <!--placeholder="Confirm Password" [(ngModel)]="client.confirmPassword"-->
+                    <!--placeholder="Confirm Password" [(ngModel)]="clientService.confirmPassword"-->
                     <!--validateEqual="password">-->
                     <!--<ul class="validation-errors-list filled"-->
                     <!--*ngFor="let err of formErrors.confirmPassword">-->
@@ -129,8 +129,8 @@
                     <button class="btn btn-secondary btn-sm" (click)="goToDetail($event)">Cancel
                     </button>
                     <button type="submit" class="btn btn-inverse btn-sm"
-                            (click)="upsertClient(clientForm.valid, clientForm.value)"
-                            [disabled]="!clientForm.valid">Save
+                            (click)="upsertClient(clientServiceForm.valid, clientServiceForm.value)"
+                            [disabled]="!clientServiceForm.valid">Save
                     </button>
                 </div>
             </div>

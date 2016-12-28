@@ -19,15 +19,20 @@ import { Notifications } from './notifications/notifications.component';
 import { ModalComponent } from '../shared/modal-window/modal.component';
 import { MessageBusService } from '../services/message.bus.service';
 import { UserService } from '../services/user.service';
-import { ClientService } from '../services/client.service';
 
 @NgModule({
     imports: [CommonModule, TooltipModule, ROUTES, FormsModule, ModalModule],
-    declarations: [Layout,
+    declarations: [
+        Layout,
         Sidebar,
         Navbar,
-        ChatSidebar, SearchPipe, Notifications, NotificationLoad, ChatMessage, ModalComponent],
-    providers: [MessageBusService, UserService, ClientService]
+        ChatSidebar,
+        SearchPipe,
+        Notifications,
+        NotificationLoad,
+        ChatMessage,
+        ModalComponent],
+    providers: [MessageBusService, UserService]
 })
 export default class LayoutModule {
 }
