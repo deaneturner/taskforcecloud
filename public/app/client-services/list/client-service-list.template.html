@@ -1,0 +1,12 @@
+<div class="list-group list-group-lg">
+    <a *ngFor="let client-service of client-services" class="list-group-item" (click)="router.navigate(['/app/client-services/detail', client-service._id])">
+        <span class="thumb-sm pull-xs-left mr">
+                    <img class="img-circle" src="{{ client-service.imgSrc || 'assets/img/avatar.png' }}" alt="...">
+                </span>
+        <!--<i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="user.indicatorClass"></i>-->
+        <h6 class="no-margin pull-xs-right">{{ client-service.phone || ''}}</h6>
+        <h6 class="no-margin">{{ client-service.company || ''}}</h6>
+        <small class="text-muted">{{ client-service.firstName }} {{ client-service.lastName }}</small>
+    </a>
+</div>
+
