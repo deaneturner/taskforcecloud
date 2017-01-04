@@ -61,7 +61,7 @@ module.exports = function(lib) {
     controller.addAction({
         'path': '/api/clients/:id',
         'method': 'PUT',
-        'params': [swagger.pathParam('id', 'The id of the client', 'string'), swagger.bodyParam('client', 'The content to overwrite', 'string')],
+        // 'params': [swagger.pathParam('id', 'The id of the client', 'string'), swagger.bodyParam('client', 'The content to overwrite', 'string')],
         'summary': 'Updates the data of one client',
         'responsClass': 'Client',
         'nickname': 'updateClient'
