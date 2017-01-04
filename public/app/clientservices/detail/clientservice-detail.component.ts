@@ -19,8 +19,7 @@ export class ClientServiceDetailComponent implements OnInit {
     @ViewChild(ClientServiceEditComponent)
     public clientServiceEditComponent: ClientServiceEditComponent;
 
-    constructor(private appState: AppState,
-                private router: Router,
+    constructor(private router: Router,
                 private notificationService: NotificationService,
                 private clientServiceService: ClientServiceService,
                 private activatedRoute: ActivatedRoute) {
@@ -69,9 +68,7 @@ export class ClientServiceDetailComponent implements OnInit {
                     title: 'Confirm Delete',
                     subTitle: null,
                     content: 'Are you sure you want to delete this client service:',
-                    subContent: self.clientService.firstName + ' ' +
-                    self.clientService.lastName +
-                    ' (' + self.clientService.company + ')',
+                    subContent: self.clientService.name,
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -87,9 +84,7 @@ export class ClientServiceDetailComponent implements OnInit {
                                     clientService => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            clientService.firstName + ' ' +
-                                            clientService.lastName +
-                                            ' (' + clientService.email + ')',
+                                            clientService.name,
                                             type: 'success'
                                         });
 

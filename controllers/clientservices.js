@@ -19,7 +19,7 @@ module.exports = function(lib) {
     }, function(req, res, next) {
         var id = req.params.id;
         if (id != null) {
-            lib.db.model('Client').findOne({_id: id}).exec(function(err, client) {
+            lib.db.model('ClientService').findOne({_id: id}).exec(function(err, client) {
                 if (err) return next(controller.RESTError('InternalServerError', err));
                 if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client id cannot be found'));
                 controller.writeHAL(res, client);
@@ -36,7 +36,7 @@ module.exports = function(lib) {
         'responsClass': 'ClientService',
         'nickname': 'getClientServices'
     }, function(req, res, next) {
-        lib.db.model('Client').find().sort('name').exec(function(err, clients) {
+        lib.db.model('ClientService').find().sort('name').exec(function(err, clients) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, clients);
         });
@@ -50,9 +50,9 @@ module.exports = function(lib) {
         'responsClass': 'ClientService',
         'nickname': 'addClientService'
     }, function(req, res, next) {
-        var newClient = JSON.parse(req.body);
-        var newClientModel = lib.db.model('Client')(newClient);
-        newClientModel.save(function(err, clientService) {
+        var newClientService = JSON.parse(req.body);
+        var newClientServiceModel = lib.db.model('ClientService')(newClientService);
+        newClientServiceModel.save(function(err, clientService) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, {success: true, data: clientService});
         });
@@ -61,7 +61,7 @@ module.exports = function(lib) {
     controller.addAction({
         'path': '/api/clientservices/:id',
         'method': 'PUT',
-        'params': [swagger.pathParam('id', 'The id of the client service', 'string'), swagger.bodyParam('clientService', 'The content to overwrite', 'string')],
+        // 'params': [swagger.pathParam('id', 'The id of the client service', 'string'), swagger.bodyParam('clientService', 'The content to overwrite', 'string')],
         'summary': 'Updates the data of one client service',
         'responsClass': 'ClientService',
         'nickname': 'updateClientService'
@@ -70,7 +70,7 @@ module.exports = function(lib) {
         if (!id) {
             return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
         } else {
-            var model = lib.db.model('Client');
+            var model = lib.db.model('ClientService');
             model.findOne({_id: id})
                 .exec(function(err, clientService) {
                     if (err) return next(controller.RESTError('InternalServerError', err));
@@ -91,7 +91,7 @@ module.exports = function(lib) {
         'responsClass': 'ClientService',
         'nickname': 'deleteClientService'
     }, function(req, res, next) {
-        lib.db.model('Client').findOne({_id: req.params.id}).exec(function(err, clientService) {
+        lib.db.model('ClientService').findOne({_id: req.params.id}).exec(function(err, clientService) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             clientService.remove();
             controller.writeHAL(res, clientService);

@@ -118,7 +118,7 @@ db.connect(function(err) {
         console.log('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         process.exit(1);
     } else {
-        console.log('Database service successfully started'.green);
+        console.log('Database service successfully started');
     }
 });
 

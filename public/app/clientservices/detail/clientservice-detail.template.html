@@ -1,11 +1,10 @@
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-cubes"></i></li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices']">Services</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices']"><i class="fa fa-cubes"></i> Services</li>
     <li class="active breadcrumb-item">{{clientService.company}}</li>
 </ol>
 <h1 class="page-title">Detail - <span class="fw-semi-bold">Service</span></h1>
 <div class="row user-profile">
-    <div class="col-lg-6 col-xs-12">
+    <div class="col-lg-3 col-xs-12">
         <tfc-panel
                 [collapsed]="panel.collapsed"
                 [showFullscreen]="panel.fullScreen"
@@ -18,63 +17,22 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5 col-xs-12 text-xs-center">
+                        <div class="col-md-12 col-xs-12 text-xs-center">
                             <div class="post-client-service post-client-service-profile">
-              <span class="thumb-xlg">
-                <i class="fa fa-cubes fa-5x"></i>
-              </span>
-                                <h5 class="fw-normal">{{clientService.firstName}} <span class="fw-semi-bold">{{clientService.lastName}}</span></h5>
-                                <div>{{clientService.company}}</div>
-                                <p>{{clientService.address1}}</p>
-                                <a href="#" class="btn btn-danger btn-sm mt">
-                                    &nbsp;Send
-                                    <i class="fa fa-envelope ml-xs"></i>&nbsp;
-                                </a>
-                                <ul class="contacts">
-                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{clientService.phone || '(---) --- -----'}}</a></li>
-                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{clientService.email || '--- @ ---- . com'}}</a>
-                                    </li>
-                                    <li><i class="fa fa-map-marker fa-fw mr-xs"></i><a href="#"> Minsk, Belarus</a></li>
-                                </ul>
+                                <span class="thumb-xlg">
+                                    <i class="fa fa-cubes fa-5x"></i>
+                                </span>
+                                <h5 class="fw-normal">{{clientService.name}}</h5>
                             </div>
-                        </div>
-                        <div class="col-md-7 col-xs-12">
-                            <div class="stats-row stats-row-profile mt text-xs-right">
-                                <div class="stat-item">
-                                    <p class="value text-xs-right">251</p>
-                                    <h6 class="name">Posts</h6>
-                                </div>
-                                <div class="stat-item">
-                                    <p class="value text-xs-right">9.38%</p>
-                                    <h6 class="name">Conversion</h6>
-                                </div>
-                                <div class="stat-item">
-                                    <p class="value text-xs-right">842</p>
-                                    <h6 class="name">Followers</h6>
-                                </div>
-                            </div>
-                            <p class="text-xs-right mt-lg">
-                                <a href="#" class="tag tag-warning"> UI/UX </a>
-                                <a href="#" class="tag tag-danger ml-xs"> Web Design </a>
-                                <a href="#" class="tag tag-default ml-xs"> Mobile Apps </a>
-                            </p>
-                            <p class="lead mt-lg">
-                                My name is Adam Johns and here is my new Sing user profile page.
-                            </p>
-                            <p>
-                                I love reading people's summaries page especially those who are in the same industry as
-                                me.
-                                Sometimes it's much easier to find your concentration during the night.
-                            </p>
                         </div>
                     </div>
                 </div>
             </section>
         </tfc-panel>
     </div>
-    <div class="col-lg-6 col-xs-12">
+    <div class="col-lg-9 col-xs-12">
         <section class="activities">
-            <h2 class="m-l-1">Activities</h2>
+            <h2 class="m-l-1">Tasks</h2>
             <section class="event">
         <span class="thumb-sm avatar pull-left mr-sm">
           <img class="img-circle" src="assets/img/people/a5.jpg" alt="...">
