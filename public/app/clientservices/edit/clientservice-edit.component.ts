@@ -16,36 +16,14 @@ export class ClientServiceEditComponent implements OnInit {
     clientService: any = {};
     clientServiceForm: NgForm;
     formErrors: any = {
-        'company': [],
-        'firstName': [],
-        'lastName': [],
-        'email': [],
-        'phone': []
+        'name': []
     };
-    validationMessages: any = {
-        'email': {
-            'required': 'E-mail is required.',
-            'pattern': 'E-mail must be formatted as as an email address.'
-        },
-        'password': {
-            'required': 'Password is required.',
-            'validateEqual': 'Password and Confirm Password must match.',
-            'pattern': 'Length must be between 8 and 32 characters and contain ' +
-            '[one or more uppercase letters], ' +
-            '[one or more lowercase letters], ' +
-            'and [one or more numbers].'
-        },
-        'confirmPassword': {
-            'required': 'Confirmation of password is required.',
-            'validateEqual': 'Password and Confirm Password must match.'
-        }
-    };
+    validationMessages: any = {};
 
     @ViewChild('clientServiceForm')
     currentForm: NgForm;
 
-    constructor(private appState: AppState,
-                private router: Router,
+    constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private clientServiceService: ClientServiceService) {
     }
@@ -59,13 +37,7 @@ export class ClientServiceEditComponent implements OnInit {
                     const paramId = params['id'];
                     if (paramId === 'new') {
                         self.clientService = {
-                            company: '',
-                            firstName: '',
-                            lastName: '',
-                            address1: '',
-                            address2: '',
-                            email: '',
-                            phone: ''
+                            name: ''
                         };
                     } else {
                         this.clientServiceService.getClientService(paramId)
