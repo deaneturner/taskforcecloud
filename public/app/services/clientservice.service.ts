@@ -15,7 +15,7 @@ export class ClientServiceService {
     }
 
     getClientService(id: string) {
-        return this.http.get('/api/clients/' + id)
+        return this.http.get('/api/clientservices/' + id)
                 .map((res: Response) => <ClientService>(res.json()))
                 .catch(this.notificationService.handleError);
     }
