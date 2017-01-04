@@ -1,6 +1,5 @@
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-handshake-o"></i></li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients']">Clients</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-handshake-o"></i> Clients</li>
     <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.company}}</li>
 </ol>
 <h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Client</span></h1>
