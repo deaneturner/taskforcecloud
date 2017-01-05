@@ -1,0 +1,14 @@
+<div class="list-group list-group-lg">
+    <a *ngFor="let client of clients" class="list-group-item" (click)="router.navigate(['/app/clients/detail', client._id])">
+        <span class="thumb-sm pull-xs-left mr">
+                    <i class="fa fa-handshake-o"></i>
+                </span>
+        <h6 class="pull-xs-right">{{ client.phone || ''}}</h6>
+        <!--Company and/or First, Last Name-->
+        <h6 *ngIf="client.company" [ngClass]="{'no-margin': client.company && (client.firstName || client.lastName)}">{{ client.company}}</h6>
+        <small *ngIf="client.company" class="text-muted">{{ client.firstName }} {{ client.lastName }}</small>
+        <!--No Company-->
+        <h6 *ngIf="!client.company">{{ client.firstName }} {{ client.lastName }}</h6>
+    </a>
+</div>
+

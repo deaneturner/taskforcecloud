@@ -1,0 +1,13 @@
+@import "../../scss/variables";
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+
+.client-form{
+  .form-control{
+    font-size: $font-size-mini;
+    background-color: $gray-lighter;
+    &:focus{
+      background-color: $gray-semi-lighter;
+    }
+  }
+}
