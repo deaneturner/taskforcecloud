@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EqualValidator } from '../forms/equal-validator.directive';
 
-import { ClientEditComponent } from './client-edit.component';
+import { ServiceItemEditComponent } from './service-item-edit.component';
 
 export const routes = [
-    {path: '', component: ClientEditComponent, pathMatch: 'full'}
+    {path: '', component: ServiceItemEditComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
     declarations: [
-        ClientEditComponent,
+        ServiceItemEditComponent,
         EqualValidator
     ],
     imports: [

@@ -8,5 +8,5 @@ import { ServiceItemListComponent } from './service-item-list.component';
     declarations: [ServiceItemListComponent],
     exports: [ServiceItemListComponent]
 })
-export class ClientListModule {
+export class ServiceItemListModule {
 }
