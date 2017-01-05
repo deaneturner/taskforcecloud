@@ -46,7 +46,6 @@ export class ClientDetailComponent implements OnInit {
 
         this.serviceItemPanel = {
             title: 'Service Items',
-            iconClass: ['fa-cube'],
             collapsed: false,
             close: false,
             fullScreen: false,
