@@ -1,0 +1,138 @@
+<ol class="breadcrumb">
+    <li class="active breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-handshake-o"></i> Clients</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.company}}</li>
+</ol>
+<h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Client</span></h1>
+<section class="widget" widget id="autoload-widget"
+         data-widgster-load="assets/demo/grid/autoload.php"
+         data-post-processing="true"
+         data-widgster-autoload="false"
+         data-widgster-show-loader="false">
+    <header></header>
+    <div class="widget-body">
+        <form class="client-form mt-lg" role="form" #clientForm="ngForm" novalidate>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input class="form-control"
+                               type="text"
+                               id="company"
+                               name="company"
+                               placeholder="Company"
+                               [(ngModel)]="client.company">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.company">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input class="form-control"
+                               type="text"
+                               id="firstName"
+                               name="firstName"
+                               placeholder="First Name"
+                               [(ngModel)]="client.firstName">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.firstName">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input class="form-control"
+                               type="text"
+                               id="lastName"
+                               name="lastName"
+                               placeholder="Last Name"
+                               [(ngModel)]="client.lastName">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.lastName">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="address1">Address 1</label>
+                        <input class="form-control"
+                               type="text"
+                               id="address1"
+                               name="address1"
+                               placeholder="Address 1"
+                               [(ngModel)]="client.address1">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.address1">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">Address 2</label>
+                        <input class="form-control"
+                               type="text"
+                               id="address2"
+                               name="address2"
+                               placeholder="Address 2"
+                               [(ngModel)]="client.address2">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.address2">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input class="form-control"
+                               type="text"
+                               id="email"
+                               name="email"
+                               placeholder="E-mail"
+                               [(ngModel)]="client.email"
+                               pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                               required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.email">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input class="form-control"
+                               type="text"
+                               id="phone"
+                               name="phone"
+                               placeholder="Phone"
+                               [(ngModel)]="client.phone">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.phone">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="password" name="confirmPassword"-->
+                    <!--placeholder="Confirm Password" [(ngModel)]="client.confirmPassword"-->
+                    <!--validateEqual="password">-->
+                    <!--<ul class="validation-errors-list filled"-->
+                    <!--*ngFor="let err of formErrors.confirmPassword">-->
+                    <!--<li class="validation-type">{{ err }}</li>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="btn-toolbar pull-xs-right m-t-1">
+                    <button class="btn btn-secondary btn-sm" (click)="goToDetail($event)">Cancel
+                    </button>
+                    <button type="submit" class="btn btn-inverse btn-sm"
+                            (click)="upsertClient(clientForm.valid, clientForm.value)"
+                            [disabled]="!clientForm.valid">Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

@@ -4,21 +4,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AppState } from '../../app.service';
 import { NotificationService } from '../../services/notification.service';
 import { ClientService } from '../../services/client.service';
-import { ClientEditComponent } from '../edit/client-edit.component';
 
 @Component({
-    selector: 'client-detail',
-    templateUrl: 'client-detail.template.html',
-    styleUrls: ['client-detail.style.scss'],
+    selector: 'service-item-detail',
+    templateUrl: 'service-item-detail.template.html',
+    styleUrls: ['service-item-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientDetailComponent implements OnInit {
+export class ServiceItemDetailComponent implements OnInit {
     panel: any;
-    serviceItemPanel: any;
     client: any = {};
-
-    @ViewChild(ClientEditComponent)
-    public clientEditComponent: ClientEditComponent;
 
     constructor(private appState: AppState,
                 private router: Router,
@@ -44,17 +39,6 @@ export class ClientDetailComponent implements OnInit {
             }]
         };
 
-        this.serviceItemPanel = {
-            title: 'Service Items',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
-            menu: [{
-                title: 'Add',
-                onMenuSelect: () => this.onMenuSelect('add')
-            }]
-        };
-
         this.activatedRoute.params
             .subscribe(
                 params => {
@@ -74,7 +58,7 @@ export class ClientDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clients/edit/', this.client._id]);
+                this.router.navigate(['/app/serviceitems/edit/', this.client._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
