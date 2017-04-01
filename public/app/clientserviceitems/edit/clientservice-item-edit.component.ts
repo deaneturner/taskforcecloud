@@ -2,52 +2,30 @@ import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ClientService } from '../../services/client.service';
+import { ClientServiceService } from '../../services/clientservice.service';
 import { AppState } from '../../app.service';
-import { Client } from '../../model/client.interface';
+import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
-    selector: 'service-item-edit',
-    templateUrl: 'service-item-edit.template.html',
-    styleUrls: ['service-item-edit.style.scss'],
+    selector: 'client-service-item-edit',
+    templateUrl: 'clientservice-item-edit.template.html',
+    styleUrls: ['clientservice-item-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ServiceItemEditComponent implements OnInit {
-    client: any = {};
-    clientForm: NgForm;
+export class ClientServiceItemEditComponent implements OnInit {
+    clientService: any = {};
+    clientServiceForm: NgForm;
     formErrors: any = {
-        'company': [],
-        'firstName': [],
-        'lastName': [],
-        'email': [],
-        'phone': []
+        'name': []
     };
-    validationMessages: any = {
-        'email': {
-            'required': 'E-mail is required.',
-            'pattern': 'E-mail must be formatted as as an email address.'
-        },
-        'password': {
-            'required': 'Password is required.',
-            'validateEqual': 'Password and Confirm Password must match.',
-            'pattern': 'Length must be between 8 and 32 characters and contain ' +
-            '[one or more uppercase letters], ' +
-            '[one or more lowercase letters], ' +
-            'and [one or more numbers].'
-        },
-        'confirmPassword': {
-            'required': 'Confirmation of password is required.',
-            'validateEqual': 'Password and Confirm Password must match.'
-        }
-    };
+    validationMessages: any = {};
 
-    @ViewChild('clientForm')
+    @ViewChild('clientServiceForm')
     currentForm: NgForm;
 
-    constructor(private appState: AppState,
-                private router: Router,
+    constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientService: ClientService) {
+                private clientServiceService: ClientServiceService) {
     }
 
     ngOnInit(): void {
@@ -58,20 +36,14 @@ export class ServiceItemEditComponent implements OnInit {
                 params => {
                     const paramId = params['id'];
                     if (paramId === 'new') {
-                        self.client = {
-                            company: '',
-                            firstName: '',
-                            lastName: '',
-                            address1: '',
-                            address2: '',
-                            email: '',
-                            phone: ''
+                        self.clientService = {
+                            name: ''
                         };
                     } else {
-                        this.clientService.getClient(paramId)
+                        this.clientServiceService.getClientService(paramId)
                             .subscribe(
-                                client => {
-                                    self.client = client;
+                                clientService => {
+                                    self.clientService = clientService;
                                 },
                                 error => {
                                 } // error is handled by service
@@ -81,16 +53,21 @@ export class ServiceItemEditComponent implements OnInit {
             );
     }
 
-    upsertClient(isValid: boolean, clientForm: Client) {
+    upsertClient(isValid: boolean, clientServiceForm: ClientService) {
         const self = this;
         if (isValid) {
-            if (this.client._id) {
+            if (this.clientService._id) {
                 // update
-                this.clientService.updateClient(this.client._id, clientForm)
+                this.clientServiceService
+                    .updateClientService(this.clientService._id, clientServiceForm)
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.router.navigate(['/app/clients/detail', self.client._id]);
+                                self.router
+                                    .navigate([
+                                        '/app/clientservices/detail',
+                                        self.clientService._id
+                                    ]);
                             } else if (res.success === false) {
                                 const field = res.field;
                                 // clear previous error message (if any)
@@ -104,11 +81,11 @@ export class ServiceItemEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientService.insertClient(clientForm)
+                this.clientServiceService.insertClientService(clientServiceForm)
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.router.navigate(['/app/clients/detail', res.data._id]);
+                                self.router.navigate(['/app/clientservices/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;
                                 // clear previous error message (if any)
@@ -127,10 +104,10 @@ export class ServiceItemEditComponent implements OnInit {
     cancel(event) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.client._id) {
-            this.router.navigate(['/app/clients/detail/', this.client._id]);
+        if (this.clientService._id) {
+            this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
         } else {
-            this.router.navigate(['/app/clients']);
+            this.router.navigate(['/app/clientservices']);
         }
     }
 
@@ -143,21 +120,21 @@ export class ServiceItemEditComponent implements OnInit {
     }
 
     formChanged() {
-        if (this.currentForm === this.clientForm) {
+        if (this.currentForm === this.clientServiceForm) {
             return;
         }
-        this.clientForm = this.currentForm;
-        if (this.clientForm) {
-            this.clientForm.valueChanges
+        this.clientServiceForm = this.currentForm;
+        if (this.clientServiceForm) {
+            this.clientServiceForm.valueChanges
                 .subscribe(data => this.onValueChanged(data));
         }
     }
 
     onValueChanged(data ?: any) {
-        if (!this.clientForm) {
+        if (!this.clientServiceForm) {
             return;
         }
-        const form = this.clientForm.form;
+        const form = this.clientServiceForm.form;
 
         for (let field in this.formErrors) {
             if (field) {

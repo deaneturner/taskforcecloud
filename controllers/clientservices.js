@@ -13,7 +13,7 @@ module.exports = function(lib) {
     controller.addAction({
         'path': '/api/clientservices/:id',
         'method': 'GET',
-        'summary': 'Returns the data of one client',
+        'summary': 'Returns the data of one client service',
         'responsClass': 'ClientService',
         'nickname': 'getClientServices'
     }, function(req, res, next) {
@@ -21,7 +21,7 @@ module.exports = function(lib) {
         if (id != null) {
             lib.db.model('ClientService').findOne({_id: id}).exec(function(err, client) {
                 if (err) return next(controller.RESTError('InternalServerError', err));
-                if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client id cannot be found'));
+                if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client service id cannot be found'));
                 controller.writeHAL(res, client);
             });
         } else {
@@ -75,9 +75,9 @@ module.exports = function(lib) {
                 .exec(function(err, clientService) {
                     if (err) return next(controller.RESTError('InternalServerError', err));
                     clientService = _.extend(clientService, JSON.parse(req.body));
-                    clientService.save(function(err, newClient) {
+                    clientService.save(function(err, newClientService) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
-                        controller.writeHAL(res, {success: true, data: newClient});
+                        controller.writeHAL(res, {success: true, data: newClientService});
                     });
                 });
         }

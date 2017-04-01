@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <li class="active breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-handshake-o"></i> Clients</li>
-    <li class="active breadcrumb-item">{{client.company}}</li>
+    <li class="active breadcrumb-item">{{client.company || (client.firstName + ' ' + client.lastName)}}</li>
 </ol>
 <!--<h1 class="page-title">Detail - <span class="fw-semi-bold">Client</span></h1>-->
 <div class="row user-profile">
@@ -73,13 +73,13 @@
     </div>
     <div class="col-lg-6 col-xs-12">
         <tfc-panel
-                class="service-item-list"
+                class="client-service-item-list"
                 [iconClass]="serviceItemPanel.iconClass"
                 [title]="serviceItemPanel.title"
                 [collapsed]="serviceItemPanel.collapsed"
                 [showFullscreen]="serviceItemPanel.fullScreen"
                 [menu]="serviceItemPanel.menu">
-            <tfc-service-item-list></tfc-service-item-list>
+            <tfc-client-service-item-list></tfc-client-service-item-list>
         </tfc-panel>
     </div>
     <!--<div class="col-lg-6 col-xs-12">-->

@@ -10,8 +10,8 @@ const routes: Routes = [
         {path: 'clients', loadChildren: () => System.import('../clients/clients.module')},
         {path: 'clientservices',
             loadChildren: () => System.import('../clientservices/clientservices.module')},
-        {path: 'serviceitems',
-            loadChildren: () => System.import('../serviceitems/serviceitems.module')},
+        {path: 'clientserviceitems',
+            loadChildren: () => System.import('../clientserviceitems/clientserviceitems.module')},
         {path: 'users', loadChildren: () => System.import('../users/users.module.ts')}
     ]
     }

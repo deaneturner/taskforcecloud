@@ -15,6 +15,7 @@ import { ClientServiceEditComponent } from '../edit/clientservice-edit.component
 export class ClientServiceDetailComponent implements OnInit {
     panel: any;
     clientService: any = {};
+    serviceItemPanel: any;
 
     @ViewChild(ClientServiceEditComponent)
     public clientServiceEditComponent: ClientServiceEditComponent;
@@ -42,6 +43,17 @@ export class ClientServiceDetailComponent implements OnInit {
             }]
         };
 
+        this.serviceItemPanel = {
+            title: 'Service Items',
+            collapsed: false,
+            close: false,
+            fullScreen: false,
+            menu: [{
+                title: 'Add',
+                onMenuSelect: () => this.onMenuServiceItemSelect('add')
+            }]
+        };
+
         this.activatedRoute.params
             .subscribe(
                 params => {
@@ -55,6 +67,23 @@ export class ClientServiceDetailComponent implements OnInit {
                         );
                 }
             );
+    }
+
+    onMenuServiceItemSelect(action: string) {
+        const self = this;
+        switch (action) {
+            case 'add':
+                // this.router.navigate(['/app/clientserviceitems/edit/new']);
+                self.activatedRoute.params
+                    .subscribe(
+                        params => {
+                            this.router.navigate(['app', 'clientservices', params['id'],
+                                'clientserviceitems', 'new']);
+                        }
+                    );
+                break;
+            default: // do nothing
+        }
     }
 
     onMenuSelect(action: string) {
