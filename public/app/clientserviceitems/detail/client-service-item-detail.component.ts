@@ -6,12 +6,12 @@ import { NotificationService } from '../../services/notification.service';
 import { ClientService } from '../../services/client.service';
 
 @Component({
-    selector: 'service-item-detail',
-    templateUrl: 'service-item-detail.template.html',
-    styleUrls: ['service-item-detail.style.scss'],
+    selector: 'client-service-item-detail',
+    templateUrl: 'client-service-item-detail.template.html',
+    styleUrls: ['client-service-item-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ServiceItemDetailComponent implements OnInit {
+export class ClientServiceItemDetailComponent implements OnInit {
     panel: any;
     client: any = {};
 
@@ -58,7 +58,7 @@ export class ServiceItemDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/serviceitems/edit/', this.client._id]);
+                this.router.navigate(['/app/clientserviceitems/edit/', this.client._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({

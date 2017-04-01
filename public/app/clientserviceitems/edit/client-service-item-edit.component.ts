@@ -7,12 +7,12 @@ import { AppState } from '../../app.service';
 import { Client } from '../../model/client.interface';
 
 @Component({
-    selector: 'service-item-edit',
-    templateUrl: 'service-item-edit.template.html',
-    styleUrls: ['service-item-edit.style.scss'],
+    selector: 'client-service-item-edit',
+    templateUrl: 'client-service-item-edit.template.html',
+    styleUrls: ['client-service-item-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ServiceItemEditComponent implements OnInit {
+export class ClientServiceItemEditComponent implements OnInit {
     client: any = {};
     clientForm: NgForm;
     formErrors: any = {

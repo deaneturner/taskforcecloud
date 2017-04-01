@@ -8,7 +8,8 @@ import { ClientServicesComponent } from './clientservices.component';
 import { ClientServiceDetailComponent } from './detail/clientservice-detail.component';
 import { ClientServiceEditComponent } from './edit/clientservice-edit.component';
 import { ClientServiceListModule } from './list/clientservice-list.module';
-import { ServiceItemListModule } from '../serviceitems/list/service-item-list.module';
+import { ClientServiceItemListModule }
+    from '../clientserviceitems/list/client-service-item-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientServiceService } from '../services/clientservice.service';
 import { ClientService } from '../services/client.service';
@@ -21,7 +22,7 @@ import { ROUTES }       from './clientservices.routes';
         CommonModule,
         FormsModule,
         ROUTES,
-        ServiceItemListModule],
+        ClientServiceItemListModule],
     declarations: [
         ClientServicesComponent,
         ClientServiceDetailComponent,

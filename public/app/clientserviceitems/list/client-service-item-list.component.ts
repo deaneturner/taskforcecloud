@@ -5,12 +5,12 @@ import { Client } from '../../model/client.interface';
 import { ClientService } from '../../services/client.service';
 
 @Component({
-    selector: 'tfc-service-item-list',
-    templateUrl: './service-item-list.template.html',
-    styleUrls: ['./service-item-list.style.scss'],
+    selector: 'tfc-client-service-item-list',
+    templateUrl: './client-service-item-list.template.html',
+    styleUrls: ['./client-service-item-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ServiceItemListComponent {
+export class ClientServiceItemListComponent {
     selectedClient: string;
     clients: Array<Client>;
 
