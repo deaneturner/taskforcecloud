@@ -8,14 +8,14 @@ import { ClientServiceItemDetailComponent } from './detail/client-service-item-d
 import { ClientServiceItemEditComponent } from './edit/client-service-item-edit.component';
 import { ClientServiceItemListModule } from './list/client-service-item-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
-import { ClientService } from '../services/client.service';
+import { ClientServiceService } from '../services/clientservice.service';
 
 import { ROUTES }       from './clientserviceitems.routes';
 
 @NgModule({
     imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientServiceItemListModule],
     declarations: [ClientServiceItemDetailComponent, ClientServiceItemEditComponent],
-    providers: [ClientService]
+    providers: [ClientServiceService]
 })
 
 export default class ClientServiceItemsModule {
