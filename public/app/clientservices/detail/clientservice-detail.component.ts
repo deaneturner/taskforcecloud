@@ -50,7 +50,7 @@ export class ClientServiceDetailComponent implements OnInit {
             fullScreen: false,
             menu: [{
                 title: 'Add',
-                onMenuSelect: () => this.onMenuSelect('add')
+                onMenuSelect: () => this.onMenuServiceItemSelect('add')
             }]
         };
 
@@ -67,6 +67,16 @@ export class ClientServiceDetailComponent implements OnInit {
                         );
                 }
             );
+    }
+
+    onMenuServiceItemSelect(action: string) {
+        const self = this;
+        switch (action) {
+            case 'add':
+                this.router.navigate(['/app/clientserviceitems/edit/new']);
+                break;
+            default: // do nothing
+        }
     }
 
     onMenuSelect(action: string) {
