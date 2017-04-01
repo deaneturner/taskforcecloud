@@ -2,7 +2,6 @@ var BaseController = require('./basecontroller');
 var swagger = require('swagger-node-restify');
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var constants = require('../lib/constants');
 
 function Login() {
 }
@@ -80,7 +79,6 @@ module.exports = function(lib) {
                         password: req.params.password,
                         firstName: req.params.firstName,
                         lastName: req.params.lastName,
-                        role: constants.roles.default,
                         email: req.params.username,
                         isKeepLoggedIn: req.params.isKeepLoggedIn
                     });

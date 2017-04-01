@@ -1,3 +1,5 @@
+var constants = require('../lib/constants');
+
 module.exports = {
     'id': 'User',
     'properties': {
@@ -19,7 +21,8 @@ module.exports = {
         },
         'role': {
             'type': 'string',
-            'description': 'User\'s authorization role'
+            'description': 'User\'s authorization role',
+            'default': constants.roles.default
         },
         'email': {
             'type': 'string',

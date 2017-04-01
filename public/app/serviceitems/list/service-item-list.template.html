@@ -1,0 +1,41 @@
+<!--<div class="list-group list-group-lg">-->
+    <!--<a *ngFor="let client of clients" class="list-group-item" (click)="router.navigate(['/app/clients/detail', client._id])">-->
+        <!--<span class="thumb-sm pull-xs-left mr">-->
+                    <!--<i class="fa fa-handshake-o"></i>-->
+                <!--</span>-->
+        <!--<h6 class="pull-xs-right">{{ client.phone || ''}}</h6>-->
+        <!--&lt;!&ndash;Company and/or First, Last Name&ndash;&gt;-->
+        <!--<h6 *ngIf="client.company" [ngClass]="{'no-margin': client.company && (client.firstName || client.lastName)}">{{ client.company}}</h6>-->
+        <!--<small *ngIf="client.company" class="text-muted">{{ client.firstName }} {{ client.lastName }}</small>-->
+        <!--&lt;!&ndash;No Company&ndash;&gt;-->
+        <!--<h6 *ngIf="!client.company">{{ client.firstName }} {{ client.lastName }}</h6>-->
+    <!--</a>-->
+<!--</div>-->
+
+<div class="list-group list-group-lg">
+    <section class="activities">
+    <a *ngFor="let client of clients" (click)="router.navigate(['/app/serviceitems/detail', client._id])">
+        <section class="event">
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <i class="fa fa-cube"></i>
+            </span>
+            <h5 class="event-heading">170 Gallon Reef Tank
+                <small><a href="#">@nils</a></small>
+            </h5>
+            <p class="text-muted">February 22, 2014 at 01:59 PM</p>
+            <p class="fs-mini">
+                There is no such thing as maturity. There is instead an ever-evolving process of maturing.
+                Because when there is a maturity, there is ...
+            </p>
+            <footer>
+                <ul class="post-links">
+                    <li><a href="#">1 hour</a></li>
+                    <li><a href="#"><span class="text-danger"><i class="fa fa-heart"></i> Like</span></a></li>
+                    <li><a href="#">Comment</a></li>
+                </ul>
+            </footer>
+        </section>
+    </a>
+    </section>
+</div>
+
