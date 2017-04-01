@@ -19,6 +19,8 @@ import { Notifications } from './notifications/notifications.component';
 import { ModalComponent } from '../shared/modal-window/modal.component';
 import { MessageBusService } from '../services/message.bus.service';
 import { UserService } from '../services/user.service';
+import { ClientServiceItemEditComponent }
+    from '../clientserviceitems/edit/client-service-item-edit.component';
 
 @NgModule({
     imports: [CommonModule, TooltipModule, ROUTES, FormsModule, ModalModule],
@@ -31,7 +33,8 @@ import { UserService } from '../services/user.service';
         Notifications,
         NotificationLoad,
         ChatMessage,
-        ModalComponent],
+        ModalComponent,
+        ClientServiceItemEditComponent],
     providers: [MessageBusService, UserService]
 })
 export default class LayoutModule {

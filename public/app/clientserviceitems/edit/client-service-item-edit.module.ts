@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EqualValidator } from '../forms/equal-validator.directive';
+import { EqualValidator } from '../../forms/equal-validator.directive';
 
 import { ClientServiceItemEditComponent } from './client-service-item-edit.component';
 
@@ -15,10 +16,12 @@ export const routes = [
         EqualValidator
     ],
     imports: [
+        FormsModule,
         CommonModule,
         RouterModule.forChild(routes)
-    ]
+    ],
+    exports: [ClientServiceItemEditComponent]
 })
-export default class ClientEditModule {
+export class ClientServiceItemEditModule {
     static routes = routes;
 }

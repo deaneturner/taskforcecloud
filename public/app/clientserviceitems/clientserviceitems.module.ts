@@ -15,8 +15,9 @@ import { ROUTES }       from './clientserviceitems.routes';
 @NgModule({
     imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientServiceItemListModule],
     declarations: [ClientServiceItemDetailComponent, ClientServiceItemEditComponent],
-    providers: [ClientServiceService]
+    providers: [ClientServiceService],
+    exports: [ClientServiceItemListModule]
 })
 
-export default class ClientServiceItemsModule {
+export class ClientServiceItemsModule {
 }
