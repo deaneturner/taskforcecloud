@@ -124,11 +124,14 @@ export class ServiceItemEditComponent implements OnInit {
         }
     }
 
-    goToDetail(event) {
+    cancel(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.router.navigate(['/app/clients/detail/', this.client._id]);
-
+        if (this.client._id) {
+            this.router.navigate(['/app/clients/detail/', this.client._id]);
+        } else {
+            this.router.navigate(['/app/clients']);
+        }
     }
 
     /*
