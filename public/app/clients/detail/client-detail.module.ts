@@ -5,7 +5,8 @@ import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ClientDetailComponent } from './client-detail.component';
-import { ServiceItemListComponent } from '../../serviceitems/list/service-item-list.component';
+import { ClientServiceItemListComponent } from
+    '../../clientserviceitems/list/clientservice-item-list.component';
 import { PanelModule } from '../shared/panel/panel.module';
 
 import { AppGuard } from '../app.guard';
@@ -16,7 +17,7 @@ export const routes = [
 
 @NgModule({
     imports: [PanelModule, CommonModule, RouterModule.forChild(routes)],
-    declarations: [ClientDetailComponent, ServiceItemListComponent]
+    declarations: [ClientDetailComponent, ClientServiceItemListComponent]
 })
 export default class ClientDetailModule {
     static routes = routes;
