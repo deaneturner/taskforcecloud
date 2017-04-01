@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientServiceItemService } from '../../services/clientserviceitem.service';
 import { ClientServiceItem } from '../../model/clientserviceitem.interface';
 
@@ -25,6 +26,7 @@ export class ClientServiceItemEditComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
+                private clientServiceService: ClientServiceService,
                 private clientServiceItemService: ClientServiceItemService) {
     }
 
@@ -34,13 +36,13 @@ export class ClientServiceItemEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const paramId = params['id'];
+                    const paramId = params['clientserviceitemid'];
                     if (paramId === 'new') {
                         self.clientServiceItem = {
                             name: ''
                         };
                     } else {
-                        this.clientServiceItem.getClientItem(paramId)
+                        this.clientServiceItem.getClientServiceItem(paramId)
                             .subscribe(
                                 clientServiceItem => {
                                     self.clientServiceItem = clientServiceItem;
@@ -49,6 +51,15 @@ export class ClientServiceItemEditComponent implements OnInit {
                                 } // error is handled by service
                             );
                     }
+
+                    this.clientServiceService.getClientService(params['id'])
+                        .subscribe(
+                            clientService => {
+                                self.clientService = clientService;
+                            },
+                            error => {
+                            } // error is handled by service
+                        );
                 }
                 // params => {
                 //     const paramId = params['id'];
