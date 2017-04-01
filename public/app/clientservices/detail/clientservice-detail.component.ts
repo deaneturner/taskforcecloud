@@ -15,6 +15,7 @@ import { ClientServiceEditComponent } from '../edit/clientservice-edit.component
 export class ClientServiceDetailComponent implements OnInit {
     panel: any;
     clientService: any = {};
+    serviceItemPanel: any;
 
     @ViewChild(ClientServiceEditComponent)
     public clientServiceEditComponent: ClientServiceEditComponent;
@@ -39,6 +40,17 @@ export class ClientServiceDetailComponent implements OnInit {
             }, {
                 title: 'Delete',
                 onMenuSelect: () => this.onMenuSelect('delete')
+            }]
+        };
+
+        this.serviceItemPanel = {
+            title: 'Service Items',
+            collapsed: false,
+            close: false,
+            fullScreen: false,
+            menu: [{
+                title: 'Add',
+                onMenuSelect: () => this.onMenuSelect('add')
             }]
         };
 
