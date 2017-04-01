@@ -8,8 +8,8 @@ import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
     selector: 'client-service-item-edit',
-    templateUrl: 'client-service-item-edit.template.html',
-    styleUrls: ['client-service-item-edit.style.scss'],
+    templateUrl: 'clientservice-item-edit.template.html',
+    styleUrls: ['clientservice-item-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceItemEditComponent implements OnInit {

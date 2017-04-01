@@ -6,7 +6,7 @@ import { ClientServiceEditComponent } from './edit/clientservice-edit.component'
 import {
     ClientServiceItemEditComponent
 }
-    from '../clientserviceitems/edit/client-service-item-edit.component';
+    from '../clientserviceitems/edit/clientservice-item-edit.component';
 
 import { AppGuard } from '../app.guard';
 

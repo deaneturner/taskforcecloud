@@ -7,8 +7,8 @@ import { ClientService } from '../../services/client.service';
 
 @Component({
     selector: 'client-service-item-detail',
-    templateUrl: 'client-service-item-detail.template.html',
-    styleUrls: ['client-service-item-detail.style.scss'],
+    templateUrl: 'clientservice-item-detail.template.html',
+    styleUrls: ['clientservice-item-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceItemDetailComponent implements OnInit {

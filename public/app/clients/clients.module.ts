@@ -9,7 +9,7 @@ import { ClientDetailComponent } from './detail/client-detail.component';
 import { ClientEditComponent } from './edit/client-edit.component';
 import { ClientListComponent } from './list/client-list.component';
 import { ClientServiceItemListModule }
-    from '../clientserviceitems/list/client-service-item-list.module';
+    from '../clientserviceitems/list/clientservice-item-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientService } from '../services/client.service';
 

@@ -9,7 +9,9 @@ import { ClientServiceDetailComponent } from './detail/clientservice-detail.comp
 import { ClientServiceEditComponent } from './edit/clientservice-edit.component';
 import { ClientServiceListModule } from './list/clientservice-list.module';
 import { ClientServiceItemListModule }
-    from '../clientserviceitems/list/client-service-item-list.module';
+    from '../clientserviceitems/list/clientservice-item-list.module';
+import { ClientServiceItemEditComponent }
+    from '../clientserviceitems/edit/clientservice-item-edit.component';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientServiceService } from '../services/clientservice.service';
 import { ClientService } from '../services/client.service';
@@ -26,7 +28,8 @@ import { ROUTES }       from './clientservices.routes';
     declarations: [
         ClientServicesComponent,
         ClientServiceDetailComponent,
-        ClientServiceEditComponent],
+        ClientServiceEditComponent,
+        ClientServiceItemEditComponent],
     providers: [
         ClientServiceService,
         ClientService]
