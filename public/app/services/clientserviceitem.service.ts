@@ -26,18 +26,18 @@ export class ClientServiceItemService {
             .catch(this.notificationService.handleError);
     }
 
-    updateClientServiceItem(id: string, clientService: any) {
+    updateClientServiceItem(id: string, clientServiceItem: any) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
-        return this.http.put('/api/clientserviceitems/' + id, clientService, {headers: headers})
+        return this.http.put('/api/clientserviceitems/' + id, clientServiceItem, {headers: headers})
             .map((response: any) => <ClientServiceItem>(response.json()))
             .catch(this.notificationService.handleError);
     }
 
-    insertClientServiceItem(clientService: any) {
+    insertClientServiceItem(clientServiceItem: any) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
-        return this.http.post('/api/clientserviceitems', clientService, {headers: headers})
+        return this.http.post('/api/clientserviceitems', clientServiceItem, {headers: headers})
             .map((response: any) => <ClientServiceItem>(response.json()))
             .catch(this.notificationService.handleError);
     }

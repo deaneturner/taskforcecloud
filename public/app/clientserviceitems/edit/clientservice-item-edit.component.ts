@@ -61,23 +61,6 @@ export class ClientServiceItemEditComponent implements OnInit {
                             } // error is handled by service
                         );
                 }
-                // params => {
-                //     const paramId = params['id'];
-                //     if (paramId === 'new') {
-                //         self.clientServiceItem = {
-                //             name: ''
-                //         };
-                //     } else {
-                //         this.clientServiceItemService.getClientService(paramId)
-                //             .subscribe(
-                //                 clientServiceItem => {
-                //                     self.clientServiceItem = clientServiceItem;
-                //                 },
-                //                 error => {
-                //                 } // error is handled by service
-                //             );
-                //     }
-                // }
             );
     }
 
@@ -93,7 +76,7 @@ export class ClientServiceItemEditComponent implements OnInit {
                             if (res.success) {
                                 self.router
                                     .navigate([
-                                        '/app/clientservices/detail',
+                                        '/app/clientserviceitems/detail',
                                         self.clientServiceItem._id
                                     ]);
                             } else if (res.success === false) {
@@ -113,7 +96,8 @@ export class ClientServiceItemEditComponent implements OnInit {
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.router.navigate(['/app/clientservices/detail', res.data._id]);
+                                self.router.navigate([
+                                    '/app/clientserviceitems/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;
                                 // clear previous error message (if any)
