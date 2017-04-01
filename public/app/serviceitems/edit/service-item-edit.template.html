@@ -2,7 +2,7 @@
     <li class="active breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-handshake-o"></i> Clients</li>
     <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{client.company}}</li>
 </ol>
-<h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Client</span></h1>
+<!--<h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Client</span></h1>-->
 <section class="widget" widget id="autoload-widget"
          data-widgster-load="assets/demo/grid/autoload.php"
          data-post-processing="true"
@@ -125,7 +125,7 @@
             </div>
             <div class="clearfix">
                 <div class="btn-toolbar pull-xs-right m-t-1">
-                    <button class="btn btn-secondary btn-sm" (click)="goToDetail($event)">Cancel
+                    <button class="btn btn-secondary btn-sm" (click)="cancel($event)">Cancel
                     </button>
                     <button type="submit" class="btn btn-inverse btn-sm"
                             (click)="upsertClient(clientForm.valid, clientForm.value)"

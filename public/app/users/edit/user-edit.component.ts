@@ -108,11 +108,14 @@ export class UserEditComponent implements OnInit {
         }
     }
 
-    goToDetail(event) {
+    cancel(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.userService.cacheManager.selectUser(['/app/users/detail/', this.user._id]);
-
+        if (this.user._id) {
+            this.userService.cacheManager.selectUser(['/app/users/detail/', this.user._id]);
+        } else {
+            this.router.navigate(['/app/users']);
+        }
     }
 
     /*

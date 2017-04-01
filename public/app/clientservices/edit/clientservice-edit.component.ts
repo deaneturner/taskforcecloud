@@ -101,11 +101,14 @@ export class ClientServiceEditComponent implements OnInit {
         }
     }
 
-    goToDetail(event) {
+    cancel(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
-
+        if (this.clientService._id) {
+            this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
+        } else {
+            this.router.navigate(['/app/clientservices']);
+        }
     }
 
     /*

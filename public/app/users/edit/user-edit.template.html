@@ -2,7 +2,7 @@
     <li class="active breadcrumb-item" [routerLink]="['/app/users']"><i class="fa fa-user-o"></i> Users</li>
     <li class="active breadcrumb-item" [routerLink]="['/app/users/detail/', user._id]">{{user.username}}</li>
 </ol>
-<h1 class="page-title">Edit - <span class="fw-semi-bold">User</span></h1>
+<!--<h1 class="page-title">Edit - <span class="fw-semi-bold">User</span></h1>-->
 <section class="widget" widget id="autoload-widget"
          data-widgster-load="assets/demo/grid/autoload.php"
          data-post-processing="true"
@@ -105,7 +105,7 @@
             </div>
             <div class="clearfix">
                 <div class="btn-toolbar pull-xs-right m-t-1">
-                    <button class="btn btn-secondary btn-sm" (click)="goToDetail($event)">Cancel
+                    <button class="btn btn-secondary btn-sm" (click)="cancel($event)">Cancel
                     </button>
                     <button type="submit" class="btn btn-inverse btn-sm"
                             (click)="updateUser(userForm.valid, userForm.value)"
