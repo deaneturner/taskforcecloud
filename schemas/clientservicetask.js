@@ -1,9 +1,9 @@
 module.exports = {
-    'id': 'ClientServiceItem',
+    'id': 'ClientServiceTask',
     'properties': {
         'name': {
             'type': 'string',
-            'description': 'Name of service item'
+            'description': 'Name of service task'
         }
     }
 };

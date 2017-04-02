@@ -10,7 +10,7 @@
          data-widgster-show-loader="false">
     <header></header>
     <div class="widget-body">
-        <form class="client-service-item-form mt-lg" role="form" #clientServiceItemForm="ngForm" novalidate>
+        <form class="clientservicetask-form mt-lg" role="form" #clientServiceTaskForm="ngForm" novalidate>
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
@@ -20,7 +20,7 @@
                                id="name"
                                name="name"
                                placeholder="Name"
-                               [(ngModel)]="clientServiceItem.name">
+                               [(ngModel)]="clientServiceTask.name">
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.name">
                             <li class="validation-type">{{ err }}</li>
@@ -37,8 +37,8 @@
                     <button class="btn btn-secondary btn-sm" (click)="cancel($event)">Cancel
                     </button>
                     <button type="submit" class="btn btn-inverse btn-sm"
-                            (click)="upsertClient(clientServiceItemForm.valid, clientServiceItemForm.value)"
-                            [disabled]="!clientServiceItemForm.valid">Save
+                            (click)="upsertClient(clientServiceTaskForm.valid, clientServiceTaskForm.value)"
+                            [disabled]="!clientServiceTaskForm.valid">Save
                     </button>
                 </div>
             </div>

@@ -2,7 +2,7 @@ module.exports = {
     models: {
         Client: require('./client'),
         ClientService: require('./clientservice'),
-        ClientServiceItem: require('./clientserviceitem'),
+        ClientServiceTask: require('./clientservicetask'),
         User: require('./user')
     }
 };
