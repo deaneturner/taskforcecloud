@@ -76,7 +76,11 @@ export class ClientServiceItemEditComponent implements OnInit {
                             if (res.success) {
                                 self.router
                                     .navigate([
-                                        '/app/clientserviceitems/detail',
+                                        'app',
+                                        'clientservices',
+                                        self.clientService._id,
+                                        'clientserviceitems',
+                                        'detail',
                                         self.clientServiceItem._id
                                     ]);
                             } else if (res.success === false) {
@@ -97,7 +101,13 @@ export class ClientServiceItemEditComponent implements OnInit {
                         res => {
                             if (res.success) {
                                 self.router.navigate([
-                                    '/app/clientserviceitems/detail', res.data._id]);
+                                    'app',
+                                    'clientservices',
+                                    self.clientService._id,
+                                    'clientserviceitems',
+                                    'detail',
+                                    res.data._id
+                                ]);
                             } else if (res.success === false) {
                                 const field = res.field;
                                 // clear previous error message (if any)

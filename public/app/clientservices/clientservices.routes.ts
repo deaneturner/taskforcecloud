@@ -7,6 +7,10 @@ import {
     ClientServiceItemEditComponent
 }
     from '../clientserviceitems/edit/clientservice-item-edit.component';
+import {
+    ClientServiceItemDetailComponent
+}
+    from '../clientserviceitems/detail/clientservice-item-detail.component';
 
 import { AppGuard } from '../app.guard';
 
@@ -26,6 +30,12 @@ const routes: Routes = [
     {
         path: ':id/clientserviceitems/:clientserviceitemid',
         component: ClientServiceItemEditComponent,
+        pathMatch: 'full',
+        canActivate: [AppGuard]
+    },
+    {
+        path: ':id/clientserviceitems/detail/:clientserviceitemid',
+        component: ClientServiceItemDetailComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]
     }

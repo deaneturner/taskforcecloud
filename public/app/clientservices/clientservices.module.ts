@@ -12,6 +12,8 @@ import { ClientServiceItemListModule }
     from '../clientserviceitems/list/clientservice-item-list.module';
 import { ClientServiceItemEditComponent }
     from '../clientserviceitems/edit/clientservice-item-edit.component';
+import { ClientServiceItemDetailComponent }
+    from '../clientserviceitems/detail/clientservice-item-detail.component';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientServiceService } from '../services/clientservice.service';
 import { ClientServiceItemService } from '../services/clientserviceitem.service';
@@ -30,7 +32,8 @@ import { ROUTES }       from './clientservices.routes';
         ClientServicesComponent,
         ClientServiceDetailComponent,
         ClientServiceEditComponent,
-        ClientServiceItemEditComponent],
+        ClientServiceItemEditComponent,
+        ClientServiceItemDetailComponent],
     providers: [
         ClientServiceService,
         ClientServiceItemService,

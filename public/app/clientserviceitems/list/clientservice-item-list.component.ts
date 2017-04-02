@@ -1,8 +1,8 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Client } from '../../model/client.interface';
-import { ClientService } from '../../services/client.service';
+import { ClientServiceItemService } from '../../services/clientserviceitem.service';
 
 @Component({
     selector: 'tfc-client-service-item-list',
@@ -11,22 +11,24 @@ import { ClientService } from '../../services/client.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceItemListComponent {
-    selectedClient: string;
-    clients: Array<Client>;
+    clientService: any = {};
+    clientServiceItems: Array<Client>;
 
     constructor(private router: Router,
-                private clientService: ClientService) {
+                private activatedRoute: ActivatedRoute,
+                private clientServiceItemService: ClientServiceItemService) {
     }
 
 
     ngOnInit(): void {
-        this.getClients();
+        this.clientService._id = this.activatedRoute.snapshot.params['id'];
+        this.getClientServiceItems();
     };
 
-    getClients() {
-        this.clientService.getClients()
+    getClientServiceItems() {
+        this.clientServiceItemService.getClientServiceItems()
             .subscribe(
-                clients => this.clients = clients,
+                clientServiceItems => this.clientServiceItems = clientServiceItems,
                 error => {
                 }  // error is handled by service
             );
