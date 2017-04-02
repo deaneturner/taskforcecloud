@@ -7,10 +7,10 @@ import { ClientServiceItemEditComponent } from './edit/clientservice-item-edit.c
 import { AppGuard } from '../app.guard';
 
 const routes: Routes = [
-    {path: 'detail/:id',
-        component: ClientServiceItemDetailComponent,
-        pathMatch: 'full',
-        canActivate: [AppGuard]},
+    // {path: 'detail/:id',
+    //     component: ClientServiceItemDetailComponent,
+    //     pathMatch: 'full',
+    //     canActivate: [AppGuard]},
     {path: 'edit/:id',
         component: ClientServiceItemEditComponent,
         pathMatch: 'full',

@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientServiceService } from '../../services/clientservice.service';
-import { AppState } from '../../app.service';
-import { ClientService } from '../../model/clientservice.interface';
+import { ClientServiceItemService } from '../../services/clientserviceitem.service';
+import { ClientServiceItem } from '../../model/clientserviceitem.interface';
 
 @Component({
     selector: 'client-service-item-edit',
@@ -14,18 +14,20 @@ import { ClientService } from '../../model/clientservice.interface';
 })
 export class ClientServiceItemEditComponent implements OnInit {
     clientService: any = {};
-    clientServiceForm: NgForm;
+    clientServiceItem: any = {};
+    clientServiceItemForm: NgForm;
     formErrors: any = {
         'name': []
     };
     validationMessages: any = {};
 
-    @ViewChild('clientServiceForm')
+    @ViewChild('clientServiceItemForm')
     currentForm: NgForm;
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientServiceService: ClientServiceService) {
+                private clientServiceService: ClientServiceService,
+                private clientServiceItemService: ClientServiceItemService) {
     }
 
     ngOnInit(): void {
@@ -34,39 +36,52 @@ export class ClientServiceItemEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const paramId = params['id'];
+                    const paramId = params['clientserviceitemid'];
                     if (paramId === 'new') {
-                        self.clientService = {
+                        self.clientServiceItem = {
                             name: ''
                         };
                     } else {
-                        this.clientServiceService.getClientService(paramId)
+                        this.clientServiceItem.getClientServiceItem(paramId)
                             .subscribe(
-                                clientService => {
-                                    self.clientService = clientService;
+                                clientServiceItem => {
+                                    self.clientServiceItem = clientServiceItem;
                                 },
                                 error => {
                                 } // error is handled by service
                             );
                     }
+
+                    this.clientServiceService.getClientService(params['id'])
+                        .subscribe(
+                            clientService => {
+                                self.clientService = clientService;
+                            },
+                            error => {
+                            } // error is handled by service
+                        );
                 }
             );
     }
 
-    upsertClient(isValid: boolean, clientServiceForm: ClientService) {
+    upsertClient(isValid: boolean, clientServiceItemForm: ClientServiceItem) {
         const self = this;
         if (isValid) {
-            if (this.clientService._id) {
+            if (this.clientServiceItem._id) {
                 // update
-                this.clientServiceService
-                    .updateClientService(this.clientService._id, clientServiceForm)
+                this.clientServiceItemService
+                    .updateClientServiceItem(this.clientServiceItem._id, clientServiceItemForm)
                     .subscribe(
                         res => {
                             if (res.success) {
                                 self.router
                                     .navigate([
-                                        '/app/clientservices/detail',
-                                        self.clientService._id
+                                        'app',
+                                        'clientservices',
+                                        self.clientService._id,
+                                        'clientserviceitems',
+                                        'detail',
+                                        self.clientServiceItem._id
                                     ]);
                             } else if (res.success === false) {
                                 const field = res.field;
@@ -81,11 +96,18 @@ export class ClientServiceItemEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientServiceService.insertClientService(clientServiceForm)
+                this.clientServiceItemService.insertClientServiceItem(clientServiceItemForm)
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.router.navigate(['/app/clientservices/detail', res.data._id]);
+                                self.router.navigate([
+                                    'app',
+                                    'clientservices',
+                                    self.clientService._id,
+                                    'clientserviceitems',
+                                    'detail',
+                                    res.data._id
+                                ]);
                             } else if (res.success === false) {
                                 const field = res.field;
                                 // clear previous error message (if any)
@@ -104,8 +126,8 @@ export class ClientServiceItemEditComponent implements OnInit {
     cancel(event) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.clientService._id) {
-            this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
+        if (this.clientServiceItem._id) {
+            this.router.navigate(['/app/clientservices/detail/', this.clientServiceItem._id]);
         } else {
             this.router.navigate(['/app/clientservices']);
         }
@@ -120,21 +142,21 @@ export class ClientServiceItemEditComponent implements OnInit {
     }
 
     formChanged() {
-        if (this.currentForm === this.clientServiceForm) {
+        if (this.currentForm === this.clientServiceItemForm) {
             return;
         }
-        this.clientServiceForm = this.currentForm;
-        if (this.clientServiceForm) {
-            this.clientServiceForm.valueChanges
+        this.clientServiceItemForm = this.currentForm;
+        if (this.clientServiceItemForm) {
+            this.clientServiceItemForm.valueChanges
                 .subscribe(data => this.onValueChanged(data));
         }
     }
 
     onValueChanged(data ?: any) {
-        if (!this.clientServiceForm) {
+        if (!this.clientServiceItemForm) {
             return;
         }
-        const form = this.clientServiceForm.form;
+        const form = this.clientServiceItemForm.form;
 
         for (let field in this.formErrors) {
             if (field) {

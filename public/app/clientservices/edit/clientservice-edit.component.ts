@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientServiceService } from '../../services/clientservice.service';
-import { AppState } from '../../app.service';
 import { ClientService } from '../../model/clientservice.interface';
 
 @Component({

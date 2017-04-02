@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AppState } from '../../app.service';
 import { NotificationService } from '../../services/notification.service';
-import { ClientService } from '../../services/client.service';
+import { ClientServiceService } from '../../services/clientservice.service';
+import { ClientServiceItemService } from '../../services/clientserviceitem.service';
 
 @Component({
     selector: 'client-service-item-detail',
@@ -13,12 +13,13 @@ import { ClientService } from '../../services/client.service';
 })
 export class ClientServiceItemDetailComponent implements OnInit {
     panel: any;
-    client: any = {};
+    clientService: any = {};
+    clientServiceItem: any = {};
 
-    constructor(private appState: AppState,
-                private router: Router,
+    constructor(private router: Router,
                 private notificationService: NotificationService,
-                private clientService: ClientService,
+                private clientServiceService: ClientServiceService,
+                private clientServiceItemService: ClientServiceItemService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -42,10 +43,19 @@ export class ClientServiceItemDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientService.getClient(params['id'])
+                    self.clientServiceItemService
+                        .getClientServiceItem(params['clientserviceitemid'])
                         .subscribe(
-                            client => {
-                                self.client = client;
+                            clientServiceItem => {
+                                self.clientServiceItem = clientServiceItem;
+                            },
+                            error => {
+                            } // error is handled by service
+                        );
+                    self.clientServiceService.getClientService(params['id'])
+                        .subscribe(
+                            clientService => {
+                                self.clientService = clientService;
                             },
                             error => {
                             } // error is handled by service
@@ -58,16 +68,16 @@ export class ClientServiceItemDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clientserviceitems/edit/', this.client._id]);
+                this.router.navigate(['/app/clientserviceitems/edit/', this.clientServiceItem._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
                     title: 'Confirm Delete',
                     subTitle: null,
                     content: 'Are you sure you want to delete client:',
-                    subContent: self.client.firstName + ' ' +
-                    self.client.lastName +
-                    ' (' + self.client.company + ')',
+                    subContent: self.clientServiceItem.firstName + ' ' +
+                    self.clientServiceItem.lastName +
+                    ' (' + self.clientServiceItem.company + ')',
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -77,20 +87,20 @@ export class ClientServiceItemDetailComponent implements OnInit {
                     }, {
                         title: 'Yes, delete',
                         onClick: ($event) => {
-                            self.clientService
+                            self.clientServiceItem
                                 .deleteClient(self.activatedRoute.snapshot.params['id'])
                                 .subscribe(
-                                    client => {
+                                    clientServiceItem => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            client.firstName + ' ' +
-                                            client.lastName +
-                                            ' (' + client.email + ')',
+                                            clientServiceItem.firstName + ' ' +
+                                            clientServiceItem.lastName +
+                                            ' (' + clientServiceItem.email + ')',
                                             type: 'success'
                                         });
 
                                         self.notificationService.closeModal();
-                                        self.router.navigate(['/app/clients']);
+                                        self.router.navigate(['/app/clientsserviceitems']);
                                     },
                                     error => {
                                     }  // error is handled by service

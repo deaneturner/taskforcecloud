@@ -1,6 +1,7 @@
 <ol class="breadcrumb">
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-cube"></i> Company XYZZ</li>
-    <li class="active breadcrumb-item">{{client.company}}</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices']"><i class="fa fa-cube"></i> Services</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices/detail/', clientService._id]">{{clientService.name}}</li>
+    <li class="active breadcrumb-item">{{clientServiceItem.name}}</li>
 </ol>
 <!--<h1 class="page-title">Detail - <span class="fw-semi-bold">Service Item</span></h1>-->
 <div class="row user-profile">
@@ -22,16 +23,16 @@
               <span class="thumb-xlg">
                 <i class="fa fa-cube fa-5x"></i>
               </span>
-                                <h5 class="fw-normal">{{client.firstName}} <span class="fw-semi-bold">{{client.lastName}}</span></h5>
-                                <div>{{client.company}}</div>
-                                <p>{{client.address1}}</p>
+                                <h5 class="fw-normal">LATER <span class="fw-semi-bold">LATER</span></h5>
+                                <div>LATER</div>
+                                <p>LATER</p>
                                 <a href="#" class="btn btn-danger btn-sm mt">
                                     &nbsp;Send
                                     <i class="fa fa-envelope ml-xs"></i>&nbsp;
                                 </a>
                                 <ul class="contacts">
-                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{client.phone || '(---) --- -----'}}</a></li>
-                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{client.email || '--- @ ---- . com'}}</a>
+                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{'LATER' || '(---) --- -----'}}</a></li>
+                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{'LATER' || '--- @ ---- . com'}}</a>
                                     </li>
                                     <li><i class="fa fa-map-marker fa-fw mr-xs"></i><a href="#"> Minsk, Belarus</a></li>
                                 </ul>
@@ -79,7 +80,7 @@
               <img class="img-circle" src="assets/img/people/a5.jpg" alt="...">
             </span>
                 <h5 class="event-heading"><a href="#">Bob Nilson</a>
-                    <small><a href="#">@nils</a></small>
+                    <small>@nils</small>
                 </h5>
                 <p class="text-muted">February 22, 2014 at 01:59 PM</p>
                 <p class="fs-mini">
