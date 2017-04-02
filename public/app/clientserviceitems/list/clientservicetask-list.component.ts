@@ -5,9 +5,9 @@ import { Client } from '../../model/client.interface';
 import { ClientServiceItemService } from '../../services/clientserviceitem.service';
 
 @Component({
-    selector: 'tfc-client-service-item-list',
-    templateUrl: './clientservice-item-list.template.html',
-    styleUrls: ['./clientservice-item-list.style.scss'],
+    selector: 'tfc-clientservicetask-list',
+    templateUrl: './clientservicetask-list.template.html',
+    styleUrls: ['./clientservicetask-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceItemListComponent {

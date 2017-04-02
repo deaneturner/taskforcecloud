@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { ClientDetailComponent } from './client-detail.component';
 import { ClientServiceItemListComponent } from
-    '../../clientserviceitems/list/clientservice-item-list.component';
+    '../../clientserviceitems/list/clientservicetask-list.component';
 import { PanelModule } from '../shared/panel/panel.module';
 
 import { AppGuard } from '../app.guard';

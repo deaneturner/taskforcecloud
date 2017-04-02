@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 
-import { ClientServiceItemListComponent } from './clientservice-item-list.component';
+import { ClientServiceItemListComponent } from './clientservicetask-list.component';
 
 @NgModule({
     imports: [CommonModule],

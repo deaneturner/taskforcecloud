@@ -6,11 +6,11 @@ import { ClientServiceEditComponent } from './edit/clientservice-edit.component'
 import {
     ClientServiceItemEditComponent
 }
-    from '../clientserviceitems/edit/clientservice-item-edit.component';
+    from '../clientserviceitems/edit/clientservicetask-edit.component';
 import {
     ClientServiceItemDetailComponent
 }
-    from '../clientserviceitems/detail/clientservice-item-detail.component';
+    from '../clientserviceitems/detail/clientservicetask-detail.component';
 
 import { AppGuard } from '../app.guard';
 

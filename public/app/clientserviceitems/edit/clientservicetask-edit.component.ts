@@ -7,9 +7,9 @@ import { ClientServiceItemService } from '../../services/clientserviceitem.servi
 import { ClientServiceItem } from '../../model/clientserviceitem.interface';
 
 @Component({
-    selector: 'client-service-item-edit',
-    templateUrl: 'clientservice-item-edit.template.html',
-    styleUrls: ['clientservice-item-edit.style.scss'],
+    selector: 'clientservicetask-edit',
+    templateUrl: 'clientservicetask-edit.template.html',
+    styleUrls: ['clientservicetask-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceItemEditComponent implements OnInit {

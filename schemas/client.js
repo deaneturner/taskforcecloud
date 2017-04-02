@@ -28,6 +28,13 @@ module.exports = {
         'email': {
             'type': 'string',
             'description': 'Email of the client'
+        },
+        'clientServiceItems': {
+            'type': 'array',
+            'description': 'List of items being serviced',
+            'items': {
+                '$ref': 'ClientServiceItem'
+            }
         }
     }
 };

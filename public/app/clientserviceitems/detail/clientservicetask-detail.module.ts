@@ -4,7 +4,7 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { ClientServiceItemDetailComponent } from './clientservice-item-detail.component';
+import { ClientServiceItemDetailComponent } from './clientservicetask-detail.component';
 import { PanelModule } from '../shared/panel/panel.module';
 
 import { AppGuard } from '../app.guard';

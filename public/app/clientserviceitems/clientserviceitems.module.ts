@@ -4,9 +4,9 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ClientServiceItemDetailComponent } from './detail/clientservice-item-detail.component';
-import { ClientServiceItemEditComponent } from './edit/clientservice-item-edit.component';
-import { ClientServiceItemListModule } from './list/clientservice-item-list.module';
+import { ClientServiceItemDetailComponent } from './detail/clientservicetask-detail.component';
+import { ClientServiceItemEditComponent } from './edit/clientservicetask-edit.component';
+import { ClientServiceItemListModule } from './list/clientservicetask-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 
 import { ROUTES }       from './clientserviceitems.routes';
