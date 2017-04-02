@@ -3,6 +3,8 @@ import { Routes, RouterModule }  from '@angular/router';
 import { ClientsComponent } from './clients.component';
 import { ClientDetailComponent } from './detail/client-detail.component';
 import { ClientEditComponent } from './edit/client-edit.component';
+import { ClientItemDetailComponent } from '../clientitems/detail/clientitem-detail.component';
+import { ClientItemEditComponent } from '../clientitems/edit/clientitem-edit.component';
 
 import { AppGuard } from '../app.guard';
 
@@ -18,7 +20,19 @@ const routes: Routes = [
     {path: 'edit/:id',
         component: ClientEditComponent,
         pathMatch: 'full',
-        canActivate: [AppGuard]}
+        canActivate: [AppGuard]},
+    {
+        path: ':id/clientitems/:clientitemid',
+        component: ClientItemEditComponent,
+        pathMatch: 'full',
+        canActivate: [AppGuard]
+    },
+    {
+        path: ':id/clientitems/detail/:clientitemid',
+        component: ClientItemDetailComponent,
+        pathMatch: 'full',
+        canActivate: [AppGuard]
+    }
 
 ];
 

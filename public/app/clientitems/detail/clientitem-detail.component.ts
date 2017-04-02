@@ -2,26 +2,22 @@ import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
-import { ClientServiceService } from '../../services/clientservice.service';
-import { ClientServiceEditComponent } from '../edit/clientservice-edit.component';
+import { ClientService } from '../../services/client.service';
 
 @Component({
-    selector: 'clientservice-detail',
-    templateUrl: 'clientservice-detail.template.html',
-    styleUrls: ['clientservice-detail.style.scss'],
+    selector: 'clientitem-detail',
+    templateUrl: 'clientitem-detail.template.html',
+    styleUrls: ['clientitem-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServiceDetailComponent implements OnInit {
+export class ClientItemDetailComponent implements OnInit {
     panel: any;
-    clientService: any = {};
-    serviceItemPanel: any;
-
-    @ViewChild(ClientServiceEditComponent)
-    public clientServiceEditComponent: ClientServiceEditComponent;
+    client: any = {};
+    clientItem: any = {};
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
-                private clientServiceService: ClientServiceService,
+                private clientService: ClientService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -42,24 +38,22 @@ export class ClientServiceDetailComponent implements OnInit {
             }]
         };
 
-        this.serviceItemPanel = {
-            title: 'Service Items',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
-            menu: [{
-                title: 'Add',
-                onMenuSelect: () => this.onMenuServiceTaskSelect('add')
-            }]
-        };
-
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientServiceService.getClientService(params['id'])
+                    self.clientService
+                        .getClientItems(params['clientitemid'])
                         .subscribe(
-                            clientService => {
-                                self.clientService = clientService;
+                            clientItem => {
+                                self.clientItem = clientItem;
+                            },
+                            error => {
+                            } // error is handled by service
+                        );
+                    self.clientService.getClient(params['id'])
+                        .subscribe(
+                            client => {
+                                self.client = client;
                             },
                             error => {
                             } // error is handled by service
@@ -68,34 +62,20 @@ export class ClientServiceDetailComponent implements OnInit {
             );
     }
 
-    onMenuServiceTaskSelect(action: string) {
-        const self = this;
-        switch (action) {
-            case 'add':
-                self.activatedRoute.params
-                    .subscribe(
-                        params => {
-                            this.router.navigate(['app', 'clientservices', params['id'],
-                                'clientservicetasks', 'edit', 'new']);
-                        }
-                    );
-                break;
-            default: // do nothing
-        }
-    }
-
     onMenuSelect(action: string) {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clientservices/edit/', this.clientService._id]);
+                this.router.navigate(['/app/clientitems/edit/', this.clientItem._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
                     title: 'Confirm Delete',
                     subTitle: null,
-                    content: 'Are you sure you want to delete this client service:',
-                    subContent: self.clientService.name,
+                    content: 'Are you sure you want to delete client:',
+                    subContent: self.clientItem.firstName + ' ' +
+                    self.clientItem.lastName +
+                    ' (' + self.clientItem.company + ')',
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -105,18 +85,20 @@ export class ClientServiceDetailComponent implements OnInit {
                     }, {
                         title: 'Yes, delete',
                         onClick: ($event) => {
-                            self.clientServiceService
-                                .deleteClientService(self.activatedRoute.snapshot.params['id'])
+                            self.clientItem
+                                .deleteClient(self.activatedRoute.snapshot.params['id'])
                                 .subscribe(
-                                    clientService => {
+                                    clientItem => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            clientService.name,
+                                            clientItem.firstName + ' ' +
+                                            clientItem.lastName +
+                                            ' (' + clientItem.email + ')',
                                             type: 'success'
                                         });
 
                                         self.notificationService.closeModal();
-                                        self.router.navigate(['/app/clientservices']);
+                                        self.router.navigate(['/app/clientsserviceitems']);
                                     },
                                     error => {
                                     }  // error is handled by service
