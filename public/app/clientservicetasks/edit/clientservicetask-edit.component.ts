@@ -79,7 +79,7 @@ export class ClientServiceItemEditComponent implements OnInit {
                                         'app',
                                         'clientservices',
                                         self.clientService._id,
-                                        'clientserviceitems',
+                                        'clientservicetasks',
                                         'detail',
                                         self.clientServiceItem._id
                                     ]);
@@ -104,7 +104,7 @@ export class ClientServiceItemEditComponent implements OnInit {
                                     'app',
                                     'clientservices',
                                     self.clientService._id,
-                                    'clientserviceitems',
+                                    'clientservicetasks',
                                     'detail',
                                     res.data._id
                                 ]);

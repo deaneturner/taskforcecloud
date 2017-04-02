@@ -10,7 +10,7 @@ import { ClientEditComponent } from './edit/client-edit.component';
 import { ClientListComponent } from './list/client-list.component';
 import { ClientServiceItemService } from '../services/clientserviceitem.service';
 import { ClientServiceItemListModule }
-    from '../clientserviceitems/list/clientservicetask-list.module';
+    from '../clientservicetasks/list/clientservicetask-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientService } from '../services/client.service';
 

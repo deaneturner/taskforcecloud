@@ -15,13 +15,13 @@ export class ClientServiceItemService {
     }
 
     getClientServiceItem(id: string) {
-        return this.http.get('/api/clientserviceitems/' + id)
+        return this.http.get('/api/clientservicetasks/' + id)
                 .map((res: Response) => <ClientServiceItem>(res.json()))
                 .catch(this.notificationService.handleError);
     }
 
     getClientServiceItems(query ?: any) {
-        return this.http.get('/api/clientserviceitems')
+        return this.http.get('/api/clientservicetasks')
             .map((response: Response) => <ClientServiceItem[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }
@@ -29,7 +29,7 @@ export class ClientServiceItemService {
     updateClientServiceItem(id: string, clientServiceItem: any) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
-        return this.http.put('/api/clientserviceitems/' + id, clientServiceItem, {headers: headers})
+        return this.http.put('/api/clientservicetasks/' + id, clientServiceItem, {headers: headers})
             .map((response: any) => <ClientServiceItem>(response.json()))
             .catch(this.notificationService.handleError);
     }
@@ -37,13 +37,13 @@ export class ClientServiceItemService {
     insertClientServiceItem(clientServiceItem: any) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
-        return this.http.post('/api/clientserviceitems', clientServiceItem, {headers: headers})
+        return this.http.post('/api/clientservicetasks', clientServiceItem, {headers: headers})
             .map((response: any) => <ClientServiceItem>(response.json()))
             .catch(this.notificationService.handleError);
     }
 
     deleteClientServiceItem(id: string) {
-        return this.http.delete('/api/clientserviceitems/' + id)
+        return this.http.delete('/api/clientservicetasks/' + id)
             .map((response: Response) => <ClientServiceItem>(response.json()))
             .catch(this.notificationService.handleError);
     }

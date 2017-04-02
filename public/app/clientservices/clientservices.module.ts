@@ -9,11 +9,11 @@ import { ClientServiceDetailComponent } from './detail/clientservice-detail.comp
 import { ClientServiceEditComponent } from './edit/clientservice-edit.component';
 import { ClientServiceListModule } from './list/clientservice-list.module';
 import { ClientServiceItemListModule }
-    from '../clientserviceitems/list/clientservicetask-list.module';
+    from '../clientservicetasks/list/clientservicetask-list.module';
 import { ClientServiceItemEditComponent }
-    from '../clientserviceitems/edit/clientservicetask-edit.component';
+    from '../clientservicetasks/edit/clientservicetask-edit.component';
 import { ClientServiceItemDetailComponent }
-    from '../clientserviceitems/detail/clientservicetask-detail.component';
+    from '../clientservicetasks/detail/clientservicetask-detail.component';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientServiceService } from '../services/clientservice.service';
 import { ClientServiceItemService } from '../services/clientserviceitem.service';

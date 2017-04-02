@@ -9,7 +9,7 @@ import { ClientServiceItemEditComponent } from './edit/clientservicetask-edit.co
 import { ClientServiceItemListModule } from './list/clientservicetask-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 
-import { ROUTES }       from './clientserviceitems.routes';
+import { ROUTES }       from './clientservicetasks.routes';
 
 @NgModule({
     imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientServiceItemListModule],

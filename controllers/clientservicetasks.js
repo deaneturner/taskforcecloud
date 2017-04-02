@@ -11,7 +11,7 @@ module.exports = function(lib) {
     var controller = new ClientServiceItems();
 
     controller.addAction({
-        'path': '/api/clientserviceitems/:id',
+        'path': '/api/clientservicetasks/:id',
         'method': 'GET',
         'summary': 'Returns the data of one client service item',
         'responsClass': 'ClientServiceItem',
@@ -30,7 +30,7 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
-        'path': '/api/clientserviceitems',
+        'path': '/api/clientservicetasks',
         'method': 'GET',
         'summary': 'Returns the list of client service items ordered by name',
         'responsClass': 'ClientServiceItem',
@@ -43,7 +43,7 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
-        'path': '/api/clientserviceitems',
+        'path': '/api/clientservicetasks',
         'method': 'POST',
         'params': [swagger.bodyParam('clientServiceItem', 'The JSON representation of the client service item', 'string')],
         'summary': 'Adds a new client service item to the database',
@@ -59,7 +59,7 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
-        'path': '/api/clientserviceitems/:id',
+        'path': '/api/clientservicetasks/:id',
         'method': 'PUT',
         // 'params': [swagger.pathParam('id', 'The id of the client service', 'string'), swagger.bodyParam('clientService', 'The content to overwrite', 'string')],
         'summary': 'Updates the data of one client service item',
@@ -84,7 +84,7 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
-        'path': '/api/clientserviceitems/:id',
+        'path': '/api/clientservicetasks/:id',
         'method': 'DEL',
         'params': [swagger.bodyParam('id', 'The id of the client service item to delete', 'string')],
         'summary': 'Deletes a client service item from the database',

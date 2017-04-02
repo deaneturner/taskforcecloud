@@ -73,12 +73,12 @@ export class ClientServiceDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'add':
-                // this.router.navigate(['/app/clientserviceitems/edit/new']);
+                // this.router.navigate(['/app/clientservicetasks/edit/new']);
                 self.activatedRoute.params
                     .subscribe(
                         params => {
                             this.router.navigate(['app', 'clientservices', params['id'],
-                                'clientserviceitems', 'new']);
+                                'clientservicetasks', 'new']);
                         }
                     );
                 break;
