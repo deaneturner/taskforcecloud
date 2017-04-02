@@ -8,6 +8,7 @@ import { ClientsComponent } from './clients.component';
 import { ClientDetailComponent } from './detail/client-detail.component';
 import { ClientEditComponent } from './edit/client-edit.component';
 import { ClientListComponent } from './list/client-list.component';
+import { ClientServiceItemService } from '../services/clientserviceitem.service';
 import { ClientServiceItemListModule }
     from '../clientserviceitems/list/clientservice-item-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
@@ -19,7 +20,7 @@ import { ROUTES }       from './clients.routes';
     imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientServiceItemListModule],
     declarations: [ClientsComponent, ClientDetailComponent, ClientEditComponent,
         ClientListComponent],
-    providers: [ClientService]
+    providers: [ClientService, ClientServiceItemService]
 })
 export default class ClientModule {
 }
