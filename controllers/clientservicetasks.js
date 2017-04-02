@@ -14,12 +14,12 @@ module.exports = function(lib) {
         'path': '/api/clientservicetasks/:id',
         'method': 'GET',
         'summary': 'Returns the data of one client service item',
-        'responsClass': 'ClientServiceItem',
+        'responsClass': 'ClientServiceTask',
         'nickname': 'getClientServiceItems'
     }, function(req, res, next) {
         var id = req.params.id;
         if (id != null) {
-            lib.db.model('ClientServiceItem').findOne({_id: id}).exec(function(err, client) {
+            lib.db.model('ClientServiceTask').findOne({_id: id}).exec(function(err, client) {
                 if (err) return next(controller.RESTError('InternalServerError', err));
                 if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client service item id cannot be found'));
                 controller.writeHAL(res, client);
@@ -33,10 +33,10 @@ module.exports = function(lib) {
         'path': '/api/clientservicetasks',
         'method': 'GET',
         'summary': 'Returns the list of client service items ordered by name',
-        'responsClass': 'ClientServiceItem',
+        'responsClass': 'ClientServiceTask',
         'nickname': 'getClientServiceItems'
     }, function(req, res, next) {
-        lib.db.model('ClientServiceItem').find().sort('name').exec(function(err, clients) {
+        lib.db.model('ClientServiceTask').find().sort('name').exec(function(err, clients) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, clients);
         });
@@ -47,11 +47,11 @@ module.exports = function(lib) {
         'method': 'POST',
         'params': [swagger.bodyParam('clientServiceItem', 'The JSON representation of the client service item', 'string')],
         'summary': 'Adds a new client service item to the database',
-        'responsClass': 'ClientServiceItem',
+        'responsClass': 'ClientServiceTask',
         'nickname': 'addClientServiceItem'
     }, function(req, res, next) {
         var newClientServiceItem = JSON.parse(req.body);
-        var newClientServiceItemModel = lib.db.model('ClientServiceItem')(newClientServiceItem);
+        var newClientServiceItemModel = lib.db.model('ClientServiceTask')(newClientServiceItem);
         newClientServiceItemModel.save(function(err, clientServiceItem) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, {success: true, data: clientServiceItem});
@@ -63,14 +63,14 @@ module.exports = function(lib) {
         'method': 'PUT',
         // 'params': [swagger.pathParam('id', 'The id of the client service', 'string'), swagger.bodyParam('clientService', 'The content to overwrite', 'string')],
         'summary': 'Updates the data of one client service item',
-        'responsClass': 'ClientServiceItem',
+        'responsClass': 'ClientServiceTask',
         'nickname': 'updateClientServiceItem'
     }, function(req, res, next) {
         var id = req.params.id;
         if (!id) {
             return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
         } else {
-            var model = lib.db.model('ClientServiceItem');
+            var model = lib.db.model('ClientServiceTask');
             model.findOne({_id: id})
                 .exec(function(err, clientServiceItem) {
                     if (err) return next(controller.RESTError('InternalServerError', err));
@@ -88,10 +88,10 @@ module.exports = function(lib) {
         'method': 'DEL',
         'params': [swagger.bodyParam('id', 'The id of the client service item to delete', 'string')],
         'summary': 'Deletes a client service item from the database',
-        'responsClass': 'ClientServiceItem',
+        'responsClass': 'ClientServiceTask',
         'nickname': 'deleteClientServiceItem'
     }, function(req, res, next) {
-        lib.db.model('ClientServiceItem').findOne({_id: req.params.id}).exec(function(err, clientServiceItem) {
+        lib.db.model('ClientServiceTask').findOne({_id: req.params.id}).exec(function(err, clientServiceItem) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             clientServiceItem.remove();
             controller.writeHAL(res, clientServiceItem);

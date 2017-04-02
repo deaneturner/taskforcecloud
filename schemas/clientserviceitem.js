@@ -1,5 +1,5 @@
 module.exports = {
-    'id': 'ClientServiceItem',
+    'id': 'ClientServiceTask',
     'properties': {
         'name': {
             'type': 'string',

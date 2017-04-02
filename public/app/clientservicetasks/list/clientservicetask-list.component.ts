@@ -2,7 +2,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Client } from '../../model/client.interface';
-import { ClientServiceItemService } from '../../services/clientserviceitem.service';
+import { ClientServiceItemService } from '../../services/clientservicetask.service';
 
 @Component({
     selector: 'tfc-clientservicetask-list',

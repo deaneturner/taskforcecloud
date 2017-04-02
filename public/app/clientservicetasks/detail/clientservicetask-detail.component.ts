@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
 import { ClientServiceService } from '../../services/clientservice.service';
-import { ClientServiceItemService } from '../../services/clientserviceitem.service';
+import { ClientServiceItemService } from '../../services/clientservicetask.service';
 
 @Component({
     selector: 'clientservicetask-detail',
@@ -44,7 +44,7 @@ export class ClientServiceItemDetailComponent implements OnInit {
             .subscribe(
                 params => {
                     self.clientServiceItemService
-                        .getClientServiceItem(params['clientserviceitemid'])
+                        .getClientServiceItem(params['clientservicetaskid'])
                         .subscribe(
                             clientServiceItem => {
                                 self.clientServiceItem = clientServiceItem;

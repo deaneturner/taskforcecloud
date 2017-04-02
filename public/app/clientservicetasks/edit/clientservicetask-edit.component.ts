@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientServiceService } from '../../services/clientservice.service';
-import { ClientServiceItemService } from '../../services/clientserviceitem.service';
-import { ClientServiceItem } from '../../model/clientserviceitem.interface';
+import { ClientServiceItemService } from '../../services/clientservicetask.service';
+import { ClientServiceTask } from '../../model/clientservicetask.interface';
 
 @Component({
     selector: 'clientservicetask-edit',
@@ -36,7 +36,7 @@ export class ClientServiceItemEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const paramId = params['clientserviceitemid'];
+                    const paramId = params['clientservicetaskid'];
                     if (paramId === 'new') {
                         self.clientServiceItem = {
                             name: ''
@@ -64,7 +64,7 @@ export class ClientServiceItemEditComponent implements OnInit {
             );
     }
 
-    upsertClient(isValid: boolean, clientServiceItemForm: ClientServiceItem) {
+    upsertClient(isValid: boolean, clientServiceItemForm: ClientServiceTask) {
         const self = this;
         if (isValid) {
             if (this.clientServiceItem._id) {

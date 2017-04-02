@@ -3,7 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 
 import { NotificationService } from './notification.service';
 
-import { ClientServiceItem } from '../model/clientserviceitem.interface';
+import { ClientServiceTask } from '../model/clientservicetask.interface';
 
 import * as _ from 'lodash';
 
@@ -16,13 +16,13 @@ export class ClientServiceItemService {
 
     getClientServiceItem(id: string) {
         return this.http.get('/api/clientservicetasks/' + id)
-                .map((res: Response) => <ClientServiceItem>(res.json()))
+                .map((res: Response) => <ClientServiceTask>(res.json()))
                 .catch(this.notificationService.handleError);
     }
 
     getClientServiceItems(query ?: any) {
         return this.http.get('/api/clientservicetasks')
-            .map((response: Response) => <ClientServiceItem[]>_.values(response.json()))
+            .map((response: Response) => <ClientServiceTask[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }
 
@@ -30,7 +30,7 @@ export class ClientServiceItemService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.put('/api/clientservicetasks/' + id, clientServiceItem, {headers: headers})
-            .map((response: any) => <ClientServiceItem>(response.json()))
+            .map((response: any) => <ClientServiceTask>(response.json()))
             .catch(this.notificationService.handleError);
     }
 
@@ -38,13 +38,13 @@ export class ClientServiceItemService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.post('/api/clientservicetasks', clientServiceItem, {headers: headers})
-            .map((response: any) => <ClientServiceItem>(response.json()))
+            .map((response: any) => <ClientServiceTask>(response.json()))
             .catch(this.notificationService.handleError);
     }
 
     deleteClientServiceItem(id: string) {
         return this.http.delete('/api/clientservicetasks/' + id)
-            .map((response: Response) => <ClientServiceItem>(response.json()))
+            .map((response: Response) => <ClientServiceTask>(response.json()))
             .catch(this.notificationService.handleError);
     }
 }

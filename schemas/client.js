@@ -33,7 +33,7 @@ module.exports = {
             'type': 'array',
             'description': 'List of items being serviced',
             'items': {
-                '$ref': 'ClientServiceItem'
+                '$ref': 'ClientServiceTask'
             }
         }
     }
