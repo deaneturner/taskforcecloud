@@ -5,7 +5,7 @@ import { CommonModule }  from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ClientDetailComponent } from './client-detail.component';
-import { ClientServiceItemListComponent } from
+import { ClientServiceTaskListComponent } from
     '../../clientservicetasks/list/clientservicetask-list.component';
 import { PanelModule } from '../shared/panel/panel.module';
 
@@ -17,7 +17,7 @@ export const routes = [
 
 @NgModule({
     imports: [PanelModule, CommonModule, RouterModule.forChild(routes)],
-    declarations: [ClientDetailComponent, ClientServiceItemListComponent]
+    declarations: [ClientDetailComponent, ClientServiceTaskListComponent]
 })
 export default class ClientDetailModule {
     static routes = routes;

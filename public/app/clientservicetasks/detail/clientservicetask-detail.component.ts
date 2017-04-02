@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
 import { ClientServiceService } from '../../services/clientservice.service';
-import { ClientServiceItemService } from '../../services/clientservicetask.service';
+import { ClientServiceTaskService } from '../../services/clientservicetask.service';
 
 @Component({
     selector: 'clientservicetask-detail',
@@ -11,15 +11,15 @@ import { ClientServiceItemService } from '../../services/clientservicetask.servi
     styleUrls: ['clientservicetask-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServiceItemDetailComponent implements OnInit {
+export class ClientServiceTaskDetailComponent implements OnInit {
     panel: any;
     clientService: any = {};
-    clientServiceItem: any = {};
+    clientServiceTask: any = {};
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
                 private clientServiceService: ClientServiceService,
-                private clientServiceItemService: ClientServiceItemService,
+                private clientServiceTaskService: ClientServiceTaskService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -43,11 +43,11 @@ export class ClientServiceItemDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientServiceItemService
-                        .getClientServiceItem(params['clientservicetaskid'])
+                    self.clientServiceTaskService
+                        .getClientServiceTask(params['clientservicetaskid'])
                         .subscribe(
-                            clientServiceItem => {
-                                self.clientServiceItem = clientServiceItem;
+                            clientServiceTask => {
+                                self.clientServiceTask = clientServiceTask;
                             },
                             error => {
                             } // error is handled by service
@@ -68,16 +68,16 @@ export class ClientServiceItemDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clientservicetasks/edit/', this.clientServiceItem._id]);
+                this.router.navigate(['/app/clientservicetasks/edit/', this.clientServiceTask._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
                     title: 'Confirm Delete',
                     subTitle: null,
                     content: 'Are you sure you want to delete client:',
-                    subContent: self.clientServiceItem.firstName + ' ' +
-                    self.clientServiceItem.lastName +
-                    ' (' + self.clientServiceItem.company + ')',
+                    subContent: self.clientServiceTask.firstName + ' ' +
+                    self.clientServiceTask.lastName +
+                    ' (' + self.clientServiceTask.company + ')',
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -87,15 +87,15 @@ export class ClientServiceItemDetailComponent implements OnInit {
                     }, {
                         title: 'Yes, delete',
                         onClick: ($event) => {
-                            self.clientServiceItem
+                            self.clientServiceTask
                                 .deleteClient(self.activatedRoute.snapshot.params['id'])
                                 .subscribe(
-                                    clientServiceItem => {
+                                    clientServiceTask => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            clientServiceItem.firstName + ' ' +
-                                            clientServiceItem.lastName +
-                                            ' (' + clientServiceItem.email + ')',
+                                            clientServiceTask.firstName + ' ' +
+                                            clientServiceTask.lastName +
+                                            ' (' + clientServiceTask.email + ')',
                                             type: 'success'
                                         });
 

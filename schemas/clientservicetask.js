@@ -3,7 +3,7 @@ module.exports = {
     'properties': {
         'name': {
             'type': 'string',
-            'description': 'Name of service item'
+            'description': 'Name of service task'
         }
     }
 };

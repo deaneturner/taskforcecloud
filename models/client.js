@@ -7,18 +7,18 @@ module.exports = function(db) {
     var schema = require('../schemas/client.js');
     var modelDef = db.getModelFromSchema(schema);
 
-    modelDef.schema.plugin(jsonSelect, '-clientServiceItems');
+    modelDef.schema.plugin(jsonSelect, '-clientServiceTasks');
     modelDef.schema.methods.toHAL = function() {
         var halObj = helpers.makeHAL(this.toJSON(),
             [{
-                name: 'clientServiceItems',
-                'href': '/client/' + this.id + '/clientServiceItems',
+                name: 'clientServiceTasks',
+                'href': '/client/' + this.id + '/clientServiceTasks',
                 'title': 'Client Service Items'
             }]);
 
-        if (this.clientServiceItems.length > 0) {
-            if (this.clientServiceItems[0].toString().length != 24) {
-                halObj.addEmbed('clientServiceItems', _.map(this.clientServiceItems, function(e) {
+        if (this.clientServiceTasks.length > 0) {
+            if (this.clientServiceTasks[0].toString().length != 24) {
+                halObj.addEmbed('clientServiceTasks', _.map(this.clientServiceTasks, function(e) {
                     return e.toHAL();
                 }));
             }

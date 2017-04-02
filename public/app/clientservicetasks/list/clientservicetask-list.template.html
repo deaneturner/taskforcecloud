@@ -1,11 +1,11 @@
 <div class="list-group list-group-lg">
     <section class="activities">
-    <a *ngFor="let clientServiceItem of clientServiceItems" (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceItem._id])">
+    <a *ngFor="let clientServiceTask of clientServiceTasks" (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
         <section class="event">
             <span class="thumb-sm avatar pull-left mr-sm">
               <i class="fa fa-cube"></i>
             </span>
-            <h5 class="event-heading">{{ clientServiceItem.name }}
+            <h5 class="event-heading">{{ clientServiceTask.name }}
                 <small>@nils</small>
             </h5>
             <p class="text-muted">February 22, 2014 at 01:59 PM</p>

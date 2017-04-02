@@ -2,26 +2,26 @@ var BaseController = require('./basecontroller');
 var _ = require('underscore');
 var swagger = require('swagger-node-restify');
 
-function ClientServiceItems() {
+function ClientServiceTasks() {
 }
 
-ClientServiceItems.prototype = new BaseController();
+ClientServiceTasks.prototype = new BaseController();
 
 module.exports = function(lib) {
-    var controller = new ClientServiceItems();
+    var controller = new ClientServiceTasks();
 
     controller.addAction({
         'path': '/api/clientservicetasks/:id',
         'method': 'GET',
-        'summary': 'Returns the data of one client service item',
+        'summary': 'Returns the data of one client service task',
         'responsClass': 'ClientServiceTask',
-        'nickname': 'getClientServiceItems'
+        'nickname': 'getClientServiceTasks'
     }, function(req, res, next) {
         var id = req.params.id;
         if (id != null) {
             lib.db.model('ClientServiceTask').findOne({_id: id}).exec(function(err, client) {
                 if (err) return next(controller.RESTError('InternalServerError', err));
-                if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client service item id cannot be found'));
+                if (!client) return next(controller.RESTError('ResourceNotFoundError', 'The client service task id cannot be found'));
                 controller.writeHAL(res, client);
             });
         } else {
@@ -34,7 +34,7 @@ module.exports = function(lib) {
         'method': 'GET',
         'summary': 'Returns the list of client service items ordered by name',
         'responsClass': 'ClientServiceTask',
-        'nickname': 'getClientServiceItems'
+        'nickname': 'getClientServiceTasks'
     }, function(req, res, next) {
         lib.db.model('ClientServiceTask').find().sort('name').exec(function(err, clients) {
             if (err) return next(controller.RESTError('InternalServerError', err));
@@ -45,16 +45,16 @@ module.exports = function(lib) {
     controller.addAction({
         'path': '/api/clientservicetasks',
         'method': 'POST',
-        'params': [swagger.bodyParam('clientServiceItem', 'The JSON representation of the client service item', 'string')],
-        'summary': 'Adds a new client service item to the database',
+        'params': [swagger.bodyParam('clientServiceTask', 'The JSON representation of the client service task', 'string')],
+        'summary': 'Adds a new client service task to the database',
         'responsClass': 'ClientServiceTask',
-        'nickname': 'addClientServiceItem'
+        'nickname': 'addClientServiceTask'
     }, function(req, res, next) {
-        var newClientServiceItem = JSON.parse(req.body);
-        var newClientServiceItemModel = lib.db.model('ClientServiceTask')(newClientServiceItem);
-        newClientServiceItemModel.save(function(err, clientServiceItem) {
+        var newClientServiceTask = JSON.parse(req.body);
+        var newClientServiceTaskModel = lib.db.model('ClientServiceTask')(newClientServiceTask);
+        newClientServiceTaskModel.save(function(err, clientServiceTask) {
             if (err) return next(controller.RESTError('InternalServerError', err));
-            controller.writeHAL(res, {success: true, data: clientServiceItem});
+            controller.writeHAL(res, {success: true, data: clientServiceTask});
         });
     });
 
@@ -62,9 +62,9 @@ module.exports = function(lib) {
         'path': '/api/clientservicetasks/:id',
         'method': 'PUT',
         // 'params': [swagger.pathParam('id', 'The id of the client service', 'string'), swagger.bodyParam('clientService', 'The content to overwrite', 'string')],
-        'summary': 'Updates the data of one client service item',
+        'summary': 'Updates the data of one client service task',
         'responsClass': 'ClientServiceTask',
-        'nickname': 'updateClientServiceItem'
+        'nickname': 'updateClientServiceTask'
     }, function(req, res, next) {
         var id = req.params.id;
         if (!id) {
@@ -72,12 +72,12 @@ module.exports = function(lib) {
         } else {
             var model = lib.db.model('ClientServiceTask');
             model.findOne({_id: id})
-                .exec(function(err, clientServiceItem) {
+                .exec(function(err, clientServiceTask) {
                     if (err) return next(controller.RESTError('InternalServerError', err));
-                    clientServiceItem = _.extend(clientServiceItem, JSON.parse(req.body));
-                    clientServiceItem.save(function(err, newClientServiceItem) {
+                    clientServiceTask = _.extend(clientServiceTask, JSON.parse(req.body));
+                    clientServiceTask.save(function(err, newClientServiceTask) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
-                        controller.writeHAL(res, {success: true, data: newClientServiceItem});
+                        controller.writeHAL(res, {success: true, data: newClientServiceTask});
                     });
                 });
         }
@@ -86,15 +86,15 @@ module.exports = function(lib) {
     controller.addAction({
         'path': '/api/clientservicetasks/:id',
         'method': 'DEL',
-        'params': [swagger.bodyParam('id', 'The id of the client service item to delete', 'string')],
-        'summary': 'Deletes a client service item from the database',
+        'params': [swagger.bodyParam('id', 'The id of the client service task to delete', 'string')],
+        'summary': 'Deletes a client service task from the database',
         'responsClass': 'ClientServiceTask',
-        'nickname': 'deleteClientServiceItem'
+        'nickname': 'deleteClientServiceTask'
     }, function(req, res, next) {
-        lib.db.model('ClientServiceTask').findOne({_id: req.params.id}).exec(function(err, clientServiceItem) {
+        lib.db.model('ClientServiceTask').findOne({_id: req.params.id}).exec(function(err, clientServiceTask) {
             if (err) return next(controller.RESTError('InternalServerError', err));
-            clientServiceItem.remove();
-            controller.writeHAL(res, clientServiceItem);
+            clientServiceTask.remove();
+            controller.writeHAL(res, clientServiceTask);
         });
     });
 

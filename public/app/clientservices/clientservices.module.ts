@@ -8,15 +8,15 @@ import { ClientServicesComponent } from './clientservices.component';
 import { ClientServiceDetailComponent } from './detail/clientservice-detail.component';
 import { ClientServiceEditComponent } from './edit/clientservice-edit.component';
 import { ClientServiceListModule } from './list/clientservice-list.module';
-import { ClientServiceItemListModule }
+import { ClientServiceTaskListModule }
     from '../clientservicetasks/list/clientservicetask-list.module';
-import { ClientServiceItemEditComponent }
+import { ClientServiceTaskEditComponent }
     from '../clientservicetasks/edit/clientservicetask-edit.component';
-import { ClientServiceItemDetailComponent }
+import { ClientServiceTaskDetailComponent }
     from '../clientservicetasks/detail/clientservicetask-detail.component';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientServiceService } from '../services/clientservice.service';
-import { ClientServiceItemService } from '../services/clientservicetask.service';
+import { ClientServiceTaskService } from '../services/clientservicetask.service';
 import { ClientService } from '../services/client.service';
 
 import { ROUTES }       from './clientservices.routes';
@@ -27,16 +27,16 @@ import { ROUTES }       from './clientservices.routes';
         CommonModule,
         FormsModule,
         ROUTES,
-        ClientServiceItemListModule],
+        ClientServiceTaskListModule],
     declarations: [
         ClientServicesComponent,
         ClientServiceDetailComponent,
         ClientServiceEditComponent,
-        ClientServiceItemEditComponent,
-        ClientServiceItemDetailComponent],
+        ClientServiceTaskEditComponent,
+        ClientServiceTaskDetailComponent],
     providers: [
         ClientServiceService,
-        ClientServiceItemService,
+        ClientServiceTaskService,
         ClientService]
 })
 export default class ClientServiceModule {

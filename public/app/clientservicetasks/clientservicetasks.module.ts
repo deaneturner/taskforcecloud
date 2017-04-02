@@ -4,20 +4,20 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ClientServiceItemDetailComponent } from './detail/clientservicetask-detail.component';
-import { ClientServiceItemEditComponent } from './edit/clientservicetask-edit.component';
-import { ClientServiceItemListModule } from './list/clientservicetask-list.module';
+import { ClientServiceTaskDetailComponent } from './detail/clientservicetask-detail.component';
+import { ClientServiceTaskEditComponent } from './edit/clientservicetask-edit.component';
+import { ClientServiceTaskListModule } from './list/clientservicetask-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 
 import { ROUTES }       from './clientservicetasks.routes';
 
 @NgModule({
-    imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientServiceItemListModule],
+    imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientServiceTaskListModule],
     declarations: [
-        ClientServiceItemDetailComponent,
-        ClientServiceItemEditComponent],
-    exports: [ClientServiceItemListModule]
+        ClientServiceTaskDetailComponent,
+        ClientServiceTaskEditComponent],
+    exports: [ClientServiceTaskListModule]
 })
 
-export class ClientServiceItemsModule {
+export class ClientServiceTasksModule {
 }

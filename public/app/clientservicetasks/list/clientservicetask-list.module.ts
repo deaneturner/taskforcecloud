@@ -1,12 +1,12 @@
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 
-import { ClientServiceItemListComponent } from './clientservicetask-list.component';
+import { ClientServiceTaskListComponent } from './clientservicetask-list.component';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [ClientServiceItemListComponent],
-    exports: [ClientServiceItemListComponent]
+    declarations: [ClientServiceTaskListComponent],
+    exports: [ClientServiceTaskListComponent]
 })
-export class ClientServiceItemListModule {
+export class ClientServiceTaskListModule {
 }

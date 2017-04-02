@@ -4,11 +4,11 @@ import { ClientServicesComponent } from './clientservices.component';
 import { ClientServiceDetailComponent } from './detail/clientservice-detail.component';
 import { ClientServiceEditComponent } from './edit/clientservice-edit.component';
 import {
-    ClientServiceItemEditComponent
+    ClientServiceTaskEditComponent
 }
     from '../clientservicetasks/edit/clientservicetask-edit.component';
 import {
-    ClientServiceItemDetailComponent
+    ClientServiceTaskDetailComponent
 }
     from '../clientservicetasks/detail/clientservicetask-detail.component';
 
@@ -29,13 +29,13 @@ const routes: Routes = [
         canActivate: [AppGuard]},
     {
         path: ':id/clientservicetasks/:clientservicetaskid',
-        component: ClientServiceItemEditComponent,
+        component: ClientServiceTaskEditComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]
     },
     {
         path: ':id/clientservicetasks/detail/:clientservicetaskid',
-        component: ClientServiceItemDetailComponent,
+        component: ClientServiceTaskDetailComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]
     }

@@ -1,18 +1,18 @@
 import { Routes, RouterModule }  from '@angular/router';
 
-import { ClientServiceItemsComponent } from './clientservicetasks.component';
-import { ClientServiceItemDetailComponent } from './detail/clientservicetask-detail.component';
-import { ClientServiceItemEditComponent } from './edit/clientservicetask-edit.component';
+import { ClientServiceTasksComponent } from './clientservicetasks.component';
+import { ClientServiceTaskDetailComponent } from './detail/clientservicetask-detail.component';
+import { ClientServiceTaskEditComponent } from './edit/clientservicetask-edit.component';
 
 import { AppGuard } from '../app.guard';
 
 const routes: Routes = [
     // {path: 'detail/:id',
-    //     component: ClientServiceItemDetailComponent,
+    //     component: ClientServiceTaskDetailComponent,
     //     pathMatch: 'full',
     //     canActivate: [AppGuard]},
     {path: 'edit/:id',
-        component: ClientServiceItemEditComponent,
+        component: ClientServiceTaskEditComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]}
 

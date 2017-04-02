@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EqualValidator } from '../../forms/equal-validator.directive';
 
-import { ClientServiceItemEditComponent } from './clientservicetask-edit.component';
+import { ClientServiceTaskEditComponent } from './clientservicetask-edit.component';
 
 export const routes = [
-    {path: '', component: ClientServiceItemEditComponent, pathMatch: 'full'}
+    {path: '', component: ClientServiceTaskEditComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
     declarations: [
-        ClientServiceItemEditComponent,
+        ClientServiceTaskEditComponent,
         EqualValidator
     ],
     imports: [
@@ -20,8 +20,8 @@ export const routes = [
         CommonModule,
         RouterModule.forChild(routes)
     ],
-    exports: [ClientServiceItemEditComponent]
+    exports: [ClientServiceTaskEditComponent]
 })
-export class ClientServiceItemEditModule {
+export class ClientServiceTaskEditModule {
     static routes = routes;
 }

@@ -29,7 +29,7 @@ module.exports = {
             'type': 'string',
             'description': 'Email of the client'
         },
-        'clientServiceItems': {
+        'clientServiceTasks': {
             'type': 'array',
             'description': 'List of items being serviced',
             'items': {
