@@ -69,16 +69,14 @@ export class ClientItemDetailComponent implements OnInit {
         switch (action) {
             case 'edit':
                 this.router.navigate(['app', 'clients', self.client._id, 'clientitems', 'edit',
-                    this.clientItem._id]);
+                    self.clientItem._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
                     title: 'Confirm Delete',
                     subTitle: null,
-                    content: 'Are you sure you want to delete client:',
-                    subContent: self.clientItem.firstName + ' ' +
-                    self.clientItem.lastName +
-                    ' (' + self.clientItem.company + ')',
+                    content: 'Are you sure you want to delete client item:',
+                    subContent: self.clientItem.name,
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -88,20 +86,19 @@ export class ClientItemDetailComponent implements OnInit {
                     }, {
                         title: 'Yes, delete',
                         onClick: ($event) => {
-                            self.clientItem
-                                .deleteClient(self.activatedRoute.snapshot.params['id'])
+                            self.clientItemService
+                                .deleteClientItem(self.clientItem._id)
                                 .subscribe(
                                     clientItem => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            clientItem.firstName + ' ' +
-                                            clientItem.lastName +
-                                            ' (' + clientItem.email + ')',
+                                            clientItem.name,
                                             type: 'success'
                                         });
 
                                         self.notificationService.closeModal();
-                                        self.router.navigate(['/app/clientsserviceitems']);
+                                        self.router.navigate(['/app/clients/detail',
+                                            self.client._id]);
                                     },
                                     error => {
                                     }  // error is handled by service
