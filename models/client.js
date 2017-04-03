@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var jsonSelect = require('mongoose-json-select');
 var helpers = require('../lib/helpers');
-var _ = require("underscore");
+var _ = require('underscore');
 
 module.exports = function(db) {
     var schema = require('../schemas/client.js');
