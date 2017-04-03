@@ -50,16 +50,16 @@ export class ClientServiceTaskEditComponent implements OnInit {
                                 error => {
                                 } // error is handled by service
                             );
-
-                        self.clientServiceService.getClientService(params['id'])
-                            .subscribe(
-                                clientService => {
-                                    self.clientService = clientService;
-                                },
-                                error => {
-                                } // error is handled by service
-                            );
                     }
+
+                    self.clientServiceService.getClientService(params['id'])
+                        .subscribe(
+                            clientService => {
+                                self.clientService = clientService;
+                            },
+                            error => {
+                            } // error is handled by service
+                        );
                 }
             );
     }
