@@ -68,7 +68,8 @@ export class ClientServiceTaskDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clientservicetasks/edit/', this.clientServiceTask._id]);
+                this.router.navigate(['app', 'clientservices', self.clientService._id,
+                    'clientservicetasks', 'edit', this.clientService._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({

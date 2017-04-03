@@ -43,7 +43,7 @@ export class ClientServiceDetailComponent implements OnInit {
         };
 
         this.serviceItemPanel = {
-            title: 'Service Items',
+            title: 'Service Tasks',
             collapsed: false,
             close: false,
             fullScreen: false,

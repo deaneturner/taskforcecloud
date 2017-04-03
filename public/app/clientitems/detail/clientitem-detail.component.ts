@@ -68,7 +68,7 @@ export class ClientItemDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clients', self.client._id, 'clientitems', 'edit',
+                this.router.navigate(['app', 'clients', self.client._id, 'clientitems', 'edit',
                     this.clientItem._id]);
                 break;
             case 'delete':

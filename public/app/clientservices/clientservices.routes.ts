@@ -27,12 +27,12 @@ const routes: Routes = [
         component: ClientServiceEditComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]},
-    {
-        path: ':id/clientservicetasks/edit/:clientservicetaskid',
-        component: ClientServiceTaskEditComponent,
-        pathMatch: 'full',
-        canActivate: [AppGuard]
-    },
+    // {
+    //     path: ':id/clientservicetasks/edit/:clientservicetaskid',
+    //     component: ClientServiceTaskEditComponent,
+    //     pathMatch: 'full',
+    //     canActivate: [AppGuard]
+    // },
     {
         path: ':id/clientservicetasks/detail/:clientservicetaskid',
         component: ClientServiceTaskDetailComponent,
