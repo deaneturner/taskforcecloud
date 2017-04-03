@@ -42,7 +42,7 @@ export class ClientServiceTaskEditComponent implements OnInit {
                             name: ''
                         };
                     } else {
-                        this.clientServiceTask.getClientServiceTask(paramId)
+                        self.clientServiceTaskService.getClientServiceTask(paramId)
                             .subscribe(
                                 clientServiceTask => {
                                     self.clientServiceTask = clientServiceTask;
@@ -52,7 +52,7 @@ export class ClientServiceTaskEditComponent implements OnInit {
                             );
                     }
 
-                    this.clientServiceService.getClientService(params['id'])
+                    self.clientServiceService.getClientService(params['id'])
                         .subscribe(
                             clientService => {
                                 self.clientService = clientService;
@@ -127,7 +127,8 @@ export class ClientServiceTaskEditComponent implements OnInit {
         event.preventDefault();
         event.stopPropagation();
         if (this.clientServiceTask._id) {
-            this.router.navigate(['/app/clientservices/detail/', this.clientServiceTask._id]);
+            this.router.navigate(['/app/clientservices', this.clientService._id,
+                'clientservicetasks', 'detail', this.clientServiceTask._id]);
         } else {
             this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
         }

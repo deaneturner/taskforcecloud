@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
 import { ClientService } from '../../services/client.service';
+import { ClientItemService } from '../../services/clientitem.service';
 
 @Component({
     selector: 'clientitem-detail',
@@ -18,6 +19,7 @@ export class ClientItemDetailComponent implements OnInit {
     constructor(private router: Router,
                 private notificationService: NotificationService,
                 private clientService: ClientService,
+                private clientItemService: ClientItemService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -41,8 +43,8 @@ export class ClientItemDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientService
-                        .getClientItems(params['clientitemid'])
+                    self.clientItemService
+                        .getClientItem(params['clientitemid'])
                         .subscribe(
                             clientItem => {
                                 self.clientItem = clientItem;
@@ -66,16 +68,15 @@ export class ClientItemDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clientitems/edit/', this.clientItem._id]);
+                this.router.navigate(['app', 'clients', self.client._id, 'clientitems', 'edit',
+                    self.clientItem._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
                     title: 'Confirm Delete',
                     subTitle: null,
-                    content: 'Are you sure you want to delete client:',
-                    subContent: self.clientItem.firstName + ' ' +
-                    self.clientItem.lastName +
-                    ' (' + self.clientItem.company + ')',
+                    content: 'Are you sure you want to delete client item:',
+                    subContent: self.clientItem.name,
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -85,20 +86,19 @@ export class ClientItemDetailComponent implements OnInit {
                     }, {
                         title: 'Yes, delete',
                         onClick: ($event) => {
-                            self.clientItem
-                                .deleteClient(self.activatedRoute.snapshot.params['id'])
+                            self.clientItemService
+                                .deleteClientItem(self.clientItem._id)
                                 .subscribe(
                                     clientItem => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            clientItem.firstName + ' ' +
-                                            clientItem.lastName +
-                                            ' (' + clientItem.email + ')',
+                                            clientItem.name,
                                             type: 'success'
                                         });
 
                                         self.notificationService.closeModal();
-                                        self.router.navigate(['/app/clientsserviceitems']);
+                                        self.router.navigate(['/app/clients/detail',
+                                            self.client._id]);
                                     },
                                     error => {
                                     }  // error is handled by service

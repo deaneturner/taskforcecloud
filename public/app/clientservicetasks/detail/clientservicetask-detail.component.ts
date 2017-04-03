@@ -68,16 +68,15 @@ export class ClientServiceTaskDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clientservicetasks/edit/', this.clientServiceTask._id]);
+                this.router.navigate(['app', 'clientservices', self.clientService._id,
+                    'clientservicetasks', 'edit', this.clientServiceTask._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
                     title: 'Confirm Delete',
                     subTitle: null,
-                    content: 'Are you sure you want to delete client:',
-                    subContent: self.clientServiceTask.firstName + ' ' +
-                    self.clientServiceTask.lastName +
-                    ' (' + self.clientServiceTask.company + ')',
+                    content: 'Are you sure you want to delete client service task:',
+                    subContent: self.clientServiceTask.name,
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -87,20 +86,19 @@ export class ClientServiceTaskDetailComponent implements OnInit {
                     }, {
                         title: 'Yes, delete',
                         onClick: ($event) => {
-                            self.clientServiceTask
-                                .deleteClient(self.activatedRoute.snapshot.params['id'])
+                            self.clientServiceTaskService
+                                .deleteClientServiceTask(self.clientServiceTask._id)
                                 .subscribe(
                                     clientServiceTask => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            clientServiceTask.firstName + ' ' +
-                                            clientServiceTask.lastName +
-                                            ' (' + clientServiceTask.email + ')',
+                                            clientServiceTask.name,
                                             type: 'success'
                                         });
 
                                         self.notificationService.closeModal();
-                                        self.router.navigate(['/app/clientsserviceitems']);
+                                        self.router.navigate(['/app/clientservices/detail',
+                                            self.clientService._id]);
                                     },
                                     error => {
                                     }  // error is handled by service

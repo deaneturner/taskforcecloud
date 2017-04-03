@@ -22,14 +22,14 @@ const routes: Routes = [
         pathMatch: 'full',
         canActivate: [AppGuard]},
     {
-        path: ':id/clientitems/:clientitemid',
-        component: ClientItemEditComponent,
+        path: ':id/clientitems/detail/:clientitemid',
+        component: ClientItemDetailComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]
     },
     {
-        path: ':id/clientitems/detail/:clientitemid',
-        component: ClientItemDetailComponent,
+        path: ':id/clientitems/edit/:clientitemid',
+        component: ClientItemEditComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]
     }
