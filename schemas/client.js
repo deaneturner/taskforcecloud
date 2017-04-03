@@ -29,11 +29,11 @@ module.exports = {
             'type': 'string',
             'description': 'Email of the client'
         },
-        'clientServiceTasks': {
+        'clientItems': {
             'type': 'array',
             'description': 'List of items being serviced',
             'items': {
-                '$ref': 'ClientServiceTask'
+                '$ref': 'ClientItem'
             }
         }
     }
