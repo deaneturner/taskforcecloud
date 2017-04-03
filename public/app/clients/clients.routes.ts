@@ -28,7 +28,7 @@ const routes: Routes = [
         canActivate: [AppGuard]
     },
     {
-        path: ':id/clientitems/edit:clientitemid',
+        path: ':id/clientitems/edit/:clientitemid',
         component: ClientItemEditComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]
