@@ -74,8 +74,6 @@ export class ClientItemEditComponent implements OnInit {
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.client.clientItems.push();
-                                self.clientService.updateClient(self.client._id, self.client);
                                 self.router
                                     .navigate([
                                         'app',
