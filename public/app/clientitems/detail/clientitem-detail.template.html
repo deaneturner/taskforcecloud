@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
-    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices']"><i class="fa fa-cube"></i> Services</li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices/detail/', clientService._id]">{{clientService.name}}</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-cube"></i> Clients</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{ client.company || (client.firstName + ' ' + client.lastName) }}</li>
     <li class="active breadcrumb-item">{{clientItem.name}}</li>
 </ol>
 <!--<h1 class="page-title">Detail - <span class="fw-semi-bold">Service Item</span></h1>-->

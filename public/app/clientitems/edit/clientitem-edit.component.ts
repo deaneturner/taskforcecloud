@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientService } from '../../services/client.service';
+import { ClientItemService } from '../../services/clientitem.service';
 import { ClientItem } from '../../model/clientitem.interface';
 
 @Component({
@@ -25,6 +26,7 @@ export class ClientItemEditComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
+                private clientItemService: ClientItemService,
                 private clientService: ClientService) {
     }
 
@@ -40,7 +42,7 @@ export class ClientItemEditComponent implements OnInit {
                             name: ''
                         };
                     } else {
-                        this.clientService.getClientItem(paramId)
+                        this.clientItemService.getClientItem(paramId)
                             .subscribe(
                                 clientItem => {
                                     self.clientItem = clientItem;
@@ -67,15 +69,17 @@ export class ClientItemEditComponent implements OnInit {
         if (isValid) {
             if (this.clientItem._id) {
                 // update
-                this.clientService
+                this.clientItemService
                     .updateClientItem(this.clientItem._id, clientItemForm)
                     .subscribe(
                         res => {
                             if (res.success) {
+                                self.client.clientItems.push();
+                                self.clientService.updateClient(self.client._id, self.client);
                                 self.router
                                     .navigate([
                                         'app',
-                                        'client',
+                                        'clients',
                                         self.client._id,
                                         'clientitems',
                                         'detail',
@@ -94,13 +98,13 @@ export class ClientItemEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientService.insertClientItem(clientItemForm)
+                this.clientItemService.insertClientItem(clientItemForm)
                     .subscribe(
                         res => {
                             if (res.success) {
                                 self.router.navigate([
                                     'app',
-                                    'clientservices',
+                                    'clients',
                                     self.client._id,
                                     'clientitems',
                                     'detail',

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
 import { ClientService } from '../../services/client.service';
+import { ClientItemService } from '../../services/clientitem.service';
 
 @Component({
     selector: 'clientitem-detail',
@@ -18,6 +19,7 @@ export class ClientItemDetailComponent implements OnInit {
     constructor(private router: Router,
                 private notificationService: NotificationService,
                 private clientService: ClientService,
+                private clientItemService: ClientItemService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -41,8 +43,8 @@ export class ClientItemDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientService
-                        .getClientItems(params['clientitemid'])
+                    self.clientItemService
+                        .getClientItem(params['clientitemid'])
                         .subscribe(
                             clientItem => {
                                 self.clientItem = clientItem;
@@ -66,7 +68,8 @@ export class ClientItemDetailComponent implements OnInit {
         const self = this;
         switch (action) {
             case 'edit':
-                this.router.navigate(['/app/clientitems/edit/', this.clientItem._id]);
+                this.router.navigate(['/app/clients', self.client._id, 'clientitems', 'edit',
+                    this.clientItem._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({

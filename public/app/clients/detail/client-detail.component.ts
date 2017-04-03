@@ -45,7 +45,7 @@ export class ClientDetailComponent implements OnInit {
         };
 
         this.clientItemPanel = {
-            title: 'Service Items',
+            title: 'Items',
             collapsed: false,
             close: false,
             fullScreen: false,

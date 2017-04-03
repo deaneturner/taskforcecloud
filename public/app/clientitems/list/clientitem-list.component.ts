@@ -2,7 +2,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Client } from '../../model/client.interface';
-import { ClientService } from '../../services/client.service';
+import { ClientItemService } from '../../services/clientitem.service';
 
 @Component({
     selector: 'tfc-clientitem-list',
@@ -16,7 +16,7 @@ export class ClientItemListComponent {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientService: ClientService) {
+                private clientItemService: ClientItemService) {
     }
 
 
@@ -26,7 +26,7 @@ export class ClientItemListComponent {
     };
 
     getClientItems() {
-        this.clientService.getClientItems()
+        this.clientItemService.getClientItems()
             .subscribe(
                 clientItems => this.clientItems = clientItems,
                 error => {
