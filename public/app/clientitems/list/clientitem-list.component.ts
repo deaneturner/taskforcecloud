@@ -2,6 +2,8 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Client } from '../../model/client.interface';
+import { ClientItem } from '../../model/clientitem.interface';
+
 import { ClientItemService } from '../../services/clientitem.service';
 
 @Component({
@@ -11,8 +13,8 @@ import { ClientItemService } from '../../services/clientitem.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientItemListComponent {
-    client: any = {};
-    clientItems: Array<Client>;
+    client = <Client>{};
+    clientItems: Array<ClientItem>;
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,

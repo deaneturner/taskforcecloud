@@ -13,7 +13,7 @@ import { Client } from '../../model/client.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientEditComponent implements OnInit {
-    client: any = {};
+    client = <Client>{};
     clientForm: NgForm;
     formErrors: any = {
         'company': [],
@@ -57,21 +57,13 @@ export class ClientEditComponent implements OnInit {
             .subscribe(
                 params => {
                     const paramId = params['id'];
-                    if (paramId === 'new') {
-                        self.client = {
-                            company: '',
-                            firstName: '',
-                            lastName: '',
-                            address1: '',
-                            address2: '',
-                            email: '',
-                            phone: ''
-                        };
-                    } else {
+                    self.client = self.clientService.getClientContext();
+                    if (paramId !== 'new' && (self.client && self.client._id !== params['id'])) {
                         this.clientService.getClient(paramId)
                             .subscribe(
                                 client => {
                                     self.client = client;
+                                    self.clientService.setClientContext(client);
                                 },
                                 error => {
                                 } // error is handled by service

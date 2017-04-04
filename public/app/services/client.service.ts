@@ -10,14 +10,16 @@ import * as _ from 'lodash';
 @Injectable()
 export class ClientService {
 
+    clientContext = <Client>{};
+
     constructor(private http: Http,
                 private notificationService: NotificationService) {
     }
 
     getClient(id: string) {
         return this.http.get('/api/clients/' + id)
-                .map((res: Response) => <Client>(res.json()))
-                .catch(this.notificationService.handleError);
+            .map((res: Response) => <Client>(res.json()))
+            .catch(this.notificationService.handleError);
     }
 
     getClients(query ?: any) {
@@ -46,5 +48,13 @@ export class ClientService {
         return this.http.delete('/api/clients/' + id)
             .map((response: Response) => <Client>(response.json()))
             .catch(this.notificationService.handleError);
+    }
+
+    setClientContext(clientContext: Client) {
+        this.clientContext = clientContext;
+    }
+
+    getClientContext() {
+        return this.clientContext;
     }
 }
