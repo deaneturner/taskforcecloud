@@ -60,6 +60,7 @@ export class ClientItemService {
 
     clearClientItemContext() {
         this.clientItemContext = <ClientItem>{};
+        return this.clientItemContext;
     }
 
 }

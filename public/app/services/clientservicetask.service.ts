@@ -60,5 +60,6 @@ export class ClientServiceTaskService {
 
     clearClientServiceTaskContext() {
         this.clientServiceTaskContext = <ClientServiceTask>{};
+        return this.clientServiceTaskContext;
     }
 }

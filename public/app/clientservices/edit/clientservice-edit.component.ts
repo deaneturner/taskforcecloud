@@ -34,19 +34,23 @@ export class ClientServiceEditComponent implements OnInit {
             .subscribe(
                 params => {
                     const paramId = params['id'];
-                    self.clientService = self.clientServiceService.getClientServiceContext();
-                    if (paramId !== 'new'
-                        && (self.clientService && self.clientService._id !== params['id'])) {
-                        this.clientServiceService.getClientService(paramId)
-                            .subscribe(
-                                clientService => {
-                                    self.clientService = clientService;
-                                    self.clientServiceService
-                                        .setClientServiceContext(clientService);
-                                },
-                                error => {
-                                } // error is handled by service
-                            );
+                    if (paramId !== 'new') {
+                        self.clientService = self.clientServiceService.getClientServiceContext();
+                        if (self.clientService && self.clientService._id !== paramId) {
+                            this.clientServiceService.getClientService(paramId)
+                                .subscribe(
+                                    clientService => {
+                                        self.clientService = clientService;
+                                        self.clientServiceService
+                                            .setClientServiceContext(clientService);
+                                    },
+                                    error => {
+                                    } // error is handled by service
+                                );
+                        }
+                    } else {
+                        // add new
+                        self.clientService = self.clientServiceService.clearClientServiceContext();
                     }
                 }
             );

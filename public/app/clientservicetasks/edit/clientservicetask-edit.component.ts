@@ -37,29 +37,41 @@ export class ClientServiceTaskEditComponent implements OnInit {
             .subscribe(
                 params => {
                     const paramId = params['clientservicetaskid'];
-                    if (paramId === 'new') {
-                        self.clientServiceTask = {
-                            name: ''
-                        };
+                    if (paramId !== 'new') {
+                        self.clientServiceTask = self.clientServiceTaskService
+                            .getClientServiceTaskContext();
+                        if (self.clientServiceTask && self.clientServiceTask._id !== paramId) {
+                            this.clientServiceTaskService.getClientServiceTask(paramId)
+                                .subscribe(
+                                    clientServiceTask => {
+                                        self.clientServiceTask = clientServiceTask;
+                                        self.clientServiceTaskService
+                                            .setClientServiceTaskContext(clientServiceTask);
+                                    },
+                                    error => {
+                                    } // error is handled by service
+                                );
+                        }
                     } else {
-                        self.clientServiceTaskService.getClientServiceTask(paramId)
+                        // add new
+                        self.clientServiceTask = self.clientServiceTaskService
+                            .clearClientServiceTaskContext();
+                    }
+
+                    // client
+                    self.clientService = self.clientServiceService.getClientServiceContext();
+                    if (self.clientService && self.clientService._id !== params['id']) {
+                        self.clientService.getClient(params['id'])
                             .subscribe(
-                                clientServiceTask => {
-                                    self.clientServiceTask = clientServiceTask;
+                                clientService => {
+                                    self.clientService = clientService;
+                                    self.clientServiceService
+                                        .setClientServiceContext(clientService);
                                 },
                                 error => {
                                 } // error is handled by service
                             );
                     }
-
-                    self.clientServiceService.getClientService(params['id'])
-                        .subscribe(
-                            clientService => {
-                                self.clientService = clientService;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
                 }
             );
     }

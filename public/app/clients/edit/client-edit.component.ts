@@ -57,17 +57,22 @@ export class ClientEditComponent implements OnInit {
             .subscribe(
                 params => {
                     const paramId = params['id'];
-                    self.client = self.clientService.getClientContext();
-                    if (paramId !== 'new' && (self.client && self.client._id !== params['id'])) {
-                        this.clientService.getClient(paramId)
-                            .subscribe(
-                                client => {
-                                    self.client = client;
-                                    self.clientService.setClientContext(client);
-                                },
-                                error => {
-                                } // error is handled by service
-                            );
+                    if (paramId !== 'new') {
+                        self.client = self.clientService.getClientContext();
+                        if (self.client && self.client._id !== paramId) {
+                            this.clientService.getClient(paramId)
+                                .subscribe(
+                                    client => {
+                                        self.client = client;
+                                        self.clientService.setClientContext(client);
+                                    },
+                                    error => {
+                                    } // error is handled by service
+                                );
+                        }
+                    } else {
+                        // add new
+                        self.client = self.clientService.clearClientContext();
                     }
                 }
             );
