@@ -84,6 +84,33 @@ module.exports = function(lib) {
     });
 
     controller.addAction({
+        'path': '/api/clients/:id/clientitems/:clientitemid',
+        'method': 'PUT',
+        // 'params': [swagger.pathParam('id', 'The id of the client', 'string'), swagger.bodyParam('client', 'The content to overwrite', 'string')],
+        'summary': 'Updates the client items entry of one client',
+        'responsClass': 'Client',
+        'nickname': 'updateClientItems'
+    }, function(req, res, next) {
+        var id = req.params.id;
+        var clientItemId = req.params.clientitemid;
+        if (!id) {
+            return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
+        } else {
+            var model = lib.db.model('Client');
+            model.findOne({_id: id})
+                .exec(function(err, client) {
+                    if (err) return next(controller.RESTError('InternalServerError', err));
+                    client = _.extend(client, JSON.parse(req.body));
+                    client.clientItems.push(clientItemId);
+                    client.save(function(err, newClient) {
+                        if (err) return next(controller.RESTError('InternalServerError', err));
+                        controller.writeHAL(res, {success: true, data: newClient});
+                    });
+                });
+        }
+    });
+
+    controller.addAction({
         'path': '/api/clients/:id',
         'method': 'DEL',
         'params': [swagger.bodyParam('id', 'The id of the client to delete', 'string')],

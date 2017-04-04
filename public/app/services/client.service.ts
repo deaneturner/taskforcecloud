@@ -36,7 +36,7 @@ export class ClientService {
             .catch(this.notificationService.handleError);
     }
 
-    insertClient(client: any) {
+    insertClient(client: Client) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.post('/api/clients', client, {headers: headers})
@@ -47,6 +47,15 @@ export class ClientService {
     deleteClient(id: string) {
         return this.http.delete('/api/clients/' + id)
             .map((response: Response) => <Client>(response.json()))
+            .catch(this.notificationService.handleError);
+    }
+
+    addClientItem(id: string, clientItemId: string) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/X-www-form-urlencoded');
+        return this.http.put('/api/clients/' + id + '/clientitems/' + clientItemId,
+            {}, {headers: headers})
+            .map((response: any) => <Client>(response.json()))
             .catch(this.notificationService.handleError);
     }
 

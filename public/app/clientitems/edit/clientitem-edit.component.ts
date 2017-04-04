@@ -108,25 +108,47 @@ export class ClientItemEditComponent implements OnInit {
                 // insert
                 this.clientItemService.insertClientItem(<ClientItem>clientItemForm)
                     .subscribe(
-                        res => {
-                            if (res.success) {
-                                // self.client.clientItems.push(res.data._id);
-                                self.clientService.updateClient(self.client._id, self.client);
-                                self.clientItemService.setClientItemContext(res.data);
-                                self.router.navigate([
-                                    'app',
-                                    'clients',
-                                    self.client._id,
-                                    'clientitems',
-                                    'detail',
-                                    res.data._id
-                                ]);
-                            } else if (res.success === false) {
-                                const field = res.field;
+                        resClientItem => {
+                            if (resClientItem.success) {
+                                self.clientService.addClientItem(self.client._id,
+                                    resClientItem.data._id)
+                                    .subscribe(
+                                        resClient => {
+                                            if (resClient.success) {
+                                                self.clientService
+                                                    .addClientItem(self.client._id,
+                                                        resClientItem.data._id);
+                                                self.clientItemService
+                                                    .setClientItemContext(resClientItem.data);
+                                                self.router.navigate([
+                                                    'app',
+                                                    'clients',
+                                                    self.client._id,
+                                                    'clientitems',
+                                                    'detail',
+                                                    resClientItem.data._id
+                                                ]);
+                                            } else if (resClient.success === false) {
+                                                const field = resClient.field;
+                                                // clear previous error message (if any)
+                                                self.formErrors[field] = [];
+                                                self
+                                                    .formErrors[field]
+                                                    .push(
+                                                        self
+                                                            .validationMessages[field]
+                                                            [resClient.msgKey]);
+                                            }
+                                        },
+                                        error => {
+                                        }  // error is handled by service
+                                    );
+                            } else if (resClientItem.success === false) {
+                                const field = resClientItem.field;
                                 // clear previous error message (if any)
                                 self.formErrors[field] = [];
                                 self.formErrors[field]
-                                    .push(self.validationMessages[field][res.msgKey]);
+                                    .push(self.validationMessages[field][resClientItem.msgKey]);
                             }
                         },
                         error => {
