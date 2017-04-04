@@ -5,6 +5,9 @@ import { NotificationService } from '../../services/notification.service';
 import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientServiceTaskService } from '../../services/clientservicetask.service';
 
+import { ClientService } from '../../model/clientservice.interface';
+import { ClientServiceTask } from '../../model/clientservicetask.interface';
+
 @Component({
     selector: 'clientservicetask-detail',
     templateUrl: 'clientservicetask-detail.template.html',
@@ -13,8 +16,8 @@ import { ClientServiceTaskService } from '../../services/clientservicetask.servi
 })
 export class ClientServiceTaskDetailComponent implements OnInit {
     panel: any;
-    clientService: any = {};
-    clientServiceTask: any = {};
+    clientService = <ClientService>{};
+    clientServiceTask = <ClientServiceTask>{};
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
@@ -43,23 +46,38 @@ export class ClientServiceTaskDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientServiceTaskService
-                        .getClientServiceTask(params['clientservicetaskid'])
-                        .subscribe(
-                            clientServiceTask => {
-                                self.clientServiceTask = clientServiceTask;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
-                    self.clientServiceService.getClientService(params['id'])
-                        .subscribe(
-                            clientService => {
-                                self.clientService = clientService;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
+                    // service task
+                    self.clientServiceTask = self.clientServiceTaskService
+                        .getClientServiceTaskContext();
+                    if (self.clientServiceTask
+                        && self.clientServiceTask._id !== params['clientservicetaskid']) {
+                        self.clientServiceTaskService
+                            .getClientServiceTask(params['clientservicetaskid'])
+                            .subscribe(
+                                clientServiceTask => {
+                                    self.clientServiceTask = clientServiceTask;
+                                    self.clientServiceTaskService
+                                        .setClientServiceTaskContext(clientServiceTask);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+
+                    }
+
+                    self.clientService = self.clientServiceService.getClientServiceContext();
+                    if (self.clientService && self.clientService._id !== params['id']) {
+                        self.clientServiceService.getClientService(params['id'])
+                            .subscribe(
+                                clientService => {
+                                    self.clientService = clientService;
+                                    self.clientServiceService
+                                        .setClientServiceContext(clientService);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
                 }
             );
     }
@@ -95,6 +113,8 @@ export class ClientServiceTaskDetailComponent implements OnInit {
                                             clientServiceTask.name,
                                             type: 'success'
                                         });
+
+                                        self.clientServiceService.clearClientServiceContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clientservices/detail',

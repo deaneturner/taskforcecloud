@@ -12,7 +12,7 @@ import { ClientService } from '../../model/clientservice.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceEditComponent implements OnInit {
-    clientService: any = {};
+    clientService = <ClientService>{};
     clientServiceForm: NgForm;
     formErrors: any = {
         'name': []
@@ -34,15 +34,15 @@ export class ClientServiceEditComponent implements OnInit {
             .subscribe(
                 params => {
                     const paramId = params['id'];
-                    if (paramId === 'new') {
-                        self.clientService = {
-                            name: ''
-                        };
-                    } else {
+                    self.clientService = self.clientServiceService.getClientServiceContext();
+                    if (paramId !== 'new'
+                        && (self.clientService && self.clientService._id !== params['id'])) {
                         this.clientServiceService.getClientService(paramId)
                             .subscribe(
                                 clientService => {
                                     self.clientService = clientService;
+                                    self.clientServiceService
+                                        .setClientServiceContext(clientService);
                                 },
                                 error => {
                                 } // error is handled by service
@@ -84,6 +84,7 @@ export class ClientServiceEditComponent implements OnInit {
                     .subscribe(
                         res => {
                             if (res.success) {
+                                self.clientServiceService.setClientServiceContext(res.data);
                                 self.router.navigate(['/app/clientservices/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;

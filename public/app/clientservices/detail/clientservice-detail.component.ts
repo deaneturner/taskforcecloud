@@ -5,6 +5,8 @@ import { NotificationService } from '../../services/notification.service';
 import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientServiceEditComponent } from '../edit/clientservice-edit.component';
 
+import { ClientService } from '../../model/clientservice.interface';
+
 @Component({
     selector: 'clientservice-detail',
     templateUrl: 'clientservice-detail.template.html',
@@ -13,7 +15,7 @@ import { ClientServiceEditComponent } from '../edit/clientservice-edit.component
 })
 export class ClientServiceDetailComponent implements OnInit {
     panel: any;
-    clientService: any = {};
+    clientService = <ClientService>{};
     serviceItemPanel: any;
 
     @ViewChild(ClientServiceEditComponent)
@@ -56,14 +58,20 @@ export class ClientServiceDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientServiceService.getClientService(params['id'])
-                        .subscribe(
-                            clientService => {
-                                self.clientService = clientService;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
+                    self.clientService = self.clientServiceService.getClientServiceContext();
+                    if (self.clientService && self.clientService._id !== params['id']) {
+                        self.clientServiceService.getClientService(params['id'])
+                            .subscribe(
+                                clientService => {
+                                    self.clientService = clientService;
+                                    self.clientServiceService
+                                        .setClientServiceContext(clientService);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
+
                 }
             );
     }
@@ -114,6 +122,9 @@ export class ClientServiceDetailComponent implements OnInit {
                                             clientService.name,
                                             type: 'success'
                                         });
+
+                                        self.clientServiceService
+                                            .clearClientServiceContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clientservices']);
