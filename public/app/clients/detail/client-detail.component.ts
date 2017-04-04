@@ -103,9 +103,8 @@ export class ClientDetailComponent implements OnInit {
                                     client => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            client.firstName + ' ' +
-                                            client.lastName +
-                                            ' (' + client.email + ')',
+                                            (client.company || (client.firstName + ' ' +
+                                            client.lastName)),
                                             type: 'success'
                                         });
 

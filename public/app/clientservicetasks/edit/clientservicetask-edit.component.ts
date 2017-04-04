@@ -76,7 +76,7 @@ export class ClientServiceTaskEditComponent implements OnInit {
             );
     }
 
-    upsertClient(isValid: boolean, clientServiceTaskForm: ClientServiceTask) {
+    upsertClientServiceTask(isValid: boolean, clientServiceTaskForm: ClientServiceTask) {
         const self = this;
         if (isValid) {
             if (this.clientServiceTask._id) {

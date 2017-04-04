@@ -74,13 +74,13 @@ export class ClientItemEditComponent implements OnInit {
             );
     }
 
-    upsertClient(isValid: boolean, clientItemForm: ClientItem) {
+    upsertClientItem(isValid: boolean, clientItemForm: ClientItem) {
         const self = this;
         if (isValid) {
             if (this.clientItem._id) {
                 // update
                 this.clientItemService
-                    .updateClientItem(this.clientItem._id, clientItemForm)
+                    .updateClientItem(this.clientItem._id, <ClientItem>clientItemForm)
                     .subscribe(
                         res => {
                             if (res.success) {
@@ -106,14 +106,11 @@ export class ClientItemEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientItemService.insertClientItem(clientItemForm)
+                this.clientItemService.insertClientItem(<ClientItem>clientItemForm)
                     .subscribe(
                         res => {
                             if (res.success) {
-                                if (!self.client.clientItems) {
-                                    self.client.clientItems = [];
-                                }
-                                self.client.clientItems.push(res.data._id);
+                                // self.client.clientItems.push(res.data._id);
                                 self.clientService.updateClient(self.client._id, self.client);
                                 self.clientItemService.setClientItemContext(res.data);
                                 self.router.navigate([

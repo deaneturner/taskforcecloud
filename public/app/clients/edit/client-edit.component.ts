@@ -80,10 +80,11 @@ export class ClientEditComponent implements OnInit {
 
     upsertClient(isValid: boolean, clientForm: Client) {
         const self = this;
+        let newClient: Client;
         if (isValid) {
             if (this.client._id) {
                 // update
-                this.clientService.updateClient(this.client._id, clientForm)
+                this.clientService.updateClient(this.client._id, <Client>clientForm)
                     .subscribe(
                         res => {
                             if (res.success) {
@@ -101,7 +102,8 @@ export class ClientEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientService.insertClient(clientForm)
+                newClient = Object.assign({ clientItems: []}, clientForm);
+                this.clientService.insertClient(newClient)
                     .subscribe(
                         res => {
                             if (res.success) {
