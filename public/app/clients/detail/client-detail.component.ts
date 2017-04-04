@@ -109,6 +109,8 @@ export class ClientDetailComponent implements OnInit {
                                             type: 'success'
                                         });
 
+                                        self.clientService.clearClientContext();
+
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clients']);
                                     },

@@ -37,6 +37,7 @@ export class ClientItemEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
+                    // client item
                     const paramId = params['clientitemid'];
                     self.clientItem = self.clientItemService.getClientItemContext();
                     if (paramId !== 'new' && (self.clientItem && self.clientItem._id !== paramId)) {

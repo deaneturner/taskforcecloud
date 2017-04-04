@@ -100,6 +100,7 @@ export class ClientEditComponent implements OnInit {
                     .subscribe(
                         res => {
                             if (res.success) {
+                                self.clientService.setClientContext(res.data);
                                 self.router.navigate(['/app/clients/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;

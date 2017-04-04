@@ -57,4 +57,8 @@ export class ClientService {
     getClientContext() {
         return this.clientContext;
     }
+
+    clearClientContext() {
+        this.clientContext = <Client>{};
+    }
 }

@@ -46,6 +46,7 @@ export class ClientItemDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
+                    // client item
                     self.clientItem = self.clientItemService.getClientItemContext();
                     if (self.clientItem && self.clientItem._id !== params['clientitemid']) {
                         self.clientItemService
@@ -60,6 +61,7 @@ export class ClientItemDetailComponent implements OnInit {
                             );
                     }
 
+                    // client
                     self.client = self.clientService.getClientContext();
                     if (self.client && self.client._id !== params['id']) {
                         self.clientService.getClient(params['id'])
@@ -107,6 +109,8 @@ export class ClientItemDetailComponent implements OnInit {
                                             clientItem.name,
                                             type: 'success'
                                         });
+
+                                        self.clientItemService.clearClientItemContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clients/detail',
