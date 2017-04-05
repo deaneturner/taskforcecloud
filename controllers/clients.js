@@ -98,6 +98,20 @@ module.exports = function(lib) {
         });
     });
 
+    controller.addAction({
+        'path': '/api/clients/:id/clientitems',
+        'method': 'GET',
+        'summary': 'Returns the list of client items, by client id, ordered by name',
+        'responsClass': 'ClientItem',
+        'nickname': 'getClientItemsByClientId'
+    }, function(req, res, next) {
+        var id = req.params.id;
+        lib.db.model('ClientItem').find({_clientId: id}).sort('name').exec(function(err, clientitems) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, clientitems);
+        });
+    });
+
     return controller;
 };
 

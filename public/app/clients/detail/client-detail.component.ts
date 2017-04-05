@@ -58,14 +58,18 @@ export class ClientDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientService.getClient(params['id'])
-                        .subscribe(
-                            client => {
-                                self.client = client;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
+                    self.client = self.clientService.getClientContext();
+                    if (self.client && self.client._id !== params['id']) {
+                        self.clientService.getClient(params['id'])
+                            .subscribe(
+                                client => {
+                                    self.client = client;
+                                    self.clientService.setClientContext(client);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
                 }
             );
     }
@@ -99,11 +103,12 @@ export class ClientDetailComponent implements OnInit {
                                     client => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            client.firstName + ' ' +
-                                            client.lastName +
-                                            ' (' + client.email + ')',
+                                            (client.company || (client.firstName + ' ' +
+                                            client.lastName)),
                                             type: 'success'
                                         });
+
+                                        self.clientService.clearClientContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clients']);

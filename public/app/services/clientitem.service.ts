@@ -10,18 +10,24 @@ import * as _ from 'lodash';
 @Injectable()
 export class ClientItemService {
 
+    clientItemContext =  <ClientItem>{};
+
     constructor(private http: Http,
                 private notificationService: NotificationService) {
     }
 
     getClientItem(id: string) {
         return this.http.get('/api/clientitems/' + id)
-                .map((res: Response) => <ClientItem>(res.json()))
-                .catch(this.notificationService.handleError);
+            .map((res: Response) => <ClientItem>(res.json()))
+            .catch(this.notificationService.handleError);
     }
 
-    getClientItems(query ?: any) {
-        return this.http.get('/api/clientitems')
+    getClientItems(clientId: string) {
+        let url = '/api/clientitems';
+        if (clientId) {
+            url = '/api/clients/' + clientId + '/clientitems';
+        }
+        return this.http.get(url)
             .map((response: Response) => <ClientItem[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }
@@ -47,4 +53,18 @@ export class ClientItemService {
             .map((response: Response) => <ClientItem>(response.json()))
             .catch(this.notificationService.handleError);
     }
+
+    setClientItemContext(clientItemContext: ClientItem) {
+        this.clientItemContext = clientItemContext;
+    }
+
+    getClientItemContext() {
+        return this.clientItemContext;
+    }
+
+    clearClientItemContext() {
+        this.clientItemContext = <ClientItem>{};
+        return this.clientItemContext;
+    }
+
 }

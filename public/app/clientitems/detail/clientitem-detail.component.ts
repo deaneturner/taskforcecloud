@@ -5,6 +5,9 @@ import { NotificationService } from '../../services/notification.service';
 import { ClientService } from '../../services/client.service';
 import { ClientItemService } from '../../services/clientitem.service';
 
+import { Client } from '../../model/client.interface';
+import { ClientItem } from '../../model/clientitem.interface';
+
 @Component({
     selector: 'clientitem-detail',
     templateUrl: 'clientitem-detail.template.html',
@@ -13,8 +16,8 @@ import { ClientItemService } from '../../services/clientitem.service';
 })
 export class ClientItemDetailComponent implements OnInit {
     panel: any;
-    client: any = {};
-    clientItem: any = {};
+    client = <Client>{};
+    clientItem = <ClientItem>{};
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
@@ -43,23 +46,34 @@ export class ClientItemDetailComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientItemService
-                        .getClientItem(params['clientitemid'])
-                        .subscribe(
-                            clientItem => {
-                                self.clientItem = clientItem;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
-                    self.clientService.getClient(params['id'])
-                        .subscribe(
-                            client => {
-                                self.client = client;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
+                    // client item
+                    self.clientItem = self.clientItemService.getClientItemContext();
+                    if (self.clientItem && self.clientItem._id !== params['clientitemid']) {
+                        self.clientItemService
+                            .getClientItem(params['clientitemid'])
+                            .subscribe(
+                                clientItem => {
+                                    self.clientItem = clientItem;
+                                    self.clientItemService.setClientItemContext(clientItem);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
+
+                    // client
+                    self.client = self.clientService.getClientContext();
+                    if (self.client && self.client._id !== params['id']) {
+                        self.clientService.getClient(params['id'])
+                            .subscribe(
+                                client => {
+                                    self.client = client;
+                                    self.clientService.setClientContext(client);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
                 }
             );
     }
@@ -95,6 +109,8 @@ export class ClientItemDetailComponent implements OnInit {
                                             clientItem.name,
                                             type: 'success'
                                         });
+
+                                        self.clientItemService.clearClientItemContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clients/detail',

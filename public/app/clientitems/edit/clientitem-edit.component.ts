@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientService } from '../../services/client.service';
 import { ClientItemService } from '../../services/clientitem.service';
+import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
 @Component({
@@ -13,8 +14,8 @@ import { ClientItem } from '../../model/clientitem.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientItemEditComponent implements OnInit {
-    client: any = {};
-    clientItem: any = {};
+    client = <Client>{};
+    clientItem = <ClientItem>{};
     clientItemForm: NgForm;
     formErrors: any = {
         'name': []
@@ -36,41 +37,51 @@ export class ClientItemEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
+                    // client item
                     const paramId = params['clientitemid'];
-                    if (paramId === 'new') {
-                        self.clientItem = {
-                            name: ''
-                        };
+                    if (paramId !== 'new') {
+                        self.clientItem = self.clientItemService.getClientItemContext();
+                        if (self.clientItem && self.clientItem._id !== paramId) {
+                            this.clientItemService.getClientItem(paramId)
+                                .subscribe(
+                                    clientItem => {
+                                        self.clientItem = clientItem;
+                                        self.clientItemService.setClientItemContext(clientItem);
+                                    },
+                                    error => {
+                                    } // error is handled by service
+                                );
+                        }
                     } else {
-                        this.clientItemService.getClientItem(paramId)
+                        // add new
+                        self.clientItem = self.clientItemService.clearClientItemContext();
+                    }
+
+                    // client
+                    self.client = self.clientService.getClientContext();
+                    if (self.client && self.client._id !== params['id']) {
+                        self.clientService.getClient(params['id'])
                             .subscribe(
-                                clientItem => {
-                                    self.clientItem = clientItem;
+                                client => {
+                                    self.client = client;
+                                    self.clientService.setClientContext(client);
                                 },
                                 error => {
                                 } // error is handled by service
                             );
                     }
-
-                    this.clientService.getClient(params['id'])
-                        .subscribe(
-                            client => {
-                                self.client = client;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
                 }
             );
     }
 
-    upsertClient(isValid: boolean, clientItemForm: ClientItem) {
+    upsertClientItem(isValid: boolean, clientItemForm: ClientItem) {
         const self = this;
+        let clientItem = <ClientItem>clientItemForm;
         if (isValid) {
             if (this.clientItem._id) {
                 // update
                 this.clientItemService
-                    .updateClientItem(this.clientItem._id, clientItemForm)
+                    .updateClientItem(this.clientItem._id, clientItem)
                     .subscribe(
                         res => {
                             if (res.success) {
@@ -96,10 +107,12 @@ export class ClientItemEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientItemService.insertClientItem(clientItemForm)
+                clientItem._clientId = self.client._id;
+                this.clientItemService.insertClientItem(<ClientItem>clientItemForm)
                     .subscribe(
                         res => {
                             if (res.success) {
+                                self.clientItemService.setClientItemContext(res.data);
                                 self.router.navigate([
                                     'app',
                                     'clients',
