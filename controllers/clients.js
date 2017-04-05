@@ -61,7 +61,6 @@ module.exports = function(lib) {
     controller.addAction({
         'path': '/api/clients/:id',
         'method': 'PUT',
-        // 'params': [swagger.pathParam('id', 'The id of the client', 'string'), swagger.bodyParam('client', 'The content to overwrite', 'string')],
         'summary': 'Updates the data of one client',
         'responsClass': 'Client',
         'nickname': 'updateClient'
@@ -91,9 +90,17 @@ module.exports = function(lib) {
         'responsClass': 'Client',
         'nickname': 'deleteClient'
     }, function(req, res, next) {
-        lib.db.model('Client').findOne({_id: req.params.id}).exec(function(err, client) {
+        var id = req.params.id;
+        lib.db.model('Client').findOne({_id: id}).exec(function(err, client) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             client.remove();
+            // delete associated client items
+            lib.db.model('ClientItem').find({_clientId: id}).exec(function(err, clientitems) {
+                if (err) return next(controller.RESTError('InternalServerError', err));
+                clientitems.forEach(function(clientitem) {
+                    clientitem.remove();
+                });
+            });
             controller.writeHAL(res, client);
         });
     });

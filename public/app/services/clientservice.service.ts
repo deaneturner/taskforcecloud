@@ -28,7 +28,7 @@ export class ClientServiceService {
             .catch(this.notificationService.handleError);
     }
 
-    updateClientService(id: string, clientService: any) {
+    updateClientService(id: string, clientService: ClientService) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.put('/api/clientservices/' + id, clientService, {headers: headers})
@@ -36,7 +36,7 @@ export class ClientServiceService {
             .catch(this.notificationService.handleError);
     }
 
-    insertClientService(clientService: any) {
+    insertClientService(clientService: ClientService) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.post('/api/clientservices', clientService, {headers: headers})

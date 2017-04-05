@@ -22,11 +22,11 @@ export class ClientServiceTaskListComponent {
 
     ngOnInit(): void {
         this.clientService._id = this.activatedRoute.snapshot.params['id'];
-        this.getClientServiceTasks();
+        this.getClientServiceTasks(this.clientService._id);
     };
 
-    getClientServiceTasks() {
-        this.clientServiceTaskService.getClientServiceTasks()
+    getClientServiceTasks(clientServiceId: string) {
+        this.clientServiceTaskService.getClientServiceTasks(clientServiceId)
             .subscribe(
                 clientServiceTasks => this.clientServiceTasks = clientServiceTasks,
                 error => {
