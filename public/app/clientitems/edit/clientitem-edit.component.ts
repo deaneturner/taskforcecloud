@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientService } from '../../services/client.service';
 import { ClientItemService } from '../../services/clientitem.service';
+
 import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
@@ -108,7 +109,7 @@ export class ClientItemEditComponent implements OnInit {
             } else {
                 // insert
                 clientItem._clientId = self.client._id;
-                this.clientItemService.insertClientItem(<ClientItem>clientItemForm)
+                this.clientItemService.insertClientItem(clientItem)
                     .subscribe(
                         res => {
                             if (res.success) {

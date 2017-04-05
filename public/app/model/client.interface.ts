@@ -9,5 +9,4 @@ export interface Client {
     address2: string;
     email: string;
     phone: string;
-    clientItems: Array<ClientItem>;
 }

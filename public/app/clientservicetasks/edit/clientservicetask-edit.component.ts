@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientServiceTaskService } from '../../services/clientservicetask.service';
+
+import { ClientService } from '../../model/clientservice.interface';
 import { ClientServiceTask } from '../../model/clientservicetask.interface';
 
 @Component({
@@ -13,8 +15,8 @@ import { ClientServiceTask } from '../../model/clientservicetask.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceTaskEditComponent implements OnInit {
-    clientService: any = {};
-    clientServiceTask: any = {};
+    clientService = <ClientService>{};
+    clientServiceTask = <ClientServiceTask>{};
     clientServiceTaskForm: NgForm;
     formErrors: any = {
         'name': []
@@ -61,7 +63,7 @@ export class ClientServiceTaskEditComponent implements OnInit {
                     // client
                     self.clientService = self.clientServiceService.getClientServiceContext();
                     if (self.clientService && self.clientService._id !== params['id']) {
-                        self.clientService.getClient(params['id'])
+                        self.clientServiceService.getClientService(params['id'])
                             .subscribe(
                                 clientService => {
                                     self.clientService = clientService;
@@ -78,11 +80,12 @@ export class ClientServiceTaskEditComponent implements OnInit {
 
     upsertClientServiceTask(isValid: boolean, clientServiceTaskForm: ClientServiceTask) {
         const self = this;
+        let clientServiceTask = <ClientServiceTask>clientServiceTaskForm;
         if (isValid) {
             if (this.clientServiceTask._id) {
                 // update
                 this.clientServiceTaskService
-                    .updateClientServiceTask(this.clientServiceTask._id, clientServiceTaskForm)
+                    .updateClientServiceTask(this.clientServiceTask._id, clientServiceTask)
                     .subscribe(
                         res => {
                             if (res.success) {
@@ -108,7 +111,8 @@ export class ClientServiceTaskEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientServiceTaskService.insertClientServiceTask(clientServiceTaskForm)
+                clientServiceTask._clientServiceId = self.clientService._id;
+                this.clientServiceTaskService.insertClientServiceTask(clientServiceTask)
                     .subscribe(
                         res => {
                             if (res.success) {

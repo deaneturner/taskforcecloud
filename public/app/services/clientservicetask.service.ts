@@ -22,13 +22,17 @@ export class ClientServiceTaskService {
             .catch(this.notificationService.handleError);
     }
 
-    getClientServiceTasks(query ?: any) {
-        return this.http.get('/api/clientservicetasks')
+    getClientServiceTasks(clientServiceId: string) {
+        let url = '/api/clientservicetasks';
+        if (clientServiceId) {
+            url = '/api/clientservices/' + clientServiceId + '/clientservicetasks';
+        }
+        return this.http.get(url)
             .map((response: Response) => <ClientServiceTask[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }
 
-    updateClientServiceTask(id: string, clientServiceTask: any) {
+    updateClientServiceTask(id: string, clientServiceTask: ClientServiceTask) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.put('/api/clientservicetasks/' + id, clientServiceTask, {headers: headers})
@@ -36,7 +40,7 @@ export class ClientServiceTaskService {
             .catch(this.notificationService.handleError);
     }
 
-    insertClientServiceTask(clientServiceTask: any) {
+    insertClientServiceTask(clientServiceTask: ClientServiceTask) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.post('/api/clientservicetasks', clientServiceTask, {headers: headers})

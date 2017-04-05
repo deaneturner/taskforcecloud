@@ -32,7 +32,7 @@ export class ClientItemService {
             .catch(this.notificationService.handleError);
     }
 
-    updateClientItem(id: string, clientitem: any) {
+    updateClientItem(id: string, clientitem: ClientItem) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.put('/api/clientitems/' + id, clientitem, {headers: headers})
@@ -40,7 +40,7 @@ export class ClientItemService {
             .catch(this.notificationService.handleError);
     }
 
-    insertClientItem(clientitem: any) {
+    insertClientItem(clientitem: ClientItem) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.post('/api/clientitems', clientitem, {headers: headers})

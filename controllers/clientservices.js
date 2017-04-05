@@ -91,10 +91,32 @@ module.exports = function(lib) {
         'responsClass': 'ClientService',
         'nickname': 'deleteClientService'
     }, function(req, res, next) {
-        lib.db.model('ClientService').findOne({_id: req.params.id}).exec(function(err, clientService) {
+        var id = req.params.id;
+        lib.db.model('ClientService').findOne({_id: id}).exec(function(err, clientservice) {
             if (err) return next(controller.RESTError('InternalServerError', err));
-            clientService.remove();
-            controller.writeHAL(res, clientService);
+            clientservice.remove();
+            // delete associated client service tasks
+            lib.db.model('ClientServiceTask').find({_clientServiceId: id}).exec(function(err, clientservicetasks) {
+                if (err) return next(controller.RESTError('InternalServerError', err));
+                clientservicetasks.forEach(function(clientservicetask) {
+                    clientservicetask.remove();
+                });
+            });
+            controller.writeHAL(res, clientservice);
+        });
+    });
+
+    controller.addAction({
+        'path': '/api/clientservices/:id/clientservicetasks',
+        'method': 'GET',
+        'summary': 'Returns the list of client service tasks, by client service id, ordered by name',
+        'responsClass': 'ClientServiceTask',
+        'nickname': 'getClientServiceTaskByClientServiceId'
+    }, function(req, res, next) {
+        var id = req.params.id;
+        lib.db.model('ClientServiceTask').find({_clientServiceId: id}).sort('name').exec(function(err, clientservicetasks) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            controller.writeHAL(res, clientservicetasks);
         });
     });
 
