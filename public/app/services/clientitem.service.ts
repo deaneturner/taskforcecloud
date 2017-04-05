@@ -22,8 +22,12 @@ export class ClientItemService {
             .catch(this.notificationService.handleError);
     }
 
-    getClientItems(query ?: any) {
-        return this.http.get('/api/clientitems')
+    getClientItems(clientId: string) {
+        let url = '/api/clientitems';
+        if (clientId) {
+            url = '/api/clients/' + clientId + '/clientitems';
+        }
+        return this.http.get(url)
             .map((response: Response) => <ClientItem[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }

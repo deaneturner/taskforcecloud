@@ -76,11 +76,12 @@ export class ClientItemEditComponent implements OnInit {
 
     upsertClientItem(isValid: boolean, clientItemForm: ClientItem) {
         const self = this;
+        let clientItem = <ClientItem>clientItemForm;
         if (isValid) {
             if (this.clientItem._id) {
                 // update
                 this.clientItemService
-                    .updateClientItem(this.clientItem._id, <ClientItem>clientItemForm)
+                    .updateClientItem(this.clientItem._id, clientItem)
                     .subscribe(
                         res => {
                             if (res.success) {
@@ -106,49 +107,26 @@ export class ClientItemEditComponent implements OnInit {
                     );
             } else {
                 // insert
+                clientItem._clientId = self.client._id;
                 this.clientItemService.insertClientItem(<ClientItem>clientItemForm)
                     .subscribe(
-                        resClientItem => {
-                            if (resClientItem.success) {
-                                self.clientService.addClientItem(self.client._id,
-                                    resClientItem.data._id)
-                                    .subscribe(
-                                        resClient => {
-                                            if (resClient.success) {
-                                                self.clientService
-                                                    .addClientItem(self.client._id,
-                                                        resClientItem.data._id);
-                                                self.clientItemService
-                                                    .setClientItemContext(resClientItem.data);
-                                                self.router.navigate([
-                                                    'app',
-                                                    'clients',
-                                                    self.client._id,
-                                                    'clientitems',
-                                                    'detail',
-                                                    resClientItem.data._id
-                                                ]);
-                                            } else if (resClient.success === false) {
-                                                const field = resClient.field;
-                                                // clear previous error message (if any)
-                                                self.formErrors[field] = [];
-                                                self
-                                                    .formErrors[field]
-                                                    .push(
-                                                        self
-                                                            .validationMessages[field]
-                                                            [resClient.msgKey]);
-                                            }
-                                        },
-                                        error => {
-                                        }  // error is handled by service
-                                    );
-                            } else if (resClientItem.success === false) {
-                                const field = resClientItem.field;
+                        res => {
+                            if (res.success) {
+                                self.clientItemService.setClientItemContext(res.data);
+                                self.router.navigate([
+                                    'app',
+                                    'clients',
+                                    self.client._id,
+                                    'clientitems',
+                                    'detail',
+                                    res.data._id
+                                ]);
+                            } else if (res.success === false) {
+                                const field = res.field;
                                 // clear previous error message (if any)
                                 self.formErrors[field] = [];
                                 self.formErrors[field]
-                                    .push(self.validationMessages[field][resClientItem.msgKey]);
+                                    .push(self.validationMessages[field][res.msgKey]);
                             }
                         },
                         error => {
