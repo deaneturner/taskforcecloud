@@ -91,9 +91,16 @@ module.exports = function(lib) {
         'responsClass': 'Client',
         'nickname': 'deleteClient'
     }, function(req, res, next) {
-        lib.db.model('Client').findOne({_id: req.params.id}).exec(function(err, client) {
+        var id = req.params.id;
+        lib.db.model('Client').findOne({_id: id}).exec(function(err, client) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             client.remove();
+            lib.db.model('ClientItem').find({_clientId: id}).exec(function(err, clientitems) {
+                if (err) return next(controller.RESTError('InternalServerError', err));
+                clientitems.forEach(function(clientitem) {
+                    clientitem.remove();
+                });
+            });
             controller.writeHAL(res, client);
         });
     });
@@ -109,6 +116,27 @@ module.exports = function(lib) {
         lib.db.model('ClientItem').find({_clientId: id}).sort('name').exec(function(err, clientitems) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, clientitems);
+        });
+    });
+
+    controller.addAction({
+        'path': '/api/clients/:id/clientitems',
+        'method': 'DEL',
+        'summary': 'Deletes all client items associated with a client id',
+        'responsClass': 'Client',
+        'nickname': 'deletedClientItemsByClientId'
+    }, function(req, res, next) {
+        var id = req.params.id;
+        lib.db.model('ClientItem').find({_clientId: id}).sort('name').exec(function(err, clientitems) {
+            if (err) return next(controller.RESTError('InternalServerError', err));
+            clientitems.forEach(function(clientitem) {
+                clientitem.remove();
+            });
+            lib.db.model('Client').findOne({_id: id})
+                .exec(function(err, client) {
+                    if (err) return next(controller.RESTError('InternalServerError', err));
+                    controller.writeHAL(res, client);
+                });
         });
     });
 
