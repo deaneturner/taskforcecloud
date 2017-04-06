@@ -6,9 +6,7 @@
 <div class="row user-profile">
     <div class="col-lg-3 col-xs-12">
         <tfc-panel
-                [collapsed]="panel.collapsed"
-                [showFullscreen]="panel.fullScreen"
-                [menu]="panel.menu">
+                [collapsible]="panel.collapsible">
             <section class="widget">
                 <div class="widget-body">
                     <div class="widget-top-overflow text-white">
@@ -33,12 +31,19 @@
     <div class="col-lg-6 col-xs-12">
         <tfc-panel
                 class="clientservicetask-list"
-                [iconClass]="serviceItemPanel.iconClass"
-                [title]="serviceItemPanel.title"
-                [collapsed]="serviceItemPanel.collapsed"
-                [showFullscreen]="serviceItemPanel.fullScreen"
-                [menu]="serviceItemPanel.menu">
+                [iconClass]="serviceTaskPanel.iconClass"
+                [title]="serviceTaskPanel.title"
+                [collapsible]="serviceTaskPanel.collapsible"
+                [collapsed]="serviceTaskPanel.collapsed"
+                [menu]="serviceTaskPanel.menu">
             <tfc-clientservicetask-list></tfc-clientservicetask-list>
+            <!--<tfc-panel [title]="clientServicePanels['task1'].title"-->
+                       <!--[iconClass]="clientServicePanels['task1'].iconClass"-->
+                       <!--[collapsed]="clientServicePanels['task1'].collapsed"-->
+                       <!--[showReload] = "clientServicePanels['task1'].showReload"-->
+                       <!--[menu]="serviceTaskPanel.menu">-->
+                <!--<tfc-clientservicetask-list></tfc-clientservicetask-list>-->
+            <!--</tfc-panel>-->
         </tfc-panel>
     </div>
 </div>

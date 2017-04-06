@@ -16,7 +16,8 @@ import { ClientService } from '../../model/clientservice.interface';
 export class ClientServiceDetailComponent implements OnInit {
     panel: any;
     clientService = <ClientService>{};
-    serviceItemPanel: any;
+    serviceTaskPanel: any;
+    clientServicePanels = <any>{};
 
     @ViewChild(ClientServiceEditComponent)
     public clientServiceEditComponent: ClientServiceEditComponent;
@@ -32,9 +33,7 @@ export class ClientServiceDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
+            collapsible: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')
@@ -44,16 +43,26 @@ export class ClientServiceDetailComponent implements OnInit {
             }]
         };
 
-        this.serviceItemPanel = {
+        this.serviceTaskPanel = {
             title: 'Service Tasks',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
+            collapsible: true,
+            collapsed: true,
             menu: [{
                 title: 'Add',
                 onMenuSelect: () => this.onMenuServiceTaskSelect('add')
             }]
         };
+
+        // dynamic services
+        // this.clientServicePanels['task1'] = {
+        //     title: 'Service 1',
+        //     iconClass: ['fa-user-o'],
+        //     collapsed: true,
+        //     menu: [{
+        //         title: 'Add',
+        //         onMenuSelect: () => this.onMenuServiceTaskSelect('add')
+        //     }]
+        // };
 
         this.activatedRoute.params
             .subscribe(
