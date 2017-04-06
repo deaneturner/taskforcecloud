@@ -20,7 +20,7 @@ export class PanelComponent {
 
     showDropdown: boolean = false;
     chevron = <any>{
-        collapsed: false,
+        collapsed: this.collapsed,
         toggle: function () {
             this.collapsed = !this.collapsed;
         }
