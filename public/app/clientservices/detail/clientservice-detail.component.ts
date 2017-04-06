@@ -33,7 +33,6 @@ export class ClientServiceDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            collapsible: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')
@@ -45,7 +44,6 @@ export class ClientServiceDetailComponent implements OnInit {
 
         this.serviceTaskPanel = {
             title: 'Service Tasks',
-            collapsible: true,
             collapsed: true,
             menu: [{
                 title: 'Add',
