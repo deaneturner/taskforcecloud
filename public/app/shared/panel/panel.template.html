@@ -10,7 +10,19 @@
                     <span class="fw-semi-bold">{{title}}</span>
                 </h6>
                 <div>
-                    <div [style.visibility]="showDropdown ? 'hidden' : 'visible'" class="widget-controls">
+                    <div class="widget-controls">
+                        <span  *ngIf="showDropdown" class="dropdown" data-dropdown data-ng-init="isOpen = false"
+                               data-is-open="isOpen">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li *ngFor="let menuItem of menu; let last = last">
+                                    <a class="dropdown-item" (click)="menuItem.onMenuSelect()">{{menuItem.title}}</a>
+                                    <div *ngIf="!last"class="dropdown-divider"></div>
+                                </li>
+                            </ul>
+                        </span>
                         <a *ngIf="showReload" data-gster="load" title="Reload" href="#"><i
                                 class="fa fa-refresh"></i></a>
                         <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -22,19 +34,6 @@
                                 class="glyphicon glyphicon-resize-small"></i></a>
                         <a *ngIf="showClose" data-widgster="close" title="Close" href="#"><i
                                 class="glyphicon glyphicon-remove"></i></a>
-                    </div>
-                    <div *ngIf="showDropdown" class="widget-controls dropdown" data-dropdown
-                         data-ng-init="isOpen = false"
-                         data-is-open="isOpen">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bars"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li *ngFor="let menuItem of menu; let last = last">
-                                <a class="dropdown-item" (click)="menuItem.onMenuSelect()">{{menuItem.title}}</a>
-                                <div *ngIf="!last"class="dropdown-divider"></div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </header>
