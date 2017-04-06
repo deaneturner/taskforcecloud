@@ -11,7 +11,7 @@
                 </h6>
                 <div>
                     <div class="widget-controls">
-                        <span [hidden]="showDropdown && chevron.collapsed" class="dropdown" data-dropdown data-ng-init="isOpen = false"
+                        <span [hidden]="!showDropdown" class="dropdown" data-dropdown data-ng-init="isOpen = false"
                               data-is-open="isOpen">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bars"></i>
