@@ -1,7 +1,7 @@
 <div class="list-group list-group-lg">
     <a *ngFor="let clientService of clientServices" class="list-group-item" (click)="router.navigate(['/app/clientservices/detail', clientService._id])">
         <span class="thumb-sm pull-xs-left mr">
-                    <i class="fa fa-cubes"></i>
+                    <i class="fa" [ngClass]="iconClass"></i>
                 </span>
         <!--<i class="fa fa-circle pull-xs-right mt-sm" [ngClass]="user.indicatorClass"></i>-->
         <!--<h6 class="no-margin pull-xs-right">{{ clientService.phone || ''}}</h6>-->

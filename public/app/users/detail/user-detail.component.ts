@@ -13,6 +13,7 @@ import { UserEditComponent } from '../edit/user-edit.component';
     encapsulation: ViewEncapsulation.None
 })
 export class UserDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-user-o'];
     panel: any;
     user: any = {};
 

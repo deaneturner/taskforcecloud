@@ -14,6 +14,7 @@ import { ClientService } from '../../model/clientservice.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-cube'];
     panel: any;
     clientService = <ClientService>{};
     serviceTaskPanel: any;
@@ -43,6 +44,7 @@ export class ClientServiceDetailComponent implements OnInit {
         };
 
         this.serviceTaskPanel = {
+            iconClass: this.iconClass,
             title: 'Service Tasks',
             collapsible: true,
             menu: [{

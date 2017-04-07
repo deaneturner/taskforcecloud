@@ -3,7 +3,7 @@
     <a *ngFor="let clientServiceTask of clientServiceTasks" (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
         <section class="event">
             <span class="thumb-sm avatar pull-left mr-sm">
-              <i class="fa fa-cube"></i>
+              <i class="fa" [ngClass]="iconClass"></i>
             </span>
             <h5 class="event-heading">{{ clientServiceTask.name }}
                 <small>@nils</small>

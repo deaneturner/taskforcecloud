@@ -7,17 +7,19 @@
     }
 </style>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item active"><i class="fa fa-handshake-o"></i> Clients</li>
+    <li class="breadcrumb-item active"><i [ngClass]="iconClass"></i> Clients</li>
 </ol>
 <div class="row">
     <div class="col-lg-6">
         <tfc-panel
+                class="tfc-panel-collapsible"
                 [iconClass]="panel.iconClass"
                 [title]="panel.title"
                 [collapsible]="panel.collapsible"
-                [collapsed]="panel.collapsed"
                 [menu]="panel.menu">
-            <tfc-client-list></tfc-client-list>
+            <tfc-client-list
+                [iconClass]="panel.iconClass">
+            </tfc-client-list>
         </tfc-panel>
     </div>
 </div>

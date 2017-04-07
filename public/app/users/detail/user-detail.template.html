@@ -1,9 +1,9 @@
 <ol class="breadcrumb">
-    <li class="active breadcrumb-item" [routerLink]="['/app/users']"><i class="fa fa-user-o"></i> Users</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/admin']"><i class="fa fa-cogs"></i> Administration > Users</li>
     <li class="active breadcrumb-item">{{user.username}}</li>
 </ol>
 <!--<h1 class="page-title">Detail - <span class="fw-semi-bold">User</span></h1>-->
-<div class="row user-profile">
+<div class="row">
     <div class="col-lg-6 col-xs-12">
         <tfc-panel [menu]="panel.menu">
             <section class="widget">
@@ -17,7 +17,7 @@
                         <div class="col-md-5 col-xs-12 text-xs-center">
                             <div class="post-user post-user-profile">
               <span class="thumb-xlg">
-                <i class="fa fa-user-o fa-5x"></i>
+                <i class="fa-5x" [ngClass]="iconClass"></i>
               </span>
                                 <h5 class="fw-normal">{{user.firstName}} <span class="fw-semi-bold">{{user.lastName}}</span></h5>
                                 <div>{{user.username}}</div>

@@ -15,6 +15,7 @@ import { ClientItem } from '../../model/clientitem.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientItemDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-dot-circle-o'];
     panel: any;
     client = <Client>{};
     clientItem = <ClientItem>{};
@@ -31,8 +32,6 @@ export class ClientItemDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')

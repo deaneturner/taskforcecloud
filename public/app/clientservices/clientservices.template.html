@@ -4,17 +4,19 @@
     }
 </style>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item active"><i class="fa fa-cubes"></i> Services</li>
+    <li class="breadcrumb-item active"><i [ngClass]="iconClass"></i> Services</li>
 </ol>
 <div class="row">
     <div class="col-lg-6">
         <tfc-panel
+                class="tfc-panel-collapsible"
                 [iconClass]="panel.iconClass"
                 [title]="panel.title"
-                [collapsed]="panel.collapsed"
                 [collapsible]="panel.collapsible"
                 [menu]="panel.menu">
-            <tfc-client-service-list></tfc-client-service-list>
+            <tfc-client-service-list
+                [iconClass]="panel.iconClass">
+            </tfc-client-service-list>
         </tfc-panel>
     </div>
 </div>

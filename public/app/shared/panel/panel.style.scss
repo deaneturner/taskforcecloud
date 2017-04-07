@@ -1,3 +1,33 @@
 @import "../../scss/variables";
 @import "../../../../node_modules/bootstrap/scss/_variables";
 @import "../../../../node_modules/bootstrap/scss/mixins";
+
+
+.tfc-panel-icon {
+  margin-right: 10px;
+}
+
+.tfc-panel-collapsible-spacer{
+    padding: 5px 20px;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    background-color: $body-bg;
+
+    @include clearfix();
+
+    .thumb{
+      margin-left: 10px;
+    }
+}
+
+.tfc-panel-collapsible .widget-body {
+    border-left: 20px solid $body-bg;
+}
+
+.tfc-panel-collapsible-spacer {
+  display: none;
+}
+
+.tfc-panel-collapsible .tfc-panel-collapsible-spacer {
+    display: block;
+}

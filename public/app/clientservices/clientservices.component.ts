@@ -13,6 +13,7 @@ declare var jQuery: any;
 export class ClientServicesComponent {
     appConfig: any;
     panel: any;
+    iconClass = ['fa', 'fa-cubes'];
     sortOptions: Object = {
         connectWith: '.widget-container',
         handle: 'header, .handle',
@@ -38,7 +39,7 @@ export class ClientServicesComponent {
 
         this.panel = {
             title: 'Services',
-            iconClass: ['fa-cubes'],
+            iconClass: this.iconClass,
             collapsible: true,
             menu: [{
                 title: 'Add',

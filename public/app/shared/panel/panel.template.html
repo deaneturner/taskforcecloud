@@ -1,12 +1,10 @@
-<div panel-widget [collapsed]="collapsed">
+<div panel-widget class="tfc-panel" [collapsed]="collapsed">
     <div class="widget-container">
-        <section class="widget" widget id="panel-widget"
-                 data-widgster-load="assets/demo/grid/shares.php"
-                 data-post-processing="true">
+        <section class="widget" widget id="panel-widget">
             <header>
                 <h6>
-                    <span *ngIf="iconClass && iconClass.length" class="tag tag-primary"><i class="fa"
-                                                                                           [ngClass]="iconClass"></i></span>
+                    <span *ngIf="iconClass && iconClass.length" class="tag tag-primary tfc-panel-icon">
+                        <i class="fa" [ngClass]="iconClass"></i></span>
                     <span class="fw-semi-bold">{{title}}</span>
                 </h6>
                 <div>
@@ -39,6 +37,7 @@
                 </div>
             </header>
             <div class="widget-body no-padding">
+                <div class="tfc-panel-collapsible-spacer"></div>
                 <ng-content></ng-content>
             </div>
         </section>

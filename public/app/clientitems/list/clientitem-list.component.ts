@@ -13,6 +13,7 @@ import { ClientItemService } from '../../services/clientitem.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientItemListComponent {
+    @Input() iconClass: any;
     client = <Client>{};
     clientItems: Array<ClientItem>;
 
