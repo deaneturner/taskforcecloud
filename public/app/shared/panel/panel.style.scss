@@ -6,3 +6,17 @@
 .tfc-panel-icon {
   margin-right: 10px;
 }
+
+.tfc-panel-collapsible-spacer{
+    margin: 20px -20px 0;
+    padding: 10px 20px;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    background-color: #f3f3f3;
+
+    @include clearfix();
+
+    .thumb{
+      margin-left: 10px;
+    }
+}

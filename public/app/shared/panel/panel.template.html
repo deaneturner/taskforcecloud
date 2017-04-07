@@ -37,6 +37,7 @@
                 </div>
             </header>
             <div class="widget-body no-padding">
+                <div [hidden]="!collapsible" class="tfc-panel-collapsible-spacer"></div>
                 <ng-content></ng-content>
             </div>
         </section>
