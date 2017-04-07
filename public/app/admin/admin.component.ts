@@ -36,7 +36,7 @@ export class AdminComponent implements OnInit {
         this.panel = {
             title: 'Users',
             iconClass: ['fa-user-o'],
-            collapsed: false
+            collapsible: true
         };
     }
 }
