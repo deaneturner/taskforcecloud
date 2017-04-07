@@ -43,6 +43,7 @@ export class ClientServiceDetailComponent implements OnInit {
         };
 
         this.serviceTaskPanel = {
+            iconClass: ['fa-cube'],
             title: 'Service Tasks',
             collapsible: true,
             menu: [{
