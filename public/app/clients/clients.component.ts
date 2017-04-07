@@ -39,9 +39,7 @@ export class ClientsComponent {
         this.panel = {
             title: 'Clients',
             iconClass: ['fa-handshake-o'],
-            collapsed: false,
-            close: false,
-            fullScreen: false,
+            collapsible: true,
             menu: [{
                 title: 'Add',
                 onMenuSelect: () => this.onMenuSelect('add')

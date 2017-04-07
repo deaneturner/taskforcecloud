@@ -39,7 +39,6 @@ export class ClientServicesComponent {
         this.panel = {
             title: 'Services',
             iconClass: ['fa-cubes'],
-            collapsed: false,
             collapsible: true,
             menu: [{
                 title: 'Add',

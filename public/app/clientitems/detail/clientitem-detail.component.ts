@@ -31,7 +31,6 @@ export class ClientItemDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            collapsed: false,
             close: false,
             fullScreen: false,
             menu: [{
