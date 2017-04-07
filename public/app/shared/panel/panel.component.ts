@@ -12,7 +12,7 @@ export class PanelComponent {
     @Input() title: string;
     @Input() iconClass: Array<string>[];
     @Input() collapsible: boolean = false;
-    @Input() collapsed: boolean = false;
+    @Input() collapsed: boolean = true;
     @Input() showReload: boolean = false;
     @Input() showClose: boolean = false;
     @Input() showFullscreen: boolean = false;

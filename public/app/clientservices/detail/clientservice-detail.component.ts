@@ -33,6 +33,7 @@ export class ClientServiceDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
+            collapsed: true,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')

@@ -25,10 +25,10 @@
                         </span>
                         <a [hidden]="!showReload" data-gster="load" title="Reload" href="#"><i
                                 class="fa fa-refresh"></i></a>
-                        <a data-widgster="expand" title="Expand" href="#">
-                            <i class="glyphicon glyphicon-chevron-up" (click)="chevron.toggle()"></i></a>
-                        <a data-widgster="collapse" title="Collapse" href="#"><i
-                                class="glyphicon glyphicon-chevron-down" (click)="chevron.toggle()"></i></a>
+                        <a [hidden]="!showReload" data-widgster="expand" title="Expand" href="#">
+                            <i class="glyphicon glyphicon-chevron-up" ></i></a>
+                        <a [hidden]="!showReload" data-widgster="collapse" title="Collapse" href="#"><i
+                                class="glyphicon glyphicon-chevron-down"></i></a>
                         <a [hidden]="!showFullscreen" data-widgster="fullscreen" title="Full Screen" href="#"><i
                                 class="glyphicon glyphicon-fullscreen"></i></a>
                         <a data-widgster="restore" title="Restore" href="#"><i
