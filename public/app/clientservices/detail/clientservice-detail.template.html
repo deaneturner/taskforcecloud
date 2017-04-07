@@ -35,7 +35,9 @@
                 [collapsible]="serviceTaskPanel.collapsible"
                 [collapsed]="serviceTaskPanel.collapsed"
                 [menu]="serviceTaskPanel.menu">
-            <tfc-clientservicetask-list></tfc-clientservicetask-list>
+            <tfc-clientservicetask-list
+                [iconClass]="serviceTaskPanel.iconClass">
+            </tfc-clientservicetask-list>
             <!--<tfc-panel [title]="clientServicePanels['task1'].title"-->
                        <!--[iconClass]="clientServicePanels['task1'].iconClass"-->
                        <!--[collapsed]="clientServicePanels['task1'].collapsed"-->

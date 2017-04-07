@@ -11,6 +11,7 @@ import { ClientService } from '../../services/client.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientListComponent {
+    @Input() iconClass: any;
     selectedClient: string;
     clients: Array<Client>;
 

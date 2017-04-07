@@ -11,6 +11,7 @@ import { ClientServiceTaskService } from '../../services/clientservicetask.servi
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceTaskListComponent {
+    @Input() iconClass: any;
     clientService: any = {};
     clientServiceTasks: Array<Client>;
 

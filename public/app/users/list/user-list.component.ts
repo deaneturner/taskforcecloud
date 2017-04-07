@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 import { User } from '../../model/user.interface';
 import { UserService } from '../../services/user.service';
@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
     encapsulation: ViewEncapsulation.None
 })
 export class UserListComponent {
-    selectedUser: string;
+    @Input() iconClass: any;
     users: Array<User>;
 
     constructor(private userService: UserService) {
