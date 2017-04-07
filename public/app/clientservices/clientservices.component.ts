@@ -40,8 +40,7 @@ export class ClientServicesComponent {
             title: 'Services',
             iconClass: ['fa-cubes'],
             collapsed: false,
-            close: false,
-            fullScreen: false,
+            collapsible: true,
             menu: [{
                 title: 'Add',
                 onMenuSelect: () => this.onMenuSelect('add')
