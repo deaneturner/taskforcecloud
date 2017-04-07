@@ -32,7 +32,6 @@ export class ClientDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            collapsed: false,
             close: false,
             fullScreen: false,
             menu: [{
@@ -46,7 +45,7 @@ export class ClientDetailComponent implements OnInit {
 
         this.clientItemPanel = {
             title: 'Items',
-            collapsed: false,
+            collapsible: true,
             close: false,
             fullScreen: false,
             menu: [{

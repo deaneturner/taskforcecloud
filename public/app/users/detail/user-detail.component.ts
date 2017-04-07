@@ -31,9 +31,6 @@ export class UserDetailComponent implements OnInit {
 
         this.panel = {
             title: 'Profile',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')

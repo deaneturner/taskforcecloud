@@ -31,9 +31,6 @@ export class ClientServiceTaskDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')
