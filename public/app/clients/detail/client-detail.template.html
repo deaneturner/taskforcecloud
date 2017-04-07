@@ -19,7 +19,8 @@
               <span class="thumb-xlg">
                 <i class="fa fa-handshake-o fa-5x"></i>
               </span>
-                                <h5 class="fw-normal">{{client.firstName}} <span class="fw-semi-bold">{{client.lastName}}</span></h5>
+                                <h5 class="fw-normal">{{client.firstName}} <span class="fw-semi-bold">{{client.lastName}}</span>
+                                </h5>
                                 <div>{{client.company}}</div>
                                 <p>{{client.address1}}</p>
                                 <a href="#" class="btn btn-danger btn-sm mt">
@@ -27,8 +28,10 @@
                                     <i class="fa fa-envelope ml-xs"></i>&nbsp;
                                 </a>
                                 <ul class="contacts">
-                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{client.phone || '(---) --- -----'}}</a></li>
-                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{client.email || '--- @ ---- . com'}}</a>
+                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{client.phone || '(---) ---
+                                        -----'}}</a></li>
+                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{client.email || '--- @
+                                        ---- . com'}}</a>
                                     </li>
                                     <li><i class="fa fa-map-marker fa-fw mr-xs"></i><a href="#"> Minsk, Belarus</a></li>
                                 </ul>
@@ -75,7 +78,9 @@
                 [title]="clientItemPanel.title"
                 [collapsible]="clientItemPanel.collapsible"
                 [menu]="clientItemPanel.menu">
-            <tfc-clientitem-list></tfc-clientitem-list>
+            <tfc-clientitem-list
+                    [iconClass]="clientItemPanel.iconClass">
+            </tfc-clientitem-list>
         </tfc-panel>
     </div>
 </div>

@@ -4,7 +4,7 @@
            (click)="router.navigate(['app/clients', client._id, 'clientitems', 'detail', clientItem._id])">
             <section class="event">
             <span class="thumb-sm avatar pull-left mr-sm">
-              <i class="fa fa-cube"></i>
+              <i class="fa" [ngClass]="iconClass"></i>
             </span>
                 <h5 class="event-heading">{{ clientItem.name }}
                     <small>@nils</small>

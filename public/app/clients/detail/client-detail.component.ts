@@ -42,7 +42,7 @@ export class ClientDetailComponent implements OnInit {
         };
 
         this.clientItemPanel = {
-            iconClass: ['fa-cube'],
+            iconClass: ['fa-dot-circle-o'],
             title: 'Items',
             collapsible: true,
             menu: [{

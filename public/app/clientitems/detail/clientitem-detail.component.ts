@@ -31,8 +31,6 @@ export class ClientItemDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')
