@@ -6,7 +6,8 @@
 <div class="row user-profile">
     <div class="col-lg-3 col-xs-12">
         <tfc-panel
-                [menu]="panel.menu">
+                [menu]="panel.menu"
+                [collapsed]="panel.collapsed">
             <section class="widget">
                 <div class="widget-body">
                     <div class="widget-top-overflow text-white">
@@ -33,7 +34,9 @@
                 class="clientservicetask-list"
                 [iconClass]="serviceTaskPanel.iconClass"
                 [title]="serviceTaskPanel.title"
-                [collapsed]="serviceTaskPanel.collapsed">
+                [collapsible]="serviceTaskPanel.collapsible"
+                [collapsed]="serviceTaskPanel.collapsed"
+                [menu]="serviceTaskPanel.menu">
             <!--<tfc-clientservicetask-list></tfc-clientservicetask-list>-->
             <!--<tfc-panel [title]="clientServicePanels['task1'].title"-->
                        <!--[iconClass]="clientServicePanels['task1'].iconClass"-->
