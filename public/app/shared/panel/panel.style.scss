@@ -23,3 +23,11 @@
 .tfc-panel-collapsible .widget-body {
     border-left: 20px solid $body-bg;
 }
+
+.tfc-panel-collapsible-spacer {
+  display: none;
+}
+
+.tfc-panel-collapsible .tfc-panel-collapsible-spacer {
+    display: block;
+}
