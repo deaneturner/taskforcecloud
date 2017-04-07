@@ -32,8 +32,6 @@ export class ClientDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')
@@ -44,10 +42,9 @@ export class ClientDetailComponent implements OnInit {
         };
 
         this.clientItemPanel = {
+            iconClass: ['fa-cube'],
             title: 'Items',
             collapsible: true,
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Add',
                 onMenuSelect: () => this.onMenuClientItemSelect('add')
