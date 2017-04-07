@@ -13,6 +13,7 @@ import { ClientEditComponent } from '../edit/client-edit.component';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-5x', 'fa-handshake-o'];
     panel: any;
     clientItemPanel: any;
     client: any = {};
@@ -42,7 +43,7 @@ export class ClientDetailComponent implements OnInit {
         };
 
         this.clientItemPanel = {
-            iconClass: ['fa-dot-circle-o'],
+            iconClass: ['fa', 'fa-dot-circle-o'],
             title: 'Items',
             collapsible: true,
             menu: [{

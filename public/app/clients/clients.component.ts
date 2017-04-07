@@ -13,6 +13,7 @@ declare var jQuery: any;
 export class ClientsComponent {
     appConfig: any;
     panel: any;
+    iconClass = ['fa', 'fa-handshake-o'];
     sortOptions: Object = {
         connectWith: '.widget-container',
         handle: 'header, .handle',
@@ -38,7 +39,7 @@ export class ClientsComponent {
 
         this.panel = {
             title: 'Clients',
-            iconClass: ['fa-handshake-o'],
+            iconClass: this.iconClass,
             collapsible: true,
             menu: [{
                 title: 'Add',

@@ -15,6 +15,7 @@ import { ClientServiceTask } from '../../model/clientservicetask.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceTaskDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-cube'];
     panel: any;
     clientService = <ClientService>{};
     clientServiceTask = <ClientServiceTask>{};

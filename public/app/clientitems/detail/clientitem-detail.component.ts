@@ -15,6 +15,7 @@ import { ClientItem } from '../../model/clientitem.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientItemDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-dot-circle-o'];
     panel: any;
     client = <Client>{};
     clientItem = <ClientItem>{};
