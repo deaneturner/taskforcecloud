@@ -11,6 +11,7 @@ declare var jQuery: any;
 export class PanelComponent {
     @Input() title: string;
     @Input() iconClass: Array<string>[];
+    @Input() collapsible: boolean = false;
     @Input() collapsed: boolean = false;
     @Input() showReload: boolean = false;
     @Input() showClose: boolean = false;
@@ -18,8 +19,18 @@ export class PanelComponent {
     @Input() menu: Array<any> = [];
 
     showDropdown: boolean = false;
+    chevron = <any>{
+        collapsed: this.collapsed,
+        toggle: function () {
+            this.collapsed = !this.collapsed;
+        }
+    };
 
     ngOnInit(): void {
-        this.showDropdown = this.menu.length > 0;
+        if (this.menu && this.menu.length > 0) {
+            this.showDropdown = true;
+        } else {
+            this.showDropdown = false;
+        }
     }
 }

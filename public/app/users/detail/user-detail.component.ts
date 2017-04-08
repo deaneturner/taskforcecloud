@@ -13,6 +13,7 @@ import { UserEditComponent } from '../edit/user-edit.component';
     encapsulation: ViewEncapsulation.None
 })
 export class UserDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-user-o'];
     panel: any;
     user: any = {};
 
@@ -31,9 +32,6 @@ export class UserDetailComponent implements OnInit {
 
         this.panel = {
             title: 'Profile',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')

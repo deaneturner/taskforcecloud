@@ -10,14 +10,16 @@ import * as _ from 'lodash';
 @Injectable()
 export class ClientServiceService {
 
+    clientServiceContext = <ClientService>{};
+
     constructor(private http: Http,
                 private notificationService: NotificationService) {
     }
 
     getClientService(id: string) {
         return this.http.get('/api/clientservices/' + id)
-                .map((res: Response) => <ClientService>(res.json()))
-                .catch(this.notificationService.handleError);
+            .map((res: Response) => <ClientService>(res.json()))
+            .catch(this.notificationService.handleError);
     }
 
     getClientServices(query ?: any) {
@@ -26,7 +28,7 @@ export class ClientServiceService {
             .catch(this.notificationService.handleError);
     }
 
-    updateClientService(id: string, clientService: any) {
+    updateClientService(id: string, clientService: ClientService) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.put('/api/clientservices/' + id, clientService, {headers: headers})
@@ -34,7 +36,7 @@ export class ClientServiceService {
             .catch(this.notificationService.handleError);
     }
 
-    insertClientService(clientService: any) {
+    insertClientService(clientService: ClientService) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.post('/api/clientservices', clientService, {headers: headers})
@@ -46,5 +48,18 @@ export class ClientServiceService {
         return this.http.delete('/api/clientservices/' + id)
             .map((response: Response) => <ClientService>(response.json()))
             .catch(this.notificationService.handleError);
+    }
+
+    setClientServiceContext(clientServiceContext: ClientService) {
+        this.clientServiceContext = clientServiceContext;
+    }
+
+    getClientServiceContext() {
+        return this.clientServiceContext;
+    }
+
+    clearClientServiceContext() {
+        this.clientServiceContext = <ClientService>{};
+        return this.clientServiceContext;
     }
 }

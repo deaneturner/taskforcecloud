@@ -1,12 +1,10 @@
 import { Routes, RouterModule }  from '@angular/router';
 
-import { UsersComponent } from './users.component';
 import { UserDetailComponent } from './detail/user-detail.component';
 import { UserEditComponent } from './edit/user-edit.component';
 import { AppGuard } from '../app.guard';
 
 const routes: Routes = [
-    {path: '', component: UsersComponent, pathMatch: 'full', canActivate: [AppGuard]},
     {path: 'detail/:id',
         component: UserDetailComponent,
         pathMatch: 'full',

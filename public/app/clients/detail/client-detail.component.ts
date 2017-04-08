@@ -13,8 +13,9 @@ import { ClientEditComponent } from '../edit/client-edit.component';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-5x', 'fa-handshake-o'];
     panel: any;
-    serviceItemPanel: any;
+    clientItemPanel: any;
     client: any = {};
 
     @ViewChild(ClientEditComponent)
@@ -32,9 +33,6 @@ export class ClientDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')
@@ -44,28 +42,31 @@ export class ClientDetailComponent implements OnInit {
             }]
         };
 
-        this.serviceItemPanel = {
-            title: 'Service Items',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
+        this.clientItemPanel = {
+            iconClass: ['fa', 'fa-dot-circle-o'],
+            title: 'Targets',
+            collapsible: true,
             menu: [{
                 title: 'Add',
-                onMenuSelect: () => this.onMenuSelect('add')
+                onMenuSelect: () => this.onMenuClientItemSelect('add')
             }]
         };
 
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientService.getClient(params['id'])
-                        .subscribe(
-                            client => {
-                                self.client = client;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
+                    self.client = self.clientService.getClientContext();
+                    if (self.client && self.client._id !== params['id']) {
+                        self.clientService.getClient(params['id'])
+                            .subscribe(
+                                client => {
+                                    self.client = client;
+                                    self.clientService.setClientContext(client);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
                 }
             );
     }
@@ -99,11 +100,12 @@ export class ClientDetailComponent implements OnInit {
                                     client => {
                                         self.notificationService.displayMessage({
                                             message: 'Deleted ' +
-                                            client.firstName + ' ' +
-                                            client.lastName +
-                                            ' (' + client.email + ')',
+                                            (client.company || (client.firstName + ' ' +
+                                            client.lastName)),
                                             type: 'success'
                                         });
+
+                                        self.clientService.clearClientContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clients']);
@@ -115,6 +117,22 @@ export class ClientDetailComponent implements OnInit {
                         class: 'btn btn-success'
                     }]
                 });
+                break;
+            default: // do nothing
+        }
+    }
+
+    onMenuClientItemSelect(action: string) {
+        const self = this;
+        switch (action) {
+            case 'add':
+                self.activatedRoute.params
+                    .subscribe(
+                        params => {
+                            this.router.navigate(['app', 'clients', params['id'],
+                                'clientitems', 'edit', 'new']);
+                        }
+                    );
                 break;
             default: // do nothing
         }

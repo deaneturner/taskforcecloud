@@ -1,0 +1,28 @@
+<div class="list-group list-group-lg">
+    <section class="activities">
+        <a *ngFor="let clientItem of clientItems"
+           (click)="router.navigate(['app/clients', client._id, 'clientitems', 'detail', clientItem._id])">
+            <section class="event">
+            <span class="thumb-sm avatar pull-left mr-sm">
+              <i class="fa" [ngClass]="iconClass"></i>
+            </span>
+                <h5 class="event-heading">{{ clientItem.name }}
+                    <small>@nils</small>
+                </h5>
+                <p class="text-muted">February 22, 2014 at 01:59 PM</p>
+                <p class="fs-mini">
+                    There is no such thing as maturity. There is instead an ever-evolving process of maturing.
+                    Because when there is a maturity, there is ...
+                </p>
+                <footer>
+                    <ul class="post-links">
+                        <li><a href="#">1 hour</a></li>
+                        <li><a href="#"><span class="text-danger"><i class="fa fa-heart"></i> Like</span></a></li>
+                        <li><a href="#">Comment</a></li>
+                    </ul>
+                </footer>
+            </section>
+        </a>
+    </section>
+</div>
+

@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AppState } from '../../app.service';
 import { NotificationService } from '../../services/notification.service';
 import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientServiceEditComponent } from '../edit/clientservice-edit.component';
+
+import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
     selector: 'clientservice-detail',
@@ -13,9 +14,11 @@ import { ClientServiceEditComponent } from '../edit/clientservice-edit.component
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceDetailComponent implements OnInit {
+    iconClass = ['fa', 'fa-cube'];
     panel: any;
-    clientService: any = {};
-    serviceItemPanel: any;
+    clientService = <ClientService>{};
+    serviceTaskPanel: any;
+    clientServicePanels = <any>{};
 
     @ViewChild(ClientServiceEditComponent)
     public clientServiceEditComponent: ClientServiceEditComponent;
@@ -31,9 +34,6 @@ export class ClientServiceDetailComponent implements OnInit {
 
         this.panel = {
             title: '',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
             menu: [{
                 title: 'Edit',
                 onMenuSelect: () => this.onMenuSelect('edit')
@@ -43,42 +43,57 @@ export class ClientServiceDetailComponent implements OnInit {
             }]
         };
 
-        this.serviceItemPanel = {
-            title: 'Service Items',
-            collapsed: false,
-            close: false,
-            fullScreen: false,
+        this.serviceTaskPanel = {
+            iconClass: this.iconClass,
+            title: 'Tasks',
+            collapsible: true,
             menu: [{
                 title: 'Add',
-                onMenuSelect: () => this.onMenuServiceItemSelect('add')
+                onMenuSelect: () => this.onMenuServiceTaskSelect('add')
             }]
         };
+
+        // dynamic services
+        // this.clientServicePanels['task1'] = {
+        //     title: 'Service 1',
+        //     iconClass: ['fa-user-o'],
+        //     collapsed: true,
+        //     menu: [{
+        //         title: 'Add',
+        //         onMenuSelect: () => this.onMenuServiceTaskSelect('add')
+        //     }]
+        // };
 
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    self.clientServiceService.getClientService(params['id'])
-                        .subscribe(
-                            clientService => {
-                                self.clientService = clientService;
-                            },
-                            error => {
-                            } // error is handled by service
-                        );
+                    self.clientService = self.clientServiceService.getClientServiceContext();
+                    if (self.clientService && self.clientService._id !== params['id']) {
+                        self.clientServiceService.getClientService(params['id'])
+                            .subscribe(
+                                clientService => {
+                                    self.clientService = clientService;
+                                    self.clientServiceService
+                                        .setClientServiceContext(clientService);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
+
                 }
             );
     }
 
-    onMenuServiceItemSelect(action: string) {
+    onMenuServiceTaskSelect(action: string) {
         const self = this;
         switch (action) {
             case 'add':
-                // this.router.navigate(['/app/clientserviceitems/edit/new']);
                 self.activatedRoute.params
                     .subscribe(
                         params => {
                             this.router.navigate(['app', 'clientservices', params['id'],
-                                'clientserviceitems', 'new']);
+                                'clientservicetasks', 'edit', 'new']);
                         }
                     );
                 break;
@@ -116,6 +131,9 @@ export class ClientServiceDetailComponent implements OnInit {
                                             clientService.name,
                                             type: 'success'
                                         });
+
+                                        self.clientServiceService
+                                            .clearClientServiceContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clientservices']);

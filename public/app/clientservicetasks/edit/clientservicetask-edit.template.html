@@ -1,0 +1,51 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item" [routerLink]="['/app/clientservices']"><i class="fa fa-cubes"></i> Services</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices/detail/', clientService._id]">{{clientService.name}}</li>
+</ol>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item" [routerLink]="['/app/clientservices/detail/', clientService._id]"><i [ngClass]="iconClass"></i> Tasks</li>
+    <li class="active breadcrumb-item" [routerLink]="['/app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id]">{{clientServiceTask.name}}</li>
+</ol>
+<!--<h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Service</span></h1>-->
+<section class="widget" widget id="autoload-widget"
+         data-widgster-load="assets/demo/grid/autoload.php"
+         data-post-processing="true"
+         data-widgster-autoload="false"
+         data-widgster-show-loader="false">
+    <header></header>
+    <div class="widget-body">
+        <form class="clientservicetask-form mt-lg" role="form" #clientServiceTaskForm="ngForm" novalidate>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control"
+                               type="text"
+                               id="name"
+                               name="name"
+                               placeholder="Name"
+                               [(ngModel)]="clientServiceTask.name">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.name">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="btn-toolbar pull-xs-right m-t-1">
+                    <button class="btn btn-secondary btn-sm" (click)="cancel($event)">Cancel
+                    </button>
+                    <button type="submit" class="btn btn-inverse btn-sm"
+                            (click)="upsertClientServiceTask(clientServiceTaskForm.valid, clientServiceTaskForm.value)"
+                            [disabled]="!clientServiceTaskForm.valid">Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

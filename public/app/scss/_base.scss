@@ -1164,6 +1164,28 @@ app, .app {
     }
   }
 
+  > span a{
+    padding: 1px 4px;
+    border-radius: 4px;
+    color: rgba($black, .4);
+    @include transition(color .15s ease-in-out);
+
+    &:hover{
+      color: rgba($black, .1);
+      text-decoration: none;
+    }
+
+    > .glyphicon{
+      vertical-align: 0;
+      font-size: 18px;
+    }
+
+    > .fa{
+      vertical-align: 1px;
+      font-size: 18px;
+    }
+  }
+
   > .btn-group{
     vertical-align: baseline;
   }

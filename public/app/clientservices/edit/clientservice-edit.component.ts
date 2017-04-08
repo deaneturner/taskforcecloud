@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientServiceService } from '../../services/clientservice.service';
-import { AppState } from '../../app.service';
 import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
@@ -13,7 +12,7 @@ import { ClientService } from '../../model/clientservice.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceEditComponent implements OnInit {
-    clientService: any = {};
+    clientService = <ClientService>{};
     clientServiceForm: NgForm;
     formErrors: any = {
         'name': []
@@ -35,25 +34,29 @@ export class ClientServiceEditComponent implements OnInit {
             .subscribe(
                 params => {
                     const paramId = params['id'];
-                    if (paramId === 'new') {
-                        self.clientService = {
-                            name: ''
-                        };
+                    if (paramId !== 'new') {
+                        self.clientService = self.clientServiceService.getClientServiceContext();
+                        if (self.clientService && self.clientService._id !== paramId) {
+                            this.clientServiceService.getClientService(paramId)
+                                .subscribe(
+                                    clientService => {
+                                        self.clientService = clientService;
+                                        self.clientServiceService
+                                            .setClientServiceContext(clientService);
+                                    },
+                                    error => {
+                                    } // error is handled by service
+                                );
+                        }
                     } else {
-                        this.clientServiceService.getClientService(paramId)
-                            .subscribe(
-                                clientService => {
-                                    self.clientService = clientService;
-                                },
-                                error => {
-                                } // error is handled by service
-                            );
+                        // add new
+                        self.clientService = self.clientServiceService.clearClientServiceContext();
                     }
                 }
             );
     }
 
-    upsertClient(isValid: boolean, clientServiceForm: ClientService) {
+    upsertClientService(isValid: boolean, clientServiceForm: ClientService) {
         const self = this;
         if (isValid) {
             if (this.clientService._id) {
@@ -85,6 +88,7 @@ export class ClientServiceEditComponent implements OnInit {
                     .subscribe(
                         res => {
                             if (res.success) {
+                                self.clientServiceService.setClientServiceContext(res.data);
                                 self.router.navigate(['/app/clientservices/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;

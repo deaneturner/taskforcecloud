@@ -13,7 +13,7 @@ import { Client } from '../../model/client.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientEditComponent implements OnInit {
-    client: any = {};
+    client = <Client>{};
     clientForm: NgForm;
     formErrors: any = {
         'company': [],
@@ -57,25 +57,22 @@ export class ClientEditComponent implements OnInit {
             .subscribe(
                 params => {
                     const paramId = params['id'];
-                    if (paramId === 'new') {
-                        self.client = {
-                            company: '',
-                            firstName: '',
-                            lastName: '',
-                            address1: '',
-                            address2: '',
-                            email: '',
-                            phone: ''
-                        };
+                    if (paramId !== 'new') {
+                        self.client = self.clientService.getClientContext();
+                        if (self.client && self.client._id !== paramId) {
+                            this.clientService.getClient(paramId)
+                                .subscribe(
+                                    client => {
+                                        self.client = client;
+                                        self.clientService.setClientContext(client);
+                                    },
+                                    error => {
+                                    } // error is handled by service
+                                );
+                        }
                     } else {
-                        this.clientService.getClient(paramId)
-                            .subscribe(
-                                client => {
-                                    self.client = client;
-                                },
-                                error => {
-                                } // error is handled by service
-                            );
+                        // add new
+                        self.client = self.clientService.clearClientContext();
                     }
                 }
             );
@@ -83,10 +80,11 @@ export class ClientEditComponent implements OnInit {
 
     upsertClient(isValid: boolean, clientForm: Client) {
         const self = this;
+        let newClient: Client;
         if (isValid) {
             if (this.client._id) {
                 // update
-                this.clientService.updateClient(this.client._id, clientForm)
+                this.clientService.updateClient(this.client._id, <Client>clientForm)
                     .subscribe(
                         res => {
                             if (res.success) {
@@ -104,10 +102,12 @@ export class ClientEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientService.insertClient(clientForm)
+                newClient = Object.assign({ clientItems: []}, clientForm);
+                this.clientService.insertClient(newClient)
                     .subscribe(
                         res => {
                             if (res.success) {
+                                self.clientService.setClientContext(res.data);
                                 self.router.navigate(['/app/clients/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;

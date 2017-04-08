@@ -11,7 +11,7 @@ import { ClientServiceService } from '../../services/clientservice.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceListComponent {
-    selectedClientService: string;
+    @Input() iconClass: any;
     clientServices: Array<ClientService>;
 
     constructor(private router: Router,

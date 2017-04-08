@@ -8,15 +8,15 @@ import { ClientsComponent } from './clients.component';
 import { ClientDetailComponent } from './detail/client-detail.component';
 import { ClientEditComponent } from './edit/client-edit.component';
 import { ClientListComponent } from './list/client-list.component';
-import { ClientServiceItemListModule }
-    from '../clientserviceitems/list/clientservice-item-list.module';
+import { ClientItemsModule }
+    from '../clientitems/clientitems.module';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientService } from '../services/client.service';
 
 import { ROUTES }       from './clients.routes';
 
 @NgModule({
-    imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientServiceItemListModule],
+    imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientItemsModule],
     declarations: [ClientsComponent, ClientDetailComponent, ClientEditComponent,
         ClientListComponent],
     providers: [ClientService]
