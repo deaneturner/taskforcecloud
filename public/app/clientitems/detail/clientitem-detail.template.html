@@ -1,8 +1,11 @@
 <ol class="breadcrumb">
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-cube"></i> Clients</li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{ client.company ||
+    <li class="breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-cube"></i> Clients</li>
+    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{ client.company ||
         (client.firstName + ' ' + client.lastName) }}
     </li>
+</ol>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]"><i [ngClass]="iconClass"></i> Targets</li>
     <li class="active breadcrumb-item">{{clientItem.name}}</li>
 </ol>
 <!--<h1 class="page-title">Detail - <span class="fw-semi-bold">Service Item</span></h1>-->

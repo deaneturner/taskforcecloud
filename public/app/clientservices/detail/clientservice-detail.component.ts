@@ -45,7 +45,7 @@ export class ClientServiceDetailComponent implements OnInit {
 
         this.serviceTaskPanel = {
             iconClass: this.iconClass,
-            title: 'Service Tasks',
+            title: 'Tasks',
             collapsible: true,
             menu: [{
                 title: 'Add',

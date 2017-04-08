@@ -15,6 +15,7 @@ import { ClientServiceTask } from '../../model/clientservicetask.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceTaskEditComponent implements OnInit {
+    iconClass = ['fa', 'fa-cube'];
     clientService = <ClientService>{};
     clientServiceTask = <ClientServiceTask>{};
     clientServiceTaskForm: NgForm;

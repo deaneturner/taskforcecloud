@@ -15,6 +15,7 @@ import { ClientItem } from '../../model/clientitem.interface';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientItemEditComponent implements OnInit {
+    iconClass = ['fa', 'fa-dot-circle-o'];
     client = <Client>{};
     clientItem = <ClientItem>{};
     clientItemForm: NgForm;

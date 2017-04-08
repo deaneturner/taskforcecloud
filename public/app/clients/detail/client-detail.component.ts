@@ -44,7 +44,7 @@ export class ClientDetailComponent implements OnInit {
 
         this.clientItemPanel = {
             iconClass: ['fa', 'fa-dot-circle-o'],
-            title: 'Items',
+            title: 'Targets',
             collapsible: true,
             menu: [{
                 title: 'Add',
