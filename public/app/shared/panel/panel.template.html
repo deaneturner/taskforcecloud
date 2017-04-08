@@ -2,7 +2,12 @@
     <div class="widget-container">
         <section class="widget" widget id="panel-widget">
             <header>
-                <h6>
+                <h6 data-widgster="collapse">
+                    <span *ngIf="iconClass && iconClass.length" class="tag tag-primary tfc-panel-icon">
+                        <i class="fa" [ngClass]="iconClass"></i></span>
+                    <span class="fw-semi-bold">{{title}}</span>
+                </h6>
+                <h6 data-widgster="expand">
                     <span *ngIf="iconClass && iconClass.length" class="tag tag-primary tfc-panel-icon">
                         <i class="fa" [ngClass]="iconClass"></i></span>
                     <span class="fw-semi-bold">{{title}}</span>
