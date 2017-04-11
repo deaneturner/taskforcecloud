@@ -8,7 +8,7 @@ import { ClientService } from '../model/clientservice.interface';
 import * as _ from 'lodash';
 
 @Injectable()
-export class ClientServiceService {
+export class ClientServiceSvc {
 
     clientServiceContext = <ClientService>{};
 

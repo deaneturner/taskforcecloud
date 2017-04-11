@@ -2,35 +2,35 @@ import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ClientServiceSvc } from '../../services/clientservice.service';
-import { ClientServiceTaskService } from '../../services/clientservicetask.service';
+import { ClientService } from '../../services/client.service';
+import { ClientItemService } from '../../services/clientitem.service';
 
-import { ClientService } from '../../model/clientservice.interface';
-import { ClientServiceTask } from '../../model/clientservicetask.interface';
+import { Client } from '../../model/client.interface';
+import { ClientItem } from '../../model/clientitem.interface';
 
 @Component({
-    selector: 'clientservicetask-edit',
-    templateUrl: 'clientservicetask-edit.template.html',
-    styleUrls: ['clientservicetask-edit.style.scss'],
+    selector: 'clientitem-edit',
+    templateUrl: 'clientitem-edit.template.html',
+    styleUrls: ['clientitem-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServiceTaskEditComponent implements OnInit {
-    iconClass = ['fa', 'fa-cube'];
-    clientService = <ClientService>{};
-    clientServiceTask = <ClientServiceTask>{};
-    clientServiceTaskForm: NgForm;
+export class ClientItemServiceEditComponent implements OnInit {
+    iconClass = ['fa', 'fa-dot-circle-o'];
+    client = <Client>{};
+    clientItem = <ClientItem>{};
+    clientItemForm: NgForm;
     formErrors: any = {
         'name': []
     };
     validationMessages: any = {};
 
-    @ViewChild('clientServiceTaskForm')
+    @ViewChild('clientItemForm')
     currentForm: NgForm;
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientServiceSvc: ClientServiceSvc,
-                private clientServiceTaskService: ClientServiceTaskService) {
+                private clientItemService: ClientItemService,
+                private clientService: ClientService) {
     }
 
     ngOnInit(): void {
@@ -39,17 +39,16 @@ export class ClientServiceTaskEditComponent implements OnInit {
         this.activatedRoute.params
             .subscribe(
                 params => {
-                    const paramId = params['clientservicetaskid'];
+                    // client item
+                    const paramId = params['clientitemid'];
                     if (paramId !== 'new') {
-                        self.clientServiceTask = self.clientServiceTaskService
-                            .getClientServiceTaskContext();
-                        if (self.clientServiceTask && self.clientServiceTask._id !== paramId) {
-                            this.clientServiceTaskService.getClientServiceTask(paramId)
+                        self.clientItem = self.clientItemService.getClientItemContext();
+                        if (self.clientItem && self.clientItem._id !== paramId) {
+                            this.clientItemService.getClientItem(paramId)
                                 .subscribe(
-                                    clientServiceTask => {
-                                        self.clientServiceTask = clientServiceTask;
-                                        self.clientServiceTaskService
-                                            .setClientServiceTaskContext(clientServiceTask);
+                                    clientItem => {
+                                        self.clientItem = clientItem;
+                                        self.clientItemService.setClientItemContext(clientItem);
                                     },
                                     error => {
                                     } // error is handled by service
@@ -57,19 +56,17 @@ export class ClientServiceTaskEditComponent implements OnInit {
                         }
                     } else {
                         // add new
-                        self.clientServiceTask = self.clientServiceTaskService
-                            .clearClientServiceTaskContext();
+                        self.clientItem = self.clientItemService.clearClientItemContext();
                     }
 
                     // client
-                    self.clientService = self.clientServiceSvc.getClientServiceContext();
-                    if (self.clientService && self.clientService._id !== params['id']) {
-                        self.clientServiceSvc.getClientService(params['id'])
+                    self.client = self.clientService.getClientContext();
+                    if (self.client && self.client._id !== params['id']) {
+                        self.clientService.getClient(params['id'])
                             .subscribe(
-                                clientService => {
-                                    self.clientService = clientService;
-                                    self.clientServiceSvc
-                                        .setClientServiceContext(clientService);
+                                client => {
+                                    self.client = client;
+                                    self.clientService.setClientContext(client);
                                 },
                                 error => {
                                 } // error is handled by service
@@ -79,25 +76,25 @@ export class ClientServiceTaskEditComponent implements OnInit {
             );
     }
 
-    upsertClientServiceTask(isValid: boolean, clientServiceTaskForm: ClientServiceTask) {
+    upsertClientItem(isValid: boolean, clientItemForm: ClientItem) {
         const self = this;
-        let clientServiceTask = <ClientServiceTask>clientServiceTaskForm;
+        let clientItem = <ClientItem>clientItemForm;
         if (isValid) {
-            if (this.clientServiceTask._id) {
+            if (this.clientItem._id) {
                 // update
-                this.clientServiceTaskService
-                    .updateClientServiceTask(this.clientServiceTask._id, clientServiceTask)
+                this.clientItemService
+                    .updateClientItem(this.clientItem._id, clientItem)
                     .subscribe(
                         res => {
                             if (res.success) {
                                 self.router
                                     .navigate([
                                         'app',
-                                        'clientservices',
-                                        self.clientService._id,
-                                        'clientservicetasks',
+                                        'clients',
+                                        self.client._id,
+                                        'clientitems',
                                         'detail',
-                                        self.clientServiceTask._id
+                                        self.clientItem._id
                                     ]);
                             } else if (res.success === false) {
                                 const field = res.field;
@@ -112,16 +109,17 @@ export class ClientServiceTaskEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                clientServiceTask._clientServiceId = self.clientService._id;
-                this.clientServiceTaskService.insertClientServiceTask(clientServiceTask)
+                clientItem._clientId = self.client._id;
+                this.clientItemService.insertClientItem(clientItem)
                     .subscribe(
                         res => {
                             if (res.success) {
+                                self.clientItemService.setClientItemContext(res.data);
                                 self.router.navigate([
                                     'app',
-                                    'clientservices',
-                                    self.clientService._id,
-                                    'clientservicetasks',
+                                    'clients',
+                                    self.client._id,
+                                    'clientitems',
                                     'detail',
                                     res.data._id
                                 ]);
@@ -143,11 +141,11 @@ export class ClientServiceTaskEditComponent implements OnInit {
     cancel(event) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.clientServiceTask._id) {
-            this.router.navigate(['/app/clientservices', this.clientService._id,
-                'clientservicetasks', 'detail', this.clientServiceTask._id]);
+        if (this.clientItem._id) {
+            this.router.navigate(['/app/clients/' + this.client._id + '/clientitems/detail/',
+                this.clientItem._id]);
         } else {
-            this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
+            this.router.navigate(['/app/clients/detail/', this.client._id]);
         }
     }
 
@@ -160,21 +158,21 @@ export class ClientServiceTaskEditComponent implements OnInit {
     }
 
     formChanged() {
-        if (this.currentForm === this.clientServiceTaskForm) {
+        if (this.currentForm === this.clientItemForm) {
             return;
         }
-        this.clientServiceTaskForm = this.currentForm;
-        if (this.clientServiceTaskForm) {
-            this.clientServiceTaskForm.valueChanges
+        this.clientItemForm = this.currentForm;
+        if (this.clientItemForm) {
+            this.clientItemForm.valueChanges
                 .subscribe(data => this.onValueChanged(data));
         }
     }
 
     onValueChanged(data ?: any) {
-        if (!this.clientServiceTaskForm) {
+        if (!this.clientItemForm) {
             return;
         }
-        const form = this.clientServiceTaskForm.form;
+        const form = this.clientItemForm.form;
 
         for (let field in this.formErrors) {
             if (field) {

@@ -15,7 +15,7 @@ import { ClientServiceTaskEditComponent }
 import { ClientServiceTaskDetailComponent }
     from '../clientservicetasks/detail/clientservicetask-detail.component';
 import { PanelModule } from '../shared/panel/panel.module';
-import { ClientServiceService } from '../services/clientservice.service';
+import { ClientServiceSvc } from '../services/clientservice.service';
 import { ClientServiceTaskService } from '../services/clientservicetask.service';
 import { ClientService } from '../services/client.service';
 
@@ -35,7 +35,7 @@ import { ROUTES }       from './clientservices.routes';
         ClientServiceTaskEditComponent,
         ClientServiceTaskDetailComponent],
     providers: [
-        ClientServiceService,
+        ClientServiceSvc,
         ClientServiceTaskService,
         ClientService]
 })

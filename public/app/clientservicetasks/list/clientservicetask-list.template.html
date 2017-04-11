@@ -4,7 +4,8 @@
             <section class="event">
                 <div>
                     <div class="row">
-                        <div class="col-xs-10 pull-left" (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
+                        <div class="col-xs-10 pull-left"
+                             (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
                             <span class="avatar pull-left mr-sm">
                                 <i class="fa" [ngClass]="iconClass"></i>
                             </span>
@@ -13,22 +14,20 @@
                             </h5>
                         </div>
                         <div class="col-xs-2">
-                            <ul class="post-links">
-                                <li>
-                                    <div class="display-inline-block checkbox-ios ml">
-                                        <label [attr.for]="clientServiceTask.name" class="switch">
-                                            <input type="checkbox" class="ios" [attr.id]="clientServiceTask.name"><i></i>
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div class="display-inline-block checkbox-ios ml">
+                                <label [attr.for]="clientServiceTask.name" class="switch">
+                                    <input type="checkbox" class="ios" [attr.id]="clientServiceTask.name"><i></i>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-muted">February 22, 2014 at 01:59 PM</p>
-                    <p class="fs-mini">
-                        There is no such thing as maturity. There is instead an ever-evolving process of maturing.
-                        Because when there is a maturity, there is ...
-                    </p>
+                    <div  (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
+                        <p class="text-muted">February 22, 2014 at 01:59 PM</p>
+                        <p class="fs-mini">
+                            There is no such thing as maturity. There is instead an ever-evolving process of maturing.
+                            Because when there is a maturity, there is ...
+                        </p>
+                    </div>
                 </div>
                 <footer>
                     <ul class="post-links">

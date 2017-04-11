@@ -1,8 +1,16 @@
 <ol class="breadcrumb">
-    <li class="breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-handshake-o"></i> Clients</li>
-    <li class="active breadcrumb-item">{{ client.company || (client.firstName + ' ' + client.lastName )}}</li>
+    <li class="breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-cube"></i> Clients</li>
+    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{ client.company ||
+        (client.firstName + ' ' + client.lastName) }}
+    </li>
 </ol>
-<!--<h1 class="page-title">Detail - <span class="fw-semi-bold">Client</span></h1>-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]"><i [ngClass]="iconClass"></i>
+        Targets
+    </li>
+    <li class="active breadcrumb-item">{{clientItem.name}}</li>
+</ol>
+<!--<h1 class="page-title">Detail - <span class="fw-semi-bold">Service Item</span></h1>-->
 <div class="row">
     <div class="col-lg-6 col-xs-12">
         <tfc-panel [menu]="panel.menu">
@@ -17,22 +25,21 @@
                         <!--<div class="col-md-5 col-xs-12 text-xs-center">-->
                         <div class="col-md-12 col-xs-12 text-xs-center">
                             <div class="post-client post-client-profile">
-                              <span class="thumb-xlg">
-                                <i class="fa-5x" [ngClass]="iconClass"></i>
-                              </span>
-                                <h5 class="fw-normal">{{client.firstName}} <span class="fw-semi-bold">{{client.lastName}}</span>
-                                </h5>
-                                <div>{{client.company}}</div>
-                                <p>{{client.address1}}</p>
+                                  <span class="thumb-xlg">
+                                    <i class="fa-5x" [ngClass]="iconClass"></i>
+                                  </span>
+                                <h5 class="fw-normal">LATER <span class="fw-semi-bold">LATER</span></h5>
+                                <div>LATER</div>
+                                <p>LATER</p>
                                 <a href="#" class="btn btn-danger btn-sm mt">
                                     &nbsp;Send
                                     <i class="fa fa-envelope ml-xs"></i>&nbsp;
                                 </a>
                                 <ul class="contacts">
-                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{client.phone || '(---) ---
+                                    <li><i class="fa fa-phone fa-fw mr-xs"></i><a href="#"> {{'LATER' || '(---) ---
                                         -----'}}</a></li>
-                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{client.email || '--- @
-                                        ---- . com'}}</a>
+                                    <li><i class="fa fa-envelope fa-fw mr-xs"></i><a href="#"> {{'LATER' || '--- @ ----
+                                        . com'}}</a>
                                     </li>
                                     <li><i class="fa fa-map-marker fa-fw mr-xs"></i><a href="#"> Minsk, Belarus</a></li>
                                 </ul>
@@ -46,13 +53,13 @@
     <div class="col-lg-6 col-xs-12">
         <tfc-panel
                 class="tfc-panel-collapsible"
-                [iconClass]="clientItemPanel.iconClass"
-                [title]="clientItemPanel.title"
+                [iconClass]="clientItemServicePanel.iconClass"
+                [title]="clientItemServicePanel.title"
                 [collapsible]="clientItemPanel.collapsible"
-                [menu]="clientItemPanel.menu">
-            <tfc-clientitem-list
-                    [iconClass]="clientItemPanel.iconClass">
-            </tfc-clientitem-list>
+                [menu]="clientItemServicePanel.menu">
+            <tfc-clientitemservice-list
+                    [iconClass]="clientItemServicePanel.iconClass">
+            </tfc-clientitemservice-list>
         </tfc-panel>
     </div>
 </div>

@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
-import { ClientServiceService } from '../../services/clientservice.service';
+import { ClientServiceSvc } from '../../services/clientservice.service';
 import { ClientServiceTaskService } from '../../services/clientservicetask.service';
 
 import { ClientService } from '../../model/clientservice.interface';
@@ -22,7 +22,7 @@ export class ClientServiceTaskDetailComponent implements OnInit {
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
-                private clientServiceService: ClientServiceService,
+                private clientServiceSvc: ClientServiceSvc,
                 private clientServiceTaskService: ClientServiceTaskService,
                 private activatedRoute: ActivatedRoute) {
     }
@@ -63,13 +63,13 @@ export class ClientServiceTaskDetailComponent implements OnInit {
 
                     }
 
-                    self.clientService = self.clientServiceService.getClientServiceContext();
+                    self.clientService = self.clientServiceSvc.getClientServiceContext();
                     if (self.clientService && self.clientService._id !== params['id']) {
-                        self.clientServiceService.getClientService(params['id'])
+                        self.clientServiceSvc.getClientService(params['id'])
                             .subscribe(
                                 clientService => {
                                     self.clientService = clientService;
-                                    self.clientServiceService
+                                    self.clientServiceSvc
                                         .setClientServiceContext(clientService);
                                 },
                                 error => {
@@ -112,7 +112,7 @@ export class ClientServiceTaskDetailComponent implements OnInit {
                                             type: 'success'
                                         });
 
-                                        self.clientServiceService.clearClientServiceContext();
+                                        self.clientServiceSvc.clearClientServiceContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clientservices/detail',
