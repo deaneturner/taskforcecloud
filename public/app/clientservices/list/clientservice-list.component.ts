@@ -2,7 +2,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ClientService } from '../../model/clientservice.interface';
-import { ClientServiceSvc } from '../../services/clientservice.service';
+import { ClientServiceService } from '../../services/clientservice.service';
 
 @Component({
     selector: 'tfc-client-service-list',
@@ -15,7 +15,7 @@ export class ClientServiceListComponent {
     clientServices: Array<ClientService>;
 
     constructor(private router: Router,
-                private clientServiceSvc: ClientServiceSvc) {
+                private clientServiceSvc: ClientServiceService) {
     }
 
 

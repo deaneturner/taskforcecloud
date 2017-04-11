@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ClientServiceSvc } from '../../services/clientservice.service';
+import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientServiceTaskService } from '../../services/clientservicetask.service';
 
 import { ClientService } from '../../model/clientservice.interface';
@@ -29,7 +29,7 @@ export class ClientServiceTaskEditComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientServiceSvc: ClientServiceSvc,
+                private clientServiceSvc: ClientServiceService,
                 private clientServiceTaskService: ClientServiceTaskService) {
     }
 

@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
-import { ClientServiceSvc } from '../../services/clientservice.service';
+import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientServiceEditComponent } from '../edit/clientservice-edit.component';
 
 import { ClientService } from '../../model/clientservice.interface';
@@ -25,7 +25,7 @@ export class ClientServiceDetailComponent implements OnInit {
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
-                private clientServiceSvc: ClientServiceSvc,
+                private clientServiceSvc: ClientServiceService,
                 private activatedRoute: ActivatedRoute) {
     }
 
