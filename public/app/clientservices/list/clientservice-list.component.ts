@@ -12,6 +12,7 @@ import { ClientServiceService } from '../../services/clientservice.service';
 })
 export class ClientServiceListComponent {
     @Input() iconClass: any;
+    @Input() onListItemClick: any;
     clientServices: Array<ClientService>;
 
     constructor(private router: Router,
@@ -30,9 +31,5 @@ export class ClientServiceListComponent {
                 error => {
                 }  // error is handled by service
             );
-    }
-
-    onListItemClick(clientServiceId) {
-        this.router.navigate(['/app/clientservices/detail', clientServiceId]);
     }
 }

@@ -1,14 +1,22 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-cubes"></i> Clients</li>
-    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{ client.company || (client.firstName + ' ' + client.lastName )}}</li>
+    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]">{{ client.company ||
+        (client.firstName + ' ' + client.lastName )}}
+    </li>
 </ol>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]"><i [ngClass]="iconClass"></i> Targets</li>
-    <li class="breadcrumb-item" [routerLink]="['/app/clients', client._id, 'clientitems', 'detail', clientItem._id]">{{clientItem.name}}</li>
+    <li class="breadcrumb-item" [routerLink]="['/app/clients/detail/', client._id]"><i [ngClass]="iconClass"></i>
+        Targets
+    </li>
+    <li class="breadcrumb-item" [routerLink]="['/app/clients', client._id, 'clientitems', 'detail', clientItem._id]">
+        {{clientItem.name}}
+    </li>
 </ol>
 <ol class="breadcrumb">
     <li class="breadcrumb-item" [routerLink]="['/app/clients']"><i class="fa fa-cubes"></i> Services</li>
-    <li class="active breadcrumb-item" [routerLink]="['/app/clients', client._id, 'clientitems', 'detail', clientItem._id]">{{clientItem.name}}</li>
+    <li class="active breadcrumb-item"
+        [routerLink]="['/app/clients', client._id, 'clientitems', 'detail', clientItem._id]">{{clientItem.name}}
+    </li>
 </ol>
 <!--<h1 class="page-title">{{ activatedRoute.snapshot.params.id === 'new' ? 'Add' : 'Edit'}} - <span class="fw-semi-bold">Service</span></h1>-->
 <section class="widget" widget id="autoload-widget"
@@ -28,7 +36,8 @@
                             [collapsible]="panel.collapsible"
                             [menu]="panel.menu">
                         <tfc-client-service-list
-                                [iconClass]="panel.iconClass">
+                                [iconClass]="panel.iconClass"
+                                [onListItemClick]="panel.onListItemClick">
                         </tfc-client-service-list>
                     </tfc-panel>
                 </div>

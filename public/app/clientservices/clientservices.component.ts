@@ -44,8 +44,10 @@ export class ClientServicesComponent {
             menu: [{
                 title: 'Add',
                 onMenuSelect: () => this.onMenuSelect('add')
-            }]
-        };
+            }],
+            onListItemClick: this.onListItemClick
+    }
+        ;
     }
 
     onMenuSelect(action: string) {
@@ -56,5 +58,9 @@ export class ClientServicesComponent {
                 break;
             default: // do nothing
         }
+    }
+
+    onListItemClick(clientServiceId) {
+        this.router.navigate(['/app/clientservices/detail', clientServiceId]);
     }
 }

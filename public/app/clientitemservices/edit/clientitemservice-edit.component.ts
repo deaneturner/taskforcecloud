@@ -99,7 +99,8 @@ export class ClientItemServiceEditComponent implements OnInit {
 
         this.panel = {
             title: 'Services',
-            iconClass: this.iconClass
+            iconClass: this.iconClass,
+            onListItemClick: this.onListItemClick
         };
     }
 
@@ -218,5 +219,9 @@ export class ClientItemServiceEditComponent implements OnInit {
                 }
             }
         }
+    }
+
+    onListItemClick(clientServiceId) {
+        this.router.navigate(['/app/clientservices/detail', clientServiceId]);
     }
 }
