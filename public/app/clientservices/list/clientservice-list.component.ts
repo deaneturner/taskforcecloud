@@ -31,4 +31,8 @@ export class ClientServiceListComponent {
                 }  // error is handled by service
             );
     }
+
+    onListItemClick(clientServiceId) {
+        this.router.navigate(['/app/clientservices/detail', clientServiceId]);
+    }
 }
