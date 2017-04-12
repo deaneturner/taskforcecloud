@@ -15,7 +15,7 @@ export class ClientServiceListComponent {
     clientServices: Array<ClientService>;
 
     constructor(private router: Router,
-                private clientServiceService: ClientServiceService) {
+                private clientServiceSvc: ClientServiceService) {
     }
 
 
@@ -24,7 +24,7 @@ export class ClientServiceListComponent {
     };
 
     getClientServices() {
-        this.clientServiceService.getClientServices()
+        this.clientServiceSvc.getClientServices()
             .subscribe(
                 clientServices => this.clientServices = clientServices,
                 error => {

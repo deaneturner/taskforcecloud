@@ -24,7 +24,7 @@ export class ClientServiceEditComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientServiceService: ClientServiceService) {
+                private clientServiceSvc: ClientServiceService) {
     }
 
     ngOnInit(): void {
@@ -35,13 +35,13 @@ export class ClientServiceEditComponent implements OnInit {
                 params => {
                     const paramId = params['id'];
                     if (paramId !== 'new') {
-                        self.clientService = self.clientServiceService.getClientServiceContext();
+                        self.clientService = self.clientServiceSvc.getClientServiceContext();
                         if (self.clientService && self.clientService._id !== paramId) {
-                            this.clientServiceService.getClientService(paramId)
+                            this.clientServiceSvc.getClientService(paramId)
                                 .subscribe(
                                     clientService => {
                                         self.clientService = clientService;
-                                        self.clientServiceService
+                                        self.clientServiceSvc
                                             .setClientServiceContext(clientService);
                                     },
                                     error => {
@@ -50,7 +50,7 @@ export class ClientServiceEditComponent implements OnInit {
                         }
                     } else {
                         // add new
-                        self.clientService = self.clientServiceService.clearClientServiceContext();
+                        self.clientService = self.clientServiceSvc.clearClientServiceContext();
                     }
                 }
             );
@@ -61,7 +61,7 @@ export class ClientServiceEditComponent implements OnInit {
         if (isValid) {
             if (this.clientService._id) {
                 // update
-                this.clientServiceService
+                this.clientServiceSvc
                     .updateClientService(this.clientService._id, clientServiceForm)
                     .subscribe(
                         res => {
@@ -84,11 +84,11 @@ export class ClientServiceEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                this.clientServiceService.insertClientService(clientServiceForm)
+                this.clientServiceSvc.insertClientService(clientServiceForm)
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.clientServiceService.setClientServiceContext(res.data);
+                                self.clientServiceSvc.setClientServiceContext(res.data);
                                 self.router.navigate(['/app/clientservices/detail', res.data._id]);
                             } else if (res.success === false) {
                                 const field = res.field;

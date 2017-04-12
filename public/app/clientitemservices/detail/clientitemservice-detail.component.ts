@@ -9,22 +9,21 @@ import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
 @Component({
-    selector: 'clientitem-detail',
-    templateUrl: 'clientitem-detail.template.html',
-    styleUrls: ['clientitem-detail.style.scss'],
+    selector: 'clientitemservice-detail',
+    templateUrl: 'clientitemservice-detail.template.html',
+    styleUrls: ['clientitemservice-detail.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientItemDetailComponent implements OnInit {
+export class ClientItemServiceDetailComponent implements OnInit {
     iconClass = ['fa', 'fa-dot-circle-o'];
     panel: any;
-    clientItemServicePanel: any;
     client = <Client>{};
-    clientItem = <ClientItem>{};
+    clientItemService = <ClientItem>{};
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
                 private clientService: ClientService,
-                private clientItemService: ClientItemService,
+                private clientItemServiceSvc: ClientItemService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -42,28 +41,20 @@ export class ClientItemDetailComponent implements OnInit {
             }]
         };
 
-        this.clientItemServicePanel = {
-            iconClass: ['fa', 'fa-dot-circle-o'],
-            title: 'Services',
-            collapsible: true,
-            menu: [{
-                title: 'Add',
-                onMenuSelect: () => this.onMenuClientItemServiceSelect('add')
-            }]
-        };
-
         this.activatedRoute.params
             .subscribe(
                 params => {
                     // client item
-                    self.clientItem = self.clientItemService.getClientItemContext();
-                    if (self.clientItem && self.clientItem._id !== params['clientitemid']) {
-                        self.clientItemService
+                    self.clientItemService = self.clientItemServiceSvc.getClientItemContext();
+                    if (self.clientItemService &&
+                        self.clientItemService._id !== params['clientitemid']) {
+                        self.clientItemServiceSvc
                             .getClientItem(params['clientitemid'])
                             .subscribe(
-                                clientItem => {
-                                    self.clientItem = clientItem;
-                                    self.clientItemService.setClientItemContext(clientItem);
+                                clientItemService => {
+                                    self.clientItemService = clientItemService;
+                                    self.clientItemServiceSvc
+                                        .setClientItemContext(clientItemService);
                                 },
                                 error => {
                                 } // error is handled by service
@@ -92,14 +83,14 @@ export class ClientItemDetailComponent implements OnInit {
         switch (action) {
             case 'edit':
                 this.router.navigate(['app', 'clients', self.client._id, 'clientitems', 'edit',
-                    self.clientItem._id]);
+                    self.clientItemService._id]);
                 break;
             case 'delete':
                 this.notificationService.showModal({
                     title: 'Confirm Delete',
                     subTitle: null,
                     content: 'Are you sure you want to delete client item:',
-                    subContent: self.clientItem.name,
+                    subContent: self.clientItemService.name,
                     buttons: [{
                         title: 'Cancel',
                         onClick: ($event) => {
@@ -109,8 +100,8 @@ export class ClientItemDetailComponent implements OnInit {
                     }, {
                         title: 'Yes, delete',
                         onClick: ($event) => {
-                            self.clientItemService
-                                .deleteClientItem(self.clientItem._id)
+                            self.clientItemServiceSvc
+                                .deleteClientItem(self.clientItemService._id)
                                 .subscribe(
                                     clientItem => {
                                         self.notificationService.displayMessage({
@@ -119,7 +110,7 @@ export class ClientItemDetailComponent implements OnInit {
                                             type: 'success'
                                         });
 
-                                        self.clientItemService.clearClientItemContext();
+                                        self.clientItemServiceSvc.clearClientItemContext();
 
                                         self.notificationService.closeModal();
                                         self.router.navigate(['/app/clients/detail',
@@ -132,23 +123,6 @@ export class ClientItemDetailComponent implements OnInit {
                         class: 'btn btn-success'
                     }]
                 });
-                break;
-            default: // do nothing
-        }
-    }
-
-    onMenuClientItemServiceSelect(action: string) {
-        const self = this;
-        switch (action) {
-            case 'add':
-                self.activatedRoute.params
-                    .subscribe(
-                        params => {
-                            this.router.navigate(['app', 'clients', params['id'],
-                                'clientitems', params['clientitemid'], 'clientitemservices',
-                                'edit', 'new']);
-                        }
-                    );
                 break;
             default: // do nothing
         }

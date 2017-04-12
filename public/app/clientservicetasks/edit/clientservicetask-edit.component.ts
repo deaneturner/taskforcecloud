@@ -29,7 +29,7 @@ export class ClientServiceTaskEditComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientServiceService: ClientServiceService,
+                private clientServiceSvc: ClientServiceService,
                 private clientServiceTaskService: ClientServiceTaskService) {
     }
 
@@ -62,13 +62,13 @@ export class ClientServiceTaskEditComponent implements OnInit {
                     }
 
                     // client
-                    self.clientService = self.clientServiceService.getClientServiceContext();
+                    self.clientService = self.clientServiceSvc.getClientServiceContext();
                     if (self.clientService && self.clientService._id !== params['id']) {
-                        self.clientServiceService.getClientService(params['id'])
+                        self.clientServiceSvc.getClientService(params['id'])
                             .subscribe(
                                 clientService => {
                                     self.clientService = clientService;
-                                    self.clientServiceService
+                                    self.clientServiceSvc
                                         .setClientServiceContext(clientService);
                                 },
                                 error => {
