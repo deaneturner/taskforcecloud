@@ -4,7 +4,7 @@
             <section class="event">
                 <div>
                     <div class="row">
-                        <div class="col-xs-10 pull-left"
+                        <div class="col-xs-9 pull-left"
                              (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
                             <span class="avatar pull-left mr-sm">
                                 <i class="fa" [ngClass]="iconClass"></i>
@@ -13,8 +13,8 @@
                                 <small>@nils</small>
                             </h5>
                         </div>
-                        <div class="col-xs-2">
-                            <div class="display-inline-block checkbox-ios ml">
+                        <div class="col-xs-3">
+                            <div class="display-inline-block checkbox-ios ml pull-right">
                                 <label [attr.for]="clientServiceTask.name" class="switch">
                                     <input type="checkbox" class="ios" [attr.id]="clientServiceTask.name"><i></i>
                                 </label>
