@@ -37,19 +37,14 @@ export class ClientServicesComponent {
     ngOnInit(): void {
         jQuery('.widget-container').sortable(this.sortOptions);
 
-        // this.panel = {
-        //     title: 'Services',
-        //     iconClass: this.iconClass,
-        //     collapsible: true,
-        //     menu: [{
-        //         title: 'Add',
-        //         onMenuSelect: () => this.onMenuSelect('add')
-        //     }]
-        // };
-
         this.panel = {
             title: 'Services',
-            iconClass: this.iconClass
+            iconClass: this.iconClass,
+            collapsible: true,
+            menu: [{
+                title: 'Add',
+                onMenuSelect: () => this.onMenuSelect('add')
+            }]
         };
     }
 
