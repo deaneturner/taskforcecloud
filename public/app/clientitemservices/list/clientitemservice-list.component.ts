@@ -26,6 +26,7 @@ export class ClientItemServiceListComponent {
 
     ngOnInit(): void {
         this.client._id = this.activatedRoute.snapshot.params['id'];
+        this.clientItem._id = this.activatedRoute.snapshot.params['clientitemid'];
         this.getClientItems(this.client._id);
     };
 

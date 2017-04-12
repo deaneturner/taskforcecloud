@@ -9,15 +9,16 @@ import { ClientItemServiceEditComponent } from './edit/clientitemservice-edit.co
 import { ClientItemServiceListModule } from './list/clientitemservice-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientItemService } from '../services/clientitem.service';
+import { ClientItemServiceService } from '../services/clientitemservice.service';
 
-import { ROUTES } from './clientitems.routes';
+import { ROUTES } from './clientitemservices.routes';
 
 @NgModule({
     imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientItemServiceListModule],
     declarations: [
         ClientItemServiceDetailComponent,
         ClientItemServiceEditComponent],
-    providers: [ClientItemService],
+    providers: [ClientItemService, ClientItemServiceService],
     exports: [ClientItemServiceDetailComponent, ClientItemServiceEditComponent,
         ClientItemServiceListModule]
 })

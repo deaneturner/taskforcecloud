@@ -4,21 +4,24 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientService } from '../../services/client.service';
 import { ClientItemService } from '../../services/clientitem.service';
+import { ClientItemServiceService } from '../../services/clientitemservice.service';
 
 import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
+import { ClientItemServiceI } from '../../model/clientitemservice.interface';
 
 @Component({
-    selector: 'clientitem-edit',
-    templateUrl: 'clientitem-edit.template.html',
-    styleUrls: ['clientitem-edit.style.scss'],
+    selector: 'clientitemservice-edit',
+    templateUrl: 'clientitemservice-edit.template.html',
+    styleUrls: ['clientitemservice-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ClientItemServiceEditComponent implements OnInit {
     iconClass = ['fa', 'fa-dot-circle-o'];
     client = <Client>{};
     clientItem = <ClientItem>{};
-    clientItemForm: NgForm;
+    clientItemService = <ClientItemServiceI>{};
+    clientItemServiceForm: NgForm;
     formErrors: any = {
         'name': []
     };
@@ -29,7 +32,8 @@ export class ClientItemServiceEditComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientItemService: ClientItemService,
+                private clientItemSvc: ClientItemService,
+                private clientItemServiceSvc: ClientItemServiceService,
                 private clientService: ClientService) {
     }
 
@@ -40,15 +44,17 @@ export class ClientItemServiceEditComponent implements OnInit {
             .subscribe(
                 params => {
                     // client item
-                    const paramId = params['clientitemid'];
+                    const paramId = params['clientitemserviceid'];
                     if (paramId !== 'new') {
-                        self.clientItem = self.clientItemService.getClientItemContext();
-                        if (self.clientItem && self.clientItem._id !== paramId) {
-                            this.clientItemService.getClientItem(paramId)
+                        self.clientItemService = self
+                            .clientItemServiceSvc.getClientItemServiceContext();
+                        if (self.clientItemService && self.clientItemService._id !== paramId) {
+                            this.clientItemServiceSvc.getClientItem(paramId)
                                 .subscribe(
-                                    clientItem => {
-                                        self.clientItem = clientItem;
-                                        self.clientItemService.setClientItemContext(clientItem);
+                                    clientItemService => {
+                                        self.clientItemService = clientItemService;
+                                        self.clientItemServiceSvc
+                                            .setClientItemServiceContext(clientItemService);
                                     },
                                     error => {
                                     } // error is handled by service
@@ -56,7 +62,8 @@ export class ClientItemServiceEditComponent implements OnInit {
                         }
                     } else {
                         // add new
-                        self.clientItem = self.clientItemService.clearClientItemContext();
+                        self.clientItemService = self
+                            .clientItemServiceSvc.clearClientItemServiceContext();
                     }
 
                     // client
@@ -72,18 +79,32 @@ export class ClientItemServiceEditComponent implements OnInit {
                                 } // error is handled by service
                             );
                     }
+
+                    // client item
+                    self.clientItem = self.clientItemSvc.getClientItemContext();
+                    if (self.clientItem && self.clientItem._id !== params['clientitemid']) {
+                        self.clientItemSvc.getClientItem(params['clientitemid'])
+                            .subscribe(
+                                clientItem => {
+                                    self.clientItem = clientItem;
+                                    self.clientItemSvc.setClientItemContext(clientItem);
+                                },
+                                error => {
+                                } // error is handled by service
+                            );
+                    }
                 }
             );
     }
 
-    upsertClientItem(isValid: boolean, clientItemForm: ClientItem) {
+    upsertClientItemService(isValid: boolean, clientItemServiceForm: ClientItemServiceI) {
         const self = this;
-        let clientItem = <ClientItem>clientItemForm;
+        let clientItemService = <ClientItemServiceI>clientItemServiceForm;
         if (isValid) {
-            if (this.clientItem._id) {
+            if (this.clientItemService._id) {
                 // update
-                this.clientItemService
-                    .updateClientItem(this.clientItem._id, clientItem)
+                this.clientItemServiceSvc
+                    .updateClientItemService(this.clientItemService._id, clientItemService)
                     .subscribe(
                         res => {
                             if (res.success) {
@@ -109,12 +130,12 @@ export class ClientItemServiceEditComponent implements OnInit {
                     );
             } else {
                 // insert
-                clientItem._clientId = self.client._id;
-                this.clientItemService.insertClientItem(clientItem)
+                clientItemService._clientItemId = self.clientItem._id;
+                this.clientItemServiceSvc.insertClientItemService(clientItemService)
                     .subscribe(
                         res => {
                             if (res.success) {
-                                self.clientItemService.setClientItemContext(res.data);
+                                self.clientItemServiceSvc.setClientItemServiceContext(res.data);
                                 self.router.navigate([
                                     'app',
                                     'clients',
@@ -141,11 +162,12 @@ export class ClientItemServiceEditComponent implements OnInit {
     cancel(event) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.clientItem._id) {
-            this.router.navigate(['/app/clients/' + this.client._id + '/clientitems/detail/',
-                this.clientItem._id]);
+        if (this.clientItemService._id) {
+            this.router.navigate(['app', 'clients' + this.client._id + 'clientitems',
+                this.clientItem._id, 'clientitemservices', 'detail', this.clientItemService._id]);
         } else {
-            this.router.navigate(['/app/clients/detail/', this.client._id]);
+            this.router.navigate(['app', 'clients', this.client._id, 'clientitems',
+                'detail', this.clientItem._id]);
         }
     }
 
@@ -158,21 +180,21 @@ export class ClientItemServiceEditComponent implements OnInit {
     }
 
     formChanged() {
-        if (this.currentForm === this.clientItemForm) {
+        if (this.currentForm === this.clientItemServiceForm) {
             return;
         }
-        this.clientItemForm = this.currentForm;
-        if (this.clientItemForm) {
-            this.clientItemForm.valueChanges
+        this.clientItemServiceForm = this.currentForm;
+        if (this.clientItemServiceForm) {
+            this.clientItemServiceForm.valueChanges
                 .subscribe(data => this.onValueChanged(data));
         }
     }
 
     onValueChanged(data ?: any) {
-        if (!this.clientItemForm) {
+        if (!this.clientItemServiceForm) {
             return;
         }
-        const form = this.clientItemForm.form;
+        const form = this.clientItemServiceForm.form;
 
         for (let field in this.formErrors) {
             if (field) {

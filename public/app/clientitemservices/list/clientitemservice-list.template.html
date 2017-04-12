@@ -1,7 +1,7 @@
 <div class="list-group list-group-lg">
     <section class="activities">
         <a *ngFor="let clientItemService of clientItemServices"
-           (click)="router.navigate(['app/clients', client._id, 'clientitems', 'detail', clientItem._id])">
+           (click)="router.navigate(['app/clients', client._id, 'clientitems', clientItem._id, 'clientItemServices', 'detail', clientItemService._id])">
             <section class="event">
             <span class="thumb-sm avatar pull-left mr-sm">
               <i class="fa" [ngClass]="iconClass"></i>

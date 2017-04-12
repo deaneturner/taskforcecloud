@@ -5,22 +5,36 @@ import { ClientDetailComponent } from './detail/client-detail.component';
 import { ClientEditComponent } from './edit/client-edit.component';
 import { ClientItemDetailComponent } from '../clientitems/detail/clientitem-detail.component';
 import { ClientItemEditComponent } from '../clientitems/edit/clientitem-edit.component';
+import {
+    ClientItemServiceDetailComponent
+}
+    from '../clientitemservices/detail/clientitemservice-detail.component';
+import {
+    ClientItemServiceEditComponent
+}
+    from '../clientitemservices/edit/clientitemservice-edit.component';
 
 import { AppGuard } from '../app.guard';
 
 const routes: Routes = [
-    {path: '',
+    {
+        path: '',
         component: ClientsComponent,
         pathMatch: 'full',
-        canActivate: [AppGuard]},
-    {path: 'detail/:id',
+        canActivate: [AppGuard]
+    },
+    {
+        path: 'detail/:id',
         component: ClientDetailComponent,
         pathMatch: 'full',
-        canActivate: [AppGuard]},
-    {path: 'edit/:id',
+        canActivate: [AppGuard]
+    },
+    {
+        path: 'edit/:id',
         component: ClientEditComponent,
         pathMatch: 'full',
-        canActivate: [AppGuard]},
+        canActivate: [AppGuard]
+    },
     {
         path: ':id/clientitems/detail/:clientitemid',
         component: ClientItemDetailComponent,
@@ -30,6 +44,18 @@ const routes: Routes = [
     {
         path: ':id/clientitems/edit/:clientitemid',
         component: ClientItemEditComponent,
+        pathMatch: 'full',
+        canActivate: [AppGuard]
+    },
+    {
+        path: ':id/clientitems/:clientitemid/clientitemservices/detail/:clientitemserviceid',
+        component: ClientItemServiceDetailComponent,
+        pathMatch: 'full',
+        canActivate: [AppGuard]
+    },
+    {
+        path: ':id/clientitems/:clientitemid/clientitemservices/edit/:clientitemserviceid',
+        component: ClientItemServiceEditComponent,
         pathMatch: 'full',
         canActivate: [AppGuard]
     }

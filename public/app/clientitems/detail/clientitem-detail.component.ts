@@ -145,7 +145,8 @@ export class ClientItemDetailComponent implements OnInit {
                     .subscribe(
                         params => {
                             this.router.navigate(['app', 'clients', params['id'],
-                                'clientitems', 'edit', 'new']);
+                                'clientitems', params['clientitemid'], 'clientitemservices',
+                                'edit', 'new']);
                         }
                     );
                 break;

@@ -10,13 +10,16 @@ import { ClientEditComponent } from './edit/client-edit.component';
 import { ClientListComponent } from './list/client-list.component';
 import { ClientItemsModule }
     from '../clientitems/clientitems.module';
+import { ClientItemServicesModule }
+    from '../clientitemservices/clientitemservices.module';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientService } from '../services/client.service';
 
 import { ROUTES }       from './clients.routes';
 
 @NgModule({
-    imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientItemsModule],
+    imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientItemsModule,
+        ClientItemServicesModule],
     declarations: [ClientsComponent, ClientDetailComponent, ClientEditComponent,
         ClientListComponent],
     providers: [ClientService]
