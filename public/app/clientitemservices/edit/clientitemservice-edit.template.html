@@ -21,19 +21,16 @@
         <form class="clientitem-form mt-lg" role="form" #clientItemForm="ngForm" novalidate>
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input class="form-control"
-                               type="text"
-                               id="name"
-                               name="name"
-                               placeholder="Name"
-                               [(ngModel)]="clientItem.name">
-                        <ul class="validation-errors-list filled"
-                            *ngFor="let err of formErrors.name">
-                            <li class="validation-type">{{ err }}</li>
-                        </ul>
-                    </div>
+                    <tfc-panel
+                            class="tfc-panel"
+                            [iconClass]="panel.iconClass"
+                            [title]="panel.title"
+                            [collapsible]="panel.collapsible"
+                            [menu]="panel.menu">
+                        <tfc-client-service-list
+                                [iconClass]="panel.iconClass">
+                        </tfc-client-service-list>
+                    </tfc-panel>
                 </div>
             </div>
             <div class="row">
