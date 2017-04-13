@@ -1,8 +1,9 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClientService } from '../../model/clientservice.interface';
 import { ClientServiceService } from '../../services/clientservice.service';
+
+import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
     selector: 'tfc-client-service-list',
