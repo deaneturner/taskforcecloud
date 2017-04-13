@@ -12,7 +12,7 @@ import { PanelModule } from '../shared/panel/panel.module';
 import { ClientItemService } from '../services/clientitem.service';
 import { ClientItemServiceListModule } from
     '../clientitemservices/list/clientitemservice-list.module';
-import { ServiceModalComponent } from './detail/services-modal-window/service-modal.component';
+import { ServicesModalComponent } from './detail/services-modal-window/services-modal.component';
 
 import { ROUTES } from './clientitems.routes';
 
@@ -22,7 +22,7 @@ import { ROUTES } from './clientitems.routes';
     declarations: [
         ClientItemDetailComponent,
         ClientItemEditComponent,
-        ServiceModalComponent],
+        ServicesModalComponent],
     providers: [ClientItemService],
     exports: [ClientItemDetailComponent, ClientItemEditComponent, ClientItemListModule]
 })

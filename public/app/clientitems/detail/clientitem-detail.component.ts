@@ -8,7 +8,7 @@ import { ClientItemService } from '../../services/clientitem.service';
 import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
-import { ServiceModalComponent } from './services-modal-window/service-modal.component';
+import { ServicesModalComponent } from './services-modal-window/services-modal.component';
 
 @Component({
     selector: 'clientitem-detail',
@@ -24,7 +24,7 @@ export class ClientItemDetailComponent implements OnInit {
     clientItem = <ClientItem>{};
 
     @ViewChild('servicesModalComponent')
-    public servicesModal: ServiceModalComponent;
+    public servicesModal: ServicesModalComponent;
 
     constructor(private router: Router,
                 private notificationService: NotificationService,

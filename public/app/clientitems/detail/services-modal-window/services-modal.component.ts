@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation, ViewChild, Input } from '@angular/core';
 
 @Component({
-    selector: 'tfc-service-modal-component',
-    templateUrl: './service-modal.template.html',
-    styleUrls: ['./service-modal.style.scss'],
+    selector: 'tfc-services-modal-component',
+    templateUrl: './services-modal.template.html',
+    styleUrls: ['./services-modal.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ServiceModalComponent {
+export class ServicesModalComponent {
     @ViewChild('servicesModal')
     public el: any;
 
