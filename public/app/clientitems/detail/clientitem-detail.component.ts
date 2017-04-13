@@ -2,9 +2,9 @@ import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
-
 import { ClientService } from '../../services/client.service';
 import { ClientItemService } from '../../services/clientitem.service';
+import { ClientServiceService } from '../../services/clientservice.service';
 
 import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
@@ -31,6 +31,7 @@ export class ClientItemDetailComponent implements OnInit {
                 private notificationService: NotificationService,
                 private clientService: ClientService,
                 private clientItemService: ClientItemService,
+                private clientServiceSvc: ClientServiceService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -150,49 +151,67 @@ export class ClientItemDetailComponent implements OnInit {
                 self.activatedRoute.params
                     .subscribe(
                         params => {
-                            // this.router.navigate(['app', 'clients', params['id'],
-                            //     'clientitems', params['clientitemid'], 'clientitemservices',
-                            //     'edit', 'new']);
-                            Object.assign(self.servicesModal.config, {
-                                buttons: [{
-                                    title: 'Cancel',
-                                    onClick: ($event) => {
-                                        self.servicesModal.close();
+                            this.clientServiceSvc.getClientServices()
+                                .subscribe(
+                                    clientServices => {
+                                        self.openServiceModal({
+                                            subContent: self.clientItem.name,
+                                            services: clientServices,
+                                            buttons: [{
+                                                title: 'Cancel',
+                                                onClick: ($event) => {
+                                                    self.servicesModal.close();
+                                                },
+                                                class: 'btn btn-gray'
+                                            }, {
+                                                title: 'Add',
+                                                onClick: ($event) => {
+                                                    self.updateClientItemServices(
+                                                        self.servicesModal.selectedServices);
+                                                },
+                                                class: 'btn btn-success'
+                                            }]
+                                        });
                                     },
-                                    class: 'btn btn-gray'
-                                }, {
-                                    title: 'Yes, delete',
-                                    onClick: ($event) => {
-                                        self.servicesModal.close();
-                                        // self.clientItemService
-                                        //     .deleteClientItem(self.clientItem._id)
-                                        //     .subscribe(
-                                        //         clientItem => {
-                                        //             self.notificationService.displayMessage({
-                                        //                 message: 'Deleted ' +
-                                        //                 clientItem.name,
-                                        //                 type: 'success'
-                                        //             });
-                                        //
-                                        //             self.clientItemService
-                                        // .clearClientItemContext();
-                                        //
-                                        //             self.notificationService.closeModal();
-                                        //             self.router.navigate(['/app/clients/detail',
-                                        //                 self.client._id]);
-                                        //         },
-                                        //         error => {
-                                        //         }  // error is handled by service
-                                        //     );
-                                    },
-                                    class: 'btn btn-success'
-                                }]
-                            });
-                            self.servicesModal.open();
+                                    error => {
+                                    }  // error is handled by service
+                                );
                         }
                     );
                 break;
             default: // do nothing
+        }
+    }
+
+    openServiceModal(config: any) {
+        Object.assign(this.servicesModal.config, config);
+        this.servicesModal.open();
+    }
+
+    updateClientItemServices(services: string[]) {
+        const self = this;
+        if (services.length) {
+            if (this.clientItem._id) {
+                // update
+                this.clientItem.services = services;
+                this.clientItemService
+                    .updateClientItem(this.clientItem._id, this.clientItem)
+                    .subscribe(
+                        res => {
+                            if (res.success) {
+                                self.servicesModal.close();
+                            } else if (res.success === false) {
+                                const field = res.field;
+                                // clear previous error message (if any)
+                                // self.formErrors[field] = [];
+                                // self.formErrors[field]
+                                //    .push(self.validationMessages[field][res.msgKey]);
+                            }
+                        },
+                        error => {
+                        }  // error is handled by service
+                    );
+            }
         }
     }
 }

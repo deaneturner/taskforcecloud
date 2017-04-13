@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, ViewChild, Input } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'tfc-services-modal-component',
@@ -10,11 +11,12 @@ export class ServicesModalComponent {
     @ViewChild('servicesModal')
     public el: any;
 
+    selectedServices: string [] = [];
+
     config: any = {
         title: 'Add Target Services',
         subTitle: null,
-        content: 'Choose the services you would like to add to target:',
-        subContent: 'UNDO'
+        content: 'Choose the services you would like to add to target:'
     };
 
     close() {

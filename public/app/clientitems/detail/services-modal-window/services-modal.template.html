@@ -7,9 +7,25 @@
     </modal-header>
     <modal-content>
         <p class="modal-title text-xs-center fw-bold mt" id="servicesModalContent">{{config.content}}</p>
-        <p class="text-xs-center fs-mini text-muted mt-sm">
+        <p class="text-xs-center fs-mini mt-sm">
             {{config.subContent}}
         </p>
+        <div class="form-group row">
+            <label class="col-xs-2  col-form-label text-xs-right" for="selected-services">
+                Services
+            </label>
+            <div class="col-xs-10">
+                <select [(ngModel)]="selectedServices"
+                        class="form-control"
+                        style="overflow-x:scroll"
+                        data-style="btn-secondary btn-lg"
+                        tabindex="-1"
+                        id="selected-services"
+                        multiple>
+                    <option *ngFor="let service of config.services" value="{{service._id}}">{{service.name}}</option>
+                </select>
+            </div>
+        </div>
     </modal-content>
     <modal-footer>
         <div class="clearfix">
