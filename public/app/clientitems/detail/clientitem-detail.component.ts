@@ -8,11 +8,7 @@ import { ClientItemService } from '../../services/clientitem.service';
 import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
-import 'messenger/build/js/messenger.min';
-
 import { ServiceModalComponent } from './services-modal-window/service-modal.component';
-
-declare var Messenger: any;
 
 @Component({
     selector: 'clientitem-detail',
@@ -26,74 +22,19 @@ export class ClientItemDetailComponent implements OnInit {
     clientItemServicePanel: any;
     client = <Client>{};
     clientItem = <ClientItem>{};
-    servicesModal: any = {
-        el: '',
-        config: {
-            title: 'Confirm Delete',
-            subTitle: null,
-            content: 'Are you sure you want to delete client item:',
-            subContent: 'UNDO',
-            buttons: [{
-                title: 'Cancel',
-                onClick: ($event) => {
-                    this.closeModal();
-                },
-                class: 'btn btn-gray'
-            }, {
-                title: 'Yes, delete',
-                onClick: ($event) => {
-                    this.closeModal();
-                    // self.clientItemService
-                    //     .deleteClientItem(self.clientItem._id)
-                    //     .subscribe(
-                    //         clientItem => {
-                    //             self.notificationService.displayMessage({
-                    //                 message: 'Deleted ' +
-                    //                 clientItem.name,
-                    //                 type: 'success'
-                    //             });
-                    //
-                    //             self.clientItemService.clearClientItemContext();
-                    //
-                    //             self.notificationService.closeModal();
-                    //             self.router.navigate(['/app/clients/detail',
-                    //                 self.client._id]);
-                    //         },
-                    //         error => {
-                    //         }  // error is handled by service
-                    //     );
-                },
-                class: 'btn btn-success'
-            }]
-        }
-    };
 
     @ViewChild('servicesModalComponent')
-    public servicesModalComponent: ServiceModalComponent;
+    public servicesModal: ServiceModalComponent;
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
                 private clientService: ClientService,
                 private clientItemService: ClientItemService,
                 private activatedRoute: ActivatedRoute) {
-        Messenger.options = {
-            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-center',
-            theme: 'air'
-        };
-    }
-
-    showServicesModal() {
-        this.servicesModal.el.open();
-    }
-
-    closeModal() {
-        this.servicesModal.el.close();
     }
 
     ngOnInit(): void {
         const self = this;
-
-        this.servicesModal.el = this.servicesModalComponent.el;
 
         this.panel = {
             title: '',
@@ -211,7 +152,7 @@ export class ClientItemDetailComponent implements OnInit {
                             // this.router.navigate(['app', 'clients', params['id'],
                             //     'clientitems', params['clientitemid'], 'clientitemservices',
                             //     'edit', 'new']);
-                            self.showServicesModal();
+                            self.servicesModal.open();
                         }
                     );
                 break;
