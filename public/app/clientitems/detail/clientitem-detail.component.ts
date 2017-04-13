@@ -2,11 +2,14 @@ import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { NotificationService } from '../../services/notification.service';
+
 import { ClientService } from '../../services/client.service';
 import { ClientItemService } from '../../services/clientitem.service';
 
 import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
+
+import { ServicesModalComponent } from './services-modal-window/services-modal.component';
 
 @Component({
     selector: 'clientitem-detail',
@@ -20,6 +23,9 @@ export class ClientItemDetailComponent implements OnInit {
     clientItemServicePanel: any;
     client = <Client>{};
     clientItem = <ClientItem>{};
+
+    @ViewChild(ServicesModalComponent)
+    public servicesModal: ServicesModalComponent;
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
@@ -144,9 +150,45 @@ export class ClientItemDetailComponent implements OnInit {
                 self.activatedRoute.params
                     .subscribe(
                         params => {
-                            this.router.navigate(['app', 'clients', params['id'],
-                                'clientitems', params['clientitemid'], 'clientitemservices',
-                                'edit', 'new']);
+                            // this.router.navigate(['app', 'clients', params['id'],
+                            //     'clientitems', params['clientitemid'], 'clientitemservices',
+                            //     'edit', 'new']);
+                            Object.assign(self.servicesModal.config, {
+                                buttons: [{
+                                    title: 'Cancel',
+                                    onClick: ($event) => {
+                                        self.servicesModal.close();
+                                    },
+                                    class: 'btn btn-gray'
+                                }, {
+                                    title: 'Yes, delete',
+                                    onClick: ($event) => {
+                                        self.servicesModal.close();
+                                        // self.clientItemService
+                                        //     .deleteClientItem(self.clientItem._id)
+                                        //     .subscribe(
+                                        //         clientItem => {
+                                        //             self.notificationService.displayMessage({
+                                        //                 message: 'Deleted ' +
+                                        //                 clientItem.name,
+                                        //                 type: 'success'
+                                        //             });
+                                        //
+                                        //             self.clientItemService
+                                        // .clearClientItemContext();
+                                        //
+                                        //             self.notificationService.closeModal();
+                                        //             self.router.navigate(['/app/clients/detail',
+                                        //                 self.client._id]);
+                                        //         },
+                                        //         error => {
+                                        //         }  // error is handled by service
+                                        //     );
+                                    },
+                                    class: 'btn btn-success'
+                                }]
+                            });
+                            self.servicesModal.open();
                         }
                     );
                 break;
