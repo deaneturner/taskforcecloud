@@ -3,6 +3,7 @@ import 'jquery-ui/ui/sortable.js';
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ng2-modal';
 
 import { ClientItemDetailComponent } from './detail/clientitem-detail.component';
 import { ClientItemEditComponent } from './edit/clientitem-edit.component';
@@ -11,15 +12,17 @@ import { PanelModule } from '../shared/panel/panel.module';
 import { ClientItemService } from '../services/clientitem.service';
 import { ClientItemServiceListModule } from
     '../clientitemservices/list/clientitemservice-list.module';
+import { ServiceModalComponent } from './detail/services-modal-window/service-modal.component';
 
 import { ROUTES } from './clientitems.routes';
 
 @NgModule({
-    imports: [PanelModule, CommonModule, FormsModule, ROUTES, ClientItemListModule,
-        ClientItemServiceListModule],
+    imports: [PanelModule, CommonModule, FormsModule, ROUTES,
+        ClientItemServiceListModule, ModalModule],
     declarations: [
         ClientItemDetailComponent,
-        ClientItemEditComponent],
+        ClientItemEditComponent,
+        ServiceModalComponent],
     providers: [ClientItemService],
     exports: [ClientItemDetailComponent, ClientItemEditComponent, ClientItemListModule]
 })

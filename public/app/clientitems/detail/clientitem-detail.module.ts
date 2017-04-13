@@ -8,6 +8,7 @@ import { ClientItemDetailComponent } from './clientitem-detail.component';
 import { PanelModule } from '../shared/panel/panel.module';
 import { ClientItemServiceListComponent } from
     '../../clientitemservices/list/clientitemservice-list.component';
+import { ServiceModalComponent } from './services-modal-window/service-modal.component';
 
 import { AppGuard } from '../app.guard';
 
@@ -21,7 +22,7 @@ export const routes = [
 
 @NgModule({
     imports: [PanelModule, CommonModule, RouterModule.forChild(routes)],
-    declarations: [ClientItemDetailComponent, ClientItemServiceListComponent]
+    declarations: [ClientItemDetailComponent, ClientItemServiceListComponent, ServiceModalComponent]
 })
 export default class ClientItemDetailModule {
     static routes = routes;
