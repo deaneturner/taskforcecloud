@@ -155,6 +155,8 @@ export class ClientItemDetailComponent implements OnInit {
                                 .subscribe(
                                     clientServices => {
                                         self.openServiceModal({
+                                            subContent: self.clientItem.name,
+                                            services: clientServices,
                                             buttons: [{
                                                 title: 'Cancel',
                                                 onClick: ($event) => {
@@ -163,7 +165,6 @@ export class ClientItemDetailComponent implements OnInit {
                                                 class: 'btn btn-gray'
                                             }, {
                                                 title: 'Add',
-                                                data: clientServices,
                                                 onClick: ($event) => {
                                                     self.servicesModal.close();
                                                 },
