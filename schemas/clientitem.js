@@ -8,6 +8,10 @@ module.exports = {
         'name': {
             'type': 'string',
             'description': 'Name of client item'
+        },
+        'services': {
+            'type': 'array',
+            'description': 'List of associated services'
         }
     }
 };

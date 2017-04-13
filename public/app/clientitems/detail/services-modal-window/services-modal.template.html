@@ -15,13 +15,14 @@
                 Services
             </label>
             <div class="col-xs-10">
-                <select class="form-control"
+                <select [(ngModel)]="selectedServices"
+                        class="form-control"
                         style="overflow-x:scroll"
                         data-style="btn-secondary btn-lg"
                         tabindex="-1"
                         id="selected-services"
                         multiple>
-                    <option *ngFor="let service of config.services" value="{{service.id}}">{{service.name}}</option>
+                    <option *ngFor="let service of config.services" value="{{service._id}}">{{service.name}}</option>
                 </select>
             </div>
         </div>

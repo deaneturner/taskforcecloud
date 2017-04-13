@@ -166,7 +166,8 @@ export class ClientItemDetailComponent implements OnInit {
                                             }, {
                                                 title: 'Add',
                                                 onClick: ($event) => {
-                                                    self.servicesModal.close();
+                                                    self.updateClientItemServices(
+                                                        self.servicesModal.selectedServices);
                                                 },
                                                 class: 'btn btn-success'
                                             }]
@@ -185,5 +186,32 @@ export class ClientItemDetailComponent implements OnInit {
     openServiceModal(config: any) {
         Object.assign(this.servicesModal.config, config);
         this.servicesModal.open();
+    }
+
+    updateClientItemServices(services: string[]) {
+        const self = this;
+        if (services.length) {
+            if (this.clientItem._id) {
+                // update
+                this.clientItem.services = services;
+                this.clientItemService
+                    .updateClientItem(this.clientItem._id, this.clientItem)
+                    .subscribe(
+                        res => {
+                            if (res.success) {
+                                self.servicesModal.close();
+                            } else if (res.success === false) {
+                                const field = res.field;
+                                // clear previous error message (if any)
+                                // self.formErrors[field] = [];
+                                // self.formErrors[field]
+                                //    .push(self.validationMessages[field][res.msgKey]);
+                            }
+                        },
+                        error => {
+                        }  // error is handled by service
+                    );
+            }
+        }
     }
 }
