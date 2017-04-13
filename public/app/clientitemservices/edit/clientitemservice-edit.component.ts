@@ -26,7 +26,6 @@ export class ClientItemServiceEditComponent implements OnInit {
         'name': []
     };
     validationMessages: any = {};
-    panel: any;
 
     @ViewChild('clientItemForm')
     currentForm: NgForm;
@@ -96,12 +95,6 @@ export class ClientItemServiceEditComponent implements OnInit {
                     }
                 }
             );
-
-        this.panel = {
-            title: 'Services',
-            iconClass: this.iconClass,
-            onListItemClick: this.onListItemClick
-        };
     }
 
     upsertClientItemService(isValid: boolean, clientItemServiceForm: ClientItemServiceI) {
@@ -219,9 +212,5 @@ export class ClientItemServiceEditComponent implements OnInit {
                 }
             }
         }
-    }
-
-    onListItemClick(clientServiceId) {
-        this.router.navigate(['/app/clientservices/detail', clientServiceId]);
     }
 }

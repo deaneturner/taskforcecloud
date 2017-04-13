@@ -1,5 +1,5 @@
 <div class="list-group list-group-lg">
-    <a *ngFor="let clientService of clientServices" class="list-group-item" (click)="onListItemClick(clientService._id)">
+    <a *ngFor="let clientService of clientServices" class="list-group-item" (click)="router.navigate(['/app/clientservices/detail', clientService._id])">
         <span class="thumb-sm pull-xs-left mr">
                     <i class="fa" [ngClass]="iconClass"></i>
                 </span>
