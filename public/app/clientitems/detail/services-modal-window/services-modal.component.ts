@@ -11,9 +11,9 @@ export class ServicesModalComponent {
     public el: any;
 
     config: any = {
-        title: 'Confirm Delete',
+        title: 'Add Target Services',
         subTitle: null,
-        content: 'Are you sure you want to delete client item:',
+        content: 'Choose the services you would like to add to target:',
         subContent: 'UNDO'
     };
 
