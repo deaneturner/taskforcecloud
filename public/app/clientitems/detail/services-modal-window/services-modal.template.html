@@ -19,12 +19,11 @@
                             tabindex="-1"
                             id="selectedServices"
                             name="selectedServices"
-                            multiple>  // no multiple - ios control bugs
-                        <option value="" selected disabled>Please select a service</option>
+                            multiple>
+                        <option value="" selected disabled>- Select services</option>
                         <option *ngFor="let service of config.services" value="{{service._id}}">{{service.name}}</option>
                     </select>
                 </div>
-                {{ selectedServices}}
             </div>
         </form>
     </modal-content>
