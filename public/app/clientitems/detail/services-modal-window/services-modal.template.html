@@ -10,22 +10,23 @@
         <p class="text-xs-center fs-mini mt-sm">
             {{config.subContent}}
         </p>
-        <div class="form-group row">
-            <label class="col-xs-2  col-form-label text-xs-right" for="selected-services">
-                Services
-            </label>
-            <div class="col-xs-10">
-                <select [(ngModel)]="selectedServices"
-                        class="form-control"
-                        style="overflow-x:scroll"
-                        data-style="btn-secondary btn-lg"
-                        tabindex="-1"
-                        id="selected-services"
-                        multiple>
-                    <option *ngFor="let service of config.services" value="{{service._id}}">{{service.name}}</option>
-                </select>
+        <form role="form" #servicesModalForm="ngForm" novalidate>
+            <div class="form-group row">
+                <label class="col-xs-2  col-form-label text-xs-right" for="selected-services">
+                    Services
+                </label>
+                <div class="col-xs-10">
+                    <select model="selectedServices"
+                            class="form-control"
+                            style="overflow-x:scroll"
+                            tabindex="-1"
+                            id="selected-services"
+                            multiple>
+                        <option *ngFor="let service of config.services" value="{{service.id}}">{{service.name}}</option>
+                    </select>
+                </div>
             </div>
-        </div>
+        </form>
     </modal-content>
     <modal-footer>
         <div class="clearfix">
