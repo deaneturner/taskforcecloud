@@ -20,10 +20,16 @@ export class ServicesModalComponent {
     };
 
     close() {
+        this.clearSelected();
         this.el.close();
     }
 
     open() {
+        this.clearSelected();
         this.el.open();
+    }
+
+    clearSelected() {
+        this.selectedServices = [];
     }
 }

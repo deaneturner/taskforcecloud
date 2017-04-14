@@ -12,10 +12,7 @@
         </p>
         <form role="form" #servicesModalForm="ngForm" novalidate>
             <div class="form-group row">
-                <label class="col-xs-2  col-form-label text-xs-right" for="selectedServices">
-                    Services
-                </label>
-                <div class="col-xs-10">
+                <div class="col-xs-12">
                     <select [(ngModel)]="selectedServices"
                             class="form-control"
                             style="overflow-x:scroll"
@@ -26,7 +23,6 @@
                         <option *ngFor="let service of config.services" value="{{service._id}}">{{service.name}}</option>
                     </select>
                 </div>
-                {{ selectedServices}}
             </div>
         </form>
     </modal-content>
