@@ -193,7 +193,7 @@ export class ClientItemDetailComponent implements OnInit {
         if (services.length) {
             if (this.clientItem._id) {
                 // update
-                this.clientItem.services = services;
+                // this.clientItem.services = services;
                 this.clientItemService
                     .updateClientItem(this.clientItem._id, this.clientItem)
                     .subscribe(
