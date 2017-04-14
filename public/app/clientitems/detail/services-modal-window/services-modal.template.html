@@ -18,8 +18,7 @@
                             style="overflow-x:scroll"
                             tabindex="-1"
                             id="selectedServices"
-                            name="selectedServices"
-                            multiple>
+                            name="selectedServices">  // no multiple - ios control bugs
                         <option *ngFor="let service of config.services" value="{{service._id}}">{{service.name}}</option>
                     </select>
                 </div>
