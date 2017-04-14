@@ -10,14 +10,16 @@ import * as _ from 'lodash';
 @Injectable()
 export class ClientService {
 
+    clientContext = <Client>{};
+
     constructor(private http: Http,
                 private notificationService: NotificationService) {
     }
 
     getClient(id: string) {
         return this.http.get('/api/clients/' + id)
-                .map((res: Response) => <Client>(res.json()))
-                .catch(this.notificationService.handleError);
+            .map((res: Response) => <Client>(res.json()))
+            .catch(this.notificationService.handleError);
     }
 
     getClients(query ?: any) {
@@ -26,7 +28,7 @@ export class ClientService {
             .catch(this.notificationService.handleError);
     }
 
-    updateClient(id: string, client: any) {
+    updateClient(id: string, client: Client) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.put('/api/clients/' + id, client, {headers: headers})
@@ -34,7 +36,7 @@ export class ClientService {
             .catch(this.notificationService.handleError);
     }
 
-    insertClient(client: any) {
+    insertClient(client: Client) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
         return this.http.post('/api/clients', client, {headers: headers})
@@ -46,5 +48,18 @@ export class ClientService {
         return this.http.delete('/api/clients/' + id)
             .map((response: Response) => <Client>(response.json()))
             .catch(this.notificationService.handleError);
+    }
+
+    setClientContext(clientContext: Client) {
+        this.clientContext = clientContext;
+    }
+
+    getClientContext() {
+        return this.clientContext;
+    }
+
+    clearClientContext() {
+        this.clientContext = <Client>{};
+        return this.clientContext;
     }
 }

@@ -1,0 +1,18 @@
+@import "../../scss/variables";
+@import "../../../../node_modules/bootstrap/scss/_variables";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+
+.clientservicetask-list {
+  header {
+    background-color: #eee;
+  }
+
+  header h6 span {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  header .widget-controls {
+    margin-top: 10px;
+  }
+}

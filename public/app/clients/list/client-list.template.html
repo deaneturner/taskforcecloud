@@ -1,7 +1,7 @@
 <div class="list-group list-group-lg">
     <a *ngFor="let client of clients" class="list-group-item" (click)="router.navigate(['/app/clients/detail', client._id])">
         <span class="thumb-sm pull-xs-left mr">
-                    <i class="fa fa-handshake-o"></i>
+                    <i class="fa" [ngClass]="iconClass"></i>
                 </span>
         <h6 class="pull-xs-right">{{ client.phone || ''}}</h6>
         <!--Company and/or First, Last Name-->

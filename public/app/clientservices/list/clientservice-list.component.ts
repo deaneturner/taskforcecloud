@@ -1,8 +1,9 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClientService } from '../../model/clientservice.interface';
 import { ClientServiceService } from '../../services/clientservice.service';
+
+import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
     selector: 'tfc-client-service-list',
@@ -11,11 +12,11 @@ import { ClientServiceService } from '../../services/clientservice.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ClientServiceListComponent {
-    selectedClientService: string;
+    @Input() iconClass: any;
     clientServices: Array<ClientService>;
 
     constructor(private router: Router,
-                private clientServiceService: ClientServiceService) {
+                private clientServiceSvc: ClientServiceService) {
     }
 
 
@@ -24,7 +25,7 @@ export class ClientServiceListComponent {
     };
 
     getClientServices() {
-        this.clientServiceService.getClientServices()
+        this.clientServiceSvc.getClientServices()
             .subscribe(
                 clientServices => this.clientServices = clientServices,
                 error => {

@@ -10,6 +10,7 @@ declare var jQuery: any;
 })
 export class AdminComponent implements OnInit {
     appConfig: any;
+    iconClass = ['fa-user-o'];
     panel: any;
     sortOptions: Object = {
         connectWith: '.widget-container',
@@ -35,8 +36,8 @@ export class AdminComponent implements OnInit {
 
         this.panel = {
             title: 'Users',
-            iconClass: ['fa-user-o'],
-            collapsed: false
+            iconClass: this.iconClass,
+            collapsible: false
         };
     }
 }
