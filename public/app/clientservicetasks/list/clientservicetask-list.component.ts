@@ -24,7 +24,7 @@ export class ClientServiceTaskListComponent {
     ngOnInit(): void {
         this.clientService._id = this.activatedRoute.snapshot.params['id'];
         this.getClientServiceTasks(this.clientService._id);
-    };
+    }
 
     getClientServiceTasks(clientServiceId: string) {
         this.clientServiceTaskService.getClientServiceTasks(clientServiceId)

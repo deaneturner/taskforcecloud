@@ -28,7 +28,7 @@ export class ClientItemServiceListComponent {
         this.client._id = this.activatedRoute.snapshot.params['id'];
         this.clientItem._id = this.activatedRoute.snapshot.params['clientitemid'];
         this.getClientItems(this.client._id);
-    };
+    }
 
     getClientItems(clientId: string) {
         this.clientItemServiceSvc.getClientItems(clientId)

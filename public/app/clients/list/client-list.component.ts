@@ -21,7 +21,7 @@ export class ClientListComponent {
 
     ngOnInit(): void {
         this.getClients();
-    };
+    }
 
     getClients() {
         this.clientService.getClients()

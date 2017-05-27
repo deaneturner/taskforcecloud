@@ -22,7 +22,7 @@ export class ClientServiceListComponent {
 
     ngOnInit(): void {
         this.getClientServices();
-    };
+    }
 
     getClientServices() {
         this.clientServiceSvc.getClientServices()

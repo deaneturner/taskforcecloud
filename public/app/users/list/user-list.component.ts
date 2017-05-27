@@ -18,7 +18,7 @@ export class UserListComponent {
 
     ngOnInit(): void {
         this.getUsers();
-    };
+    }
 
     getUsers() {
         this.userService.getUsers()
