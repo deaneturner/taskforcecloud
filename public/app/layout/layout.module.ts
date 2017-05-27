@@ -3,8 +3,8 @@ import 'jquery-slimscroll';
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule }  from '@angular/forms';
-import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { ModalModule } from 'ng2-modal';
+import { TooltipModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-modal';
 
 import { ROUTES }       from './layout.routes';
 
