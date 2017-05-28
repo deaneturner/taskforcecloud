@@ -127,7 +127,7 @@
 
     // codelyzer
     // [ENABLED, "attribute" | "element", "selectorPrefix" | ["listOfPrefixes"], "camelCase" | "kebab-case"]
-//    "directive-selector": [true, "attribute", ["dir-prefix1", "dir-prefix2"], "camelCase"],
+//    "directive-selector": [true, "attribute", ["tfcDir"], "camelCase"],
     "component-selector": [true, "element", ["tfc-cmp"], "kebab-case"]// ,
 
 //    "use-input-property-decorator": true,
@@ -142,7 +142,7 @@
 
     // [ENABLED, "SUFFIX"]
     // Where "SUFFIX" is your custom suffix, for instance "Page" for Ionic 2 components.
-//    "component-class-suffix": [true, "Component"],
+//    "component-class-suffix": [true, "Component"]
 //    "directive-class-suffix": [true, "Directive"],
 //    "import-destructuring-spacing": true,
 //    "templates-use-public": true,

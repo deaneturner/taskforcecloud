@@ -2,7 +2,7 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 declare var jQuery: any;
 
 @Directive({
-    selector: '[notification-load]'
+    selector: '[tfcDirNotificationLoad]'
 })
 
 export class NotificationLoad implements OnInit {

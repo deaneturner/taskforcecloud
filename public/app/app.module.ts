@@ -16,7 +16,7 @@ import './rxjs-extensions';
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
-import { App } from './app.component';
+import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
 import { AppConfig } from './app.config';
@@ -47,9 +47,9 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-    bootstrap: [App],
+    bootstrap: [AppComponent],
     declarations: [
-        App,
+        AppComponent,
         ErrorComponent
     ],
     imports: [
