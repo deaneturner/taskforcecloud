@@ -7,7 +7,6 @@ import { UserService } from '../../services/user.service';
 import { UserEditComponent } from '../edit/user-edit.component';
 
 @Component({
-    selector: 'user-detail',
     templateUrl: 'user-detail.template.html',
     styleUrls: ['user-detail.style.scss'],
     encapsulation: ViewEncapsulation.None

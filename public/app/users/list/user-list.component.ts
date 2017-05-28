@@ -4,7 +4,7 @@ import { User } from '../../model/user.interface';
 import { UserService } from '../../services/user.service';
 
 @Component({
-    selector: 'tfc-user-list',
+    selector: 'tfc-cmp-user-list',
     templateUrl: './user-list.template.html',
     styleUrls: ['./user-list.style.scss'],
     encapsulation: ViewEncapsulation.None

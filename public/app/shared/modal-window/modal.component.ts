@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation, ViewChild, Input } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 
 @Component({
-    selector: 'tfc-modal-component',
+    selector: 'tfc-cmp-modal',
     templateUrl: './modal.template.html',
     styleUrls: ['./modal.style.scss'],
     encapsulation: ViewEncapsulation.None

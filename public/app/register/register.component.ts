@@ -5,7 +5,6 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../model/user.interface';
 
 @Component({
-    selector: 'register',
     styleUrls: ['./register.style.scss'],
     templateUrl: './register.template.html',
     encapsulation: ViewEncapsulation.None,

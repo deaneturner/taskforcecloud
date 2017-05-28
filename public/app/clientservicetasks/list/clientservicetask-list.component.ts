@@ -5,7 +5,7 @@ import { Client } from '../../model/client.interface';
 import { ClientServiceTaskService } from '../../services/clientservicetask.service';
 
 @Component({
-    selector: 'tfc-clientservicetask-list',
+    selector: 'tfc-cmp-clientservicetask-list',
     templateUrl: './clientservicetask-list.template.html',
     styleUrls: ['./clientservicetask-list.style.scss'],
     encapsulation: ViewEncapsulation.None

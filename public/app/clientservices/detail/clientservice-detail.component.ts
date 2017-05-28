@@ -8,7 +8,6 @@ import { ClientServiceEditComponent } from '../edit/clientservice-edit.component
 import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
-    selector: 'clientservice-detail',
     templateUrl: 'clientservice-detail.template.html',
     styleUrls: ['clientservice-detail.style.scss'],
     encapsulation: ViewEncapsulation.None

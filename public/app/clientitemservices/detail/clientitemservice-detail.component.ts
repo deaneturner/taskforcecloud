@@ -9,7 +9,7 @@ import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
 @Component({
-    selector: 'clientitemservice-detail',
+    selector: 'tfc-cmp-clientitemservice-detail',
     templateUrl: 'clientitemservice-detail.template.html',
     styleUrls: ['clientitemservice-detail.style.scss'],
     encapsulation: ViewEncapsulation.None

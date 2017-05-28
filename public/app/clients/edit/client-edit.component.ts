@@ -7,7 +7,7 @@ import { AppState } from '../../app.service';
 import { Client } from '../../model/client.interface';
 
 @Component({
-    selector: 'client-edit',
+    selector: 'tfc-cmp-client-edit',
     templateUrl: 'client-edit.template.html',
     styleUrls: ['client-edit.style.scss'],
     encapsulation: ViewEncapsulation.None

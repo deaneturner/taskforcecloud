@@ -7,7 +7,6 @@ import { User } from '../model/user.interface';
 import { MessageBusService } from '../services/message.bus.service';
 
 @Component({
-    selector: 'login',
     styleUrls: ['./login.style.scss'],
     templateUrl: './login.template.html',
     encapsulation: ViewEncapsulation.None,

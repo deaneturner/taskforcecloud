@@ -6,7 +6,6 @@ import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
-    selector: 'clientservice-edit',
     templateUrl: 'clientservice-edit.template.html',
     styleUrls: ['clientservice-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
