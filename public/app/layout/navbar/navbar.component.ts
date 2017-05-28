@@ -7,7 +7,7 @@ import { MessageBusService } from '../../services/message.bus.service';
 declare var jQuery: any;
 
 @Component({
-    selector: '[navbar]',
+    selector: 'tfc-cmp-navbar',
     templateUrl: './navbar.template.html',
     providers: [AuthService]
 })

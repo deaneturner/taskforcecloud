@@ -123,12 +123,12 @@
       "check-operator",
       "check-separator",
       "check-type"
-    ]// ,
+    ],
 
     // codelyzer
     // [ENABLED, "attribute" | "element", "selectorPrefix" | ["listOfPrefixes"], "camelCase" | "kebab-case"]
 //    "directive-selector": [true, "attribute", ["dir-prefix1", "dir-prefix2"], "camelCase"],
-//    "component-selector": [true, "element", ["tfc-cmp"], "kebab-case"]// ,
+    "component-selector": [true, "element", ["tfc-cmp"], "kebab-case"]// ,
 
 //    "use-input-property-decorator": true,
 //    "use-output-property-decorator": true,

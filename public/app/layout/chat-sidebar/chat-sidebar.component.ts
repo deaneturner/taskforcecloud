@@ -4,7 +4,7 @@ declare var jQuery: any;
 declare var Hammer: any;
 
 @Component({
-    selector: '[chat-sidebar]',
+    selector: 'tfc-cmp-chat-sidebar',
     templateUrl: './chat-sidebar.template.html'
 })
 export class ChatSidebar implements OnInit {

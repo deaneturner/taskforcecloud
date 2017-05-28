@@ -1,74 +1,78 @@
-<div class="js-sidebar-content">
-    <header class="logo hidden-sm-down">
-        <a href="index.html">TF&nbsp;<i class="fa fa-cloud"></i></a>
-    </header>
-    <div class="sidebar-status hidden-md-up">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<nav id="sidebar" role="navigation" class="sidebar">
+    <div class="js-sidebar-content">
+        <header class="logo hidden-sm-down">
+            <a href="index.html">TF&nbsp;<i class="fa fa-cloud"></i></a>
+        </header>
+        <div class="sidebar-status hidden-md-up">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-xs-right">
         <i class="fa fa-user-o fa-1x"></i>
               </span>
-            <!-- .circle is a pretty cool way to add a bit of beauty to raw data.
-                 should be used with bg-* and text-* classes for colors -->
-            <span class="circle bg-warning fw-bold text-gray-dark">
+                <!-- .circle is a pretty cool way to add a bit of beauty to raw data.
+                     should be used with bg-* and text-* classes for colors -->
+                <span class="circle bg-warning fw-bold text-gray-dark">
                   13
               </span>
-            &nbsp;
-            {{currentUser.firstName}} <strong>{{currentUser.lastName}}</strong>
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-right">
-            <li><a class="dropdown-item" (click)="userService.cacheManager.selectUser(['/app/users/detail/', currentUser._id])"><i class="fa fa-user-o"></i> &nbsp; My Account</a>
-            </li>
-            <li class="dropdown-divider"></li>
-            <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Calendar</a></li>
-            <!--<li><a class="dropdown-item" [routerLink]=" ['/logout'] "><i class="fa fa-sign-out"></i> &nbsp; Log Out</a></li>-->
-            <li (click)="logout()"><a class="dropdown-item"><i class="fa fa-sign-out"></i> &nbsp; Log Out</a>
-            </li>
-        </ul>
-        <!-- disabled - see navbar.template.html - #notifications-dropdown-menu goes here when screen collapsed to xs or sm -->
-    </div>
-    <!-- main notification links are placed inside of .sidebar-nav -->
-    <ul class="sidebar-nav">
-        <li>
-            <a [routerLink]=" ['dashboard'] ">
+                &nbsp;
+                {{currentUser.firstName}} <strong>{{currentUser.lastName}}</strong>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li><a class="dropdown-item"
+                       (click)="userService.cacheManager.selectUser(['/app/users/detail/', currentUser._id])"><i
+                        class="fa fa-user-o"></i> &nbsp; My Account</a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li><a class="dropdown-item" [routerLink]=" ['/error'] ">Calendar</a></li>
+                <!--<li><a class="dropdown-item" [routerLink]=" ['/logout'] "><i class="fa fa-sign-out"></i> &nbsp; Log Out</a></li>-->
+                <li (click)="logout()"><a class="dropdown-item"><i class="fa fa-sign-out"></i> &nbsp; Log Out</a>
+                </li>
+            </ul>
+            <!-- disabled - see navbar.template.html - #notifications-dropdown-menu goes here when screen collapsed to xs or sm -->
+        </div>
+        <!-- main notification links are placed inside of .sidebar-nav -->
+        <ul class="sidebar-nav">
+            <li>
+                <a [routerLink]=" ['dashboard'] ">
       <span class="icon">
           <i class="fa fa-desktop"></i>
       </span>
-                Dashboard
-            </a>
-        </li>
-        <li>
-            <a [routerLink]=" ['admin'] ">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a [routerLink]=" ['admin'] ">
       <span class="icon">
           <i class="fa fa-cogs"></i>
       </span>
-                Administration
-                <!--<span class="tag tag-danger">-->
-                <!--9-->
-                <!--</span>-->
-            </a>
-        </li>
-        <li>
-            <a [routerLink]=" ['clients'] ">
+                    Administration
+                    <!--<span class="tag tag-danger">-->
+                    <!--9-->
+                    <!--</span>-->
+                </a>
+            </li>
+            <li>
+                <a [routerLink]=" ['clients'] ">
       <span class="icon">
           <i class="fa fa-handshake-o"></i>
       </span>
-                Clients
-                <!--<span class="tag tag-danger">-->
-                <!--9-->
-                <!--</span>-->
-            </a>
-        </li>
-        <li>
-            <a [routerLink]=" ['clientservices'] ">
+                    Clients
+                    <!--<span class="tag tag-danger">-->
+                    <!--9-->
+                    <!--</span>-->
+                </a>
+            </li>
+            <li>
+                <a [routerLink]=" ['clientservices'] ">
       <span class="icon">
           <i class="fa fa-cubes"></i>
       </span>
-                Services
-                <!--<span class="tag tag-danger">-->
-                <!--9-->
-                <!--</span>-->
-            </a>
-        </li>
-    </ul>
-</div>
+                    Services
+                    <!--<span class="tag tag-danger">-->
+                    <!--9-->
+                    <!--</span>-->
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

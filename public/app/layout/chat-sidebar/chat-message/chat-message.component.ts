@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
 
-    selector: '[chat-message]',
+    selector: 'tfc-cmp-chat-message',
     templateUrl: './chat-message.template.html'
 })
 export class ChatMessage {
