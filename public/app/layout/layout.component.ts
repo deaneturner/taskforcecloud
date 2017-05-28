@@ -12,14 +12,14 @@ declare var jQuery: any;
 declare var Hammer: any;
 
 @Component({
-    selector: 'layout',
+    selector: 'tfc-cmp-layout',
     encapsulation: ViewEncapsulation.None,
     templateUrl: './layout.template.html',
     host: {
         '[class.nav-static]': 'config.state["nav-static"]',
         '[class.chat-sidebar-opened]': 'chatOpened',
         '[class.app]': 'true',
-        id: 'app'
+        id: 'tfc-cmp-'
     }
 })
 export class Layout implements OnInit {
@@ -82,7 +82,7 @@ export class Layout implements OnInit {
             return;
         }
 
-        jQuery('layout').removeClass('nav-collapsed');
+        jQuery('tfc-cmp-layout').removeClass('nav-collapsed');
         this.$sidebar.find('.active .active').closest('.collapse').collapse('show')
             .siblings('[data-toggle=collapse]').removeClass('collapsed');
     }
@@ -94,7 +94,7 @@ export class Layout implements OnInit {
             return;
         }
 
-        jQuery('layout').addClass('nav-collapsed');
+        jQuery('tfc-cmp-layout').addClass('nav-collapsed');
         this.$sidebar.find('.collapse.in').collapse('hide')
             .siblings('[data-toggle=collapse]').addClass('collapsed');
     }
@@ -124,7 +124,7 @@ export class Layout implements OnInit {
     }
 
     toggleNavigationCollapseState(): void {
-        if (jQuery('layout').is('.nav-collapsed')) {
+        if (jQuery('tfc-cmp-layout').is('.nav-collapsed')) {
             this.expandNavigation();
         } else {
             this.collapseNavigation();
@@ -153,7 +153,7 @@ export class Layout implements OnInit {
                     return;
                 }
 
-                if (!jQuery('layout').is('.nav-collapsed')) {
+                if (!jQuery('tfc-cmp-layout').is('.nav-collapsed')) {
                     d.collapseNavigation();
                 }
             });
@@ -164,11 +164,11 @@ export class Layout implements OnInit {
                 return;
             }
 
-            if (jQuery('layout').is('.chat-sidebar-opened')) {
+            if (jQuery('tfc-cmp-layout').is('.chat-sidebar-opened')) {
                 return;
             }
 
-            if (jQuery('layout').is('.nav-collapsed')) {
+            if (jQuery('tfc-cmp-layout').is('.nav-collapsed')) {
                 d.expandNavigation();
             }
         });
@@ -220,7 +220,7 @@ export class Layout implements OnInit {
 
         this.$sidebar.on('click', () => {
             // if (this.configFn.isScreen('lg') || this.configFn.isScreen('xl')) {
-            //     if (jQuery('layout').is('.nav-collapsed')) {
+            //     if (jQuery('tfc-cmp-layout').is('.nav-collapsed')) {
             //         this.expandNavigation();
             //     }
             // }
