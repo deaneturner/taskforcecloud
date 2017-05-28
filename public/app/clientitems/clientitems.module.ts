@@ -3,7 +3,7 @@ import 'jquery-ui/ui/sortable.js';
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ModalModule } from 'ng2-modal';
+import { ModalModule } from 'ngx-modal';
 
 import { ClientItemListModule } from './list/clientitem-list.module';
 import { PanelModule } from '../shared/panel/panel.module';
