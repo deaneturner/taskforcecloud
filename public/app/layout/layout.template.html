@@ -1,5 +1,6 @@
 <tfc-cmp-sidebar></tfc-cmp-sidebar>
-<tfc-cmp-navbar></tfc-cmp-navbar>
+<tfc-cmp-navbar navbar (toggleSidebarEvent)="toggleSidebarListener($event)"
+                (toggleChatEvent)="toggleChatListener()" class="page-controls navbar navbar-dashboard"></tfc-cmp-navbar>
 <tfc-cmp-chat-sidebar></tfc-cmp-chat-sidebar>
 
 <div class="content-wrap" id="content-wrap">
