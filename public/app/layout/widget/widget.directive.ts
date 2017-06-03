@@ -2,7 +2,7 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 declare var jQuery: any;
 
 @Directive({
-    selector: '[widget]'
+    selector: '[tfcDirWidget]'
 })
 
 export class Widget implements OnInit {
