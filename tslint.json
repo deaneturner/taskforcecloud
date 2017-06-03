@@ -135,10 +135,10 @@
 //    "use-host-property-decorator": true,
 //    "no-attribute-parameter-decorator": true,
     "no-input-rename": true,
-    "no-output-rename": true // ,
+    "no-output-rename": true,
 //    "no-forward-ref": true,
 //    "use-life-cycle-interface": true,
-//    "use-pipe-transform-interface": true,
+    "use-pipe-transform-interface": true // ,
 
     // [ENABLED, "SUFFIX"]
     // Where "SUFFIX" is your custom suffix, for instance "Page" for Ionic 2 components.
