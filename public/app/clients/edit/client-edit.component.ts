@@ -29,7 +29,7 @@ export class ClientEditComponent implements OnInit {
         },
         'password': {
             'required': 'Password is required.',
-            'validateEqual': 'Password and Confirm Password must match.',
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.',
             'pattern': 'Length must be between 8 and 32 characters and contain ' +
             '[one or more uppercase letters], ' +
             '[one or more lowercase letters], ' +
@@ -37,7 +37,7 @@ export class ClientEditComponent implements OnInit {
         },
         'confirmPassword': {
             'required': 'Confirmation of password is required.',
-            'validateEqual': 'Password and Confirm Password must match.'
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.'
         }
     };
 
