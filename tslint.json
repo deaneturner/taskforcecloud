@@ -142,7 +142,7 @@
 
     // [ENABLED, "SUFFIX"]
     // Where "SUFFIX" is your custom suffix, for instance "Page" for Ionic 2 components.
-//    "component-class-suffix": [true, "Component"]
+    "component-class-suffix": [true, "Component"],
 //    "directive-class-suffix": [true, "Directive"]
     "import-destructuring-spacing": true,
 //    "templates-use-public": true,

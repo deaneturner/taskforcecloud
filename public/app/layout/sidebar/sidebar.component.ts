@@ -13,7 +13,7 @@ declare var jQuery: any;
     providers: [AuthService]
 })
 
-export class Sidebar implements OnInit {
+export class SidebarComponent implements OnInit {
     $el: any;
     config: any;
     currentUser: any = {};

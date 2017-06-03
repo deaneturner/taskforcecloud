@@ -13,7 +13,7 @@ import { User } from '../model/user.interface';
     },
     providers: [AuthService]
 })
-export class Register implements OnInit {
+export class RegistrationComponent implements OnInit {
     user: User;
     registrationForm: NgForm;
     formErrors: any = {

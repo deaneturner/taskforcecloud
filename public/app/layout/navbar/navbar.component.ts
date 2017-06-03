@@ -11,7 +11,7 @@ declare var jQuery: any;
     templateUrl: './navbar.template.html',
     providers: [AuthService]
 })
-export class Navbar implements OnInit {
+export class NavbarComponent implements OnInit {
     @Output() toggleSidebarEvent: EventEmitter<any> = new EventEmitter();
     @Output() toggleChatEvent: EventEmitter<any> = new EventEmitter();
     $el: any;

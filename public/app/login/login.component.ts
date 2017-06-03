@@ -15,7 +15,7 @@ import { MessageBusService } from '../services/message.bus.service';
     },
     providers: [AuthService]
 })
-export class Login implements OnInit, AfterViewChecked {
+export class LoginComponent implements OnInit, AfterViewChecked {
     appConfig: any;
     user: User;
     loginForm: NgForm;

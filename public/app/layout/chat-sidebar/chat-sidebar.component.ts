@@ -7,7 +7,7 @@ declare var Hammer: any;
     selector: 'tfc-cmp-chat-sidebar',
     templateUrl: './chat-sidebar.template.html'
 })
-export class ChatSidebar implements OnInit {
+export class ChatSidebarComponent implements OnInit {
     conversations: ChatService;
     newMessage: string = '';
     activeConversation: any;

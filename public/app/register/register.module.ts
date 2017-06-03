@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EqualValidator } from '../forms/equal-validator.directive';
 
-import { Register } from './register.component';
+import { RegistrationComponent } from './register.component';
 
 export const routes = [
-    {path: '', component: Register, pathMatch: 'full'}
+    {path: '', component: RegistrationComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
     declarations: [
-        Register,
+        RegistrationComponent,
         EqualValidator
     ],
     imports: [

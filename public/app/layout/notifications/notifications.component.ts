@@ -5,7 +5,7 @@ declare var jQuery: any;
 @Component({
     templateUrl: './notifications.template.html'
 })
-export class Notifications implements OnInit {
+export class NotificationsComponent implements OnInit {
     $el: any;
     config: any;
 

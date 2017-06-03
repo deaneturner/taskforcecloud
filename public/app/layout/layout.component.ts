@@ -22,7 +22,7 @@ declare var Hammer: any;
         id: 'tfc-cmp-'
     }
 })
-export class Layout implements OnInit {
+export class LayoutComponent implements OnInit {
     config: any;
     configFn: any;
     $sidebar: any;
