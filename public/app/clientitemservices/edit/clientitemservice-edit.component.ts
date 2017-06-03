@@ -11,7 +11,7 @@ import { ClientItem } from '../../model/clientitem.interface';
 import { ClientItemServiceI } from '../../model/clientitemservice.interface';
 
 @Component({
-    selector: 'clientitemservice-edit',
+    selector: 'tfc-cmp-clientitemservice-edit',
     templateUrl: 'clientitemservice-edit.template.html',
     styleUrls: ['clientitemservice-edit.style.scss'],
     encapsulation: ViewEncapsulation.None

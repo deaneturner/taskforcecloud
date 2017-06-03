@@ -8,7 +8,7 @@ import { MessageBusService } from '../../services/message.bus.service';
 declare var jQuery: any;
 
 @Component({
-    selector: '[sidebar]',
+    selector: 'tfc-cmp-sidebar',
     templateUrl: './sidebar.template.html',
     providers: [AuthService]
 })

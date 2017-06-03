@@ -8,7 +8,6 @@ import { AppState } from '../../app.service';
 import { User } from '../../model/user.interface';
 
 @Component({
-    selector: 'user-edit',
     templateUrl: 'user-edit.template.html',
     styleUrls: ['user-edit.style.scss'],
     encapsulation: ViewEncapsulation.None

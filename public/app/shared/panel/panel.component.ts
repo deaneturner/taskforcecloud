@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 declare var jQuery: any;
 
 @Component({
-    selector: 'tfc-panel',
+    selector: 'tfc-cmp-panel',
     templateUrl: './panel.template.html',
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./panel.style.scss']

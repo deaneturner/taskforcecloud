@@ -9,7 +9,6 @@ import { ClientService } from '../../model/clientservice.interface';
 import { ClientServiceTask } from '../../model/clientservicetask.interface';
 
 @Component({
-    selector: 'clientservicetask-edit',
     templateUrl: 'clientservicetask-edit.template.html',
     styleUrls: ['clientservicetask-edit.style.scss'],
     encapsulation: ViewEncapsulation.None

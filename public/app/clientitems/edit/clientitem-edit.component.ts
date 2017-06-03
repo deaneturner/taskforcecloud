@@ -9,7 +9,7 @@ import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
 @Component({
-    selector: 'clientitem-edit',
+    selector: 'tfc-cmp-clientitem-edit',
     templateUrl: 'clientitem-edit.template.html',
     styleUrls: ['clientitem-edit.style.scss'],
     encapsulation: ViewEncapsulation.None

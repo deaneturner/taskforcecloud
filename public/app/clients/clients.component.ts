@@ -5,7 +5,7 @@ import { AppConfig } from '../app.config';
 declare var jQuery: any;
 
 @Component({
-    selector: 'client',
+    selector: 'tfc-cmp-client',
     templateUrl: './clients.template.html',
     styleUrls: ['./clients.style.scss'],
     encapsulation: ViewEncapsulation.None

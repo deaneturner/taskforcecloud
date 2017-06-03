@@ -5,7 +5,6 @@ import { AppConfig } from '../app.config';
 declare var jQuery: any;
 
 @Component({
-    selector: 'client-service',
     templateUrl: './clientservices.template.html',
     styleUrls: ['./clientservices.style.scss'],
     encapsulation: ViewEncapsulation.None

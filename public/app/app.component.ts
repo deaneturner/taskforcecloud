@@ -10,14 +10,14 @@ import { AppState } from './app.service';
  * Top Level Component
  */
 @Component({
-    selector: 'app',
+    selector: 'tfc-cmp-app',
     encapsulation: ViewEncapsulation.None,
     styleUrls: [
         './scss/application.scss'
     ],
     template: `<router-outlet></router-outlet>`
 })
-export class App {
+export class AppComponent {
 
     constructor(public appState: AppState) {
 

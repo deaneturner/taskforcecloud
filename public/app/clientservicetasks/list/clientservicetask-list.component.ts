@@ -5,7 +5,7 @@ import { Client } from '../../model/client.interface';
 import { ClientServiceTaskService } from '../../services/clientservicetask.service';
 
 @Component({
-    selector: 'tfc-clientservicetask-list',
+    selector: 'tfc-cmp-clientservicetask-list',
     templateUrl: './clientservicetask-list.template.html',
     styleUrls: ['./clientservicetask-list.style.scss'],
     encapsulation: ViewEncapsulation.None
@@ -24,7 +24,7 @@ export class ClientServiceTaskListComponent {
     ngOnInit(): void {
         this.clientService._id = this.activatedRoute.snapshot.params['id'];
         this.getClientServiceTasks(this.clientService._id);
-    };
+    }
 
     getClientServiceTasks(clientServiceId: string) {
         this.clientServiceTaskService.getClientServiceTasks(clientServiceId)

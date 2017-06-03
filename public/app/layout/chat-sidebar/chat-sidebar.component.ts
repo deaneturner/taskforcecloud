@@ -4,7 +4,7 @@ declare var jQuery: any;
 declare var Hammer: any;
 
 @Component({
-    selector: '[chat-sidebar]',
+    selector: 'tfc-cmp-chat-sidebar',
     templateUrl: './chat-sidebar.template.html'
 })
 export class ChatSidebar implements OnInit {
@@ -45,7 +45,7 @@ export class ChatSidebar implements OnInit {
     }
 
     enableSwipeCollapsing(): void {
-        let $chatContainer = jQuery('layout');
+        let $chatContainer = jQuery('tfc-cmp-layout');
         let chatSidebarSwipe = new Hammer(document.getElementById('content-wrap'));
 
         chatSidebarSwipe.on('swipeleft', () => {
@@ -64,7 +64,7 @@ export class ChatSidebar implements OnInit {
     }
 
     ngOnInit(): void {
-        jQuery('layout').addClass('chat-sidebar-container');
+        jQuery('tfc-cmp-layout').addClass('chat-sidebar-container');
 
         if ('ontouchstart' in window) {
             this.enableSwipeCollapsing();

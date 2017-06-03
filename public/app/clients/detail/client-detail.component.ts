@@ -7,7 +7,7 @@ import { ClientService } from '../../services/client.service';
 import { ClientEditComponent } from '../edit/client-edit.component';
 
 @Component({
-    selector: 'client-detail',
+    selector: 'tfc-cmp-client-detail',
     templateUrl: 'client-detail.template.html',
     styleUrls: ['client-detail.style.scss'],
     encapsulation: ViewEncapsulation.None

@@ -7,7 +7,7 @@ import { ClientItem } from '../../model/clientitem.interface';
 import { ClientItemService } from '../../services/clientitem.service';
 
 @Component({
-    selector: 'tfc-clientitem-list',
+    selector: 'tfc-cmp-clientitem-list',
     templateUrl: './clientitem-list.template.html',
     styleUrls: ['./clientitem-list.style.scss'],
     encapsulation: ViewEncapsulation.None
@@ -26,7 +26,7 @@ export class ClientItemListComponent {
     ngOnInit(): void {
         this.client._id = this.activatedRoute.snapshot.params['id'];
         this.getClientItems(this.client._id);
-    };
+    }
 
     getClientItems(clientId: string) {
         this.clientItemService.getClientItems(clientId)
