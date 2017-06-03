@@ -15,7 +15,7 @@ export class ClientServiceTaskListComponent {
     clientService: any = {};
     clientServiceTasks: Array<Client>;
 
-    constructor(private router: Router,
+    constructor(public router: Router,
                 private activatedRoute: ActivatedRoute,
                 private clientServiceTaskService: ClientServiceTaskService) {
     }

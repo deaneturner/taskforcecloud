@@ -18,7 +18,7 @@ export class ClientItemServiceListComponent {
     clientItem = <ClientItem>{};
     clientItemServices: Array<ClientItem>;
 
-    constructor(private router: Router,
+    constructor(public router: Router,
                 private activatedRoute: ActivatedRoute,
                 private clientItemServiceSvc: ClientItemService) {
     }

@@ -15,7 +15,7 @@ export class ClientServiceListComponent {
     @Input() iconClass: any;
     clientServices: Array<ClientService>;
 
-    constructor(private router: Router,
+    constructor(public router: Router,
                 private clientServiceSvc: ClientServiceService) {
     }
 

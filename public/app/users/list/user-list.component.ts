@@ -13,7 +13,7 @@ export class UserListComponent {
     @Input() iconClass: any;
     users: Array<User>;
 
-    constructor(private userService: UserService) {
+    constructor(public userService: UserService) {
     }
 
     ngOnInit(): void {
