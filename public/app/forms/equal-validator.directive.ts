@@ -5,10 +5,14 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
     selector: `[tfcDirValidateEqual]
     [formControlName],[tfcDirValidateEqual][formControl],[tfcDirValidateEqual][ngModel]`,
     providers: [
-        {provide: NG_VALIDATORS, useExisting: forwardRef(() => EqualValidator), multi: true}
+        {
+            provide: NG_VALIDATORS,
+            useExisting: forwardRef(() => EqualValidatorDirective),
+            multi: true
+        }
     ]
 })
-export class EqualValidator implements Validator {
+export class EqualValidatorDirective implements Validator {
     constructor(@Attribute('tfcDirValidateEqual') public tfcDirValidateEqual: string,
                 @Attribute('reverse') public reverse: string) {
     }

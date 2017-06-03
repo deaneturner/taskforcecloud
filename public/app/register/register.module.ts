@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EqualValidator } from '../forms/equal-validator.directive';
+import { EqualValidatorDirective } from '../forms/equal-validator.directive';
 
 import { RegistrationComponent } from './register.component';
 
@@ -13,7 +13,7 @@ export const routes = [
 @NgModule({
     declarations: [
         RegistrationComponent,
-        EqualValidator
+        EqualValidatorDirective
     ],
     imports: [
         CommonModule,

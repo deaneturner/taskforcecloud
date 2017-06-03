@@ -14,7 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ChatSidebarComponent } from './chat-sidebar/chat-sidebar.component';
 import { ChatMessageComponent } from './chat-sidebar/chat-message/chat-message.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { NotificationLoad } from './notifications/notifications-load.directive';
+import { NotificationLoadDirective } from './notifications/notifications-load.directive';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ModalComponent } from '../shared/modal-window/modal.component';
 import { MessageBusService } from '../services/message.bus.service';
@@ -29,7 +29,7 @@ import { UserService } from '../services/user.service';
         ChatSidebarComponent,
         SearchPipe,
         NotificationsComponent,
-        NotificationLoad,
+        NotificationLoadDirective,
         ChatMessageComponent,
         ModalComponent],
     providers: [MessageBusService, UserService]

@@ -5,7 +5,7 @@ declare var jQuery: any;
     selector: '[tfcDirNotificationLoad]'
 })
 
-export class NotificationLoad implements OnInit {
+export class NotificationLoadDirective implements OnInit {
     $el: any;
     resetData: any = null;
 

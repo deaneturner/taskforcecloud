@@ -5,7 +5,7 @@ declare var jQuery: any;
     selector: '[tfcDirWidget]'
 })
 
-export class Widget implements OnInit {
+export class WidgetDirective implements OnInit {
     $el: any;
 
     constructor(el: ElementRef) {
