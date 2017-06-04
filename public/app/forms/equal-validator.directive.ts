@@ -1,4 +1,4 @@
-import { Directive, forwardRef, Attribute } from '@angular/core';
+import { Directive, forwardRef, Attribute, Input } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
@@ -13,9 +13,13 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
     ]
 })
 export class EqualValidatorDirective implements Validator {
-    constructor(@Attribute('tfcDirValidateEqual') public tfcDirValidateEqual: string,
-                @Attribute('reverse') public reverse: string) {
-    }
+    @Input()
+    tfcDirValidateEqual: string;
+
+    @Input()
+    reverse: string;
+
+    constructor() {}
 
     private get isReverse() {
         if (!this.reverse) return false;
