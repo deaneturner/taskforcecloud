@@ -1,5 +1,3 @@
-import { ClientItem } from './clientitem.interface.ts';
-
 export interface Client {
     _id: string;
     company: string;
