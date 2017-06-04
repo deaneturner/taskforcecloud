@@ -1,11 +1,11 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnInit } from '@angular/core';
 declare var jQuery: any;
 
 @Directive({
     selector: '[tfcDirPanelWidget]',
 })
 
-export class PanelDirective {
+export class PanelDirective implements OnInit {
     @Input() collapsed: boolean;
 
     render(): void {

@@ -137,7 +137,7 @@
     "no-input-rename": true,
     "no-output-rename": true,
 //    "no-forward-ref": true,
-//    "use-life-cycle-interface": true,
+    "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
 
     // [ENABLED, "SUFFIX"]

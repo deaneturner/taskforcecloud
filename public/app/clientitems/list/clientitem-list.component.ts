@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Client } from '../../model/client.interface';
@@ -12,7 +12,7 @@ import { ClientItemService } from '../../services/clientitem.service';
     styleUrls: ['./clientitem-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientItemListComponent {
+export class ClientItemListComponent implements OnInit {
     @Input() iconClass: any;
     client = <Client>{};
     clientItems: Array<ClientItem>;

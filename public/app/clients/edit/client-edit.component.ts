@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Client } from '../../model/client.interface';
     styleUrls: ['client-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientEditComponent implements OnInit {
+export class ClientEditComponent implements OnInit, AfterViewChecked {
     client = <Client>{};
     clientForm: NgForm;
     formErrors: any = {

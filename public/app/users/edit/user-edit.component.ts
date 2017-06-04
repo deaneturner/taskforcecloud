@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { User } from '../../model/user.interface';
     styleUrls: ['user-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit, AfterViewChecked {
     user: any = {};
     userForm: NgForm;
     formErrors: any = {

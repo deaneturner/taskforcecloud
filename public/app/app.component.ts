@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
 
@@ -17,7 +17,7 @@ import { AppState } from './app.service';
     ],
     template: `<router-outlet></router-outlet>`
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
     constructor(public appState: AppState) {
 
