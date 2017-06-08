@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { User } from '../../model/user.interface';
 import { UserService } from '../../services/user.service';
@@ -9,11 +9,11 @@ import { UserService } from '../../services/user.service';
     styleUrls: ['./user-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
     @Input() iconClass: any;
     users: Array<User>;
 
-    constructor(private userService: UserService) {
+    constructor(public userService: UserService) {
     }
 
     ngOnInit(): void {

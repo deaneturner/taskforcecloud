@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, HostBinding, OnInit, ViewChild,
+    AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
@@ -8,12 +9,11 @@ import { User } from '../model/user.interface';
     styleUrls: ['./register.style.scss'],
     templateUrl: './register.template.html',
     encapsulation: ViewEncapsulation.None,
-    host: {
-        class: 'register-page app'
-    },
     providers: [AuthService]
 })
-export class Register implements OnInit {
+export class RegistrationComponent implements OnInit, AfterViewChecked {
+    @HostBinding('class.register-page') isRegisterPageClassActive: boolean = true;
+    @HostBinding('class.app') isAppClassActive: boolean = true;
     user: User;
     registrationForm: NgForm;
     formErrors: any = {

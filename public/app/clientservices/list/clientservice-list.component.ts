@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ClientServiceService } from '../../services/clientservice.service';
@@ -11,11 +11,11 @@ import { ClientService } from '../../model/clientservice.interface';
     styleUrls: ['./clientservice-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServiceListComponent {
+export class ClientServiceListComponent implements OnInit {
     @Input() iconClass: any;
     clientServices: Array<ClientService>;
 
-    constructor(private router: Router,
+    constructor(public router: Router,
                 private clientServiceSvc: ClientServiceService) {
     }
 

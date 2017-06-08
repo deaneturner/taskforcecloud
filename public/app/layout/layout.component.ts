@@ -1,5 +1,5 @@
 import { Component,
-    ViewEncapsulation, ElementRef, ViewChild, OnInit } from '@angular/core';
+    ViewEncapsulation, ElementRef, ViewChild, HostBinding, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppState } from '../app.service';
@@ -14,33 +14,31 @@ declare var Hammer: any;
 @Component({
     selector: 'tfc-cmp-layout',
     encapsulation: ViewEncapsulation.None,
-    templateUrl: './layout.template.html',
-    host: {
-        '[class.nav-static]': 'config.state["nav-static"]',
-        '[class.chat-sidebar-opened]': 'chatOpened',
-        '[class.app]': 'true',
-        id: 'tfc-cmp-'
-    }
+    templateUrl: './layout.template.html'
 })
-export class Layout implements OnInit {
+export class LayoutComponent implements OnInit {
+    @HostBinding('class.nav-static') navStatic;
+    @HostBinding('class.chat-sidebar-opened') chatOpened: boolean = false;
+    @HostBinding('class.app') true;
+    @HostBinding('id') string = 'tfc-cmp-app';
     config: any;
     configFn: any;
     $sidebar: any;
     el: ElementRef;
     router: Router;
-    chatOpened: boolean = false;
 
     @ViewChild(ModalComponent)
     modalComponent: ModalComponent;
 
-    constructor(config: AppConfig,
+    constructor(appConfig: AppConfig,
                 el: ElementRef,
                 router: Router,
                 private appState: AppState,
                 private messageBusService: MessageBusService) {
         this.el = el;
-        this.config = config.getConfig();
-        this.configFn = config;
+        this.config = appConfig.getConfig();
+        this.navStatic = this.config.state['nav-static'];
+        this.configFn = appConfig;
         this.router = router;
     }
 

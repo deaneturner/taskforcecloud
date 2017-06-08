@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -16,7 +16,7 @@ import { ClientItemServiceI } from '../../model/clientitemservice.interface';
     styleUrls: ['clientitemservice-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientItemServiceEditComponent implements OnInit {
+export class ClientItemServiceEditComponent implements OnInit, AfterViewChecked {
     iconClass = ['fa', 'fa-dot-circle-o'];
     client = <Client>{};
     clientItem = <ClientItem>{};

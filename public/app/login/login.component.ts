@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, AfterViewChecked, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, HostBinding, OnInit, AfterViewChecked,
+    ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -10,12 +11,11 @@ import { MessageBusService } from '../services/message.bus.service';
     styleUrls: ['./login.style.scss'],
     templateUrl: './login.template.html',
     encapsulation: ViewEncapsulation.None,
-    host: {
-        class: 'login-page app'
-    },
     providers: [AuthService]
 })
-export class Login implements OnInit, AfterViewChecked {
+export class LoginComponent implements OnInit, AfterViewChecked {
+    @HostBinding('class.login-page') isLoginPageClassActive: boolean = true;
+    @HostBinding('class.app') isAppClassActive: boolean = true;
     appConfig: any;
     user: User;
     loginForm: NgForm;

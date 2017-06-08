@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EqualValidator } from '../forms/equal-validator.directive';
+import { EqualValidatorDirective } from '../forms/equal-validator.directive';
 
 import { ClientEditComponent } from './client-edit.component';
 
@@ -12,7 +12,7 @@ export const routes = [
 @NgModule({
     declarations: [
         ClientEditComponent,
-        EqualValidator
+        EqualValidatorDirective
     ],
     imports: [
         CommonModule,

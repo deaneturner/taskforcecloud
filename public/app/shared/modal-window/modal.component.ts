@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, Input } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, Input, OnInit } from '@angular/core';
 
 import { NotificationService } from '../../services/notification.service';
 
@@ -8,7 +8,7 @@ import { NotificationService } from '../../services/notification.service';
     styleUrls: ['./modal.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
     modal: any = {
         config: {
             buttons: []
