@@ -11,7 +11,7 @@
   "main": "server.js",
   "scripts": {
     "build:dev": "npm run eslint && webpack --config config/webpack.dev.js --progress --profile",
-    "build:prod": "npm run test && webpack --config config/webpack.prod.js  --progress --profile --bail",
+    "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
     "build": "npm run build:dev",
     "ci": "npm run lint && npm test && npm run e2e",
     "clean:dist": "npm run rimraf -- dist",
