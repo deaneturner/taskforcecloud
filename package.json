@@ -21,7 +21,7 @@
     "eslint": "eslint ./",
     "github-deploy:dev": "webpack --config config/webpack.github-deploy.js --progress --profile --github-dev",
     "github-deploy:prod": "webpack --config config/webpack.github-deploy.js --progress --profile --github-prod",
-    "lint": "npm run eslint && npm run tslint \"public/app/**/*.ts\"",
+    "lint": "npm run eslint && npm run tslint",
     "postversion": "git push && git push --tags",
     "prebuild:dev": "npm run clean:dist",
     "prebuild:prod": "npm run clean:dist",
