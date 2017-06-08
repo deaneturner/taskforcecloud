@@ -34,7 +34,7 @@
     "server:prod": "http-server dist --cors",
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
-    "start": "node server",
+    "start": "heroku local -f Procfile-dev",
     "start:dev": "node --debug server",
     "start:webpack": "npm run server:dev",
     "test": "npm run lint && karma start",
