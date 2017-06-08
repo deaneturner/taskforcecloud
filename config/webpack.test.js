@@ -7,7 +7,7 @@ const helpers = require('./helpers');
 /**
  * Webpack Plugins
  */
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+// const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
@@ -110,7 +110,7 @@ module.exports = function(options) {
                                     removeComments: true
 
                                 }
-                            },
+                            }
                         },
                         'angular2-template-loader'
                     ],
@@ -243,7 +243,7 @@ module.exports = function(options) {
                      * legacy options go here
                      */
                 }
-            }),
+            })
 
         ],
 
@@ -272,4 +272,4 @@ module.exports = function(options) {
         }
 
     };
-}
+};

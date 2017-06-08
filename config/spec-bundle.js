@@ -60,4 +60,5 @@ function requireAll(requireContext) {
 /**
  * Requires and returns all modules that match
  */
-var modules = requireAll(testContext);
+// var modules = requireAll(testContext);
+requireAll(testContext);
