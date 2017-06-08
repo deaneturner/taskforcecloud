@@ -19,8 +19,8 @@ declare var Hammer: any;
 export class LayoutComponent implements OnInit {
     @HostBinding('class.nav-static') navStatic;
     @HostBinding('class.chat-sidebar-opened') chatOpened: boolean = false;
-    @HostBinding('class.app') true;
-    @HostBinding('id') 'tfc-cmp-app';
+    @HostBinding('class.app') isAppClassActive: boolean = true;
+    @HostBinding('id') appId: string = 'tfc-cmp-app';
     config: any;
     configFn: any;
     $sidebar: any;
