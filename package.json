@@ -160,7 +160,7 @@
     "webpack-merge": "0.14.1"
   },
   "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
+    "node": ">= 5",
+    "npm": ">= 3"
   }
 }
