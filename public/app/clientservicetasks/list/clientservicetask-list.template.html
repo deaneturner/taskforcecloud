@@ -4,36 +4,19 @@
             <section class="event">
                 <div>
                     <div class="row">
-                        <div class="col-xs-9 pull-left"
-                             (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
-                            <span class="avatar pull-left mr-sm">
-                                <i class="fa" [ngClass]="iconClass"></i>
-                            </span>
-                            <h5 class="event-heading">{{ clientServiceTask.name }}
-                                <small>@nils</small>
-                            </h5>
-                        </div>
-                        <div class="col-xs-3">
-                            <div class="display-inline-block checkbox-ios ml pull-right">
-                                <label [attr.for]="clientServiceTask.name" class="switch">
-                                    <input type="checkbox" class="ios" [attr.id]="clientServiceTask.name"><i></i>
+                        <div class="col-xs-12">
+                            <div class="checkbox abc-checkbox abc-checkbox-primary">
+                                <input type="checkbox" [attr.id]="clientServiceTask.name">
+                                <label [attr.for]="clientServiceTask.name">
+                                    {{ clientServiceTask.name }}
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div  (click)="router.navigate(['app/clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])">
-                        <p class="text-muted">February 22, 2014 at 01:59 PM</p>
-                        <p class="fs-mini">
-                            There is no such thing as maturity. There is instead an ever-evolving process of maturing.
-                            Because when there is a maturity, there is ...
-                        </p>
-                    </div>
                 </div>
                 <footer>
-                    <ul class="post-links">
-                        <li><a href="#">1 hour</a></li>
-                        <li><a href="#"><span class="text-danger"><i class="fa fa-heart"></i> Like</span></a></li>
-                        <li><a href="#">Comment</a></li>
+                    <ul class="post-links pull-right">
+                        <li (click)="router.navigate(['app', 'clientservices', clientService._id, 'clientservicetasks', 'edit', clientServiceTask._id])"><span class="text-danger"><i class="fa fa-edit"></i> Edit</span></li>
                     </ul>
                 </footer>
             </section>
