@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,12 +9,11 @@ import { ClientService } from '../../model/clientservice.interface';
 import { ClientServiceTask } from '../../model/clientservicetask.interface';
 
 @Component({
-    selector: 'clientservicetask-edit',
     templateUrl: 'clientservicetask-edit.template.html',
     styleUrls: ['clientservicetask-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServiceTaskEditComponent implements OnInit {
+export class ClientServiceTaskEditComponent implements OnInit, AfterViewChecked {
     iconClass = ['fa', 'fa-cube'];
     clientService = <ClientService>{};
     clientServiceTask = <ClientServiceTask>{};

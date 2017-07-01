@@ -12,7 +12,7 @@ import { ClientItem } from '../../model/clientitem.interface';
 import { ServicesModalComponent } from './services-modal-window/services-modal.component';
 
 @Component({
-    selector: 'clientitem-detail',
+    selector: 'tfc-cmp-clientitem-detail',
     templateUrl: 'clientitem-detail.template.html',
     styleUrls: ['clientitem-detail.style.scss'],
     encapsulation: ViewEncapsulation.None

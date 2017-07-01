@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -6,12 +6,11 @@ import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
-    selector: 'clientservice-edit',
     templateUrl: 'clientservice-edit.template.html',
     styleUrls: ['clientservice-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServiceEditComponent implements OnInit {
+export class ClientServiceEditComponent implements OnInit, AfterViewChecked {
     clientService = <ClientService>{};
     clientServiceForm: NgForm;
     formErrors: any = {

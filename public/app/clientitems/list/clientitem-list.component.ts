@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Client } from '../../model/client.interface';
@@ -7,17 +7,17 @@ import { ClientItem } from '../../model/clientitem.interface';
 import { ClientItemService } from '../../services/clientitem.service';
 
 @Component({
-    selector: 'tfc-clientitem-list',
+    selector: 'tfc-cmp-clientitem-list',
     templateUrl: './clientitem-list.template.html',
     styleUrls: ['./clientitem-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientItemListComponent {
+export class ClientItemListComponent implements OnInit {
     @Input() iconClass: any;
     client = <Client>{};
     clientItems: Array<ClientItem>;
 
-    constructor(private router: Router,
+    constructor(public router: Router,
                 private activatedRoute: ActivatedRoute,
                 private clientItemService: ClientItemService) {
     }
@@ -26,7 +26,7 @@ export class ClientItemListComponent {
     ngOnInit(): void {
         this.client._id = this.activatedRoute.snapshot.params['id'];
         this.getClientItems(this.client._id);
-    };
+    }
 
     getClientItems(clientId: string) {
         this.clientItemService.getClientItems(clientId)

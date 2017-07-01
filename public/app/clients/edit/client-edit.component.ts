@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -7,12 +7,12 @@ import { AppState } from '../../app.service';
 import { Client } from '../../model/client.interface';
 
 @Component({
-    selector: 'client-edit',
+    selector: 'tfc-cmp-client-edit',
     templateUrl: 'client-edit.template.html',
     styleUrls: ['client-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientEditComponent implements OnInit {
+export class ClientEditComponent implements OnInit, AfterViewChecked {
     client = <Client>{};
     clientForm: NgForm;
     formErrors: any = {
@@ -29,7 +29,7 @@ export class ClientEditComponent implements OnInit {
         },
         'password': {
             'required': 'Password is required.',
-            'validateEqual': 'Password and Confirm Password must match.',
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.',
             'pattern': 'Length must be between 8 and 32 characters and contain ' +
             '[one or more uppercase letters], ' +
             '[one or more lowercase letters], ' +
@@ -37,7 +37,7 @@ export class ClientEditComponent implements OnInit {
         },
         'confirmPassword': {
             'required': 'Confirmation of password is required.',
-            'validateEqual': 'Password and Confirm Password must match.'
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.'
         }
     };
 

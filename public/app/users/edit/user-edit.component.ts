@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -8,12 +8,11 @@ import { AppState } from '../../app.service';
 import { User } from '../../model/user.interface';
 
 @Component({
-    selector: 'user-edit',
     templateUrl: 'user-edit.template.html',
     styleUrls: ['user-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit, AfterViewChecked {
     user: any = {};
     userForm: NgForm;
     formErrors: any = {
@@ -28,7 +27,7 @@ export class UserEditComponent implements OnInit {
         },
         'password': {
             'required': 'Password is required.',
-            'validateEqual': 'Password and Confirm Password must match.',
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.',
             'pattern': 'Length must be between 8 and 32 characters and contain ' +
             '[one or more uppercase letters], ' +
             '[one or more lowercase letters], ' +
@@ -36,7 +35,7 @@ export class UserEditComponent implements OnInit {
         },
         'confirmPassword': {
             'required': 'Confirmation of password is required.',
-            'validateEqual': 'Password and Confirm Password must match.'
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.'
         }
     };
 

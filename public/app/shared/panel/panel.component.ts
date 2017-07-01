@@ -1,14 +1,14 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 
 declare var jQuery: any;
 
 @Component({
-    selector: 'tfc-panel',
+    selector: 'tfc-cmp-panel',
     templateUrl: './panel.template.html',
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./panel.style.scss']
 })
-export class PanelComponent {
+export class PanelComponent implements OnInit {
     @Input() title: string;
     @Input() iconClass: Array<string>[];
     @Input() collapsible: boolean = false;

@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <input class="form-control" type="password" name="password"
                                        placeholder="Password"
-                                       [(ngModel)]="user.password" validateEqual="confirmPassword"
+                                       [(ngModel)]="user.password" tfcDirValidateEqual="confirmPassword"
                                        reverse="true"
                                        pattern="^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*"
                                        tabindex="4"
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <input class="form-control" type="password" name="confirmPassword"
                                        placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"
-                                       validateEqual="password"
+                                       tfcDirValidateEqual="password"
                                        tabindex="5"
                                        required>
                                 <ul class="validation-errors-list filled"

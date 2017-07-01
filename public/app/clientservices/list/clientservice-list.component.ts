@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ClientServiceService } from '../../services/clientservice.service';
@@ -6,23 +6,23 @@ import { ClientServiceService } from '../../services/clientservice.service';
 import { ClientService } from '../../model/clientservice.interface';
 
 @Component({
-    selector: 'tfc-client-service-list',
+    selector: 'tfc-cmp-client-service-list',
     templateUrl: './clientservice-list.template.html',
     styleUrls: ['./clientservice-list.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServiceListComponent {
+export class ClientServiceListComponent implements OnInit {
     @Input() iconClass: any;
     clientServices: Array<ClientService>;
 
-    constructor(private router: Router,
+    constructor(public router: Router,
                 private clientServiceSvc: ClientServiceService) {
     }
 
 
     ngOnInit(): void {
         this.getClientServices();
-    };
+    }
 
     getClientServices() {
         this.clientServiceSvc.getClientServices()

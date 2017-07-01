@@ -1,20 +1,19 @@
-import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, HostBinding, OnInit, ViewChild,
+    AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { User } from '../model/user.interface';
 
 @Component({
-    selector: 'register',
     styleUrls: ['./register.style.scss'],
     templateUrl: './register.template.html',
     encapsulation: ViewEncapsulation.None,
-    host: {
-        class: 'register-page app'
-    },
     providers: [AuthService]
 })
-export class Register implements OnInit {
+export class RegistrationComponent implements OnInit, AfterViewChecked {
+    @HostBinding('class.register-page') isRegisterPageClassActive: boolean = true;
+    @HostBinding('class.app') isAppClassActive: boolean = true;
     user: User;
     registrationForm: NgForm;
     formErrors: any = {
@@ -30,7 +29,7 @@ export class Register implements OnInit {
         },
         'password': {
             'required': 'Password is required.',
-            'validateEqual': 'Password and Confirm Password must match.',
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.',
             'pattern': 'Length must be between 8 and 32 characters and contain ' +
             '[one or more uppercase letters], ' +
             '[one or more lowercase letters], ' +
@@ -38,7 +37,7 @@ export class Register implements OnInit {
         },
         'confirmPassword': {
             'required': 'Confirmation of password is required.',
-            'validateEqual': 'Password and Confirm Password must match.'
+            'tfcDirValidateEqual': 'Password and Confirm Password must match.'
         }
     };
 

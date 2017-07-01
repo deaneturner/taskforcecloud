@@ -3,7 +3,6 @@ import { AppConfig } from '../app.config';
 declare var jQuery: any;
 
 @Component({
-    selector: 'admin',
     templateUrl: './admin.template.html',
     styleUrls: ['./admin.style.scss'],
     encapsulation: ViewEncapsulation.None

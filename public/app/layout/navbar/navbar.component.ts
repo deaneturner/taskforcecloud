@@ -7,11 +7,11 @@ import { MessageBusService } from '../../services/message.bus.service';
 declare var jQuery: any;
 
 @Component({
-    selector: '[navbar]',
+    selector: 'tfc-cmp-navbar',
     templateUrl: './navbar.template.html',
     providers: [AuthService]
 })
-export class Navbar implements OnInit {
+export class NavbarComponent implements OnInit {
     @Output() toggleSidebarEvent: EventEmitter<any> = new EventEmitter();
     @Output() toggleChatEvent: EventEmitter<any> = new EventEmitter();
     $el: any;

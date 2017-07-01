@@ -3,7 +3,7 @@
     <li class="active breadcrumb-item" [routerLink]="['/app/users/detail/', user._id]">{{user.username}}</li>
 </ol>
 <!--<h1 class="page-title">Edit - <span class="fw-semi-bold">User</span></h1>-->
-<section class="widget" widget id="autoload-widget"
+<section class="widget" tfcDirWidget id="autoload-widget"
          data-widgster-load="assets/demo/grid/autoload.php"
          data-post-processing="true"
          data-widgster-autoload="false"
@@ -95,7 +95,7 @@
                     <!--<div class="form-group">-->
                     <!--<input class="form-control" type="password" name="confirmPassword"-->
                     <!--placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"-->
-                    <!--validateEqual="password">-->
+                    <!--tfcDirValidateEqual="password">-->
                     <!--<ul class="validation-errors-list filled"-->
                     <!--*ngFor="let err of formErrors.confirmPassword">-->
                     <!--<li class="validation-type">{{ err }}</li>-->

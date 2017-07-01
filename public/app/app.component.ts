@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
 
@@ -10,14 +10,14 @@ import { AppState } from './app.service';
  * Top Level Component
  */
 @Component({
-    selector: 'app',
+    selector: 'tfc-cmp-app',
     encapsulation: ViewEncapsulation.None,
     styleUrls: [
         './scss/application.scss'
     ],
     template: `<router-outlet></router-outlet>`
 })
-export class App {
+export class AppComponent implements OnInit {
 
     constructor(public appState: AppState) {
 

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,12 +9,12 @@ import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
 @Component({
-    selector: 'clientitem-edit',
+    selector: 'tfc-cmp-clientitem-edit',
     templateUrl: 'clientitem-edit.template.html',
     styleUrls: ['clientitem-edit.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientItemEditComponent implements OnInit {
+export class ClientItemEditComponent implements OnInit, AfterViewChecked {
     iconClass = ['fa', 'fa-dot-circle-o'];
     client = <Client>{};
     clientItem = <ClientItem>{};

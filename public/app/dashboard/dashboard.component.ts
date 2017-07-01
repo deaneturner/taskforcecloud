@@ -1,13 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AppConfig } from '../app.config';
 
 @Component({
-  selector: 'dashboard',
   templateUrl: './dashboard.template.html',
   styleUrls: ['./dashboard.style.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   appConfig: any;
   month: any;
   year: any;

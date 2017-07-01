@@ -3,10 +3,9 @@ import { AppConfig } from '../../app.config';
 declare var jQuery: any;
 
 @Component({
-    selector: '[notifications]',
     templateUrl: './notifications.template.html'
 })
-export class Notifications implements OnInit {
+export class NotificationsComponent implements OnInit {
     $el: any;
     config: any;
 

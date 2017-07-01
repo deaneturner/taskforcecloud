@@ -1,16 +1,16 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppConfig } from '../app.config';
 
 declare var jQuery: any;
 
 @Component({
-    selector: 'client',
+    selector: 'tfc-cmp-client',
     templateUrl: './clients.template.html',
     styleUrls: ['./clients.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientsComponent {
+export class ClientsComponent implements OnInit {
     appConfig: any;
     panel: any;
     iconClass = ['fa', 'fa-handshake-o'];

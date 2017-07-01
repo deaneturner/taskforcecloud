@@ -1,16 +1,15 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppConfig } from '../app.config';
 
 declare var jQuery: any;
 
 @Component({
-    selector: 'client-service',
     templateUrl: './clientservices.template.html',
     styleUrls: ['./clientservices.style.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientServicesComponent {
+export class ClientServicesComponent implements OnInit {
     appConfig: any;
     panel: any;
     iconClass = ['fa', 'fa-cubes'];

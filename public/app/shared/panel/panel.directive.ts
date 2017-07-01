@@ -1,18 +1,18 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnInit } from '@angular/core';
 declare var jQuery: any;
 
 @Directive({
-    selector: '[panel-widget]',
+    selector: '[tfcDirPanelWidget]',
 })
 
-export class PanelDirective {
+export class PanelDirective implements OnInit {
     @Input() collapsed: boolean;
 
     render(): void {
         jQuery.fn.widgster.Constructor.DEFAULTS.bodySelector = '.widget-body';
 
         let $widgets = jQuery('.widget'),
-            $panelWidget = jQuery('#panel-widget');
+            $panelWidget = jQuery('#tfcDirPanelWidget');
 
         /**
          * turn off .content-wrap transforms & disable sorting when widget fullscreened
