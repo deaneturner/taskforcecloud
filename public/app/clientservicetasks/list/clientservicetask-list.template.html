@@ -21,7 +21,7 @@
                     <ul class="post-links pull-right" [hidden]="!clientServiceTask.showControls">
                         <li (click)="router.navigate(['app', 'clientservices', clientService._id, 'clientservicetasks', 'detail', clientServiceTask._id])"><span class="text-success"><i class="fa fa-eye"></i> Detail</span></li>
                         <li (click)="router.navigate(['app', 'clientservices', clientService._id, 'clientservicetasks', 'edit', clientServiceTask._id])"><span class="text-warning"><i class="fa fa-edit"></i> Edit</span></li>
-                        <li (click)="router.navigate(['app', 'clientservices', clientService._id, 'clientservicetasks', 'edit', clientServiceTask._id])"><span class="text-danger"><i class="fa fa-edit"></i> Delete</span></li>
+                        <li (click)="router.navigate(['app', 'clientservices', clientService._id, 'clientservicetasks', 'edit', clientServiceTask._id])"><span class="text-danger"><i class="fa fa-trash-o"></i> Delete</span></li>
                     </ul>
                 </footer>
             </section>
