@@ -140,14 +140,7 @@ export class ClientServiceTaskEditComponent implements OnInit, AfterViewChecked 
     }
 
     cancel(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        if (this.clientServiceTask._id) {
-            this.router.navigate(['/app/clientservices', this.clientService._id,
-                'clientservicetasks', 'detail', this.clientServiceTask._id]);
-        } else {
             this.router.navigate(['/app/clientservices/detail/', this.clientService._id]);
-        }
     }
 
     /*
