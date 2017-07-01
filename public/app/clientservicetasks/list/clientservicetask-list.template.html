@@ -1,6 +1,6 @@
 <div class="list-group list-group-lg">
     <section class="activities">
-        <a *ngFor="let clientServiceTask of clientServiceTasks">
+        <a *ngFor="let clientServiceTask of clientServiceTasks" (mouseleave)="clientServiceTask.showControls = false">
             <section class="event">
                 <div>
                     <div class="row">
