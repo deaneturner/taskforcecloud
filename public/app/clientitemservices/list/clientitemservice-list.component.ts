@@ -20,20 +20,22 @@ export class ClientItemServiceListComponent implements OnInit {
 
     constructor(public router: Router,
                 private activatedRoute: ActivatedRoute,
-                private clientItemServiceSvc: ClientItemService) {
+                private clientItemService: ClientItemService) {
     }
 
 
     ngOnInit(): void {
         this.client._id = this.activatedRoute.snapshot.params['id'];
         this.clientItem._id = this.activatedRoute.snapshot.params['clientitemid'];
-        this.getClientItems(this.client._id);
+        this.getClientItemServices(this.clientItem._id);
     }
 
-    getClientItems(clientId: string) {
-        this.clientItemServiceSvc.getClientItems(clientId)
+    getClientItemServices(clientItemId: string) {
+        this.clientItemService.getClientItem(clientItemId)
             .subscribe(
-                clientItemServices => this.clientItemServices = clientItemServices,
+                clientItem => {
+                    this.clientItemServices = clientItem.services;
+                },
                 error => {
                 }  // error is handled by service
             );

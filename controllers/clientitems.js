@@ -19,11 +19,13 @@ module.exports = function(lib) {
     }, function(req, res, next) {
         var id = req.params.id;
         if (id != null) {
-            lib.db.model('ClientItem').findOne({_id: id}).exec(function(err, clientitem) {
-                if (err) return next(controller.RESTError('InternalServerError', err));
-                if (!clientitem) return next(controller.RESTError('ResourceNotFoundError', 'The client item id cannot be found'));
-                controller.writeHAL(res, clientitem);
-            });
+            lib.db.model('ClientItem').findOne({_id: id})
+                .populate('services')
+                .exec(function(err, clientitem) {
+                    if (err) return next(controller.RESTError('InternalServerError', err));
+                    if (!clientitem) return next(controller.RESTError('ResourceNotFoundError', 'The client item id cannot be found'));
+                    controller.writeHAL(res, clientitem);
+                });
         } else {
             next(controller.RESTError('InvalidArgumentError', 'Invalid client item id'));
         }
@@ -36,10 +38,12 @@ module.exports = function(lib) {
         'responsClass': 'ClientItem',
         'nickname': 'getClientItems'
     }, function(req, res, next) {
-        lib.db.model('ClientItem').find().sort('name').exec(function(err, clientitems) {
-            if (err) return next(controller.RESTError('InternalServerError', err));
-            controller.writeHAL(res, clientitems);
-        });
+        lib.db.model('ClientItem').find()
+            .sort('name')
+            .exec(function(err, clientitems) {
+                if (err) return next(controller.RESTError('InternalServerError', err));
+                controller.writeHAL(res, clientitems);
+            });
     });
 
     controller.addAction({
@@ -76,7 +80,40 @@ module.exports = function(lib) {
                     clientitem = _.extend(clientitem, JSON.parse(req.body));
                     clientitem.save(function(err, newClientItem) {
                         if (err) return next(controller.RESTError('InternalServerError', err));
-                        controller.writeHAL(res, {success: true, data: newClientItem});
+                        model.findOne({_id: id})
+                            .populate('services')
+                            .exec(function(err, clientitem) {
+                                if (err) return next(controller.RESTError('InternalServerError', err));
+                                controller.writeHAL(res, {success: true, data: clientitem});
+                            });
+                    });
+                });
+        }
+    });
+
+    controller.addAction({
+        'path': '/api/clientitemservices/:id',
+        'method': 'PUT',
+        'summary': 'Updates the services of one client item',
+        'responsClass': 'ClientItem',
+        'nickname': 'updateClientItemServices'
+    }, function(req, res, next) {
+        var id = req.params.id;
+        if (!id) {
+            return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
+        } else {
+            var model = lib.db.model('ClientItem');
+            model.findOne({_id: id})
+                .exec(function(err, clientitem) {
+                    if (err) return next(controller.RESTError('InternalServerError', err));
+                    clientitem.update({$pushAll: {services: JSON.parse(req.body)}}, function(err, updatedClientItem) {
+                        if (err) return next(controller.RESTError('InternalServerError', err));
+                        model.findOne({_id: id})
+                            .populate('services')
+                            .exec(function(err, clientitem) {
+                                if (err) return next(controller.RESTError('InternalServerError', err));
+                                controller.writeHAL(res, {success: true, data: clientitem});
+                            });
                     });
                 });
         }
