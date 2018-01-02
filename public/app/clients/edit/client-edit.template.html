@@ -52,6 +52,34 @@
                             <li class="validation-type">{{ err }}</li>
                         </ul>
                     </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input class="form-control"
+                               type="text"
+                               id="email"
+                               name="email"
+                               placeholder="E-mail"
+                               [(ngModel)]="client.email"
+                               pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                               required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.email">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input class="form-control"
+                               type="text"
+                               id="phone"
+                               name="phone"
+                               placeholder="Phone"
+                               [(ngModel)]="client.phone">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.phone">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-xs-12">
                     <div class="form-group">
@@ -81,30 +109,30 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label for="email">E-mail</label>
+                        <label for="city">City</label>
                         <input class="form-control"
                                type="text"
-                               id="email"
-                               name="email"
-                               placeholder="E-mail"
-                               [(ngModel)]="client.email"
-                               pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                               id="city"
+                               name="city"
+                               placeholder="City"
+                               [(ngModel)]="client.city"
                                required>
                         <ul class="validation-errors-list filled"
-                            *ngFor="let err of formErrors.email">
+                            *ngFor="let err of formErrors.city">
                             <li class="validation-type">{{ err }}</li>
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
+                        <label for="address1">State</label>
                         <input class="form-control"
                                type="text"
-                               id="phone"
-                               name="phone"
-                               placeholder="Phone"
-                               [(ngModel)]="client.phone">
+                               id="state"
+                               name="state"
+                               placeholder="State"
+                               [(ngModel)]="client.state"
+                               required>
                         <ul class="validation-errors-list filled"
-                            *ngFor="let err of formErrors.phone">
+                            *ngFor="let err of formErrors.state">
                             <li class="validation-type">{{ err }}</li>
                         </ul>
                     </div>

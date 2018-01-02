@@ -21,6 +21,14 @@ module.exports = {
             'type': 'string',
             'description': 'Address2 of this client'
         },
+        'city': {
+            'type': 'string',
+            'description': 'City location of this client'
+        },
+        'state': {
+            'type': 'string',
+            'description': 'State location of this client'
+        },
         'phone': {
             'type': 'string',
             'description': 'Phone of the client'
