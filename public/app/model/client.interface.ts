@@ -7,7 +7,6 @@ export interface Client {
     address2: string;
     city: string;
     state: string;
-    country: string;
     email: string;
     phone: string;
 }

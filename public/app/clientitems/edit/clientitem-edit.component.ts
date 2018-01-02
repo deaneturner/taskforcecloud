@@ -67,13 +67,29 @@ export class ClientItemEditComponent implements OnInit, AfterViewChecked {
                                 client => {
                                     self.client = client;
                                     self.clientService.setClientContext(client);
+                                    // if new, apply the client's location
+                                    if (paramId === 'new') {
+                                        this.applyClientLocation(self.client, self.clientItem);
+                                    }
                                 },
                                 error => {
                                 } // error is handled by service
                             );
+                    } else {
+                        // if new, apply the client's location
+                        if (paramId === 'new') {
+                            this.applyClientLocation(self.client, self.clientItem);
+                        }
                     }
                 }
             );
+    }
+
+    applyClientLocation(client: Client, clientItem: ClientItem) {
+        clientItem.address1 = client.address1;
+        clientItem.address2 = client.address2;
+        clientItem.city = client.city;
+        clientItem.state = client.state;
     }
 
     upsertClientItem(isValid: boolean, clientItemForm: ClientItem) {
