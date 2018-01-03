@@ -6,7 +6,7 @@ npm run build:prod
 
 http://localhost:5000/#/app/dashboard
 
-dt@mail.com
+dt@mail
 
 Jobsearch0
 
