@@ -10,6 +10,10 @@ import { Client } from '../../model/client.interface';
 import { ClientItem } from '../../model/clientitem.interface';
 
 import { ServicesModalComponent } from './services-modal-window/services-modal.component';
+import {
+    ClientItemServiceListComponent
+} from
+    '../../clientitemservices/list/clientitemservice-list.component';
 
 @Component({
     selector: 'tfc-cmp-clientitem-detail',
@@ -26,6 +30,9 @@ export class ClientItemDetailComponent implements OnInit {
 
     @ViewChild(ServicesModalComponent)
     public servicesModal: ServicesModalComponent;
+
+    @ViewChild(ClientItemServiceListComponent)
+    public clientItemServiceListComponent: ClientItemServiceListComponent;
 
     constructor(private router: Router,
                 private notificationService: NotificationService,
@@ -151,7 +158,7 @@ export class ClientItemDetailComponent implements OnInit {
                 self.activatedRoute.params
                     .subscribe(
                         params => {
-                            this.clientServiceSvc.getClientServices()
+                            this.clientServiceSvc.getClientServices({global: true})
                                 .subscribe(
                                     clientServices => {
                                         self.openServiceModal({
@@ -167,7 +174,7 @@ export class ClientItemDetailComponent implements OnInit {
                                                 title: 'Add',
                                                 onClick: ($event) => {
                                                     self.updateClientItemServices(
-                                                        self.servicesModal.selectedServices);
+                                                        self.servicesModal.selectedService);
                                                 },
                                                 class: 'btn btn-success'
                                             }]
@@ -188,17 +195,20 @@ export class ClientItemDetailComponent implements OnInit {
         this.servicesModal.open();
     }
 
-    updateClientItemServices(services: string[]) {
+    updateClientItemServices(service: string) {
         const self = this;
-        if (services.length) {
+        if (service) {
             if (this.clientItem._id) {
                 // update
-                // this.clientItem.services = services;
                 this.clientItemService
-                    .updateClientItem(this.clientItem._id, this.clientItem)
+                    .updateClientItemServices(this.clientItem._id, service)
                     .subscribe(
                         res => {
                             if (res.success) {
+                                this.clientItemServiceListComponent
+                                    .clientItemServices = res.data.services;
+                                self.clientItem = res.data;
+                                self.clientItemService.setClientItemContext(res.data);
                                 self.servicesModal.close();
                             } else if (res.success === false) {
                                 const field = res.field;

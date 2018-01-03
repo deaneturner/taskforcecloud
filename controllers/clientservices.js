@@ -36,7 +36,7 @@ module.exports = function(lib) {
         'responsClass': 'ClientService',
         'nickname': 'getClientServices'
     }, function(req, res, next) {
-        lib.db.model('ClientService').find().sort('name').exec(function(err, clients) {
+        lib.db.model('ClientService').find(JSON.parse(req.params.query)).sort('name').exec(function(err, clients) {
             if (err) return next(controller.RESTError('InternalServerError', err));
             controller.writeHAL(res, clients);
         });

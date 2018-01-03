@@ -24,9 +24,65 @@
                                id="name"
                                name="name"
                                placeholder="Name"
-                               [(ngModel)]="clientItem.name">
+                               [(ngModel)]="clientItem.name"
+                               required>
                         <ul class="validation-errors-list filled"
                             *ngFor="let err of formErrors.name">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="address1">Address 1</label>
+                        <input class="form-control"
+                               type="text"
+                               id="address1"
+                               name="address1"
+                               placeholder="Address 1"
+                               [(ngModel)]="clientItem.address1"
+                               required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.address1">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">Address 2</label>
+                        <input class="form-control"
+                               type="text"
+                               id="address2"
+                               name="address2"
+                               placeholder="Address 2"
+                               [(ngModel)]="clientItem.address2">
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.address2">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input class="form-control"
+                               type="text"
+                               id="city"
+                               name="city"
+                               placeholder="City"
+                               [(ngModel)]="clientItem.city"
+                               required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.city">
+                            <li class="validation-type">{{ err }}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input class="form-control"
+                               type="text"
+                               id="state"
+                               name="state"
+                               placeholder="State"
+                               [(ngModel)]="clientItem.state"
+                               required>
+                        <ul class="validation-errors-list filled"
+                            *ngFor="let err of formErrors.state">
                             <li class="validation-type">{{ err }}</li>
                         </ul>
                     </div>

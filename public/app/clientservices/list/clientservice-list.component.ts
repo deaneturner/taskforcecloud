@@ -25,7 +25,7 @@ export class ClientServiceListComponent implements OnInit {
     }
 
     getClientServices() {
-        this.clientServiceSvc.getClientServices()
+        this.clientServiceSvc.getClientServices({global: true})
             .subscribe(
                 clientServices => this.clientServices = clientServices,
                 error => {

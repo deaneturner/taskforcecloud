@@ -117,7 +117,7 @@ export class UserDetailComponent implements OnInit {
                                             });
 
                                             self.notificationService.closeModal();
-                                            self.router.navigate(['/app/users']);
+                                            self.router.navigate(['/app/admin']);
                                         },
                                         error => {
                                         }  // error is handled by service

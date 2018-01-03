@@ -13,14 +13,13 @@
         <form role="form" #servicesModalForm="ngForm" novalidate>
             <div class="form-group row">
                 <div class="col-xs-12">
-                    <select [(ngModel)]="selectedServices"
+                    <select [(ngModel)]="selectedService"
                             class="form-control"
                             style="overflow-x:scroll"
                             tabindex="-1"
-                            id="selectedServices"
-                            name="selectedServices"
-                            multiple>
-                        <option value="" selected disabled>- Select services</option>
+                            id="selectedService"
+                            name="selectedService">
+                        <option value="" selected disabled>- Select service</option>
                         <option *ngFor="let service of config.services" value="{{service._id}}">{{service.name}}</option>
                     </select>
                 </div>
