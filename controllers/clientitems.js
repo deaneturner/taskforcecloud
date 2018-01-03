@@ -1,6 +1,7 @@
 var BaseController = require('./basecontroller');
 var _ = require('underscore');
 var swagger = require('swagger-node-restify');
+var mongoose = require('mongoose');
 
 function ClientItems() {
 }
@@ -94,11 +95,12 @@ module.exports = function(lib) {
     controller.addAction({
         'path': '/api/clientitemservices/:id',
         'method': 'PUT',
-        'summary': 'Updates the services of one client item',
+        'summary': 'Inserts a new cloned service and associated cloned tasks for one client item',
         'responsClass': 'ClientItem',
         'nickname': 'updateClientItemServices'
     }, function(req, res, next) {
         var id = req.params.id;
+        var serviceId = req.body;
         if (!id) {
             return next(controller.RESTError('InvalidArgumentError', 'Invalid id'));
         } else {
@@ -106,15 +108,42 @@ module.exports = function(lib) {
             model.findOne({_id: id})
                 .exec(function(err, clientitem) {
                     if (err) return next(controller.RESTError('InternalServerError', err));
-                    clientitem.update({$pushAll: {services: JSON.parse(req.body)}}, function(err, updatedClientItem) {
-                        if (err) return next(controller.RESTError('InternalServerError', err));
-                        model.findOne({_id: id})
-                            .populate('services')
-                            .exec(function(err, clientitem) {
+                    // create a clone of the selected service and add it to the client item services array
+                    lib.db.model('ClientService').findById(serviceId).exec(
+                        function(err, doc) {
+                            if (err) return next(controller.RESTError('InternalServerError', err));
+                            doc._id = mongoose.Types.ObjectId();
+                            doc.isNew = true;
+                            doc.global = false;
+                            doc.save(function(err, doc) {
                                 if (err) return next(controller.RESTError('InternalServerError', err));
-                                controller.writeHAL(res, {success: true, data: clientitem});
+                                // add the new service to the client item service array
+                                clientitem.update({$pushAll: {services: [doc._id]}}, function(err, updatedClientItem) {
+                                    if (err) return next(controller.RESTError('InternalServerError', err));
+                                    // clone the task records from the selected records and assign to new doc id
+                                    var clientServiceTaskModel = lib.db.model('ClientServiceTask');
+                                    clientServiceTaskModel.find({_clientServiceId: serviceId})
+                                        .exec(function(err, clientServiceTasks) {
+                                            if (err) return next(controller.RESTError('InternalServerError', err));
+                                            clientServiceTasks.forEach(function(clientServiceTask) {
+                                                clientServiceTask._id = mongoose.Types.ObjectId();
+                                                clientServiceTask._clientServiceId = doc._id;
+                                                clientServiceTask.isNew = true;
+                                                clientServiceTask.save(function(err, doc) {
+                                                    if (err) return next(controller.RESTError('InternalServerError', err));
+                                                });
+                                            });
+                                        });
+                                    model.findOne({_id: id})
+                                        .populate('services')
+                                        .exec(function(err, clientitem) {
+                                            if (err) return next(controller.RESTError('InternalServerError', err));
+                                            controller.writeHAL(res, {success: true, data: clientitem});
+                                        });
+                                });
                             });
-                    });
+                        }
+                    );
                 });
         }
     });

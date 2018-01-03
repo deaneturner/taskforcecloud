@@ -83,7 +83,7 @@ export class ClientServiceEditComponent implements OnInit, AfterViewChecked {
                     );
             } else {
                 // insert
-                this.clientServiceSvc.insertClientService(clientServiceForm)
+                this.clientServiceSvc.insertClientService(clientServiceForm , true)
                     .subscribe(
                         res => {
                             if (res.success) {

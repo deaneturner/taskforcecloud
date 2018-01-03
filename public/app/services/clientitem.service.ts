@@ -40,10 +40,10 @@ export class ClientItemService {
             .catch(this.notificationService.handleError);
     }
 
-    updateClientItemServices(id: string, services: string[]) {
+    updateClientItemServices(id: string, service: string) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
-        return this.http.put('/api/clientitemservices/' + id, services, {headers: headers})
+        return this.http.put('/api/clientitemservices/' + id, service, {headers: headers})
             .map((response: any) => <ClientItem>(response.json()))
             .catch(this.notificationService.handleError);
     }

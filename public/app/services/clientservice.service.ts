@@ -23,7 +23,7 @@ export class ClientServiceService {
     }
 
     getClientServices(query ?: any) {
-        return this.http.get('/api/clientservices')
+        return this.http.get('/api/clientservices', {params: {query: query}})
             .map((response: Response) => <ClientService[]>_.values(response.json()))
             .catch(this.notificationService.handleError);
     }
@@ -36,9 +36,12 @@ export class ClientServiceService {
             .catch(this.notificationService.handleError);
     }
 
-    insertClientService(clientService: ClientService) {
+    insertClientService(clientService: ClientService, isGlobal?: boolean) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
+        if (isGlobal) {
+            clientService.global = true;
+        }
         return this.http.post('/api/clientservices', clientService, {headers: headers})
             .map((response: any) => <ClientService>(response.json()))
             .catch(this.notificationService.handleError);

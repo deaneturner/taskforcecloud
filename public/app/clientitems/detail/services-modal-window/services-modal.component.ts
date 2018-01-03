@@ -11,7 +11,7 @@ export class ServicesModalComponent {
     @ViewChild('servicesModal')
     public el: any;
 
-    selectedServices: string [] = [];
+    selectedService: string = '';
 
     config: any = {
         title: 'Add Target Services',
@@ -30,6 +30,6 @@ export class ServicesModalComponent {
     }
 
     clearSelected() {
-        this.selectedServices = [];
+        this.selectedService = '';
     }
 }

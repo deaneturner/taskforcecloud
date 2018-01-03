@@ -158,7 +158,7 @@ export class ClientItemDetailComponent implements OnInit {
                 self.activatedRoute.params
                     .subscribe(
                         params => {
-                            this.clientServiceSvc.getClientServices()
+                            this.clientServiceSvc.getClientServices({global: true})
                                 .subscribe(
                                     clientServices => {
                                         self.openServiceModal({
@@ -174,7 +174,7 @@ export class ClientItemDetailComponent implements OnInit {
                                                 title: 'Add',
                                                 onClick: ($event) => {
                                                     self.updateClientItemServices(
-                                                        self.servicesModal.selectedServices);
+                                                        self.servicesModal.selectedService);
                                                 },
                                                 class: 'btn btn-success'
                                             }]
@@ -195,13 +195,13 @@ export class ClientItemDetailComponent implements OnInit {
         this.servicesModal.open();
     }
 
-    updateClientItemServices(services: string[]) {
+    updateClientItemServices(service: string) {
         const self = this;
-        if (services.length) {
+        if (service) {
             if (this.clientItem._id) {
                 // update
                 this.clientItemService
-                    .updateClientItemServices(this.clientItem._id, services)
+                    .updateClientItemServices(this.clientItem._id, service)
                     .subscribe(
                         res => {
                             if (res.success) {
